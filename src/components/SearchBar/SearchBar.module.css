@@ -1,0 +1,21 @@
+.searchBarWrapper {
+  display: flex;
+  align-items: center;
+  max-inline-size: 45rem;
+  inline-size: 100%;
+  padding-inline-start: 1.6rem;
+  background-color: var(--secondary-bg-color);
+  border-radius: 0.8rem;
+}
+
+.searchBarWrapper:focus-within {
+  outline: 0.1rem solid var(--secondary-color);
+}
+
+.searchBar {
+  inline-size: 100%;
+  background-color: transparent;
+  border: none;
+  padding: 1.2rem 1.6rem;
+  outline: none;
+}

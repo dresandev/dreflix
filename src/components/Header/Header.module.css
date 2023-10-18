@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  row-gap: 3rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 2rem 1.6rem;
+}
+
+.profileImage {
+  --size: 3.2rem;
+  inline-size: var(--size);
+  block-size: var(--size);
+  background: var(--secondary-bg-color);
+  border-radius: 50%;
+}
+
+.menuWrapper {
+  display: flex;
+  gap: 2rem;
+}

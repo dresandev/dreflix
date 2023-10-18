@@ -1,13 +1,21 @@
 :root {
   --primary-color-hsl: 352 99% 41%;
+  --secondary-color-hsl: 220 83% 40%;
   --bg-color-hsl: 0 0% 0%;
   --secondary-bg-hsl: 0 0% 10%;
   --text-color-hsl: 0 0% 100%;
   --hover-color-hsl: 0 0% 25%;
 
   --primary-color: hsl(352, 99%, 41%);
+  --secondary-color: hsl(220, 83%, 40%);
   --bg-color: hsl(0, 0%, 0%);
   --secondary-bg-color: hsl(0, 0%, 10%);
   --text-color: hsl(0, 0%, 100%);
   --hover-color: hsl(0, 0%, 25%);
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }

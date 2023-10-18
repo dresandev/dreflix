@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Fira_Sans } from 'next/font/google'
+import { Header } from '@components/Header'
 import '@styles/reset.css'
 import '@styles/globals.css'
 
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='es'>
       <body className={firaSans.className}>
+        <Header />
         <main>
           {children}
         </main>

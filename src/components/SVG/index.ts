@@ -1,4 +1,5 @@
 export { ChevronArrow } from './ChevronArrow'
+export { DreflixLogo } from './DreflixLogo'
 export { HeartIcon } from './HeartIcon'
 export { PlayIcon } from './PlayIcon'
 export { PlusIcon } from './PlusIcon'
