@@ -16,6 +16,11 @@ const firaSans = Fira_Sans({
 export const metadata: Metadata = {
   title: 'Dreflix: Explora y encuentra la película  indicada',
   description: 'Explora a través de un gran catálogo de películas y encuentra la indicada',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    userScalable: false
+  }
 }
 
 interface RootLayoutProps {

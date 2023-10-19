@@ -1,0 +1,1 @@
+export { HeroMovieCard } from './HeroMovieCard'

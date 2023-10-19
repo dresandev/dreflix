@@ -1,0 +1,54 @@
+.carousel {
+  display: flex;
+  padding-inline: var(--inline-space);
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.item {
+  max-inline-size: 100%;
+  flex-shrink: 0;
+  list-style: none;
+  scroll-margin-inline-start: 2rem;
+}
+
+.itemSnapPoint {
+  scroll-snap-align: start;
+}
+
+.itemScrollSnapStopAlway {
+  scroll-snap-stop: always;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-block-start: 3.2rem;
+}
+
+.paginationBtn {
+  padding: 0.8rem 0.4rem;
+  max-inline-size: 3.2rem;
+  inline-size: 100%;
+  transition: max-inline-size 300ms ease;
+}
+
+.paginationPill {
+  inline-size: 100%;
+  block-size: 0.8rem;
+  background-color: var(--hover-color);
+  border-radius: 0.4rem;
+}
+
+.paginationBtnActive {
+  max-inline-size: 5.6rem;
+}
+
+.paginationBtnActive > .paginationPill {
+  background-color: var(--secondary-color);
+}

@@ -3,7 +3,7 @@
   row-gap: 3rem;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 2rem 1.6rem;
+  padding: 2rem var(--inline-space);
 }
 
 .profileImage {

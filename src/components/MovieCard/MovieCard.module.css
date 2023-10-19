@@ -1,0 +1,9 @@
+.image {
+  inline-size: 16rem;
+  block-size: auto;
+  border-radius: var(--border-radius);
+}
+
+.title {
+  margin-block-start: 0.8rem;
+}

@@ -3,9 +3,9 @@
   align-items: center;
   max-inline-size: 45rem;
   inline-size: 100%;
-  padding-inline-start: 1.6rem;
+  padding-inline-start: var(--inline-space);
   background-color: var(--secondary-bg-color);
-  border-radius: 0.8rem;
+  border-radius: var(--border-radius);
 }
 
 .searchBarWrapper:focus-within {
@@ -16,6 +16,6 @@
   inline-size: 100%;
   background-color: transparent;
   border: none;
-  padding: 1.2rem 1.6rem;
+  padding: 1.2rem var(--inline-space);
   outline: none;
 }
