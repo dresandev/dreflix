@@ -10,6 +10,7 @@ export const DreflixLogo = (props: SVGProps<SVGSVGElement>) => (
     fill='none'
     {...props}
   >
+    <title>Dreflix logo</title>
     <path
       className={styles.path}
       fill='var(--primary-color)'

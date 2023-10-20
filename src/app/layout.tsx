@@ -1,17 +1,8 @@
 import type { Metadata } from 'next'
-import { Fira_Sans } from 'next/font/google'
+import { Body } from '@components/Body'
 import { Header } from '@components/Header'
 import '@styles/reset.css'
 import '@styles/globals.css'
-
-const firaSans = Fira_Sans({
-  subsets: ['latin'],
-  weight: [
-    '400',
-    '500',
-    '700',
-  ]
-})
 
 export const metadata: Metadata = {
   title: 'Dreflix: Explora y encuentra la película  indicada',
@@ -30,12 +21,12 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='es'>
-      <body className={firaSans.className}>
+      <Body>
         <Header />
         <main>
           {children}
         </main>
-      </body>
+      </Body>
     </html>
   )
 }

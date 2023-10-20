@@ -1,20 +1,18 @@
+.wrapper {
+  flex: 0 0 var(--header-block-size);
+}
+
 .header {
+  position: fixed;
+  z-index: 5;
+  inset-inline: 0;
   display: flex;
-  row-gap: 3rem;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 2rem var(--inline-space);
-}
-
-.profileImage {
-  --size: 3.2rem;
-  inline-size: var(--size);
-  block-size: var(--size);
-  background: var(--secondary-bg-color);
-  border-radius: 50%;
-}
-
-.menuWrapper {
-  display: flex;
+  align-items: center;
   gap: 2rem;
+  padding: 2rem var(--inline-space);
+  background-color: var(--bg-color);
+}
+
+.searchLink {
+  margin-left: auto;
 }

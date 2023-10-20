@@ -15,11 +15,14 @@
 
   --border-radius: 0.8rem;
   --inline-space: 1.6rem;
+  --header-block-size: 7.5rem;
 
   color-scheme: dark;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   background-color: var(--bg-color);
   color: var(--text-color);
 }

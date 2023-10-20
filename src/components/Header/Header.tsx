@@ -1,22 +1,35 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import { Menu } from '@components/Menu'
 import { MenuBtn } from '@components/MenuBtn'
-import { DreflixLogo } from '@components/SVG'
-import { SearchBar } from '@components/SearchBar'
+import { DreflixLogo, SearchIcon } from '@components/SVG'
+import profileImage from '@assets/images/profile-image.png'
 import styles from './Header.module.css'
 
 export const Header = () => {
   return (
-    <header className={styles.header}>
-      <Link href='/'>
-        <DreflixLogo />
-      </Link>
-
-      <div className={styles.menuWrapper}>
-        <div className={styles.profileImage}></div>
+    <div className={styles.wrapper}>
+      <header className={styles.header}>
         <MenuBtn />
-      </div>
+        <Link
+          aria-label='Ir al inicio'
+          href='/'
+        >
+          <DreflixLogo />
+        </Link>
 
-      <SearchBar />
-    </header >
+
+        <Link
+          aria-label='Ir a buscar películas'
+          className={styles.searchLink}
+          href='/'
+        >
+          <SearchIcon />
+        </Link>
+
+        <Image src={profileImage} alt='Profile image' />
+        <Menu />
+      </header >
+    </div>
   )
 }

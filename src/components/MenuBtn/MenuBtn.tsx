@@ -14,6 +14,8 @@ export const MenuBtn = () => {
 
   return (
     <button
+      aria-label='Abir menú'
+      title='Menú'
       className={clsx(
         styles.menuBtn,
         isMenuOpen && styles.activeMenuBtn

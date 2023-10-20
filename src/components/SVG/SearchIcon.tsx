@@ -9,6 +9,7 @@ export const SearchIcon = (props: SVGProps<SVGSVGElement>) => (
     fill='none'
     {...props}
   >
+    <title>Buscar</title>
     <g
       stroke='currentColor'
       strokeLinecap='round'
