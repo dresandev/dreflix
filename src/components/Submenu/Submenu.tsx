@@ -44,11 +44,13 @@ export const Submenu: React.FC<SubmenuProps> = ({
       </button>
       <ul className={styles.submenu}>
         {
-          items.map(({ href, label }) => {
-            const key = crypto.randomUUID()
+          items.map(({ href, label }, i) => {
+            // TODO: uncomment this
+            // const key = crypto.randomUUID()
+
             return (
               <Link
-                key={key}
+                key={i}
                 className={styles.link}
                 href={href}
               >

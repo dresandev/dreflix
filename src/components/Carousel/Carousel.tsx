@@ -5,7 +5,6 @@ import { useSnapCarousel } from 'react-snap-carousel'
 import { useHasMounted } from '@hooks/use-has-mounted'
 import { FadeIn } from '@components/FadeIn'
 import styles from './Carousel.module.css'
-import { useEffect } from 'react'
 
 interface CarouselProps {
   children: React.ReactNode[]

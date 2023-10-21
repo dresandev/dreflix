@@ -1,5 +1,5 @@
 .image {
-  inline-size: 16rem;
+  inline-size: 15rem;
   block-size: auto;
   border-radius: var(--border-radius);
 }

@@ -37,9 +37,8 @@
 
 .paginationBtn {
   padding: 0.8rem 0.4rem;
-  max-inline-size: 3.2rem;
-  inline-size: 100%;
-  transition: max-inline-size 300ms ease;
+  flex-basis: 3.2rem;
+  transition: flex-basis 300ms ease;
 }
 
 .paginationPill {
@@ -50,9 +49,11 @@
 }
 
 .paginationBtnActive {
-  max-inline-size: 5.6rem;
+  flex-basis: 5.6rem;
 }
 
 .paginationBtnActive > .paginationPill {
   background-color: var(--secondary-color);
+  background-color: currentColor;
+  background-color: var(--primary-color);
 }
