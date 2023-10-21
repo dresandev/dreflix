@@ -22,20 +22,3 @@
 .menu ul {
   padding-inline-start: 0;
 }
-
-.option {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  padding: 1.2rem 1.6rem;
-}
-
-.subMenu {
-  background-color: var(--secondary-bg-color);
-}
-
-.link{
-  display: block;
-  text-decoration: none;
-  padding: 1.2rem 1.6rem;
-}

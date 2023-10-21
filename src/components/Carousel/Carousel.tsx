@@ -2,7 +2,10 @@
 
 import clsx from 'clsx'
 import { useSnapCarousel } from 'react-snap-carousel'
+import { useHasMounted } from '@hooks/use-has-mounted'
+import { FadeIn } from '@components/FadeIn'
 import styles from './Carousel.module.css'
+import { useEffect } from 'react'
 
 interface CarouselProps {
   children: React.ReactNode[]
@@ -17,6 +20,7 @@ export const Carousel: React.FC<CarouselProps> = ({
   itemScrollSnapStopAlway = false,
   showPagination = false
 }) => {
+  const isMounted = useHasMounted()
   const {
     scrollRef,
     pages,
@@ -49,27 +53,28 @@ export const Carousel: React.FC<CarouselProps> = ({
           ))
         }
       </ul>
-
-      {
-        showPagination && (
-          <div className={styles.pagination}>
-            {
-              pages.map((_, i) => (
-                <button
-                  key={i}
-                  className={clsx(
-                    styles.paginationBtn,
-                    activePageIndex === i && styles.paginationBtnActive
-                  )}
-                  onClick={() => goTo(i)}
-                >
-                  <div className={styles.paginationPill}></div>
-                </button>
-              ))
-            }
-          </div>
-        )
-      }
+      <div className={styles.paginationWrapper}>
+        {
+          showPagination && isMounted && (
+            <FadeIn className={styles.pagination}>
+              {
+                pages.map((_, i) => (
+                  <button
+                    key={i}
+                    className={clsx(
+                      styles.paginationBtn,
+                      activePageIndex === i && styles.paginationBtnActive
+                    )}
+                    onClick={() => goTo(i)}
+                  >
+                    <div className={styles.paginationPill}></div>
+                  </button>
+                ))
+              }
+            </FadeIn>
+          )
+        }
+      </div>
     </div>
   )
 }

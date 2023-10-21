@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Body } from '@components/Body'
 import { Header } from '@components/Header'
+import { Footer } from '@components/Footer'
 import '@styles/reset.css'
 import '@styles/globals.css'
 
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <main>
           {children}
         </main>
+        <Footer />
       </Body>
     </html>
   )

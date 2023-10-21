@@ -1,6 +1,6 @@
 import { HeroCarousel } from '@components/HeroCarousel'
-import styles from './page.module.css'
 import { MoviesSection } from '@components/MoviesSection'
+import styles from './page.module.css'
 
 export default function Home() {
   return (

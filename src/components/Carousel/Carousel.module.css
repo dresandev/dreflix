@@ -25,6 +25,10 @@
   scroll-snap-stop: always;
 }
 
+.paginationWrapper {
+  min-block-size: 5.6rem;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
