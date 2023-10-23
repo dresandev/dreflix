@@ -1,43 +1,80 @@
 'use client'
 
+import { useRef } from 'react'
 import clsx from 'clsx'
-import { useUIStore } from '@store/use-ui-store'
+import { toggleBodyOverflow } from '@utils/toggle-body-overflow'
+import { useBoolean } from '@hooks/use-boolean'
+import { useOnClickOutside } from '@hooks/use-on-click-outside'
 import { Submenu } from '@components/Submenu'
 import styles from './Menu.module.css'
 
 export const Menu = () => {
-  const { isMenuOpen } = useUIStore()
+  const {
+    value: isMenuOpen,
+    toggle: toggleIsMenuOpen,
+    setFalse: closeMenu
+  } = useBoolean(false)
+
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  const handleClickOutside = () => {
+    toggleBodyOverflow(false)
+    closeMenu()
+  }
+
+  useOnClickOutside(menuRef, handleClickOutside)
+
+  const handleMenuBtnClick = () => {
+    toggleBodyOverflow(!isMenuOpen)
+    toggleIsMenuOpen()
+  }
 
   return (
-    <nav className={clsx(
-      styles.menu,
-      isMenuOpen && styles.showMenu
-    )}>
-      <ul>
-        <li>
-          <Submenu
-            title='Explorar'
-            items={[
-              { href: '/', label: 'Popular' },
-              { href: '/', label: 'En cartelera hoy' },
-              { href: '/', label: 'Próximamente' },
-              { href: '/', label: 'Mejor valoradas' },
-            ]}
-          />
-        </li>
-        <li>
-          <Submenu
-            title='Géneros'
-            items={[
-              { href: '/', label: 'Acción' },
-              { href: '/', label: 'Fantasía' },
-              { href: '/', label: 'Historia' },
-              { href: '/', label: 'Misterio' },
-              { href: '/', label: 'Música' },
-            ]}
-          />
-        </li>
-      </ul>
-    </nav>
+    <div ref={menuRef}>
+      <button
+        aria-label='Abir menú'
+        title='Menú'
+        className={clsx(
+          styles.menuBtn,
+          isMenuOpen && styles.activeMenuBtn
+        )}
+        onClick={handleMenuBtnClick}
+      >
+        <span className={styles.menuBtnLine}></span>
+        <span className={styles.menuBtnLine}></span>
+      </button>
+
+      <nav className={clsx(
+        'menu',
+        styles.menu,
+        isMenuOpen && 'showMenu'
+      )}>
+        <ul>
+          <li>
+            <Submenu
+              title='Explorar'
+              items={[
+                { href: '/', label: 'Popular' },
+                { href: '/', label: 'En cartelera hoy' },
+                { href: '/', label: 'Próximamente' },
+                { href: '/', label: 'Mejor valoradas' },
+              ]}
+            />
+          </li>
+          <li>
+            <Submenu
+              title='Géneros'
+              items={[
+                { href: '/', label: 'Acción' },
+                { href: '/', label: 'Fantasía' },
+                { href: '/', label: 'Historia' },
+                { href: '/', label: 'Misterio' },
+                { href: '/', label: 'Música' },
+              ]}
+            />
+          </li>
+        </ul>
+      </nav>
+    </div>
   )
 }

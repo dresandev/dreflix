@@ -1,8 +1,8 @@
+import Link from 'next/link'
 import Image from 'next/image'
 import heroImage from '@assets/images/hero-image.png'
 import logoImage from '@assets/images/logo-image.png'
 import styles from './HeroMovieCard.module.css'
-import Link from 'next/link'
 
 export const HeroMovieCard = () => {
   return (
@@ -12,7 +12,6 @@ export const HeroMovieCard = () => {
         src={heroImage}
         alt='hero movie image'
       />
-      <div className={styles.gradient}></div>
       <Image
         className={styles.logoImage}
         src={logoImage}

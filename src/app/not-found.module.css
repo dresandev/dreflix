@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  block-size: 100%;
+}
+
+.title {
+  font-size: 15rem;
+}
+
+.goBackHomeLink {
+  display: block;
+  padding: 1.5rem 1rem;
+  margin-block-start: 3rem;
+  inline-size: 28rem;
+  background-color: var(--secondary-bg-color);
+  text-align: center;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+}

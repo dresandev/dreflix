@@ -9,19 +9,11 @@ export const PlusIcon = (props: SVGProps<SVGSVGElement>) => (
     fill='none'
     {...props}
   >
-    <g
-      stroke='#fff'
+    <path
+      stroke='currentColor'
       strokeLinecap='round'
-      strokeLinejoin='round'
       strokeWidth={2}
-      clipPath='url(#a)'
-    >
-      <path d='M12 5v14M5 12h14' />
-    </g>
-    <defs>
-      <clipPath id='a'>
-        <path fill='#fff' d='M0 0h24v24H0z' />
-      </clipPath>
-    </defs>
+      d='M12 5v14m-7-7h14'
+    />
   </svg>
 )

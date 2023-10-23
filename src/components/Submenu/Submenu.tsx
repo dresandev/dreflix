@@ -27,27 +27,29 @@ export const Submenu: React.FC<SubmenuProps> = ({
     setFalse: closeSubmenu,
     toggle: toggleSubmenuIsOpen
   } = useBoolean(false)
-  const submenuRef = useRef<HTMLDivElement>(null)
 
+  const submenuRef = useRef<HTMLDivElement>(null)
   useOnClickOutside(submenuRef, closeSubmenu)
 
   return (
     <div ref={submenuRef}>
       <button
-        className={clsx(
-          styles.option,
-          submenuIsOpen && styles.submenuOpen
-        )}
+        className={styles.option}
         onClick={toggleSubmenuIsOpen}
       >
-        {title} <ChevronArrow className={styles.chevronArrow} />
+        {title} <ChevronArrow className={clsx(
+          styles.chevronArrow,
+          submenuIsOpen && styles.rotateArrow
+        )} />
       </button>
-      <ul className={styles.submenu}>
+      <ul className={clsx(
+        styles.submenu,
+        submenuIsOpen && styles.submenuOpen
+      )}>
         {
           items.map(({ href, label }, i) => {
             // TODO: uncomment this
             // const key = crypto.randomUUID()
-
             return (
               <Link
                 key={i}

@@ -9,18 +9,18 @@
   transition: transform 100ms cubic-bezier(0, 0, 0.25, 1);
 }
 
-.submenuOpen > .chevronArrow {
+.rotateArrow {
   transform: rotate(-180deg);
-}
-
-.submenuOpen + .submenu {
-  max-height: max-content;
 }
 
 .submenu {
   max-block-size: 0;
   background-color: var(--secondary-bg-color);
   overflow: hidden;
+}
+
+.submenuOpen {
+  max-block-size: max-content;
 }
 
 .link {

@@ -1,19 +1,25 @@
 :root {
   --primary-color-hsl: 352 99% 41%;
-  --secondary-color-hsl: 220 83% 40%;
+  --secondary-color-hsl: 21, 94% 43%;
   --bg-color-hsl: 0 0% 0%;
-  --text-color-hsl: 0 0% 100%;
+  --secondary-bg-color-hsl: 214 85.26% 53%;
+  --tertiary-bg-color-hsl: 0 0% 22%;
+  --primary-text-color-hsl: 0 0% 100%;
+  --secondary-text-color-hsl: 0 3% 64%;
   --hover-color-hsl: 0 0% 25%;
 
   --primary-color: hsl(352, 99%, 41%);
+  --secondary-color: hsl(214, 85.26%, 53%);
   --bg-color: hsl(0, 0%, 0%);
   --secondary-bg-color: hsl(0, 0%, 10%);
-  --text-color: hsl(0, 0%, 100%);
+  --tertiary-bg-color: hsl(0, 0%, 22%);
+  --primary-text-color: hsl(0, 0%, 100%);
+  --secondary-text-color: hsl(0, 3%, 64%);
   --hover-color: hsl(0, 0%, 25%);
 
   --border-radius: 0.8rem;
   --inline-space: 1.6rem;
-  --header-block-size: 7.5rem;
+  --header-block-size: 6.7rem;
 
   color-scheme: dark;
 }
@@ -22,5 +28,32 @@ body {
   display: flex;
   flex-direction: column;
   background-color: var(--bg-color);
-  color: var(--text-color);
+  color: var(--primary-text-color);
+}
+
+main {
+  flex: 1;
+}
+
+.hideOverflow {
+  overflow: hidden;
+}
+
+.menu {
+  position: fixed;
+  inset: 0;
+  inset-block-start: var(--header-block-size);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-1rem);
+  transition: transform 100ms, opacity 100ms cubic-bezier(0, 0, 0.25, 1),
+    visibility 0s linear 100ms;
+}
+
+.showMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: transform 200ms, opacity 0.2ms cubic-bezier(0, 0, 0.25, 1),
+    visibility 0ms;
 }

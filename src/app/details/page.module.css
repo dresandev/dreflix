@@ -1,0 +1,57 @@
+.hero {
+  position: relative;
+}
+
+.heroImage {
+  inline-size: 100%;
+  block-size: auto;
+}
+
+.gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    hsl(0, 0%, 0%) 0%,
+    hsla(0, 0%, 0%, 0) 58.18%
+  );
+}
+
+.details {
+  position: relative;
+  inset-block-end: 3rem;
+  padding-inline: var(--inline-space);
+}
+
+.title {
+  margin-block-end: 0.8rem;
+}
+
+.overview {
+  margin-block-end: 1.2rem;
+}
+
+.badges {
+  margin-block-end: 1.2rem;
+  font-size: 1.4rem;
+  color: var(--secondary-text-color);
+}
+
+.genres {
+  display: inline;
+}
+
+.options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.option {
+  padding: 1rem;
+  border-radius: 50%;
+  background-color: hsl(var(--primary-text-color-hsl) / 0.1);
+}
+
+.playTrailer {
+  background-color: var(--primary-color);
+}

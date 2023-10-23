@@ -1,12 +1,13 @@
-.gradient {
+.container::before {
+  content: '';
   position: fixed;
   inset-inline: 0;
   z-index: -1;
-  block-size: 100%;
+  block-size: 100vh;
   background: linear-gradient(
     30deg,
     hsla(47, 96%, 40%, 0.3) 0%,
-    rgba(201, 169, 0, 0) 60%
+    rgba(201, 169, 0, 0) 70%
   );
   pointer-events: none;
 }

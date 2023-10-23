@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import movieImage from '@assets/images/movie-image.png'
 import styles from './MovieCard.module.css'
 
@@ -11,12 +12,16 @@ export const MovieCard: React.FC<MovieCardProps> = ({
 }) => {
   return (
     <figure>
-      <Image
-        className={styles.image}
-        src={movieImage}
-        alt='Movie image'
-      />
-      <figcaption className={styles.title}>{title}</figcaption>
+      <Link href='/'>
+        <Image
+          className={styles.image}
+          src={movieImage}
+          alt='Movie image'
+        />
+      </Link>
+      <figcaption className={styles.title}>
+        {title}
+      </figcaption>
     </figure>
   )
 }

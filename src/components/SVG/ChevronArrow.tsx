@@ -9,19 +9,12 @@ export const ChevronArrow = (props: SVGProps<SVGSVGElement>) => (
     fill='none'
     {...props}
   >
-    <g clipPath='url(#a)'>
-      <path
-        stroke='currentColor'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-        strokeWidth={2}
-        d='m6 9 6 6 6-6'
-      />
-    </g>
-    <defs>
-      <clipPath id='a'>
-        <path fill='currentColor' d='M0 0h24v24H0z' />
-      </clipPath>
-    </defs>
+    <path
+      stroke='currentColor'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      strokeWidth={2}
+      d='m6 9 6 6 6-6'
+    />
   </svg>
 )

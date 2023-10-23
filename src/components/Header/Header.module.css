@@ -1,4 +1,5 @@
 .wrapper {
+  position: relative;
   flex: 0 0 var(--header-block-size);
 }
 
@@ -13,6 +14,6 @@
   background-color: var(--bg-color);
 }
 
-.searchLink {
+.searchMovies {
   margin-left: auto;
 }

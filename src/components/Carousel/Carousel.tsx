@@ -30,6 +30,36 @@ export const Carousel: React.FC<CarouselProps> = ({
     snapPointIndexes
   } = useSnapCarousel()
 
+  const renderPagination = () => {
+    if (!showPagination) return
+
+    return (
+      <div className={styles.paginationWrapper}>
+        {
+          isMounted && (
+            <FadeIn className={styles.pagination}>
+              {
+                pages.map((_, i) => (
+                  <button
+                    key={i}
+                    aria-label={`Mostrar slide ${i} de ${pages.length}`}
+                    className={clsx(
+                      styles.paginationBtn,
+                      activePageIndex === i && styles.paginationBtnActive
+                    )}
+                    onClick={() => goTo(i)}
+                  >
+                    <div className={styles.paginationPill}></div>
+                  </button>
+                ))
+              }
+            </FadeIn>
+          )
+        }
+      </div>
+    )
+  }
+
   return (
     <div>
       <ul
@@ -52,28 +82,7 @@ export const Carousel: React.FC<CarouselProps> = ({
           ))
         }
       </ul>
-      <div className={styles.paginationWrapper}>
-        {
-          showPagination && isMounted && (
-            <FadeIn className={styles.pagination}>
-              {
-                pages.map((_, i) => (
-                  <button
-                    key={i}
-                    className={clsx(
-                      styles.paginationBtn,
-                      activePageIndex === i && styles.paginationBtnActive
-                    )}
-                    onClick={() => goTo(i)}
-                  >
-                    <div className={styles.paginationPill}></div>
-                  </button>
-                ))
-              }
-            </FadeIn>
-          )
-        }
-      </div>
+      {renderPagination()}
     </div>
   )
 }

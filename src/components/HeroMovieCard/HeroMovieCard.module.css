@@ -10,16 +10,6 @@
   font-size: 0;
 }
 
-.gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    0deg,
-    hsl(0, 0%, 0%) 0%,
-    hsla(0, 0%, 0%, 0) 58.18%
-  );
-}
-
 .image {
   inline-size: 100%;
   block-size: auto;

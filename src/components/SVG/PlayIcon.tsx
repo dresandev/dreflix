@@ -9,16 +9,9 @@ export const PlayIcon = (props: SVGProps<SVGSVGElement>) => (
     fill='none'
     {...props}
   >
-    <g clipPath='url(#a)'>
-      <path
-        fill='currentColor'
-        d='M6 4v16a1 1 0 0 0 1.524.852l13-8a1.001 1.001 0 0 0 0-1.704l-13-8A1 1 0 0 0 6 4Z'
-      />
-    </g>
-    <defs>
-      <clipPath id='a'>
-        <path fill='currentColor' d='M0 0h24v24H0z' />
-      </clipPath>
-    </defs>
+    <path
+      fill='currentColor'
+      d='M5 4v16a1 1 0 0 0 1.524.852l13-8a1.001 1.001 0 0 0 0-1.704l-13-8A1 1 0 0 0 5 4Z'
+    />
   </svg>
 )
