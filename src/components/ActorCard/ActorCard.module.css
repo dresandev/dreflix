@@ -1,0 +1,20 @@
+.card {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  inline-size: 13rem;
+}
+
+.image {
+  inline-size: 100%;
+  height: auto;
+}
+
+.data {
+  padding: 1rem;
+  background-color: var(--secondary-bg-color);
+  font-size: 1.4rem;
+}
+
+.name {
+  font-weight: 500;
+}

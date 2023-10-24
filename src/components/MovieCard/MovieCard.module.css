@@ -8,3 +8,8 @@
 .title {
   margin-block-start: 0.8rem;
 }
+
+.year {
+  color: var(--secondary-text-color);
+  font-size: 1.4rem;
+}

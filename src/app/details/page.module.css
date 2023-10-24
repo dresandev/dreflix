@@ -15,6 +15,7 @@
     hsl(0, 0%, 0%) 0%,
     hsla(0, 0%, 0%, 0) 58.18%
   );
+  pointer-events: none;
 }
 
 .details {
@@ -32,7 +33,7 @@
 }
 
 .badges {
-  margin-block-end: 1.2rem;
+  margin-block-end: 2rem;
   font-size: 1.4rem;
   color: var(--secondary-text-color);
 }
@@ -48,10 +49,11 @@
 
 .option {
   padding: 1rem;
-  border-radius: 50%;
   background-color: hsl(var(--primary-text-color-hsl) / 0.1);
+  border-radius: var(--border-radius);
 }
 
 .playTrailer {
   background-color: var(--primary-color);
+  border-radius: 50%;
 }

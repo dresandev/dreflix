@@ -1,1 +1,0 @@
-export { MoviesSection } from './MoviesSection'

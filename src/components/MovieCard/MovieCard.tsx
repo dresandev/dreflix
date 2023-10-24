@@ -22,6 +22,10 @@ export const MovieCard: React.FC<MovieCardProps> = ({
       <figcaption className={styles.title}>
         {title}
       </figcaption>
+      <p className={styles.year}>
+        {/* {year} */}
+        8 jul 2023
+      </p>
     </figure>
   )
 }

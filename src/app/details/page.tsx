@@ -1,8 +1,10 @@
 import Image from 'next/image'
 import heroImage from '@assets/images/hero-image.png'
+import { CarouselSection } from '@components/CarouselSection'
+import { ActorCard } from '@components/ActorCard'
+import { MovieCard } from '@components/MovieCard'
 import { PlayIcon, HeartIcon, PlusIcon } from '@components/SVG'
 import styles from './page.module.css'
-import { MoviesSection } from '@components/MoviesSection'
 
 export default function Details() {
   return (
@@ -52,8 +54,26 @@ export default function Details() {
           </button>
         </div>
       </div>
-      <MoviesSection title='Reparto principal' />
-      <MoviesSection title='Recomendaciones' />
+
+      <CarouselSection title='Reparto principal' >
+        <ActorCard />
+        <ActorCard />
+        <ActorCard />
+        <ActorCard />
+        <ActorCard />
+        <ActorCard />
+        <ActorCard />
+      </CarouselSection>
+      <CarouselSection title='Recomendaciones' >
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+      </CarouselSection>
     </>
   )
 }

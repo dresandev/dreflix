@@ -1,5 +1,6 @@
 import { HeroCarousel } from '@components/HeroCarousel'
-import { MoviesSection } from '@components/MoviesSection'
+import { CarouselSection } from '@components/CarouselSection'
+import { MovieCard } from '@components/MovieCard'
 import styles from './page.module.css'
 
 export default function Home() {
@@ -7,10 +8,46 @@ export default function Home() {
     <div className={styles.container}>
       <HeroCarousel />
 
-      <MoviesSection title='Popular' />
-      <MoviesSection title='En cartelera hoy' />
-      <MoviesSection title='Próximamente' />
-      <MoviesSection title='Mejor valoradas' />
+      <CarouselSection title='Popular' >
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+      </CarouselSection>
+      <CarouselSection title='En cartelera hoy' >
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+      </CarouselSection>
+      <CarouselSection title='Próximamente' >
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+      </CarouselSection>
+      <CarouselSection title='Mejor valoradas' >
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+        <MovieCard title='Monster inside' />
+      </CarouselSection>
     </div>
   )
 }
