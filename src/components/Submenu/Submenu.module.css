@@ -22,9 +22,3 @@
 .submenuOpen {
   max-block-size: max-content;
 }
-
-.link {
-  display: block;
-  padding: 1.2rem 1.6rem;
-  text-decoration: none;
-}

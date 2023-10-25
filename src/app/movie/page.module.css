@@ -1,0 +1,15 @@
+.container {
+  padding-inline: var(--inline-space);
+}
+
+.title {
+  margin-block: 2rem;
+}
+
+.seeMoreBtn {
+  inline-size: 100%;
+  padding-block: 1.2rem;
+  margin-block: 3rem;
+  border-radius: var(--border-radius);
+  background-color: var(--secondary-bg-color);
+}

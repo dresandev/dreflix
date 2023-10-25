@@ -5,14 +5,9 @@ import styles from './page.module.css'
 export default function Movie() {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Popular</h1>
-
       <FiltersMenu />
+      <div>Resultados para <span>{'"Hola"'}</span></div>
       <MoviesGrid />
-
-      <button className={styles.seeMoreBtn}>
-        Explorar hasta el infinito y mas allá
-      </button>
     </div>
   )
 }

@@ -1,26 +1,20 @@
 'use client'
 
 import { useRef } from 'react'
-import Link from 'next/link'
 import clsx from 'clsx'
 import { useOnClickOutside } from '@hooks/use-on-click-outside'
 import { useBoolean } from '@hooks/use-boolean'
 import { ChevronArrow } from '@components/SVG'
 import styles from './Submenu.module.css'
 
-interface SubmenuItemProps {
-  href: string
+interface SubmenuProps {
+  children: React.ReactNode
   label: string
 }
 
-interface SubmenuProps {
-  title: string
-  items: SubmenuItemProps[]
-}
-
 export const Submenu: React.FC<SubmenuProps> = ({
-  title,
-  items
+  children,
+  label,
 }) => {
   const {
     value: submenuIsOpen,
@@ -33,34 +27,25 @@ export const Submenu: React.FC<SubmenuProps> = ({
 
   return (
     <div ref={submenuRef}>
-      <button
-        className={styles.option}
-        onClick={toggleSubmenuIsOpen}
-      >
-        {title} <ChevronArrow className={clsx(
-          styles.chevronArrow,
-          submenuIsOpen && styles.rotateArrow
-        )} />
-      </button>
+      <label>
+        <button
+          className={styles.option}
+          onClick={toggleSubmenuIsOpen}
+        >
+          {label}
+          <ChevronArrow
+            className={clsx(
+              styles.chevronArrow,
+              submenuIsOpen && styles.rotateArrow
+            )}
+          />
+        </button>
+      </label>
       <ul className={clsx(
         styles.submenu,
         submenuIsOpen && styles.submenuOpen
       )}>
-        {
-          items.map(({ href, label }, i) => {
-            // TODO: uncomment this
-            // const key = crypto.randomUUID()
-            return (
-              <Link
-                key={i}
-                className={styles.link}
-                href={href}
-              >
-                {label}
-              </Link>
-            )
-          })
-        }
+        {children}
       </ul>
     </div>
   )

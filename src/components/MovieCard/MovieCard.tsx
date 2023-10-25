@@ -1,17 +1,20 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import clsx from 'clsx'
 import movieImage from '@assets/images/movie-image.png'
 import styles from './MovieCard.module.css'
 
 interface MovieCardProps {
+  className?: string
   title: string
 }
 
 export const MovieCard: React.FC<MovieCardProps> = ({
+  className,
   title
 }) => {
   return (
-    <figure>
+    <figure className={clsx(className)}>
       <Link href='/'>
         <Image
           className={styles.image}
@@ -23,7 +26,6 @@ export const MovieCard: React.FC<MovieCardProps> = ({
         {title}
       </figcaption>
       <p className={styles.year}>
-        {/* {year} */}
         8 jul 2023
       </p>
     </figure>

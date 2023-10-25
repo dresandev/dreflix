@@ -1,5 +1,5 @@
 .image {
-  inline-size: 15rem;
+  inline-size: 100%;
   block-size: auto;
   border-radius: var(--border-radius);
   line-height: 0;

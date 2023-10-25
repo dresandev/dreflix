@@ -1,0 +1,54 @@
+.filtersBtn {
+  inline-size: 100%;
+  padding-block: 1rem;
+  background-color: var(--secondary-bg-color);
+  border-radius: var(--border-radius);
+}
+
+.filtersMenu {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  padding-block-end: 8.5rem;
+  background-color: var(--bg-color);
+  overflow: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 300ms ease-in-out, visibility 300ms ease-in-out;
+}
+
+.showMenu {
+  opacity: 1;
+  visibility: visible;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem var(--inline-space);
+  font-weight: 500;
+  border-block-end: 0.1rem solid var(--hover-color);
+}
+
+.genreBtn {
+  display: block;
+  inline-size: 100%;
+  padding: 1.2rem var(--inline-space);
+  text-align: start;
+}
+
+.closeBtnWrapper {
+  position: fixed;
+  inset-block-end: 0;
+  inset-inline: 0;
+  padding: 2rem var(--inline-space);
+  background-color: var(--bg-color);
+  border-block-start: 0.1rem solid var(--hover-color);
+}
+
+.closeBtn {
+  inline-size: 100%;
+  padding-block: 1rem;
+  border-radius: var(--border-radius);
+  background-color: var(--secondary-bg-color);
+}

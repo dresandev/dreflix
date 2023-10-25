@@ -62,7 +62,7 @@ export const SearchMovies: React.FC<SearchMoviesProps> = ({
 
       <div className={clsx(
         'menu',
-        styles.searchResults,
+        styles.resultsContainer,
         isSearchMenuOpen && 'showMenu'
       )}>
         <div className={styles.searchBarWrapper}>

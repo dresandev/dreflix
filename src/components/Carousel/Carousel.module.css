@@ -55,7 +55,5 @@
 }
 
 .paginationBtnActive > .paginationPill {
-  background-color: var(--secondary-color);
-  background-color: currentColor;
   background-color: var(--primary-color);
 }

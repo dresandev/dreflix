@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import Link from 'next/link'
 import clsx from 'clsx'
 import { toggleBodyOverflow } from '@utils/toggle-body-overflow'
 import { useBoolean } from '@hooks/use-boolean'
@@ -51,27 +52,52 @@ export const Menu = () => {
       )}>
         <ul>
           <li>
-            <Submenu
-              title='Explorar'
-              items={[
-                { href: '/', label: 'Popular' },
-                { href: '/', label: 'En cartelera hoy' },
-                { href: '/', label: 'Próximamente' },
-                { href: '/', label: 'Mejor valoradas' },
-              ]}
-            />
+            <Submenu label='Explorar'>
+              {
+                [
+                  { href: '/', label: 'Popular' },
+                  { href: '/', label: 'En cartelera hoy' },
+                  { href: '/', label: 'Próximamente' },
+                  { href: '/', label: 'Mejor valoradas' },
+                ].map(({ href, label }, i) => {
+                  // TODO: uncomment this
+                  // const key = crypto.randomUUID()
+                  return (
+                    <Link
+                      key={i}
+                      className={styles.link}
+                      href={href}
+                    >
+                      {label}
+                    </Link>
+                  )
+                })
+              }
+            </Submenu>
           </li>
           <li>
-            <Submenu
-              title='Géneros'
-              items={[
-                { href: '/', label: 'Acción' },
-                { href: '/', label: 'Fantasía' },
-                { href: '/', label: 'Historia' },
-                { href: '/', label: 'Misterio' },
-                { href: '/', label: 'Música' },
-              ]}
-            />
+            <Submenu label='Géneros'>
+              {
+                [
+                  { href: '/', label: 'Acción' },
+                  { href: '/', label: 'Fantasía' },
+                  { href: '/', label: 'Historia' },
+                  { href: '/', label: 'Misterio' },
+                  { href: '/', label: 'Música' },
+                ].map(({ href, label }, i) => {
+                  // const key = crypto.randomUUID()
+                  return (
+                    <Link
+                      key={i}
+                      className={styles.link}
+                      href={href}
+                    >
+                      {label}
+                    </Link>
+                  )
+                })
+              }
+            </Submenu>
           </li>
         </ul>
       </nav>
