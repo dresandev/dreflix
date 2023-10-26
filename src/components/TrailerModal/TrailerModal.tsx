@@ -1,12 +1,14 @@
 'use client'
 
 import { useUiStore } from '@store/use-ui-store'
+import { useToggleBodyOverflow } from '@hooks/use-toggle-body-overflow'
 import { InPortal } from '@components/InPortal'
 import { CloseIcon } from '@components/SVG'
 import styles from './TrailerModal.module.css'
 
 export const TrailerModal = () => {
   const { showTrailerModal, toggleShowTrailerModal } = useUiStore()
+  useToggleBodyOverflow(showTrailerModal)
 
   return (
     showTrailerModal && (

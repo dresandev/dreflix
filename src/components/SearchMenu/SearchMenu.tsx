@@ -2,46 +2,35 @@
 
 import { useRef } from 'react'
 import clsx from 'clsx'
-import { toggleBodyOverflow } from '@utils/toggle-body-overflow'
+import { useToggleBodyOverflow } from '@hooks/use-toggle-body-overflow'
 import { useBoolean } from '@hooks/use-boolean'
+import { useAutoFocus } from '@hooks/use-autofocus'
 import { useForm } from '@hooks/use-form'
 import { useOnClickOutside } from '@hooks/use-on-click-outside'
-import { useAutoFocus } from '@hooks/use-autofocus'
 import { CloseIcon, SearchIcon } from '@components/SVG'
-import styles from './SearchMovies.module.css'
+import styles from './SearchMenu.module.css'
 
-interface SearchMoviesProps {
+interface SearchMenuProps {
   className: string
 }
 
-export const SearchMovies: React.FC<SearchMoviesProps> = ({
+export const SearchMenu: React.FC<SearchMenuProps> = ({
   className
 }) => {
+  const searchMenuRef = useRef<HTMLDivElement>(null)
   const {
     value: isSearchMenuOpen,
     toggle: toggleIsSearchMenuOpen,
     setFalse: closeSearchMenu
   } = useBoolean()
-
   const { search_query, handleInputChange } = useForm({
     initState: {
       search_query: ''
     }
   })
   const inputRef = useAutoFocus([isSearchMenuOpen])
-  const searchMenuRef = useRef<HTMLDivElement>(null)
-
-  const handleClickOutside = () => {
-    toggleBodyOverflow(false)
-    closeSearchMenu()
-  }
-
-  useOnClickOutside(searchMenuRef, handleClickOutside)
-
-  const handleSearchMenuBtnClick = () => {
-    toggleBodyOverflow(!isSearchMenuOpen)
-    toggleIsSearchMenuOpen()
-  }
+  useOnClickOutside(searchMenuRef, closeSearchMenu)
+  useToggleBodyOverflow(isSearchMenuOpen)
 
   return (
     <div
@@ -51,7 +40,7 @@ export const SearchMovies: React.FC<SearchMoviesProps> = ({
       <button
         aria-label='Buscar Película'
         className={styles.searchButton}
-        onClick={handleSearchMenuBtnClick}
+        onClick={toggleIsSearchMenuOpen}
       >
         {
           isSearchMenuOpen

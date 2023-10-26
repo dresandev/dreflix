@@ -19,3 +19,10 @@
   aspect-ratio: 16 / 9;
   border: none;
 }
+
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 10rem 3rem;
+    overflow: auto;
+  }
+}

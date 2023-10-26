@@ -3,35 +3,33 @@
 import { useRef } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { toggleBodyOverflow } from '@utils/toggle-body-overflow'
+import { useToggleBodyOverflow } from '@hooks/use-toggle-body-overflow'
 import { useBoolean } from '@hooks/use-boolean'
 import { useOnClickOutside } from '@hooks/use-on-click-outside'
 import { Submenu } from '@components/Submenu'
 import styles from './Menu.module.css'
 
-export const Menu = () => {
+interface MenuProps {
+  className?: string
+}
+
+export const Menu: React.FC<MenuProps> = ({
+  className
+}) => {
+  const menuRef = useRef<HTMLDivElement>(null)
   const {
     value: isMenuOpen,
     toggle: toggleIsMenuOpen,
     setFalse: closeMenu
   } = useBoolean(false)
-
-  const menuRef = useRef<HTMLDivElement>(null)
-
-  const handleClickOutside = () => {
-    toggleBodyOverflow(false)
-    closeMenu()
-  }
-
-  useOnClickOutside(menuRef, handleClickOutside)
-
-  const handleMenuBtnClick = () => {
-    toggleBodyOverflow(!isMenuOpen)
-    toggleIsMenuOpen()
-  }
+  useToggleBodyOverflow(isMenuOpen)
+  useOnClickOutside(menuRef, closeMenu)
 
   return (
-    <div ref={menuRef}>
+    <div
+      className={clsx(className)}
+      ref={menuRef}
+    >
       <button
         aria-label='Abir menú'
         title='Menú'
@@ -39,7 +37,7 @@ export const Menu = () => {
           styles.menuBtn,
           isMenuOpen && styles.activeMenuBtn
         )}
-        onClick={handleMenuBtnClick}
+        onClick={toggleIsMenuOpen}
       >
         <span className={styles.menuBtnLine}></span>
         <span className={styles.menuBtnLine}></span>
