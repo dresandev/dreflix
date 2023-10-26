@@ -11,3 +11,7 @@
   );
   pointer-events: none;
 }
+
+.movieCard {
+  inline-size: 15rem;
+}

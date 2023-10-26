@@ -15,7 +15,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
 }) => {
   return (
     <figure className={clsx(className)}>
-      <Link href='/'>
+      <Link href='/details'>
         <Image
           className={styles.image}
           src={movieImage}

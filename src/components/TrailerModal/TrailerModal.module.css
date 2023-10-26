@@ -1,0 +1,21 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--bg-color);
+}
+
+.closeModal {
+  position: fixed;
+  inset-block-start: 2rem;
+  inset-inline-end: 2rem;
+}
+
+.trailerFrame {
+  max-inline-size: 120rem;
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 16 / 9;
+  border: none;
+}

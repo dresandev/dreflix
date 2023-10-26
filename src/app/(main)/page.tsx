@@ -9,44 +9,140 @@ export default function Home() {
       <HeroCarousel />
 
       <CarouselSection title='Popular' >
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
       </CarouselSection>
       <CarouselSection title='En cartelera hoy' >
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
       </CarouselSection>
       <CarouselSection title='Próximamente' >
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
       </CarouselSection>
       <CarouselSection title='Mejor valoradas' >
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
       </CarouselSection>
     </div>
   )

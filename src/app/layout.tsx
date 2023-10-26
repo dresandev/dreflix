@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Fira_Sans } from 'next/font/google'
 import { Header } from '@components/Header'
 import { Footer } from '@components/Footer'
+import { TrailerModal } from '@components/TrailerModal'
 import '@styles/reset.css'
 import '@styles/globals.css'
 
@@ -32,11 +33,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='es'>
       <body className={firaSans.className}>
-        <Header />
-        <main>
-          {children}
-        </main>
-        <Footer />
+        <div className='__next'>
+          <Header />
+          <main>
+            {children}
+          </main>
+          <Footer />
+        </div>
+        <div id='modal-container'>
+          <TrailerModal />
+        </div>
       </body>
     </html>
   )

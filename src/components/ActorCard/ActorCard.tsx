@@ -1,10 +1,20 @@
 import Image from 'next/image'
+import clsx from 'clsx'
 import actorImage from '@assets/images/actor-image.png'
 import styles from './ActorCard.module.css'
 
-export const ActorCard = () => {
+interface ActorCardProps {
+  className?: string
+}
+
+export const ActorCard: React.FC<ActorCardProps> = ({
+  className
+}) => {
   return (
-    <figure className={styles.card}>
+    <figure className={clsx(
+      styles.card,
+      className
+    )}>
       <Image
         className={styles.image}
         src={actorImage}

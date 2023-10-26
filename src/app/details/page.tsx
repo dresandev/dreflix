@@ -1,9 +1,10 @@
 import Image from 'next/image'
-import heroImage from '@assets/images/hero-image.png'
 import { CarouselSection } from '@components/CarouselSection'
+import { PlayTrailerBtn } from '@components/PlayTrailerBtn'
 import { ActorCard } from '@components/ActorCard'
 import { MovieCard } from '@components/MovieCard'
-import { PlayIcon, HeartIcon, PlusIcon } from '@components/SVG'
+import { HeartIcon, PlusIcon } from '@components/SVG'
+import heroImage from '@assets/images/hero-image.png'
 import styles from './page.module.css'
 
 export default function Details() {
@@ -41,9 +42,7 @@ export default function Details() {
         </div>
 
         <div className={styles.options}>
-          <button className={`${styles.option} ${styles.playTrailer}`}>
-            <PlayIcon />
-          </button>
+          <PlayTrailerBtn />
 
           <button className={styles.option}>
             <HeartIcon />
@@ -65,14 +64,38 @@ export default function Details() {
         <ActorCard />
       </CarouselSection>
       <CarouselSection title='Recomendaciones' >
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
-        <MovieCard title='Monster inside' />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
+        <MovieCard
+          className={styles.movieCard}
+          title='Monster inside'
+        />
       </CarouselSection>
     </>
   )

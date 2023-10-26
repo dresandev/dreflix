@@ -25,14 +25,19 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
   background-color: var(--bg-color);
   color: var(--primary-text-color);
 }
 
+.__next {
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+}
+
 main {
-  flex: 1;
+  flex-grow: 1;
 }
 
 .hideOverflow {
