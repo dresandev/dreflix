@@ -13,7 +13,7 @@ interface MenuProps {
   className?: string
 }
 
-export const Menu: React.FC<MenuProps> = ({
+export const NavMenu: React.FC<MenuProps> = ({
   className
 }) => {
   const menuRef = useRef<HTMLDivElement>(null)
@@ -43,13 +43,12 @@ export const Menu: React.FC<MenuProps> = ({
         <span className={styles.menuBtnLine}></span>
       </button>
 
-      <nav className={clsx(
-        'menu',
-        styles.menu,
-        isMenuOpen && 'showMenu'
-      )}>
-        <ul>
-          <li>
+      <nav>
+        <ul className={clsx(
+          styles.menu,
+          isMenuOpen && styles.showMenu
+        )}>
+          <li className={styles.listItem}>
             <Submenu label='Explorar'>
               {
                 [
@@ -63,7 +62,7 @@ export const Menu: React.FC<MenuProps> = ({
                   return (
                     <Link
                       key={i}
-                      className={styles.link}
+                      className={styles.submenuLink}
                       href={href}
                     >
                       {label}
@@ -73,7 +72,7 @@ export const Menu: React.FC<MenuProps> = ({
               }
             </Submenu>
           </li>
-          <li>
+          <li className={styles.listItem}>
             <Submenu label='Géneros'>
               {
                 [
@@ -87,7 +86,7 @@ export const Menu: React.FC<MenuProps> = ({
                   return (
                     <Link
                       key={i}
-                      className={styles.link}
+                      className={styles.submenuLink}
                       href={href}
                     >
                       {label}

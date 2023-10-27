@@ -8,7 +8,7 @@ import { ChevronArrow } from '@components/SVG'
 import styles from './Submenu.module.css'
 
 interface SubmenuProps {
-  children: React.ReactNode
+  children: React.ReactNode[]
   label: string
 }
 
@@ -29,7 +29,7 @@ export const Submenu: React.FC<SubmenuProps> = ({
     <div ref={submenuRef}>
       <label>
         <button
-          className={styles.option}
+          className={styles.labelBtn}
           onClick={toggleSubmenuIsOpen}
         >
           {label}
@@ -45,7 +45,16 @@ export const Submenu: React.FC<SubmenuProps> = ({
         styles.submenu,
         submenuIsOpen && styles.submenuOpen
       )}>
-        {children}
+        {
+          children.map((child, i) => {
+            // const key = crypto.randomUUID()
+            return (
+              <li key={i}>
+                {child}
+              </li>
+            )
+          })
+        }
       </ul>
     </div>
   )

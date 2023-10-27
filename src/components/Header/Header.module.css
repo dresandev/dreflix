@@ -14,12 +14,26 @@
   background-color: var(--bg-color);
 }
 
-.searchMovies {
-  margin-left: auto;
+.spacer {
+  flex-grow: 1;
 }
 
-@media screen and (min-width: 768px) {
-  .goHomeBtn {
-    order: -1;
+.navMenu {
+  order: -1;
+}
+
+@media screen and (min-width: 880px) {
+  .header {
+    padding-block: 1.2rem;
+  }
+
+  .navMenu {
+    order: initial;
+  }
+
+  .searchMenu {
+    flex: 1;
+    max-inline-size: 45rem;
+    min-inline-size: 30rem;
   }
 }

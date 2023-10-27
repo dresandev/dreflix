@@ -1,0 +1,83 @@
+.menuBtn {
+  --size: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: center;
+  align-items: center;
+  inline-size: var(--size);
+  block-size: var(--size);
+}
+
+.menuBtnLine {
+  inline-size: 80%;
+  block-size: 0.3rem;
+  border-radius: 0.2rem;
+  background-color: currentColor;
+  transform-origin: 0.7rem;
+  transition: transform 300ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.activeMenuBtn .menuBtnLine:nth-child(1) {
+  transform: rotateZ(45deg) translate(0.2rem);
+}
+
+.activeMenuBtn .menuBtnLine:nth-child(2) {
+  transform: rotateZ(-45deg) translate(0.2rem);
+}
+
+.menu {
+  position: fixed;
+  inset: 0;
+  inset-block-start: var(--header-block-size);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-1rem);
+  transition: transform 100ms, opacity 100ms cubic-bezier(0, 0, 0.25, 1),
+    visibility 0s linear 100ms;
+  background-color: var(--bg-color);
+}
+
+.showMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: transform 200ms, opacity 0.2ms cubic-bezier(0, 0, 0.25, 1),
+    visibility 0ms;
+}
+
+.listItem {
+  list-style: none;
+}
+
+.submenuLink {
+  display: block;
+  padding: 1.2rem 1.6rem;
+  text-decoration: none;
+}
+
+@media screen and (min-width: 880px) {
+  .menuBtn {
+    display: none;
+  }
+
+  .menu {
+    position: static;
+    inset: unset;
+    opacity: initial;
+    visibility: initial;
+    transform: unset;
+    transition: unset;
+
+    display: flex;
+    gap: 2rem;
+  }
+
+  .submenuLink {
+    inline-size: 20rem;
+  }
+
+  .submenuLink:is(:hover) {
+    background-color: var(--tertiary-bg-color);
+  }
+}

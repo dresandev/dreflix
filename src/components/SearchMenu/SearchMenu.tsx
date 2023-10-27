@@ -11,7 +11,7 @@ import { CloseIcon, SearchIcon } from '@components/SVG'
 import styles from './SearchMenu.module.css'
 
 interface SearchMenuProps {
-  className: string
+  className?: string
 }
 
 export const SearchMenu: React.FC<SearchMenuProps> = ({
@@ -50,9 +50,8 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
       </button>
 
       <div className={clsx(
-        'menu',
         styles.resultsContainer,
-        isSearchMenuOpen && 'showMenu'
+        isSearchMenuOpen && styles.showResults
       )}>
         <div className={styles.searchBarWrapper}>
           <SearchIcon />

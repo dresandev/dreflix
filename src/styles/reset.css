@@ -18,7 +18,6 @@ html {
 }
 
 body {
-  font-size: clamp(1.6rem, 1.52rem + 0.25vw, 2rem);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
