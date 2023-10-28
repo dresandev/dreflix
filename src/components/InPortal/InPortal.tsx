@@ -2,7 +2,7 @@
 
 import { ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-import { useHasMounted } from '@hooks/use-has-mounted'
+import { useHasMounted } from '@hooks'
 
 interface InPortalProps {
   id: string

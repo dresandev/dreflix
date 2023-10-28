@@ -14,7 +14,7 @@ export const CarouselSection: React.FC<MoviesSectionProps> = ({
     <section className={styles.section}>
       <h2 className={styles.title}>{title}</h2>
 
-      <Carousel itemsGap='1.2rem'>
+      <Carousel itemsGap='var(--carousel-items-gap)'>
         {children}
       </Carousel>
     </section>

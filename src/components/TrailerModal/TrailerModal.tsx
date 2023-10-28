@@ -1,7 +1,7 @@
 'use client'
 
 import { useUiStore } from '@store/use-ui-store'
-import { useToggleBodyOverflow } from '@hooks/use-toggle-body-overflow'
+import { useToggleBodyOverflow } from '@hooks'
 import { InPortal } from '@components/InPortal'
 import { CloseIcon } from '@components/SVG'
 import styles from './TrailerModal.module.css'

@@ -1,4 +1,4 @@
-import { MovieCard } from '@components'
+import { MovieCard } from '@components/MovieCard'
 import styles from './MoviesGrid.module.css'
 
 export const MoviesGrid = () => {

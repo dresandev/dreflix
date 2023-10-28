@@ -4,5 +4,5 @@
 
 .title {
   padding-inline-start: var(--inline-space);
-  padding-block-end: var(--inline-space);
+  padding-block-end: 1.6rem;
 }

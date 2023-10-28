@@ -3,6 +3,7 @@
   block-size: auto;
   border-radius: var(--border-radius);
   line-height: 0;
+  pointer-events: none;
 }
 
 .title {

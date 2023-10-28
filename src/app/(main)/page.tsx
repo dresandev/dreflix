@@ -5,7 +5,8 @@ import styles from './page.module.css'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <>
+      <h1 className={styles.title}>Bienvenido</h1>
       <HeroCarousel />
 
       <CarouselSection title='Popular' >
@@ -144,6 +145,6 @@ export default function Home() {
           title='Monster inside'
         />
       </CarouselSection>
-    </div>
+    </>
   )
 }

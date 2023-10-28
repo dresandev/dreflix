@@ -1,17 +1,29 @@
-.container::before {
-  content: '';
-  position: fixed;
-  inset-inline: 0;
-  z-index: -1;
-  block-size: 100vh;
-  background: linear-gradient(
-    30deg,
-    hsla(47, 96%, 40%, 0.3) 0%,
-    rgba(201, 169, 0, 0) 70%
-  );
-  pointer-events: none;
+.title {
+  padding-inline-start: var(--inline-space);
+  padding-block-end: 2.4rem;
 }
 
 .movieCard {
-  inline-size: 15rem;
+  --items-amount: 4;
+  --card-width: calc(
+    var(--screen-width) / var(--items-amount) - var(--carousel-items-gap)
+  );
+  min-inline-size: 15rem;
+  inline-size: var(--card-width);
+}
+
+@media screen and (min-width: 880px) {
+  .title {
+    padding-block-start: 2.4rem;
+  }
+
+  .movieCard {
+    --items-amount: 5;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .movieCard {
+    --items-amount: 6.5;
+  }
 }

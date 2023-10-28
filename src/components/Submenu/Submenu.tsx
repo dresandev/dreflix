@@ -2,8 +2,7 @@
 
 import { useRef } from 'react'
 import clsx from 'clsx'
-import { useOnClickOutside } from '@hooks/use-on-click-outside'
-import { useBoolean } from '@hooks/use-boolean'
+import { useOnClickOutside, useBoolean } from '@hooks'
 import { ChevronArrow } from '@components/SVG'
 import styles from './Submenu.module.css'
 
@@ -47,9 +46,9 @@ export const Submenu: React.FC<SubmenuProps> = ({
       )}>
         {
           children.map((child, i) => {
-            // const key = crypto.randomUUID()
+            const key = crypto.randomUUID()
             return (
-              <li key={i}>
+              <li key={key}>
                 {child}
               </li>
             )

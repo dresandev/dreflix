@@ -4,7 +4,9 @@ interface FormProps<T> {
   initState?: T
 }
 
-export const useForm = <T extends { [key: string]: string }>({ initState = {} as T }: FormProps<T>) => {
+export const useForm = <T extends { [key: string]: string }>({
+  initState = {} as T
+}: FormProps<T>) => {
   const [formData, setFormData] = useState<T>(initState)
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {

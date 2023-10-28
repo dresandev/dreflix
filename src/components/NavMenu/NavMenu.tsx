@@ -3,11 +3,9 @@
 import { useRef } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { useToggleBodyOverflow } from '@hooks/use-toggle-body-overflow'
-import { useBoolean } from '@hooks/use-boolean'
-import { useOnClickOutside } from '@hooks/use-on-click-outside'
+import { useToggleBodyOverflow, useBoolean, useOnClickOutside } from '@hooks'
 import { Submenu } from '@components/Submenu'
-import styles from './Menu.module.css'
+import styles from './NavMenu.module.css'
 
 interface MenuProps {
   className?: string
@@ -46,9 +44,9 @@ export const NavMenu: React.FC<MenuProps> = ({
       <nav>
         <ul className={clsx(
           styles.menu,
-          isMenuOpen && styles.showMenu
+          isMenuOpen && 'showMenu'
         )}>
-          <li className={styles.listItem}>
+          <li>
             <Submenu label='Explorar'>
               {
                 [
@@ -56,12 +54,11 @@ export const NavMenu: React.FC<MenuProps> = ({
                   { href: '/', label: 'En cartelera hoy' },
                   { href: '/', label: 'Próximamente' },
                   { href: '/', label: 'Mejor valoradas' },
-                ].map(({ href, label }, i) => {
-                  // TODO: uncomment this
-                  // const key = crypto.randomUUID()
+                ].map(({ href, label }) => {
+                  const key = crypto.randomUUID()
                   return (
                     <Link
-                      key={i}
+                      key={key}
                       className={styles.submenuLink}
                       href={href}
                     >
@@ -72,7 +69,7 @@ export const NavMenu: React.FC<MenuProps> = ({
               }
             </Submenu>
           </li>
-          <li className={styles.listItem}>
+          <li>
             <Submenu label='Géneros'>
               {
                 [

@@ -2,11 +2,13 @@
 
 import { useRef } from 'react'
 import clsx from 'clsx'
-import { useToggleBodyOverflow } from '@hooks/use-toggle-body-overflow'
-import { useBoolean } from '@hooks/use-boolean'
-import { useAutoFocus } from '@hooks/use-autofocus'
-import { useForm } from '@hooks/use-form'
-import { useOnClickOutside } from '@hooks/use-on-click-outside'
+import {
+  useToggleBodyOverflow,
+  useBoolean,
+  useAutoFocus,
+  useForm,
+  useOnClickOutside,
+} from '@hooks'
 import { CloseIcon, SearchIcon } from '@components/SVG'
 import styles from './SearchMenu.module.css'
 
@@ -51,7 +53,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
 
       <div className={clsx(
         styles.resultsContainer,
-        isSearchMenuOpen && styles.showResults
+        isSearchMenuOpen && 'showMenu',
       )}>
         <div className={styles.searchBarWrapper}>
           <SearchIcon />

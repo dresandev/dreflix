@@ -1,7 +1,7 @@
 'use client'
 
 import clsx from 'clsx'
-import { useBoolean } from '@hooks/use-boolean'
+import { useBoolean, useToggleBodyOverflow } from '@hooks'
 import { Submenu } from '@components/Submenu'
 import { CloseIcon } from '@components/SVG'
 import styles from './FiltersMenu.module.css'
@@ -12,6 +12,7 @@ export const FiltersMenu = () => {
     toggle: toggleIsMenuOpen,
     setFalse: closeMenu
   } = useBoolean(false)
+  useToggleBodyOverflow(isMenuOpen)
 
   return (
     <>

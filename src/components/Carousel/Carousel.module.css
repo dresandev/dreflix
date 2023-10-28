@@ -1,3 +1,7 @@
+.carouselWrapper {
+  position: relative;
+}
+
 .carousel {
   display: flex;
   padding-inline: var(--inline-space);
@@ -14,7 +18,7 @@
   max-inline-size: 100%;
   flex-shrink: 0;
   list-style: none;
-  scroll-margin-inline-start: 2rem;
+  scroll-margin-inline-start: var(--inline-space);
 }
 
 .itemSnapPoint {
@@ -23,6 +27,55 @@
 
 .itemScrollSnapStopAlway {
   scroll-snap-stop: always;
+}
+
+.btn {
+  display: none;
+}
+
+@media (hover: hover) {
+  .btn {
+    --inline-size: clamp(4rem, 3.296rem + 1.408vw, 6rem);
+    --gradient-dir: to left;
+    --gradient: linear-gradient(
+      var(--gradient-dir),
+      hsla(0, 0%, 0%, 0),
+      hsla(0, 0%, 0%, 0.502) calc(var(--inline-size) / 2),
+      hsla(0, 0%, 0%, 0.702)
+    );
+    position: absolute;
+    z-index: 1;
+    inset-block: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inline-size: var(--inline-size);
+    background: var(--gradient);
+    transition: background 300ms ease-in-out;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 150ms ease;
+  }
+
+  .btn:is(:hover)::before {
+    opacity: 1;
+  }
+
+  .btn:nth-of-type(2) {
+    --gradient-dir: to right;
+    inset-inline-end: 0;
+  }
+
+  .hideBtn {
+    display: none;
+  }
 }
 
 .paginationWrapper {

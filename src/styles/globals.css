@@ -20,8 +20,20 @@
   --border-radius: 0.8rem;
   --inline-space: 1.6rem;
   --header-block-size: 6.7rem;
+  --menu-transition: transform 100ms, opacity 100ms cubic-bezier(0, 0, 0.25, 1),
+    visibility 0s linear 100ms;
+  --menu-open-transition: transform 200ms,
+    opacity 0.2ms cubic-bezier(0, 0, 0.25, 1), visibility 0ms;
+  --carousel-items-gap: clamp(1.2rem, 0.566rem + 1.268vw, 3rem);
+  --screen-width: 100vw;
 
   color-scheme: dark;
+}
+
+@media screen and (min-width: 880px) {
+  :root {
+    --inline-space: 6rem;
+  }
 }
 
 body {
@@ -43,4 +55,11 @@ main {
 
 .hideOverflow {
   overflow: hidden;
+}
+
+.showMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: var(--menu-open-transition);
 }
