@@ -47,8 +47,9 @@ export const NavMenu: React.FC<MenuProps> = ({
           isMenuOpen && 'showMenu'
         )}>
           <li>
-            <Submenu label='Explorar'>
-              {
+            <Submenu
+              label='Explorar'
+              options={
                 [
                   { href: '/', label: 'Popular' },
                   { href: '/', label: 'En cartelera hoy' },
@@ -67,22 +68,23 @@ export const NavMenu: React.FC<MenuProps> = ({
                   )
                 })
               }
-            </Submenu>
+            />
           </li>
           <li>
-            <Submenu label='Géneros'>
-              {
+            <Submenu
+              label='Géneros'
+              options={
                 [
                   { href: '/', label: 'Acción' },
                   { href: '/', label: 'Fantasía' },
                   { href: '/', label: 'Historia' },
                   { href: '/', label: 'Misterio' },
                   { href: '/', label: 'Música' },
-                ].map(({ href, label }, i) => {
-                  // const key = crypto.randomUUID()
+                ].map(({ href, label }) => {
+                  const key = crypto.randomUUID()
                   return (
                     <Link
-                      key={i}
+                      key={key}
                       className={styles.submenuLink}
                       href={href}
                     >
@@ -91,10 +93,10 @@ export const NavMenu: React.FC<MenuProps> = ({
                   )
                 })
               }
-            </Submenu>
+            />
           </li>
         </ul>
       </nav>
-    </div>
+    </div >
   )
 }
