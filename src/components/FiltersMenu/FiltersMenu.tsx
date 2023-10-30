@@ -6,6 +6,24 @@ import { Submenu } from '@components/Submenu'
 import { CloseIcon } from '@components/SVG'
 import styles from './FiltersMenu.module.css'
 
+const GENRES = [
+  'Acción',
+  'Western',
+  'Fantasía',
+  'Animacíon',
+  'Historia',
+  'Aventura',
+  'Misterio',
+  'Bélica',
+  'Música',
+  'Ciencia ficción',
+  'Película de TV',
+  'Comedia',
+  'Romance',
+  'Crimen',
+  'Monster inside',
+]
+
 export const FiltersMenu = () => {
   const {
     value: isMenuOpen,
@@ -34,53 +52,22 @@ export const FiltersMenu = () => {
           </button>
         </div>
 
-        <Submenu label='Género'>
-          <button className={styles.genreBtn}>
-            Acción
-          </button>
-          <button className={styles.genreBtn}>
-            Western
-          </button>
-          <button className={styles.genreBtn}>
-            Fantasía
-          </button>
-          <button className={styles.genreBtn}>
-            Animacíon
-          </button>
-          <button className={styles.genreBtn}>
-            Historia
-          </button>
-          <button className={styles.genreBtn}>
-            Aventura
-          </button>
-          <button className={styles.genreBtn}>
-            Misterio
-          </button>
-          <button className={styles.genreBtn}>
-            Bélica
-          </button>
-          <button className={styles.genreBtn}>
-            Música
-          </button>
-          <button className={styles.genreBtn}>
-            Ciencia ficción
-          </button>
-          <button className={styles.genreBtn}>
-            Película de TV
-          </button>
-          <button className={styles.genreBtn}>
-            Comedia
-          </button>
-          <button className={styles.genreBtn}>
-            Romance
-          </button>
-          <button className={styles.genreBtn}>
-            Crimen
-          </button>
-          <button className={styles.genreBtn}>
-            Monster inside
-          </button>
-        </Submenu>
+        <Submenu
+          label='Género'
+          options={
+            GENRES.map((genre) => {
+              const key = crypto.randomUUID()
+              return (
+                <button
+                  key={key}
+                  className={styles.genreBtn}
+                >
+                  {genre}
+                </button>
+              )
+            })
+          }
+        />
 
         <div className={styles.closeBtnWrapper}>
           <button

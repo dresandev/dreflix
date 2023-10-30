@@ -11,6 +11,7 @@ export const HeroMovieCard = () => {
         className={styles.image}
         src={heroImage}
         alt='hero movie image'
+        sizes='(max-width: 880px) 90vw, 92vw'
       />
       <Image
         className={styles.logoImage}

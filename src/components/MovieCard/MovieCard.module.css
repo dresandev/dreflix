@@ -12,5 +12,5 @@
 
 .year {
   color: var(--secondary-text-color);
-  font-size: 1.4rem;
+  font-size: var(--secondary-font-size);
 }

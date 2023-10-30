@@ -25,7 +25,7 @@
   scroll-snap-align: start;
 }
 
-.itemScrollSnapStopAlway {
+.itemScrollSnapStopAlways {
   scroll-snap-stop: always;
 }
 
@@ -36,13 +36,6 @@
 @media (hover: hover) {
   .btn {
     --inline-size: clamp(4rem, 3.296rem + 1.408vw, 6rem);
-    --gradient-dir: to left;
-    --gradient: linear-gradient(
-      var(--gradient-dir),
-      hsla(0, 0%, 0%, 0),
-      hsla(0, 0%, 0%, 0.502) calc(var(--inline-size) / 2),
-      hsla(0, 0%, 0%, 0.702)
-    );
     position: absolute;
     z-index: 1;
     inset-block: 0;
@@ -50,11 +43,25 @@
     justify-content: center;
     align-items: center;
     inline-size: var(--inline-size);
+  }
+
+  .btn:nth-of-type(2) {
+    inset-inline-end: 0;
+  }
+
+  .btn.shadowHover {
+    --gradient-dir: to left;
+    --gradient: linear-gradient(
+      var(--gradient-dir),
+      hsla(0, 0%, 0%, 0),
+      hsla(0, 0%, 0%, 0.502) calc(var(--inline-size) / 2),
+      hsla(0, 0%, 0%, 0.702)
+    );
     background: var(--gradient);
     transition: background 300ms ease-in-out;
   }
 
-  .btn::before {
+  .btn.shadowHover::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -64,17 +71,33 @@
     transition: opacity 150ms ease;
   }
 
-  .btn:is(:hover)::before {
+  .btn.shadowHover:is(:hover)::before {
     opacity: 1;
   }
 
-  .btn:nth-of-type(2) {
+  .btn.shadowHover:nth-of-type(2) {
     --gradient-dir: to right;
-    inset-inline-end: 0;
   }
 
   .hideBtn {
     display: none;
+  }
+
+  .btn.scaleHover {
+    overflow: hidden;
+  }
+
+  .btnArrowIcon {
+    inline-size: 4rem;
+    block-size: 4rem;
+  }
+
+  .btn.scaleHover .btnArrowIcon {
+    transition: transform 150ms ease;
+  }
+
+  .btn.scaleHover:is(:hover) .btnArrowIcon {
+    transform: scale(1.4);
   }
 }
 

@@ -2,14 +2,9 @@
 
 import { useRef } from 'react'
 import clsx from 'clsx'
-import {
-  useToggleBodyOverflow,
-  useBoolean,
-  useAutoFocus,
-  useForm,
-  useOnClickOutside,
-} from '@hooks'
+import { useToggleBodyOverflow, useBoolean, useOnClickOutside } from '@hooks'
 import { CloseIcon, SearchIcon } from '@components/SVG'
+import { SearchBar } from './components'
 import styles from './SearchMenu.module.css'
 
 interface SearchMenuProps {
@@ -25,12 +20,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
     toggle: toggleIsSearchMenuOpen,
     setFalse: closeSearchMenu
   } = useBoolean()
-  const { search_query, handleInputChange } = useForm({
-    initState: {
-      search_query: ''
-    }
-  })
-  const inputRef = useAutoFocus([isSearchMenuOpen])
+
   useOnClickOutside(searchMenuRef, closeSearchMenu)
   useToggleBodyOverflow(isSearchMenuOpen)
 
@@ -41,7 +31,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
     >
       <button
         aria-label='Buscar Película'
-        className={styles.searchButton}
+        className={styles.searchMenuBtn}
         onClick={toggleIsSearchMenuOpen}
       >
         {
@@ -55,21 +45,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
         styles.resultsContainer,
         isSearchMenuOpen && 'showMenu',
       )}>
-        <div className={styles.searchBarWrapper}>
-          <SearchIcon />
-          <input
-            ref={inputRef}
-            className={styles.searchBar}
-            name='search_query'
-            type='search'
-            placeholder='Buscar'
-            spellCheck={false}
-            autoComplete='off'
-            autoCorrect='off'
-            value={search_query}
-            onChange={handleInputChange}
-          />
-        </div>
+        <SearchBar setFocus={isSearchMenuOpen} />
       </div>
     </div>
   )

@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   gap: 2rem;
-  padding: var(--inline-space);
+  padding: 1.6rem var(--inline-space);
   background-color: var(--bg-color);
 }
 

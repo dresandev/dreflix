@@ -4,7 +4,7 @@ import { PlayTrailerBtn } from '@components/PlayTrailerBtn'
 import { ActorCard } from '@components/ActorCard'
 import { MovieCard } from '@components/MovieCard'
 import { HeartIcon, PlusIcon } from '@components/SVG'
-import heroImage from '@assets/images/hero-image.png'
+import heroImage from '@assets/images/details-hero-image.png'
 import styles from './page.module.css'
 
 export default function Details() {
@@ -15,6 +15,7 @@ export default function Details() {
           className={styles.heroImage}
           src={heroImage}
           alt='hero movie image'
+          sizes='100vw'
         />
         <div className={styles.gradient}></div>
       </div>

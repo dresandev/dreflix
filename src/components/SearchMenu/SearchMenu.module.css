@@ -1,4 +1,4 @@
-.searchButton {
+.searchMenuBtn {
   vertical-align: middle;
 }
 
@@ -14,32 +14,8 @@
   transition: var(--menu-transition);
 }
 
-.searchBarWrapper {
-  display: flex;
-  align-items: center;
-  padding-inline-start: 1.6rem;
-  background-color: var(--tertiary-bg-color);
-  border-radius: var(--border-radius);
-}
-
-.searchBarWrapper:focus-within {
-  outline: 0.1rem solid var(--secondary-color);
-}
-
-.searchBar {
-  inline-size: 100%;
-  padding: 1.2rem 1.6rem;
-  background-color: transparent;
-  border: none;
-  outline: none;
-}
-
-.searchBar::placeholder {
-  color: var(--secondary-text-color);
-}
-
 @media screen and (min-width: 880px) {
-  .searchButton {
+  .searchMenuBtn {
     display: none;
   }
 
@@ -52,14 +28,5 @@
     transition: unset;
     padding: initial;
     background-color: initial;
-  }
-
-  .searchBarWrapper {
-    background-color: var(--secondary-bg-color);
-  }
-
-  .searchBar {
-    padding-block: 0.8rem;
-    font-size: 1.8rem;
   }
 }

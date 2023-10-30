@@ -19,12 +19,11 @@
 
 .logoImage {
   position: absolute;
-  inset-inline: 0;
-  inset-block-end: 1rem;
-  max-inline-size: 20rem;
+  inset-inline-start: 1.6rem;
+  inset-block-end: 1.6rem;
+  max-inline-size: 18rem;
   inline-size: 100%;
   block-size: auto;
-  margin-inline: auto;
 }
 
 @media screen and (min-width: 880px) {

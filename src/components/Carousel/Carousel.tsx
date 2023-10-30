@@ -10,15 +10,17 @@ import styles from './Carousel.module.css'
 interface CarouselProps {
   children: React.ReactNode[]
   itemsGap?: string
-  itemScrollSnapStopAlway?: boolean
+  itemScrollSnapStopAlways?: boolean
   showPagination?: boolean
+  btnHoverVariant?: 'shadowHover' | 'scaleHover'
 }
 
 export const Carousel: React.FC<CarouselProps> = ({
   children,
   itemsGap = '2rem',
-  itemScrollSnapStopAlway = false,
-  showPagination = false
+  itemScrollSnapStopAlways = false,
+  showPagination = false,
+  btnHoverVariant = 'shadowHover'
 }) => {
   const isMounted = useHasMounted()
   const {
@@ -68,21 +70,29 @@ export const Carousel: React.FC<CarouselProps> = ({
           aria-label='Anterior'
           className={clsx(
             styles.btn,
+            styles[btnHoverVariant],
             activePageIndex === 0 && styles.hideBtn
           )}
           onClick={prev}
         >
-          <ChevronArrow direction='LEFT' />
+          <ChevronArrow
+            className={styles.btnArrowIcon}
+            direction='LEFT'
+          />
         </button>
         <button
           aria-label='Siguiente'
           className={clsx(
             styles.btn,
+            styles[btnHoverVariant],
             activePageIndex === (pages.length - 1) && styles.hideBtn
           )}
           onClick={next}
         >
-          <ChevronArrow direction='RIGHT' />
+          <ChevronArrow
+            className={styles.btnArrowIcon}
+            direction='RIGHT'
+          />
         </button>
 
         <ul
@@ -98,7 +108,7 @@ export const Carousel: React.FC<CarouselProps> = ({
                   className={clsx(
                     styles.item,
                     snapPointIndexes.has(i) && styles.itemSnapPoint,
-                    itemScrollSnapStopAlway && styles.itemScrollSnapStopAlway
+                    itemScrollSnapStopAlways && styles.itemScrollSnapStopAlways
                   )}
                 >
                   {child}

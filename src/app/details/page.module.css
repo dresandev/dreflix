@@ -5,6 +5,7 @@
 .heroImage {
   inline-size: 100%;
   block-size: auto;
+  aspect-ratio: 16 / 9;
 }
 
 .gradient {
@@ -34,7 +35,7 @@
 
 .badges {
   margin-block-end: 2rem;
-  font-size: 1.4rem;
+  font-size: var(--secondary-font-size);
   color: var(--secondary-text-color);
 }
 

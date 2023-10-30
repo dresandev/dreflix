@@ -5,8 +5,9 @@ export const HeroCarousel = () => {
   return (
     <Carousel
       showPagination
-      itemScrollSnapStopAlway
+      itemScrollSnapStopAlways
       itemsGap='var(--inline-space)'
+      btnHoverVariant='scaleHover'
     >
       <HeroMovieCard />
       <HeroMovieCard />
