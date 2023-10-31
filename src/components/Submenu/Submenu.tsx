@@ -7,13 +7,13 @@ import { ChevronArrow } from '@components/SVG'
 import styles from './Submenu.module.css'
 
 interface SubmenuProps {
+  children: React.ReactNode[]
   label: string
-  options: React.ReactNode[]
 }
 
 export const Submenu: React.FC<SubmenuProps> = ({
+  children,
   label,
-  options
 }) => {
   const {
     value: submenuIsOpen,
@@ -45,7 +45,7 @@ export const Submenu: React.FC<SubmenuProps> = ({
         submenuIsOpen && styles.submenuOpen
       )}>
         {
-          options.map(option => {
+          children.map(option => {
             const key = crypto.randomUUID()
             return (
               <li key={key}>

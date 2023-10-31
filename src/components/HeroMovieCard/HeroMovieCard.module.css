@@ -18,17 +18,41 @@
 }
 
 .logoImage {
+  max-inline-size: 18rem;
+  inline-size: 50%;
+  block-size: auto;
+}
+
+.logoImageTransition {
   position: absolute;
+  inset: 0;
   inset-inline-start: 1.6rem;
   inset-block-end: 1.6rem;
-  max-inline-size: 18rem;
-  inline-size: 100%;
-  block-size: auto;
+  block-size: max-content;
+  opacity: 0;
+  transform: translateY(4rem);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.logoImageIsVisible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media screen and (min-width: 880px) {
   .image {
     aspect-ratio: 3 / 1;
     object-position: top;
+  }
+
+  .logoImage {
+    max-inline-size: 35rem;
+    inline-size: 20%;
+  }
+
+  .logoImageTransition {
+    inset-inline: 4rem;
+    inset-block: 0;
+    margin-block: auto;
   }
 }

@@ -52,9 +52,8 @@ export const FiltersMenu = () => {
           </button>
         </div>
 
-        <Submenu
-          label='Género'
-          options={
+        <Submenu label='Género'>
+          {
             GENRES.map((genre) => {
               const key = crypto.randomUUID()
               return (
@@ -67,7 +66,7 @@ export const FiltersMenu = () => {
               )
             })
           }
-        />
+        </Submenu>
 
         <div className={styles.closeBtnWrapper}>
           <button
