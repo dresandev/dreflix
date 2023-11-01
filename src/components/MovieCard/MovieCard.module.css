@@ -1,4 +1,12 @@
-.image {
+.card {
+  position: relative;
+}
+
+.wrapperLink {
+  text-decoration: none;
+}
+
+.movieImage {
   inline-size: 100%;
   block-size: auto;
   border-radius: var(--border-radius);
@@ -13,4 +21,53 @@
 .year {
   color: var(--secondary-text-color);
   font-size: var(--secondary-font-size);
+}
+
+.cardInfo {
+  display: none;
+}
+
+@media (hover: hover) {
+  .cardInfo {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    max-inline-size: 34.5rem;
+    padding: 1rem;
+    font-size: var(--secondary-font-size);
+    background-color: hsl(227, 100%, 5%);
+    border-radius: var(--border-radius);
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: opacity 200ms ease;
+  }
+
+  .card:is(:hover) > .cardInfo {
+    opacity: 1;
+  }
+
+  .overview {
+    --max-lines: 6;
+    display: -webkit-box;
+    max-block-size: calc(var(--max-lines) * 2.4rem);
+    word-wrap: break-word;
+    -webkit-line-clamp: var(--max-lines);
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+  }
+
+  .bgMovieImage {
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    object-fit: cover;
+    inline-size: 100%;
+    block-size: 100%;
+    filter: blur(1.5rem);
+    opacity: 0.5;
+    transform: scale(1.3);
+  }
 }

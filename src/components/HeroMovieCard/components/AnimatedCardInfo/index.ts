@@ -1,0 +1,1 @@
+export { AnimatedCardInfo } from './AnimatedCardInfo'

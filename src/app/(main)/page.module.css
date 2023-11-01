@@ -18,11 +18,11 @@
   }
 
   .movieCard {
-    --items-amount: 5;
+    --items-amount: 5.5;
   }
 }
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1500px) {
   .movieCard {
     --items-amount: 6.5;
   }

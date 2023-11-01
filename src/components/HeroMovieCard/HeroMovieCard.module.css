@@ -1,58 +1,51 @@
-.card {
+.heroCard {
   position: relative;
   border-radius: var(--border-radius);
   overflow: hidden;
 }
 
-.link {
-  position: absolute;
-  inset: 0;
-  font-size: 0;
-}
-
-.image {
+.heroImage {
   inline-size: 100vw;
   block-size: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 
-.logoImage {
-  max-inline-size: 18rem;
-  inline-size: 50%;
-  block-size: auto;
-}
-
-.logoImageTransition {
+.wrapperLink {
   position: absolute;
   inset: 0;
-  inset-inline-start: 1.6rem;
-  inset-block-end: 1.6rem;
-  block-size: max-content;
-  opacity: 0;
-  transform: translateY(4rem);
-  transition: opacity 500ms ease, transform 500ms ease;
-}
-
-.logoImageIsVisible {
-  opacity: 1;
-  transform: translateY(0);
+  font-size: 0;
 }
 
 @media screen and (min-width: 880px) {
-  .image {
+  .heroImage {
     aspect-ratio: 3 / 1;
     object-position: top;
   }
 
-  .logoImage {
-    max-inline-size: 35rem;
-    inline-size: 20%;
+  .heroCardInfo {
+    inset-block: 0;
+    inset-inline: 4.8rem;
+    block-size: min-content;
+    margin-block: auto;
+    inline-size: calc(100% / 3);
   }
 
-  .logoImageTransition {
-    inset-inline: 4rem;
-    inset-block: 0;
-    margin-block: auto;
+  .logoImage {
+    max-block-size: calc(100vw / 12);
+  }
+
+  .moreInfoLink {
+    display: inline-block;
+    padding: 1.2rem 2rem;
+    margin-block-start: 1.6rem;
+    background-color: hsl(var(--bg-color-hsl) / 1);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: transform 200ms cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .moreInfoLink:hover {
+    transform: scale(1.05);
   }
 }
