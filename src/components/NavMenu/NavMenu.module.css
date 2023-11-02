@@ -38,7 +38,7 @@
   overflow-y: auto;
 }
 
-.submenuLink {
+.dropdownLink {
   display: block;
   padding: 1.2rem 1.6rem;
 }
@@ -55,6 +55,7 @@
     visibility: initial;
     transform: unset;
     transition: unset;
+    overflow-y: unset;
     display: flex;
   }
 
@@ -66,11 +67,11 @@
     grid-template-rows: repeat(5, 1fr);
   }
 
-  .submenuLink {
+  .dropdownLink {
     inline-size: 20rem;
   }
 
-  .submenuLink:is(:hover) {
+  .dropdownLink:is(:hover) {
     background-color: var(--tertiary-bg-color);
   }
 }

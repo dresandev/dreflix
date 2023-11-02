@@ -1,3 +1,7 @@
+.label {
+  inline-size: min-content;
+}
+
 .labelBtn {
   display: flex;
   justify-content: space-between;
@@ -14,19 +18,20 @@
   transform: rotate(-180deg);
 }
 
-.submenu {
+.dropdown {
   max-block-size: 0;
   background-color: var(--secondary-bg-color);
   overflow: hidden;
 }
 
-.submenuOpen {
+.dropdownOpen {
   max-block-size: max-content;
 }
 
 @media screen and (min-width: 880px) {
-  .submenuWrapper {
+  .dropdownWrapper {
     position: relative;
+    inline-size: max-content;
   }
 
   .labelBtn {
@@ -41,18 +46,19 @@
     background-color: var(--secondary-bg-color);
   }
 
-  .submenu {
+  .dropdown {
     --padding-block: 1rem;
     position: absolute;
     inset-block-start: 100%;
     padding-block: var(--padding-block);
+    inline-size: max-content;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-1rem);
     transition: var(--menu-transition);
   }
 
-  .submenuOpen {
+  .dropdownOpen {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);

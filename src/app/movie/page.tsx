@@ -9,10 +9,6 @@ export default function Movie() {
 
       <FiltersMenu />
       <MoviesGrid />
-
-      <button className={styles.seeMoreBtn}>
-        Explorar hasta el infinito y mas allá
-      </button>
     </div>
   )
 }

@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { useToggleBodyOverflow, useBoolean, useOnClickOutside } from '@hooks'
-import { Submenu } from '@components/Submenu'
+import { Dropdown } from '@components/Dropdown'
 import styles from './NavMenu.module.css'
 
 interface MenuProps {
@@ -46,7 +46,7 @@ export const NavMenu: React.FC<MenuProps> = ({
           isMenuOpen && 'showMenu'
         )}>
           <li>
-            <Submenu label='Explorar'>
+            <Dropdown label='Explorar'>
               {
                 [
                   { href: '/', label: 'Popular' },
@@ -58,7 +58,7 @@ export const NavMenu: React.FC<MenuProps> = ({
                   return (
                     <Link
                       key={key}
-                      className={styles.submenuLink}
+                      className={styles.dropdownLink}
                       href={href}
                     >
                       {label}
@@ -66,10 +66,10 @@ export const NavMenu: React.FC<MenuProps> = ({
                   )
                 })
               }
-            </Submenu>
+            </Dropdown>
           </li>
           <li>
-            <Submenu label='Géneros'>
+            <Dropdown label='Géneros'>
               <div className={styles.genresLinks}>
                 {
                   [
@@ -93,7 +93,7 @@ export const NavMenu: React.FC<MenuProps> = ({
                     return (
                       <Link
                         key={key}
-                        className={styles.submenuLink}
+                        className={styles.dropdownLink}
                         href={href}
                       >
                         {label}
@@ -102,7 +102,7 @@ export const NavMenu: React.FC<MenuProps> = ({
                   })
                 }
               </div>
-            </Submenu>
+            </Dropdown>
           </li>
         </ul>
       </nav>

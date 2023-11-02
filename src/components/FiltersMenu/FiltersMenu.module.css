@@ -8,13 +8,15 @@
 .filtersMenu {
   position: fixed;
   inset: 0;
-  z-index: 15;
+  z-index: 10;
   padding-block-end: 8.5rem;
   background-color: var(--bg-color);
-  overflow: auto;
+  overflow-y: auto;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 300ms ease-in-out, visibility 300ms ease-in-out;
+  transition-duration: 300ms;
+  transition-property: opacity, visibility;
+  transition-timing-function: ease;
 }
 
 .showMenu {
@@ -51,4 +53,26 @@
   padding-block: 1rem;
   border-radius: var(--border-radius);
   background-color: var(--secondary-bg-color);
+}
+
+@media screen and (min-width: 880px) {
+  .filtersBtn,
+  .header,
+  .closeBtnWrapper {
+    display: none;
+  }
+
+  .filtersMenu {
+    position: static;
+    inset: unset;
+    z-index: unset;
+    padding-block-end: unset;
+    overflow-y: unset;
+    opacity: unset;
+    visibility: unset;
+    transition-duration: unset;
+    transition-property: unset;
+    transition-timing-function: unset;
+    background-color: unset;
+  }
 }

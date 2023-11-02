@@ -2,7 +2,7 @@
 
 import clsx from 'clsx'
 import { useBoolean, useToggleBodyOverflow } from '@hooks'
-import { Submenu } from '@components/Submenu'
+import { Dropdown } from '@components/Dropdown'
 import { CloseIcon } from '@components/SVG'
 import styles from './FiltersMenu.module.css'
 
@@ -52,7 +52,7 @@ export const FiltersMenu = () => {
           </button>
         </div>
 
-        <Submenu label='Género'>
+        <Dropdown label='Género'>
           {
             GENRES.map(genre => {
               const key = crypto.randomUUID()
@@ -66,7 +66,7 @@ export const FiltersMenu = () => {
               )
             })
           }
-        </Submenu>
+        </Dropdown>
 
         <div className={styles.closeBtnWrapper}>
           <button

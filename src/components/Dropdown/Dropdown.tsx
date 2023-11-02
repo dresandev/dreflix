@@ -4,53 +4,53 @@ import { useRef } from 'react'
 import clsx from 'clsx'
 import { useOnClickOutside, useBoolean } from '@hooks'
 import { ChevronArrow } from '@components/SVG'
-import styles from './Submenu.module.css'
+import styles from './Dropdown.module.css'
 
-interface SubmenuProps {
+interface DropdownProps {
   children: React.ReactNode | React.ReactNode[]
   label: string
 }
 
-export const Submenu: React.FC<SubmenuProps> = ({
+export const Dropdown: React.FC<DropdownProps> = ({
   children,
   label,
 }) => {
   const {
-    value: submenuIsOpen,
-    setFalse: closeSubmenu,
-    toggle: toggleSubmenuIsOpen
+    value: dropdownIsOpen,
+    setFalse: closeDropdown,
+    toggle: toggleCloseDropdown
   } = useBoolean(false)
 
-  const submenuRef = useRef<HTMLDivElement>(null)
-  useOnClickOutside(submenuRef, closeSubmenu)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+  useOnClickOutside(dropdownRef, closeDropdown)
 
   const childrenArray = Array.isArray(children) ? children : [children]
 
   return (
     <div
-      className={styles.submenuWrapper}
-      ref={submenuRef}
+      className={styles.dropdownWrapper}
+      ref={dropdownRef}
     >
-      <label>
+      <label className={styles.label}>
         <button
           className={clsx(
             styles.labelBtn,
-            submenuIsOpen && styles.labelBtnOpen
+            dropdownIsOpen && styles.labelBtnOpen
           )}
-          onClick={toggleSubmenuIsOpen}
+          onClick={toggleCloseDropdown}
         >
           {label}
           <ChevronArrow
             className={clsx(
               styles.chevronArrow,
-              submenuIsOpen && styles.rotateArrow
+              dropdownIsOpen && styles.rotateArrow
             )}
           />
         </button>
       </label>
       <ul className={clsx(
-        styles.submenu,
-        submenuIsOpen && styles.submenuOpen
+        styles.dropdown,
+        dropdownIsOpen && styles.dropdownOpen
       )}>
         {
           childrenArray.map(option => {
