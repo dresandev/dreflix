@@ -8,7 +8,11 @@ export default function Movie() {
       <div className={styles.filtersWrapper}>
         <FiltersMenu />
       </div>
-      <div className={styles.searchQuery}>Resultados para <span>{'"Hola"'}</span>.</div>
+
+      <div className={styles.searchQuery}>
+        Resultados para <span>{'"Hola"'}</span>.
+      </div>
+
       <MoviesGrid />
     </div>
   )

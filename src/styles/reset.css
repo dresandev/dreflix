@@ -39,6 +39,7 @@ select {
 a {
   color: inherit;
   cursor: pointer;
+  text-decoration: none;
 }
 
 button {
@@ -60,4 +61,8 @@ h6 {
 
 ul {
   padding-inline-start: 0;
+}
+
+li {
+  list-style-type: none;
 }

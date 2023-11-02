@@ -7,7 +7,7 @@ import { ChevronArrow } from '@components/SVG'
 import styles from './Submenu.module.css'
 
 interface SubmenuProps {
-  children: React.ReactNode[]
+  children: React.ReactNode | React.ReactNode[]
   label: string
 }
 
@@ -24,11 +24,19 @@ export const Submenu: React.FC<SubmenuProps> = ({
   const submenuRef = useRef<HTMLDivElement>(null)
   useOnClickOutside(submenuRef, closeSubmenu)
 
+  const childrenArray = Array.isArray(children) ? children : [children]
+
   return (
-    <div ref={submenuRef}>
+    <div
+      className={styles.submenuWrapper}
+      ref={submenuRef}
+    >
       <label>
         <button
-          className={styles.labelBtn}
+          className={clsx(
+            styles.labelBtn,
+            submenuIsOpen && styles.labelBtnOpen
+          )}
           onClick={toggleSubmenuIsOpen}
         >
           {label}
@@ -45,7 +53,7 @@ export const Submenu: React.FC<SubmenuProps> = ({
         submenuIsOpen && styles.submenuOpen
       )}>
         {
-          children.map(option => {
+          childrenArray.map(option => {
             const key = crypto.randomUUID()
             return (
               <li key={key}>

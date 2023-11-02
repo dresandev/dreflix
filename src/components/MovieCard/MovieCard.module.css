@@ -2,10 +2,6 @@
   position: relative;
 }
 
-.wrapperLink {
-  text-decoration: none;
-}
-
 .movieImage {
   inline-size: 100%;
   block-size: auto;
@@ -33,10 +29,9 @@
     inset: 0;
     z-index: 1;
     display: block;
-    max-inline-size: 34.5rem;
     padding: 1rem;
     font-size: var(--secondary-font-size);
-    background-color: hsl(227, 100%, 5%);
+    background-color: hsl(225, 100%, 3%);
     border-radius: var(--border-radius);
     opacity: 0;
     overflow: hidden;
@@ -66,7 +61,7 @@
     object-fit: cover;
     inline-size: 100%;
     block-size: 100%;
-    filter: blur(1.5rem);
+    filter: blur(0.5rem);
     opacity: 0.5;
     transform: scale(1.3);
   }

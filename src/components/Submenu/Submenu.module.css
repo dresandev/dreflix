@@ -25,30 +25,34 @@
 }
 
 @media screen and (min-width: 880px) {
+  .submenuWrapper {
+    position: relative;
+  }
+
   .labelBtn {
     justify-content: initial;
     inline-size: unset;
-    padding: unset;
+    padding-block: 1.7rem;
     gap: 0.8rem;
   }
 
+  .labelBtnOpen,
+  .labelBtn:is(:hover) {
+    background-color: var(--secondary-bg-color);
+  }
+
   .submenu {
+    --padding-block: 1rem;
     position: absolute;
     inset-block-start: 100%;
-    padding-block: 1rem;
-    background-color: var(--bg-color);
+    padding-block: var(--padding-block);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-1rem);
     transition: var(--menu-transition);
   }
 
-  .submenu > li {
-    list-style: none;
-  }
-
   .submenuOpen {
-    max-block-size: max-content;
     opacity: 1;
     visibility: visible;
     transform: translateY(0);

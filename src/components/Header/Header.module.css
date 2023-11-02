@@ -14,6 +14,11 @@
   background-color: var(--bg-color);
 }
 
+.goHomeBtn {
+  color: var(--primary-color);
+  transition: color 200ms ease;
+}
+
 .spacer {
   flex-grow: 1;
 }
@@ -24,7 +29,11 @@
 
 @media screen and (min-width: 880px) {
   .header {
-    padding-block: 1.2rem;
+    padding-block: unset;
+  }
+
+  .goHomeBtn:is(:hover) {
+    color: var(--primary-text-color);
   }
 
   .navMenu {

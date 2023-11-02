@@ -9,6 +9,7 @@ export const MoviesGrid = () => {
       <MovieCard title='Algun nombre' />
       <MovieCard title='Algun nombre' />
       <MovieCard title='Algun nombre' />
+      <MovieCard title='Algun nombre' />
     </div>
   )
 }

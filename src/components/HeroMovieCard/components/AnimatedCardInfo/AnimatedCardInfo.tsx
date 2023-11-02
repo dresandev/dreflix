@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import clsx from 'clsx'
 import logoImage from '@assets/images/logo-image.png'
 import styles from './AnimatedCardInfo.module.css'
-import clsx from 'clsx'
 
 export const AnimatedCardInfo = () => {
   const animationRef = useRef<HTMLDivElement>(null)
@@ -33,7 +33,10 @@ export const AnimatedCardInfo = () => {
   }, [animationRef, isVisible])
 
   return (
-    <section ref={animationRef} className={styles.heroCardInfo}>
+    <section
+      ref={animationRef}
+      className={styles.heroCardInfo}
+    >
       <div className={clsx(
         styles.infoWrapper,
         isVisible && styles.infoWrapperTransition

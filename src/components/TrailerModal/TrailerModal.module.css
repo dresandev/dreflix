@@ -7,7 +7,7 @@
 }
 
 .closeModal {
-  position: fixed;
+  position: absolute;
   inset-block-start: 2rem;
   inset-inline-end: 2rem;
 }
@@ -20,7 +20,7 @@
   border: none;
 }
 
-@media screen and (min-width: 880px) {
+@media (orientation: landscape) {
   .modal {
     padding: 10rem 3rem;
     overflow: auto;

@@ -24,7 +24,8 @@ export const TrailerModal = () => {
             className={styles.trailerFrame}
             src='https://www.youtube.com/embed/vEn_IB95oRg?si=0257I5ZoOh4r_pjq'
             title='YouTube video player'
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowFullScreen
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+            allowFullScreen
           ></iframe>
         </div>
       </InPortal>

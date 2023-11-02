@@ -30,7 +30,6 @@ export const NavMenu: React.FC<MenuProps> = ({
     >
       <button
         aria-label='Abir menú'
-        title='Menú'
         className={clsx(
           styles.menuBtn,
           isMenuOpen && styles.activeMenuBtn
@@ -70,27 +69,39 @@ export const NavMenu: React.FC<MenuProps> = ({
             </Submenu>
           </li>
           <li>
-            <Submenu label='Géneros' >
-              {
-                [
-                  { href: '/', label: 'Acción' },
-                  { href: '/', label: 'Fantasía' },
-                  { href: '/', label: 'Historia' },
-                  { href: '/', label: 'Misterio' },
-                  { href: '/', label: 'Música' },
-                ].map(({ href, label }) => {
-                  const key = crypto.randomUUID()
-                  return (
-                    <Link
-                      key={key}
-                      className={styles.submenuLink}
-                      href={href}
-                    >
-                      {label}
-                    </Link>
-                  )
-                })
-              }
+            <Submenu label='Géneros'>
+              <div className={styles.genresLinks}>
+                {
+                  [
+                    { href: '/', label: 'Acción' },
+                    { href: '/', label: 'Western' },
+                    { href: '/', label: 'Fantasía' },
+                    { href: '/', label: 'Animacíon' },
+                    { href: '/', label: 'Historia' },
+                    { href: '/', label: 'Aventura' },
+                    { href: '/', label: 'Misterio' },
+                    { href: '/', label: 'Bélica' },
+                    { href: '/', label: 'Música' },
+                    { href: '/', label: 'Ciencia ficción' },
+                    { href: '/', label: 'Película de TV' },
+                    { href: '/', label: 'Comedia' },
+                    { href: '/', label: 'Romance' },
+                    { href: '/', label: 'Crimen' },
+                    { href: '/', label: 'Monster inside' },
+                  ].map(({ href, label }) => {
+                    const key = crypto.randomUUID()
+                    return (
+                      <Link
+                        key={key}
+                        className={styles.submenuLink}
+                        href={href}
+                      >
+                        {label}
+                      </Link>
+                    )
+                  })
+                }
+              </div>
             </Submenu>
           </li>
         </ul>

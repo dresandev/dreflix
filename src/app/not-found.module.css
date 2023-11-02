@@ -17,6 +17,5 @@
   inline-size: 28rem;
   background-color: var(--secondary-bg-color);
   text-align: center;
-  text-decoration: none;
   border-radius: var(--border-radius);
 }

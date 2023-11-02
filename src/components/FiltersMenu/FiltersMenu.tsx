@@ -54,7 +54,7 @@ export const FiltersMenu = () => {
 
         <Submenu label='Género'>
           {
-            GENRES.map((genre) => {
+            GENRES.map(genre => {
               const key = crypto.randomUUID()
               return (
                 <button
