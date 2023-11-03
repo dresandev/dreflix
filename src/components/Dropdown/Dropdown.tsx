@@ -31,7 +31,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
       className={styles.dropdownWrapper}
       ref={dropdownRef}
     >
-      <label className={styles.label}>
+      <label>
         <button
           className={clsx(
             styles.labelBtn,

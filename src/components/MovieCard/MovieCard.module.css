@@ -7,7 +7,12 @@
   inset: 0;
   font-size: 0;
   border-radius: var(--border-radius);
-  outline-offset: 0.2rem;
+  outline-offset: 0.3rem;
+}
+
+.wrapperLink:focus-visible,
+.wrapperLink:focus-visible + .cardPresentation {
+  transform: scale(0.95);
 }
 
 .movieImage {
@@ -41,6 +46,7 @@
     background-color: hsl(225, 100%, 3%);
     border-radius: var(--border-radius);
     opacity: 0;
+    visibility: hidden;
     overflow: hidden;
     pointer-events: none;
     transition: opacity 200ms ease;
@@ -48,6 +54,19 @@
 
   .card:is(:hover) > .cardInfo {
     opacity: 1;
+    visibility: visible;
+  }
+
+  .bgMovieImage {
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    object-fit: cover;
+    inline-size: 100%;
+    block-size: 100%;
+    filter: blur(0.5rem);
+    opacity: 0.5;
+    transform: scale(1.3);
   }
 
   .overview {
@@ -61,15 +80,7 @@
     word-break: break-word;
   }
 
-  .bgMovieImage {
-    position: absolute;
-    inset-inline-start: 0;
-    inset-block-start: 0;
-    object-fit: cover;
-    inline-size: 100%;
-    block-size: 100%;
-    filter: blur(0.5rem);
-    opacity: 0.5;
-    transform: scale(1.3);
+  .cardOptions {
+    pointer-events: visible;
   }
 }

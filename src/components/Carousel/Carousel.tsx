@@ -99,6 +99,7 @@ export const Carousel: React.FC<CarouselProps> = ({
           style={{ gap: itemsGap }}
           className={styles.carousel}
           ref={scrollRef}
+          tabIndex={-1}
         >
           {
             children.map((child, i) => {

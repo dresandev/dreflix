@@ -1,7 +1,3 @@
-.label {
-  inline-size: min-content;
-}
-
 .labelBtn {
   display: flex;
   justify-content: space-between;
@@ -30,9 +26,7 @@
 
 @media screen and (min-width: 880px) {
   .dropdownWrapper {
-    position: relative;
     inline-size: max-content;
-    z-index: 1;
   }
 
   .labelBtn {
@@ -50,10 +44,9 @@
   .dropdown {
     --padding-block: 1rem;
     position: absolute;
-    inset-block-start: 100%;
-    inset-inline-start: 0;
+    z-index: 1;
+    inset-block-start: max-content;
     padding-block: var(--padding-block);
-    inline-size: max-content;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-1rem);

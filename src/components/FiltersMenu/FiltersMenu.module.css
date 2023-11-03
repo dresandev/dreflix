@@ -74,4 +74,16 @@
     transition-timing-function: unset;
     background-color: unset;
   }
+
+  .genresBtns {
+    display: grid;
+    grid-column-gap: 2rem;
+    grid-auto-columns: minmax(0, 20rem);
+    grid-auto-flow: column;
+    grid-template-rows: repeat(5, 1fr);
+  }
+
+  .genreBtn:is(:hover) {
+    background-color: var(--tertiary-bg-color);
+  }
 }

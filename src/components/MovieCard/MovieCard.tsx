@@ -14,7 +14,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
   title
 }) => {
   return (
-    <figure className={clsx(
+    <article className={clsx(
       styles.card,
       className
     )}>
@@ -24,29 +24,35 @@ export const MovieCard: React.FC<MovieCardProps> = ({
       >
         {title}
       </Link>
-      <Image
-        className={styles.movieImage}
-        src={movieImage}
-        alt='Movie image'
-      />
-      <figcaption className={styles.title}>
-        {title}
-      </figcaption>
-      <p className={styles.year}>
-        8 jul 2023
-      </p>
+
+      <figure className={styles.cardPresentation}>
+        <Image
+          className={styles.movieImage}
+          src={movieImage}
+          alt={title}
+        />
+        <figcaption className={styles.title}>
+          {title}
+        </figcaption>
+        <p className={styles.year}>
+          8 jul 2023
+        </p>
+      </figure>
 
       <section className={styles.cardInfo}>
         <Image
           className={styles.bgMovieImage}
           src={movieImage}
-          alt='Movie image'
+          alt={title}
         />
         <h3>{title}</h3>
         <p className={styles.overview}>
           Ethan Hunt y su equipo del FMI, se embarcan en su misión más peligrosa hasta la fecha: localizar, antes de que caiga en las manos equivocadas, una nueva y terrorífica arma que amenaza a toda la humanidad. En esta tesitura.
         </p>
+
+        <div className={styles.cardOptions}>
+        </div>
       </section>
-    </figure>
+    </article>
   )
 }

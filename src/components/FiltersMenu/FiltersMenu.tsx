@@ -53,19 +53,22 @@ export const FiltersMenu = () => {
         </div>
 
         <Dropdown label='Género'>
-          {
-            GENRES.map(genre => {
-              const key = crypto.randomUUID()
-              return (
-                <button
-                  key={key}
-                  className={styles.genreBtn}
-                >
-                  {genre}
-                </button>
-              )
-            })
-          }
+          <ul className={styles.genresBtns}>
+            {
+              GENRES.map(genre => {
+                const key = crypto.randomUUID()
+                return (
+                  <li key={key}>
+                    <button
+                      className={styles.genreBtn}
+                    >
+                      {genre}
+                    </button>
+                  </li>
+                )
+              })
+            }
+          </ul>
         </Dropdown>
 
         <div className={styles.closeBtnWrapper}>
