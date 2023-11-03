@@ -7,7 +7,7 @@
 }
 
 .title {
-  font-size: 15rem;
+  font-size: clamp(15rem, 14rem + 3.125vw, 20rem);
 }
 
 .goBackHomeLink {
@@ -18,4 +18,11 @@
   background-color: var(--secondary-bg-color);
   text-align: center;
   border-radius: var(--border-radius);
+  transition: background-color 150ms ease;
+}
+
+@media (hover: hover) {
+  .goBackHomeLink:is(:hover) {
+    background-color: var(--secondary-color);
+  }
 }

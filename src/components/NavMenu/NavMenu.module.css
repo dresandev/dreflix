@@ -67,10 +67,6 @@
     grid-template-rows: repeat(5, 1fr);
   }
 
-  .dropdownLink {
-    inline-size: 20rem;
-  }
-
   .dropdownLink:is(:hover) {
     background-color: var(--tertiary-bg-color);
   }

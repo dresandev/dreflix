@@ -33,9 +33,8 @@
 }
 
 .genreBtn {
-  display: block;
   inline-size: 100%;
-  padding: 1.2rem var(--inline-space);
+  padding: 1.2rem 1.6rem;
   text-align: start;
 }
 

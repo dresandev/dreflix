@@ -70,7 +70,7 @@ export const NavMenu: React.FC<MenuProps> = ({
           </li>
           <li>
             <Dropdown label='Géneros'>
-              <div className={styles.genresLinks}>
+              <ul className={styles.genresLinks}>
                 {
                   [
                     { href: '/', label: 'Acción' },
@@ -91,17 +91,18 @@ export const NavMenu: React.FC<MenuProps> = ({
                   ].map(({ href, label }) => {
                     const key = crypto.randomUUID()
                     return (
-                      <Link
-                        key={key}
-                        className={styles.dropdownLink}
-                        href={href}
-                      >
-                        {label}
-                      </Link>
+                      <li key={key}>
+                        <Link
+                          className={styles.dropdownLink}
+                          href={href}
+                        >
+                          {label}
+                        </Link>
+                      </li>
                     )
                   })
                 }
-              </div>
+              </ul>
             </Dropdown>
           </li>
         </ul>
