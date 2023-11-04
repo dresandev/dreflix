@@ -3,7 +3,7 @@ import { CarouselSection } from '@components/CarouselSection'
 import { PlayTrailerBtn } from '@components/PlayTrailerBtn'
 import { ActorCard } from '@components/ActorCard'
 import { MovieCard } from '@components/MovieCard'
-import { HeartIcon, PlusIcon } from '@components/SVG'
+import { ActionButton } from '@components/ActionButton'
 import heroImage from '@assets/images/details-hero-image.png'
 import styles from './page.module.css'
 
@@ -44,14 +44,8 @@ export default function Details() {
 
         <div className={styles.options}>
           <PlayTrailerBtn />
-
-          <button className={styles.option}>
-            <HeartIcon />
-          </button>
-
-          <button className={styles.option}>
-            <PlusIcon />
-          </button>
+          <ActionButton icon='plus' />
+          <ActionButton icon='heart' />
         </div>
       </div>
 

@@ -1,0 +1,5 @@
+.actionButton {
+  padding: 1rem;
+  background-color: hsl(var(--primary-text-color-hsl) / 0.1);
+  border-radius: var(--border-radius);
+}

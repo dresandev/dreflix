@@ -9,11 +9,13 @@ import styles from './Dropdown.module.css'
 interface DropdownProps {
   children: React.ReactNode | React.ReactNode[]
   label: string
+  optionsInGrid?: boolean
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
   children,
   label,
+  optionsInGrid,
 }) => {
   const {
     value: dropdownIsOpen,
@@ -50,7 +52,8 @@ export const Dropdown: React.FC<DropdownProps> = ({
       </label>
       <ul className={clsx(
         styles.dropdown,
-        dropdownIsOpen && styles.dropdownOpen
+        dropdownIsOpen && styles.dropdownOpen,
+        optionsInGrid && styles.optionsGrid
       )}>
         {
           childrenArray.map(option => {

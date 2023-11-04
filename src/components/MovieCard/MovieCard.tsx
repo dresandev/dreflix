@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 import movieImage from '@assets/images/movie-image.png'
+import { PlayTrailerBtn } from '@components/PlayTrailerBtn'
+import { ActionButton } from '@components/ActionButton'
 import styles from './MovieCard.module.css'
 
 interface MovieCardProps {
@@ -51,6 +53,9 @@ export const MovieCard: React.FC<MovieCardProps> = ({
         </p>
 
         <div className={styles.cardOptions}>
+          <PlayTrailerBtn />
+          <ActionButton icon='plus' />
+          <ActionButton icon='heart' />
         </div>
       </section>
     </article>

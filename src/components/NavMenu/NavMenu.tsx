@@ -69,40 +69,40 @@ export const NavMenu: React.FC<MenuProps> = ({
             </Dropdown>
           </li>
           <li>
-            <Dropdown label='Géneros'>
-              <ul className={styles.genresLinks}>
-                {
-                  [
-                    { href: '/', label: 'Acción' },
-                    { href: '/', label: 'Western' },
-                    { href: '/', label: 'Fantasía' },
-                    { href: '/', label: 'Animacíon' },
-                    { href: '/', label: 'Historia' },
-                    { href: '/', label: 'Aventura' },
-                    { href: '/', label: 'Misterio' },
-                    { href: '/', label: 'Bélica' },
-                    { href: '/', label: 'Música' },
-                    { href: '/', label: 'Ciencia ficción' },
-                    { href: '/', label: 'Película de TV' },
-                    { href: '/', label: 'Comedia' },
-                    { href: '/', label: 'Romance' },
-                    { href: '/', label: 'Crimen' },
-                    { href: '/', label: 'Monster inside' },
-                  ].map(({ href, label }) => {
-                    const key = crypto.randomUUID()
-                    return (
-                      <li key={key}>
-                        <Link
-                          className={styles.dropdownLink}
-                          href={href}
-                        >
-                          {label}
-                        </Link>
-                      </li>
-                    )
-                  })
-                }
-              </ul>
+            <Dropdown
+              label='Géneros'
+              optionsInGrid
+            >
+              {
+                [
+                  { href: '/', label: 'Acción' },
+                  { href: '/', label: 'Western' },
+                  { href: '/', label: 'Fantasía' },
+                  { href: '/', label: 'Animacíon' },
+                  { href: '/', label: 'Historia' },
+                  { href: '/', label: 'Aventura' },
+                  { href: '/', label: 'Misterio' },
+                  { href: '/', label: 'Bélica' },
+                  { href: '/', label: 'Música' },
+                  { href: '/', label: 'Ciencia ficción' },
+                  { href: '/', label: 'Película de TV' },
+                  { href: '/', label: 'Comedia' },
+                  { href: '/', label: 'Romance' },
+                  { href: '/', label: 'Crimen' },
+                  { href: '/', label: 'Monster inside' },
+                ].map(({ href, label }) => {
+                  const key = crypto.randomUUID()
+                  return (
+                    <Link
+                      key={key}
+                      className={styles.dropdownLink}
+                      href={href}
+                    >
+                      {label}
+                    </Link>
+                  )
+                })
+              }
             </Dropdown>
           </li>
         </ul>

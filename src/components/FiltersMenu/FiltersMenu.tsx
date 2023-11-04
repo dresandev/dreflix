@@ -52,23 +52,23 @@ export const FiltersMenu = () => {
           </button>
         </div>
 
-        <Dropdown label='Género'>
-          <ul className={styles.genresBtns}>
-            {
-              GENRES.map(genre => {
-                const key = crypto.randomUUID()
-                return (
-                  <li key={key}>
-                    <button
-                      className={styles.genreBtn}
-                    >
-                      {genre}
-                    </button>
-                  </li>
-                )
-              })
-            }
-          </ul>
+        <Dropdown
+          label='Género'
+          optionsInGrid
+        >
+          {
+            GENRES.map(genre => {
+              const key = crypto.randomUUID()
+              return (
+                <button
+                  key={key}
+                  className={styles.genreBtn}
+                >
+                  {genre}
+                </button>
+              )
+            })
+          }
         </Dropdown>
 
         <div className={styles.closeBtnWrapper}>
