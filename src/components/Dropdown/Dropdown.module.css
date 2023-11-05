@@ -30,9 +30,9 @@
   }
 
   .labelBtn {
-    justify-content: initial;
-    inline-size: unset;
-    padding-block: 1.7rem;
+    justify-content: unset;
+    block-size: var(--header-block-size);
+    inline-size: max-content;
     gap: 0.8rem;
   }
 
@@ -59,7 +59,7 @@
     transition: var(--menu-open-transition);
   }
 
-  .optionsGrid {
+  .dropdownGrid {
     display: grid;
     grid-column-gap: 2rem;
     grid-auto-columns: minmax(0, 20rem);

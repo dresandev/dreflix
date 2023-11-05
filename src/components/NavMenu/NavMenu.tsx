@@ -43,7 +43,7 @@ export const NavMenu: React.FC<MenuProps> = ({
       <nav>
         <ul className={clsx(
           styles.menu,
-          isMenuOpen && 'showMenu'
+          isMenuOpen && styles.menuOpen
         )}>
           <li>
             <Dropdown label='Explorar'>

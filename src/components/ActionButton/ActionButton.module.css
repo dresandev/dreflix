@@ -1,5 +1,9 @@
 .actionButton {
-  padding: 1rem;
-  background-color: hsl(var(--primary-text-color-hsl) / 0.1);
-  border-radius: var(--border-radius);
+  inline-size: 3.2rem;
+  block-size: 3.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: hsl(var(--primary-text-color-hsl) / 0.1); */
+  border-radius: 50%;
 }

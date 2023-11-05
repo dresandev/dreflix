@@ -53,7 +53,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
       <ul className={clsx(
         styles.dropdown,
         dropdownIsOpen && styles.dropdownOpen,
-        optionsInGrid && styles.optionsGrid
+        optionsInGrid && styles.dropdownGrid
       )}>
         {
           childrenArray.map(option => {

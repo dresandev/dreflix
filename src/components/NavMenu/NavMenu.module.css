@@ -38,9 +38,22 @@
   overflow-y: auto;
 }
 
+.menuOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: var(--menu-open-transition);
+}
+
 .dropdownLink {
   display: block;
   padding: var(--button-padding);
+}
+
+@media (hover: hover) {
+  .dropdownLink:is(:hover) {
+    background-color: var(--tertiary-bg-color);
+  }
 }
 
 @media screen and (min-width: 880px) {
@@ -57,9 +70,5 @@
     transition: unset;
     overflow-y: unset;
     display: flex;
-  }
-
-  .dropdownLink:is(:hover) {
-    background-color: var(--tertiary-bg-color);
   }
 }

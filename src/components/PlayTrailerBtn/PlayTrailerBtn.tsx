@@ -1,18 +1,17 @@
 'use client'
 
 import { useUiStore } from '@store/use-ui-store'
-import { PlayIcon } from '@components/SVG'
+import { ActionButton } from '@components/ActionButton'
 import styles from './PlayTrailerBtn.module.css'
 
 export const PlayTrailerBtn = () => {
   const { toggleShowTrailerModal } = useUiStore()
 
   return (
-    <button
+    <ActionButton
       className={styles.playTrailerBtn}
+      icon='play'
       onClick={toggleShowTrailerModal}
-    >
-      <PlayIcon />
-    </button>
+    />
   )
 }

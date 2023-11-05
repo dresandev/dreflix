@@ -33,7 +33,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
           src={movieImage}
           alt={title}
         />
-        <figcaption className={styles.title}>
+        <figcaption className={styles.figcaption}>
           {title}
         </figcaption>
         <p className={styles.year}>
@@ -43,11 +43,12 @@ export const MovieCard: React.FC<MovieCardProps> = ({
 
       <section className={styles.cardInfo}>
         <Image
-          className={styles.bgMovieImage}
+          className={styles.cardInfoBgImage}
           src={movieImage}
           alt={title}
         />
-        <h3>{title}</h3>
+
+        <h3 className={styles.title}>{title}</h3>
         <p className={styles.overview}>
           Ethan Hunt y su equipo del FMI, se embarcan en su misión más peligrosa hasta la fecha: localizar, antes de que caiga en las manos equivocadas, una nueva y terrorífica arma que amenaza a toda la humanidad. En esta tesitura.
         </p>

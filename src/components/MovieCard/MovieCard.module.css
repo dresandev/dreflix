@@ -19,11 +19,10 @@
   inline-size: 100%;
   block-size: auto;
   border-radius: var(--border-radius);
-  line-height: 0;
   pointer-events: none;
 }
 
-.title {
+.figcaption {
   margin-block-start: 0.8rem;
 }
 
@@ -40,16 +39,16 @@
   .cardInfo {
     position: absolute;
     inset: 0;
-    display: block;
+    display: flex;
+    flex-direction: column;
     padding: 1rem;
     font-size: var(--secondary-font-size);
-    background-color: hsl(225, 100%, 3%);
-    border-radius: var(--border-radius);
+    background-color: hsl(225, 10%, 15%);
     opacity: 0;
     visibility: hidden;
-    overflow: hidden;
-    pointer-events: none;
     transition: opacity 200ms ease;
+    pointer-events: none;
+    overflow: hidden;
   }
 
   .card:is(:hover) > .cardInfo {
@@ -57,16 +56,19 @@
     visibility: visible;
   }
 
-  .bgMovieImage {
+  .cardInfoBgImage {
     position: absolute;
     inset-inline-start: 0;
     inset-block-start: 0;
     object-fit: cover;
     inline-size: 100%;
     block-size: 100%;
-    filter: blur(0.5rem);
-    /* opacity: 0.5; */
-    transform: scale(1.3);
+    opacity: 0.05;
+    transform: scale(1.2);
+  }
+
+  .title {
+    margin-block-end: 1rem;
   }
 
   .overview {
@@ -74,15 +76,16 @@
     display: -webkit-box;
     max-block-size: calc(var(--max-lines) * 2.4rem);
     word-wrap: break-word;
+    word-break: break-word;
     -webkit-line-clamp: var(--max-lines);
     -webkit-box-orient: vertical;
     overflow: hidden;
-    word-break: break-word;
   }
 
   .cardOptions {
     display: flex;
-    gap: 2rem;
+    gap: 0.5rem;
+    margin-block-start: auto;
     pointer-events: visible;
   }
 }
