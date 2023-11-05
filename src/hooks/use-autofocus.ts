@@ -1,18 +1,13 @@
-import { useRef, useEffect, DependencyList } from 'react'
+import { useRef, useEffect } from 'react'
 
-export const useAutoFocus = (deps?: DependencyList) => {
+export const useAutoFocus = ({ setFocus = true }) => {
   const inputRef = useRef<HTMLInputElement>(null)
-  const isFirstRender = useRef(true)
 
   useEffect(() => {
-    if (!isFirstRender.current && inputRef.current) {
+    if (setFocus && inputRef.current) {
       inputRef.current.focus()
     }
-
-    if (isFirstRender.current) {
-      isFirstRender.current = false
-    }
-  }, [deps])
+  }, [setFocus])
 
   return inputRef
 }

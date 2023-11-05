@@ -3,7 +3,8 @@ import { CarouselSection } from '@components/CarouselSection'
 import { PlayTrailerBtn } from '@components/PlayTrailerBtn'
 import { ActorCard } from '@components/ActorCard'
 import { MovieCard } from '@components/MovieCard'
-import { ActionButton } from '@components/ActionButton'
+import { IconButton } from '@components/IconButton'
+import { HeartIcon, PlusIcon } from '@components/SVG'
 import heroImage from '@assets/images/details-hero-image.png'
 import styles from './page.module.css'
 
@@ -44,8 +45,12 @@ export default function Details() {
 
         <div className={styles.options}>
           <PlayTrailerBtn />
-          <ActionButton icon='plus' />
-          <ActionButton icon='heart' />
+          <IconButton ariaLabel='Agregar a lista'>
+            <PlusIcon />
+          </IconButton>
+          <IconButton ariaLabel='Agregar a favoritos'>
+            <HeartIcon />
+          </IconButton>
         </div>
       </div>
 
@@ -58,6 +63,7 @@ export default function Details() {
         <ActorCard />
         <ActorCard />
       </CarouselSection>
+
       <CarouselSection title='Recomendaciones' >
         <MovieCard
           className={styles.movieCard}

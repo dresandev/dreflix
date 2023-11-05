@@ -38,6 +38,12 @@
   text-align: start;
 }
 
+@media (hover: hover) {
+  .genreBtn:is(:hover) {
+    background-color: var(--tertiary-bg-color);
+  }
+}
+
 .closeBtnWrapper {
   position: fixed;
   inset-block-end: 0;
@@ -73,9 +79,5 @@
     transition-property: unset;
     transition-timing-function: unset;
     background-color: unset;
-  }
-
-  .genreBtn:is(:hover) {
-    background-color: var(--tertiary-bg-color);
   }
 }

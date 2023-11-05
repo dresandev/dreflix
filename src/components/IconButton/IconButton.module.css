@@ -1,0 +1,27 @@
+.iconButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  inline-size: var(--size);
+  block-size: var(--size);
+  background-color: hsl(var(--primary-text-color-hsl) / 0.1);
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  transition: all 200ms ease;
+}
+
+.small {
+  --size: 3.5rem;
+}
+
+.medium {
+  --size: clamp(4.4rem, 4.24rem + 0.5vw, 5.2rem);
+}
+
+@media (hover: hover) {
+  .iconButton:is(:hover) {
+    transform: scale(1.1);
+    background-color: hsl(var(--primary-text-color-hsl));
+    color: var(--bg-color);
+  }
+}
