@@ -82,7 +82,7 @@
     overflow: hidden;
   }
 
-  .cardOptions {
+  .cardActions {
     display: flex;
     gap: 1rem;
     margin-block-start: auto;

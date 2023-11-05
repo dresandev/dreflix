@@ -54,7 +54,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
           Ethan Hunt y su equipo del FMI, se embarcan en su misión más peligrosa hasta la fecha: localizar, antes de que caiga en las manos equivocadas, una nueva y terrorífica arma que amenaza a toda la humanidad. En esta tesitura.
         </p>
 
-        <div className={styles.cardOptions}>
+        <div className={styles.cardActions}>
           <PlayTrailerBtn size='small' />
           <IconButton
             ariaLabel='Agregar a lista'
