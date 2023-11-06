@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { CarouselSection } from '@components/CarouselSection'
-import { PlayTrailerBtn } from '@components/PlayTrailerBtn'
 import { ActorCard } from '@components/ActorCard'
 import { MovieCard } from '@components/MovieCard'
+import { TrailerTextButton } from '@components/TrailerButtton'
 import { IconButton } from '@components/IconButton'
 import { HeartIcon, PlusIcon } from '@components/SVG'
 import heroImage from '@assets/images/details-hero-image.png'
@@ -18,50 +18,48 @@ export default function Details() {
           alt='hero movie image'
           sizes='100vw'
         />
-        <div className={styles.gradient}></div>
       </div>
-      <div className={styles.details}>
-        <h1 className={styles.title}>NOWHERE</h1>
 
-        <p className={styles.overview}>
-          In 1956 France, a priest is violently murdered, and Sister Irene begins to investigate. She once again comes face-to-face with a powerful evil.
-        </p>
+      <div className={styles.detailsWrapper}>
+        <div className={styles.details}>
+          <div></div>
 
-        <div className={styles.badges}>
-          <span>2023</span>
+          <h1 className={styles.title}>Sound of Freedom</h1>
 
-          &nbsp;-&nbsp;
+          <p className={styles.overview}>
+            Narra la historia de Tim Ballard, un exagente de Seguridad Nacional de Estados Unidos que dejó su trabajo para dedicar su vida, sumergiéndose en el submundo del tráfico de personas a lo largo de hispanoamérica, a intentar salvar las vidas de cientos de niños.
+          </p>
 
-          <div className={styles.genres}>
-            <span>Horror</span>,&nbsp;
-            <span>Mystery</span>,&nbsp;
-            <span>Thriller</span>
+          <div className={styles.badges}>
+            <span>2023</span>
+            <div className={styles.genres}>
+              <span>Horror</span>,&nbsp;
+              <span>Mystery</span>,&nbsp;
+              <span>Thriller</span>
+            </div>
+            <span>1h 30m</span>
           </div>
 
-          &nbsp;-&nbsp;
-
-          <span>1h 30m</span>
-        </div>
-
-        <div className={styles.options}>
-          <PlayTrailerBtn />
-          <IconButton ariaLabel='Agregar a lista'>
-            <PlusIcon />
-          </IconButton>
-          <IconButton ariaLabel='Agregar a favoritos'>
-            <HeartIcon />
-          </IconButton>
+          <div className={styles.actions}>
+            <TrailerTextButton />
+            <IconButton ariaLabel='Agregar a lista'>
+              <PlusIcon />
+            </IconButton>
+            <IconButton ariaLabel='Agregar a favoritos'>
+              <HeartIcon />
+            </IconButton>
+          </div>
         </div>
       </div>
 
       <CarouselSection title='Reparto principal' >
-        <ActorCard />
-        <ActorCard />
-        <ActorCard />
-        <ActorCard />
-        <ActorCard />
-        <ActorCard />
-        <ActorCard />
+        <ActorCard className={styles.actorCard} />
+        <ActorCard className={styles.actorCard} />
+        <ActorCard className={styles.actorCard} />
+        <ActorCard className={styles.actorCard} />
+        <ActorCard className={styles.actorCard} />
+        <ActorCard className={styles.actorCard} />
+        <ActorCard className={styles.actorCard} />
       </CarouselSection>
 
       <CarouselSection title='Recomendaciones' >

@@ -1,0 +1,22 @@
+.trailerTextButton {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+  transition: opacity 200ms ease;
+}
+
+@media (hover: hover) {
+  .trailerTextButton:is(:hover) {
+    opacity: 0.5;
+  }
+}
+
+.playIcon {
+  padding: clamp(1rem, 1.176rem + -0.55vw, 0.12rem);
+  border-radius: 50%;
+  background-color: var(--primary-color);
+}
+
+.text {
+  letter-spacing: 0.6rem;
+}

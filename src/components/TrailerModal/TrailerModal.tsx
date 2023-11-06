@@ -20,13 +20,13 @@ export const TrailerModal = () => {
           >
             <CloseIcon />
           </button>
+
           <iframe
             className={styles.trailerFrame}
-            src='https://www.youtube.com/embed/vEn_IB95oRg?si=0257I5ZoOh4r_pjq'
+            src='https://www.youtube-nocookie.com/embed/Rt0kp4VW1cI?si=F2Vt2iqn8TdSBHMP&amp;controls=0'
             title='YouTube video player'
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-            allowFullScreen
-          ></iframe>
+            allowFullScreen></iframe>
         </div>
       </InPortal>
     )

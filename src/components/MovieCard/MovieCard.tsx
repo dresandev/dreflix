@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 import movieImage from '@assets/images/movie-image.png'
-import { PlayTrailerBtn } from '@components/PlayTrailerBtn'
+import { TrailerIconButtton } from '@components/TrailerButtton'
 import { IconButton } from '@components/IconButton'
 import { HeartIcon, PlusIcon } from '@components/SVG'
 import styles from './MovieCard.module.css'
@@ -55,7 +55,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
         </p>
 
         <div className={styles.cardActions}>
-          <PlayTrailerBtn size='small' />
+          <TrailerIconButtton size='small' />
           <IconButton
             ariaLabel='Agregar a lista'
             size='small'

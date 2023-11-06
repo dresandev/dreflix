@@ -14,11 +14,11 @@ import { CloseIcon, SearchIcon } from '@components/SVG'
 import styles from './SearchMenu.module.css'
 
 const SEARCH_RESULTS = [
-  'Avengers',
-  'Avengers los',
-  'Avengers cabezaa',
-  'Avengers inicios',
-]
+  // 'Avengers',
+  // 'Avengers los',
+  // 'Avengers cabezaa',
+  // 'Avengers inicios',
+] as const
 
 interface SearchMenuProps {
   className?: string

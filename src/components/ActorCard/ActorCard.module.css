@@ -1,7 +1,6 @@
 .card {
   border-radius: var(--border-radius);
   overflow: hidden;
-  inline-size: 13rem;
 }
 
 .image {
