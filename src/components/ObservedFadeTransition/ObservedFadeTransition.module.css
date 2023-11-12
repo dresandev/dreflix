@@ -1,0 +1,15 @@
+.transition {
+  transition-property: opacity, transform;
+  transition-duration: 600ms;
+  transition-timing-function: cubic-bezier(0.2, 0.45, 0, 1);
+}
+
+.fadeOut {
+  opacity: 0;
+  transform: translateY(3rem);
+}
+
+.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}

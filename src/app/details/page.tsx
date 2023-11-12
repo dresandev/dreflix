@@ -64,35 +64,35 @@ export default function Details() {
 
       <CarouselSection title='Recomendaciones' >
         <MovieCard
-          className={styles.movieCard}
+          className='carouselMovieCardWidth'
           title='Monster inside'
         />
         <MovieCard
-          className={styles.movieCard}
+          className='carouselMovieCardWidth'
           title='Monster inside'
         />
         <MovieCard
-          className={styles.movieCard}
+          className='carouselMovieCardWidth'
           title='Monster inside'
         />
         <MovieCard
-          className={styles.movieCard}
+          className='carouselMovieCardWidth'
           title='Monster inside'
         />
         <MovieCard
-          className={styles.movieCard}
+          className='carouselMovieCardWidth'
           title='Monster inside'
         />
         <MovieCard
-          className={styles.movieCard}
+          className='carouselMovieCardWidth'
           title='Monster inside'
         />
         <MovieCard
-          className={styles.movieCard}
+          className='carouselMovieCardWidth'
           title='Monster inside'
         />
         <MovieCard
-          className={styles.movieCard}
+          className='carouselMovieCardWidth'
           title='Monster inside'
         />
       </CarouselSection>

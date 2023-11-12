@@ -1,27 +1,68 @@
 import Link from 'next/link'
-import Image from 'next/image'
-import heroImage from '@assets/images/hero-image.png'
-import { AnimatedCardInfo } from './components/AnimatedCardInfo'
+import { ObeservedFadeTransition } from '@components/ObservedFadeTransition'
+import { HeroMovie } from '@types'
 import styles from './HeroMovieCard.module.css'
 
-export const HeroMovieCard = () => {
+export const HeroMovieCard: React.FC<HeroMovie> = ({
+  movieId,
+  title,
+  image,
+  logoImage
+}) => {
   return (
     <article className={styles.heroCard}>
       <Link
         className={styles.wrapperLink}
-        href='/'
-        aria-label='Nombre de peli'
+        href={`/${movieId}`}
+        aria-label={title}
       >
-        Nombre de peli
+        {title}
       </Link>
 
-      <Image
+      <img
         className={styles.heroImage}
-        src={heroImage}
-        alt='hero movie image'
-        sizes='(max-width: 880px) 90vw, 92vw'
+        srcSet={`
+          ${image.small} 800w,
+          ${image.medium} 1440w,
+          ${image.original} 2880w
+        `}
+        sizes='
+          (max-width: 880px) 800px,
+          (max-width: 1600px) 1400px,
+          2880px
+        '
+        src={image.original}
+        alt={title}
       />
-      <AnimatedCardInfo />
+
+      <section className={styles.heroCardInfo}>
+        <ObeservedFadeTransition>
+          <div className={styles.infoWrapper}>
+            <h2>
+              <Link href={`/${movieId}`}>
+                <img
+                  className={styles.logoImage}
+                  srcSet={`
+                    ${logoImage.small} 350w,
+                    ${logoImage.original} 700w
+                  `}
+                  sizes='(max-width: 880px) 350px, 700px'
+                  src={logoImage.original}
+                  alt=''
+                  loading='eager'
+                />
+              </Link>
+            </h2>
+
+            <Link
+              className={styles.moreInfoLink}
+              href={`/${movieId}`}
+            >
+              Más Información
+            </Link>
+          </div>
+        </ObeservedFadeTransition>
+      </section>
     </article>
   )
 }

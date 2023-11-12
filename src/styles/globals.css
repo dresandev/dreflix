@@ -1,6 +1,6 @@
 :root {
   --primary-color-hsl: 352 99% 41%;
-  --secondary-color-hsl: 21, 94% 43%;
+  --secondary-color-hsl: 214 85.26% 53%;
   --bg-color-hsl: 0 0% 0%;
   --secondary-bg-color-hsl: 214 85.26% 53%;
   --tertiary-bg-color-hsl: 0 0% 22%;
@@ -39,6 +39,10 @@
   }
 }
 
+::selection {
+  background-color: hsl(var(--secondary-color-hsl) / 0.4);
+}
+
 body {
   font-size: var(--primary-font-size);
   background-color: var(--bg-color);
@@ -58,4 +62,25 @@ main {
 
 .hideOverflow {
   overflow: hidden;
+}
+
+.carouselMovieCardWidth {
+  --items-amount: 4;
+  --card-width: calc(
+    var(--screen-width) / var(--items-amount) - var(--carousel-items-gap)
+  );
+  min-inline-size: 15rem;
+  inline-size: var(--card-width);
+}
+
+@media screen and (min-width: 880px) {
+  .carouselMovieCardWidth {
+    --items-amount: 5.5;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .carouselMovieCardWidth {
+    --items-amount: 6.5;
+  }
 }

@@ -64,15 +64,6 @@
   inline-size: clamp(12rem, 11.4rem + 1.875vw, 15rem);
 }
 
-.movieCard {
-  --items-amount: 4;
-  --card-width: calc(
-    var(--screen-width) / var(--items-amount) - var(--carousel-items-gap)
-  );
-  min-inline-size: 15rem;
-  inline-size: var(--card-width);
-}
-
 @media (orientation: portrait) {
   .detailsWrapper {
     padding-block-start: 42vw;
@@ -130,17 +121,5 @@
 
   .title {
     margin-block-end: 3rem;
-  }
-}
-
-@media screen and (min-width: 880px) {
-  .movieCard {
-    --items-amount: 5.5;
-  }
-}
-
-@media screen and (min-width: 1500px) {
-  .movieCard {
-    --items-amount: 6.5;
   }
 }

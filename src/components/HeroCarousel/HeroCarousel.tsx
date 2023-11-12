@@ -1,7 +1,8 @@
 import { Carousel } from '@components/Carousel'
 import { HeroMovieCard } from '@components/HeroMovieCard'
+import { heroMovies } from '@data/hero-movies'
 
-export const HeroCarousel = () => {
+export const HeroCarousel = async () => {
   return (
     <Carousel
       showPagination
@@ -9,10 +10,17 @@ export const HeroCarousel = () => {
       itemsGap='var(--inline-space)'
       btnHoverVariant='scaleHover'
     >
-      <HeroMovieCard />
-      <HeroMovieCard />
-      <HeroMovieCard />
-      <HeroMovieCard />
+      {
+        heroMovies.map(movie => {
+          const key = crypto.randomUUID()
+          return (
+            <HeroMovieCard
+              key={key}
+              {...movie}
+            />
+          )
+        })
+      }
     </Carousel>
   )
 }

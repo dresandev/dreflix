@@ -3,27 +3,8 @@
   padding-block-end: 2.4rem;
 }
 
-.movieCard {
-  --items-amount: 4;
-  --card-width: calc(
-    var(--screen-width) / var(--items-amount) - var(--carousel-items-gap)
-  );
-  min-inline-size: 15rem;
-  inline-size: var(--card-width);
-}
-
 @media screen and (min-width: 880px) {
   .title {
     padding-block-start: 2.4rem;
-  }
-
-  .movieCard {
-    --items-amount: 5.5;
-  }
-}
-
-@media screen and (min-width: 1500px) {
-  .movieCard {
-    --items-amount: 6.5;
   }
 }
