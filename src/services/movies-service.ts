@@ -1,14 +1,20 @@
-import { MovieListResponse } from '@models/MovieListResponse'
+import { MovieListResponseWithDates } from '@models/MovieListResponse'
 
-const base_url = process.env.BASE_URL
+type MovieListType = 'now_playing' | 'popular' | 'top_rated' | 'upcoming'
 
-export const getTrendingMovies = async (): Promise<MovieListResponse> => {
-  const url = `${base_url}/trending/movie/day?language=es-CO`
+const base_url = process.env.API_BASE_URL
+const Authorization = `Bearer ${process.env.ACCESS_TOKEN_AUTH}`
+
+export const getMovieList = async (
+  movieListType: MovieListType,
+  page = 1
+): Promise<MovieListResponseWithDates> => {
+  const url = `${base_url}/movie/${movieListType}?language=es-CO&${page}`
   const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: `Bearer ${process.env.ACCESS_TOKEN_AUTH}`
+      Authorization
     }
   }
 
@@ -20,6 +26,10 @@ export const getTrendingMovies = async (): Promise<MovieListResponse> => {
   }
 
   return {
+    dates: {
+      minimum: '',
+      maximum: ''
+    },
     page: 0,
     results: [],
     total_pages: 0,

@@ -4,6 +4,19 @@ const base_url = '/images'
 
 export const heroMovies: HeroMovie[] = [
   {
+    movieId: 744857,
+    image: {
+      original: `${base_url}/when-evil-lurks/image/2880w.webp`,
+      medium: `${base_url}/when-evil-lurks/image/1440w.webp`,
+      small: `${base_url}/when-evil-lurks/image/800w.webp`,
+    },
+    logoImage: {
+      original: `${base_url}/when-evil-lurks/logo/700w.webp`,
+      small: `${base_url}/when-evil-lurks/logo/350w.webp`,
+    },
+    title: 'When evil lurks',
+  },
+  {
     movieId: 913290,
     image: {
       original: `${base_url}/barbarian/image/2880w.webp`,
@@ -54,19 +67,6 @@ export const heroMovies: HeroMovie[] = [
       small: `${base_url}/pearl/logo/350w.webp`,
     },
     title: 'Pearl',
-  },
-  {
-    movieId: 744857,
-    image: {
-      original: `${base_url}/when-evil-lurks/image/2880w.webp`,
-      medium: `${base_url}/when-evil-lurks/image/1440w.webp`,
-      small: `${base_url}/when-evil-lurks/image/800w.webp`,
-    },
-    logoImage: {
-      original: `${base_url}/when-evil-lurks/logo/700w.webp`,
-      small: `${base_url}/when-evil-lurks/logo/350w.webp`,
-    },
-    title: 'When evil lurks',
   },
   {
     movieId: 310131,

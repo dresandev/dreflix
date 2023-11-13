@@ -1,5 +1,5 @@
 import { FiltersMenu } from '@components/FiltersMenu'
-import { MoviesGrid } from '@components/MoviesGrid'
+import { MovieGrid } from '@components/MovieGrid'
 import styles from './page.module.css'
 
 export default function Movie() {
@@ -8,7 +8,7 @@ export default function Movie() {
       <h1 className={styles.title}>Popular</h1>
 
       <FiltersMenu />
-      <MoviesGrid />
+      <MovieGrid />
     </div>
   )
 }

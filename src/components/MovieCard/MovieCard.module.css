@@ -15,7 +15,7 @@
   transform: scale(0.95);
 }
 
-.movieImage {
+.posterImage {
   inline-size: 100%;
   block-size: auto;
   border-radius: var(--border-radius);

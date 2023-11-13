@@ -1,0 +1,1 @@
+export { MovieGrid } from './MovieGrid'
