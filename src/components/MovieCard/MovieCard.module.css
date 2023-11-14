@@ -46,7 +46,9 @@
     background-color: hsl(225, 10%, 15%);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 200ms ease;
+    transition-property: opacity, visibility;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
     pointer-events: none;
     overflow: hidden;
   }

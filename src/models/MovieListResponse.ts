@@ -1,4 +1,4 @@
-import { Movie } from './Movie'
+import { Movie } from './'
 
 export interface MovieListResponse {
   page: number
@@ -7,7 +7,8 @@ export interface MovieListResponse {
   total_results: number
 }
 
-export interface MovieListResponseWithDates extends MovieListResponse {
+export interface MainMovieListResponse extends MovieListResponse {
+  listTitle: string
   dates?: {
     maximum: string
     minimum: string

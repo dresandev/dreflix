@@ -114,12 +114,13 @@
   .details {
     position: absolute;
     inset-inline-start: var(--inline-space);
-    inset-block-end: var(--inline-space);
+    inset-block-end: 0;
     padding-inline: unset;
     margin-block-end: var(--inline-space);
   }
 
   .title {
+    max-inline-size: calc(100vw / 2.5);
     margin-block-end: 3rem;
   }
 }

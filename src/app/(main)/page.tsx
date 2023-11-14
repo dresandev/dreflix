@@ -5,134 +5,52 @@ import { MovieCard } from '@components/MovieCard'
 import styles from './page.module.css'
 
 export default async function Home() {
-  const { results: popularMovies } = await getMovieList('popular')
+  const results = await Promise.allSettled([
+    getMovieList('popular'),
+    getMovieList('now_playing'),
+    getMovieList('upcoming'),
+    getMovieList('top_rated'),
+  ])
 
   return (
     <>
       <h1 className={styles.title}>Películas</h1>
       <HeroCarousel />
 
-      <CarouselSection title='Popular' >
-        {
-          popularMovies.map(popularMovie => {
-            const key = crypto.randomUUID()
-            const { poster_path, title, release_date, overview } = popularMovie
+      {
+        results.map(({ status, value }) => {
+          if (status !== 'fulfilled' || !value) return
 
-            return (
-              <MovieCard
-                key={key}
-                className='carouselMovieCardWidth'
-                posterPath={poster_path}
-                title={title}
-                releaseDate={release_date}
-                overview={overview}
-              />
-            )
-          })
-        }
-      </CarouselSection>
-      {/* <CarouselSection title='En cartelera hoy' >
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-      </CarouselSection>
-      <CarouselSection title='Próximamente' >
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-      </CarouselSection>
-      <CarouselSection title='Mejor valoradas' >
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-        <MovieCard
-          className='carouselMovieCardWidth'
-          title='Monster inside'
-        />
-      </CarouselSection> */}
+          const key = crypto.randomUUID()
+          const { listTitle, results } = value
+
+          return (
+            <CarouselSection
+              key={key}
+              title={listTitle}
+            >
+              {
+                results.map(movie => {
+                  const key = crypto.randomUUID()
+                  const { id, poster_path, title, release_date, overview } = movie
+
+                  return (
+                    <MovieCard
+                      key={key}
+                      className='carouselMovieCardWidth'
+                      movieId={id}
+                      posterPath={poster_path}
+                      title={title}
+                      releaseDate={release_date}
+                      overview={overview}
+                    />
+                  )
+                })
+              }
+            </CarouselSection>
+          )
+        })
+      }
     </>
   )
 }

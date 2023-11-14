@@ -1,38 +1,84 @@
-import { MovieListResponseWithDates } from '@models/MovieListResponse'
+import { API_BASE_URL, API_LANGUAGE, Authorization } from '@constants'
+import { MainMovieListResponse, MovieListResponse, MovieDetails } from '@models'
 
 type MovieListType = 'now_playing' | 'popular' | 'top_rated' | 'upcoming'
 
-const base_url = process.env.API_BASE_URL
-const Authorization = `Bearer ${process.env.ACCESS_TOKEN_AUTH}`
+const commonGetOptions = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization
+  }
+}
+
+const movieListTitle: { [key in MovieListType]: string } = {
+  now_playing: 'En cartelera hoy',
+  popular: 'Popular',
+  top_rated: 'Mejor valoradas',
+  upcoming: 'Próximamente'
+}
 
 export const getMovieList = async (
   movieListType: MovieListType,
   page = 1
-): Promise<MovieListResponseWithDates> => {
-  const url = `${base_url}/movie/${movieListType}?language=es-CO&${page}`
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization
+): Promise<MainMovieListResponse | null> => {
+  try {
+    const url = `${API_BASE_URL}/movie/${movieListType}?language=${API_LANGUAGE}&${page}`
+
+    const result = await fetch(url, commonGetOptions)
+
+    if (result.status === 200) {
+      const data = await result.json()
+      return {
+        listTitle: movieListTitle[movieListType],
+        ...data
+      }
     }
+
+    return null
+  } catch (error) {
+    console.error('Error in getMovieList:', error)
+    throw new Error('Error fetching movie list')
   }
+}
 
-  const result = await fetch(url, options)
+export const getMovieDetails = async (
+  movieId: string | number
+): Promise<MovieDetails | null> => {
+  try {
+    const url = `${API_BASE_URL}/movie/${movieId}?language=${API_LANGUAGE}`
 
-  if (result.status === 200) {
-    const data = await result.json()
-    return data
+    const result = await fetch(url, commonGetOptions)
+
+    if (result.status === 200) {
+      const data = await result.json()
+      return data
+    }
+
+    return null
+  } catch (error) {
+    console.error('Error in getMovieById:', error)
+    throw new Error('Error fetching movie by id')
   }
+}
 
-  return {
-    dates: {
-      minimum: '',
-      maximum: ''
-    },
-    page: 0,
-    results: [],
-    total_pages: 0,
-    total_results: 0
+export const getSimilarMovies = async (
+  movieId: string | number,
+  page = 1
+): Promise<MovieListResponse | null> => {
+  try {
+    const url = `${API_BASE_URL}/movie/${movieId}/similar?language=${API_LANGUAGE}&page=${page}`
+
+    const result = await fetch(url, commonGetOptions)
+
+    if (result.status === 200) {
+      const data = await result.json()
+      return data
+    }
+
+    return null
+  } catch (error) {
+    console.error('Error in getMovieRecomendations:', error)
+    throw new Error('Error fetching movie recomendations')
   }
 }

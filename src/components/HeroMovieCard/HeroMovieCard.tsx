@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { ObeservedFadeTransition } from '@components/ObservedFadeTransition'
 import { HeroMovie } from '@types'
+import { ObeservedFadeTransition } from '@components/ObservedFadeTransition'
 import styles from './HeroMovieCard.module.css'
 
 export const HeroMovieCard: React.FC<HeroMovie> = ({
@@ -9,11 +9,13 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
   image,
   logoImage
 }) => {
+  const movieDetailsPath = `/details/${movieId}`
+
   return (
     <article className={styles.heroCard}>
       <Link
         className={styles.wrapperLink}
-        href={`/${movieId}`}
+        href={movieDetailsPath}
         aria-label={title}
       >
         {title}
@@ -39,7 +41,10 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
         <ObeservedFadeTransition>
           <div className={styles.infoWrapper}>
             <h2>
-              <Link href={`/${movieId}`}>
+              <Link
+                href={movieDetailsPath}
+                tabIndex={-1}
+              >
                 <img
                   className={styles.logoImage}
                   srcSet={`
@@ -56,7 +61,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
 
             <Link
               className={styles.moreInfoLink}
-              href={`/${movieId}`}
+              href={movieDetailsPath}
             >
               Más Información
             </Link>

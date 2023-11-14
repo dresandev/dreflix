@@ -1,6 +1,6 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
+import { IMAGES_BASE_URL } from '@constants'
 import { formatDate } from '@helpers/formatDate'
 import { TrailerIconButtton } from '@components/TrailerButtton'
 import { IconButton } from '@components/IconButton'
@@ -9,6 +9,7 @@ import styles from './MovieCard.module.css'
 
 interface MovieCardProps {
   className?: string
+  movieId: number
   posterPath: string
   title: string
   releaseDate: string
@@ -17,12 +18,12 @@ interface MovieCardProps {
 
 export const MovieCard: React.FC<MovieCardProps> = ({
   className,
+  movieId,
   posterPath,
   title,
   releaseDate,
   overview
 }) => {
-  console.log(`${process.env.IMAGES_BASE_URL}${posterPath}`)
   return (
     <article className={clsx(
       styles.card,
@@ -30,19 +31,27 @@ export const MovieCard: React.FC<MovieCardProps> = ({
     )}>
       <Link
         className={styles.wrapperLink}
-        href='/details'
+        href={`/details/${movieId}`}
       >
         {title}
       </Link>
 
       <figure className={styles.cardPresentation}>
-        <Image
+        <img
           className={styles.posterImage}
-          src={`${process.env.IMAGES_BASE_URL}/original${posterPath}`}
-          width={265}
-          height={400}
+          srcSet={`
+            ${IMAGES_BASE_URL}/w342${posterPath} 342w,
+            ${IMAGES_BASE_URL}/w500${posterPath} 500w,
+          `}
+          sizes='
+            (max-width: 880px) 200px,
+            350px
+          '
+          src={`${IMAGES_BASE_URL}/w500${posterPath}`}
           alt={title}
+          loading='eager'
         />
+
         <figcaption className={styles.figcaption}>
           {title}
         </figcaption>
@@ -52,12 +61,19 @@ export const MovieCard: React.FC<MovieCardProps> = ({
       </figure>
 
       <section className={styles.cardInfo}>
-        <Image
+        <img
           className={styles.cardInfoBgImage}
-          src={`${process.env.IMAGES_BASE_URL}/original${posterPath}`}
-          width={265}
-          height={400}
+          srcSet={`
+            ${IMAGES_BASE_URL}/w342${posterPath} 342w,
+            ${IMAGES_BASE_URL}/w500${posterPath} 500w,
+          `}
+          sizes='
+            (max-width: 880px) 200px,
+            350px
+          '
+          src={`${IMAGES_BASE_URL}/w500${posterPath}`}
           alt={title}
+          loading='eager'
         />
 
         <h3 className={styles.title}>{title}</h3>
@@ -81,6 +97,6 @@ export const MovieCard: React.FC<MovieCardProps> = ({
           </IconButton>
         </div>
       </section>
-    </article>
+    </article >
   )
 }

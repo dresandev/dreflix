@@ -10,25 +10,26 @@ export const TrailerModal = () => {
   const { showTrailerModal, toggleShowTrailerModal } = useUiStore()
   useToggleBodyOverflow(showTrailerModal)
 
-  return (
-    showTrailerModal && (
-      <InPortal id='modal-container'>
-        <div className={styles.modal}>
-          <button
-            className={styles.closeModal}
-            onClick={toggleShowTrailerModal}
-          >
-            <CloseIcon />
-          </button>
+  if (!showTrailerModal) return
 
-          <iframe
-            className={styles.trailerFrame}
-            src='https://www.youtube-nocookie.com/embed/Rt0kp4VW1cI?si=F2Vt2iqn8TdSBHMP&amp;controls=0'
-            title='YouTube video player'
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-            allowFullScreen></iframe>
-        </div>
-      </InPortal>
-    )
+  return (
+    <InPortal id='modal-container'>
+      <div className={styles.modal}>
+        <button
+          className={styles.closeModal}
+          onClick={toggleShowTrailerModal}
+        >
+          <CloseIcon />
+        </button>
+
+        <iframe
+          className={styles.trailerFrame}
+          src='https://www.youtube-nocookie.com/embed/Rt0kp4VW1cI?autoplay=1&si=F2Vt2iqn8TdSBHMP&amp;controls=0'
+          title='YouTube video player'
+          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+          allowFullScreen
+        ></iframe>
+      </div>
+    </InPortal>
   )
 }
