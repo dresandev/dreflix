@@ -1,4 +1,6 @@
 export const formatDate = (originalDate: string) => {
+  if (!originalDate) return ''
+
   const splittedDate = originalDate.split('-')
   var year = splittedDate[0]
   var month = splittedDate[1]

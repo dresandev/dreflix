@@ -8,7 +8,7 @@ import { ChevronArrow } from '@components/SVG'
 import styles from './Carousel.module.css'
 
 interface CarouselProps {
-  children: React.ReactNode[]
+  children: React.ReactNode | React.ReactNode[]
   itemsGap?: string
   itemScrollSnapStopAlways?: boolean
   showPagination?: boolean
@@ -32,6 +32,8 @@ export const Carousel: React.FC<CarouselProps> = ({
     goTo,
     snapPointIndexes
   } = useSnapCarousel()
+
+  const childrenArray = Array.isArray(children) ? children : [children]
 
   const renderPagination = () => {
     if (!showPagination) return
@@ -102,7 +104,7 @@ export const Carousel: React.FC<CarouselProps> = ({
           tabIndex={-1}
         >
           {
-            children.map((child, i) => {
+            childrenArray.map((child, i) => {
               return (
                 <li
                   key={i}

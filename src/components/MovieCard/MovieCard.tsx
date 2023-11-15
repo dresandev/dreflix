@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import clsx from 'clsx'
 import { IMAGES_BASE_URL } from '@constants'
-import { formatDate } from '@helpers/formatDate'
+import { formatDate } from '@helpers/format-date'
 import { TrailerIconButtton } from '@components/TrailerButtton'
 import { IconButton } from '@components/IconButton'
 import { HeartIcon, PlusIcon } from '@components/SVG'
+import { NoImage } from '@components/NoImage'
 import styles from './MovieCard.module.css'
 
 interface MovieCardProps {
@@ -24,6 +25,8 @@ export const MovieCard: React.FC<MovieCardProps> = ({
   releaseDate,
   overview
 }) => {
+  const formattedReleaseDate = formatDate(releaseDate)
+
   return (
     <article className={clsx(
       styles.card,
@@ -55,9 +58,13 @@ export const MovieCard: React.FC<MovieCardProps> = ({
         <figcaption className={styles.figcaption}>
           {title}
         </figcaption>
-        <p className={styles.year}>
-          {formatDate(releaseDate)}
-        </p>
+        {
+          formattedReleaseDate && (
+            <p className={styles.year}>
+              {formattedReleaseDate}
+            </p>
+          )
+        }
       </figure>
 
       <section className={styles.cardInfo}>
@@ -78,7 +85,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
 
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.overview}>
-          {overview}
+          {overview || 'No se encontró una descripción en español 😔'}
         </p>
 
         <div className={styles.cardActions}>

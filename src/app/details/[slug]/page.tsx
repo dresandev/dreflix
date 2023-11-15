@@ -1,6 +1,11 @@
 import { notFound } from 'next/navigation'
 import { IMAGES_BASE_URL } from '@constants'
-import { getMovieDetails, getSimilarMovies } from '@services/movies-service'
+import {
+  getMovieCredits,
+  getMovieDetails,
+  getSimilarMovies
+} from '@services/movies-service'
+import { formatDuration } from '@helpers/format-duration'
 import { CarouselSection } from '@components/CarouselSection'
 import { ActorCard } from '@components/ActorCard'
 import { MovieCard } from '@components/MovieCard'
@@ -22,28 +27,42 @@ export default async function Details({
 
   if (!movie) return notFound()
 
-  const { id, genres, title, overview, backdrop_path, release_date } = movie
-  const releaseYear = release_date.split('-')[0]
+  const {
+    id,
+    title,
+    overview,
+    backdrop_path,
+    genres,
+    release_date,
+    runtime,
+  } = movie
 
-  const { results: similarMovies } = await getSimilarMovies(id) || { results: [] }
+  const formattedMovieDuration = formatDuration(runtime)
+
+  const similarMovies = await getSimilarMovies(id)
+  const movieCredits = await getMovieCredits(id)
 
   return (
     <>
       <div className={styles.hero}>
-        <img
-          className={styles.heroImage}
-          srcSet={`
-            ${IMAGES_BASE_URL}/w780${backdrop_path} 780w,
-            ${IMAGES_BASE_URL}/original${backdrop_path} 3840w,
-          `}
-          sizes='
-            (max-width: 880px) 880px,
-            1920px
-          '
-          src={`${IMAGES_BASE_URL}/original${backdrop_path}`}
-          alt=''
-          loading='eager'
-        />
+        {
+          backdrop_path && (
+            <img
+              className={styles.heroImage}
+              srcSet={`
+                ${IMAGES_BASE_URL}/w780${backdrop_path} 780w,
+                ${IMAGES_BASE_URL}/w1280${backdrop_path} 1280w,
+              `}
+              sizes='
+                (max-width: 880px) 375px,
+                1280px
+              '
+              src={`${IMAGES_BASE_URL}/w1280${backdrop_path}`}
+              alt=''
+              loading='eager'
+            />
+          )
+        }
       </div>
 
       <div className={styles.detailsWrapper}>
@@ -53,21 +72,35 @@ export default async function Details({
           </h1>
 
           <p className={styles.overview}>
-            {overview}
+            {overview || 'No se encontró una descripción en español 😔'}
           </p>
 
           <div className={styles.badges}>
-            <span>{releaseYear}</span>
+            {
+              release_date && (
+                <span>{release_date.split('-')[0]}</span>
+              )
+            }
             <div className={styles.genres}>
               {
-                genres.map(({ id, name }) => {
-                  return (
-                    <span key={id}>{name}</span>
-                  )
-                })
+                genres.map(({ id, name }, i) => (
+                  (++i !== genres.length)
+                    ? (
+                      <>
+                        <span key={id}>{name}</span>,&nbsp;
+                      </>
+                    )
+                    : (
+                      <span key={id}>{name}</span>
+                    )
+                ))
               }
             </div>
-            <span>1h 30m</span>
+            {
+              formattedMovieDuration || (
+                <span>{formattedMovieDuration}</span>
+              )
+            }
           </div>
 
           <div className={styles.actions}>
@@ -82,15 +115,34 @@ export default async function Details({
         </div>
       </div>
 
+      <CarouselSection title='Reparto principal'>
+        {
+          movieCredits?.cast.map(cast => {
+            if (cast.known_for_department !== 'Acting') return
+
+            const { id, profile_path, original_name, character } = cast
+
+            return (
+              <ActorCard
+                key={id}
+                className={styles.actorCard}
+                profilePath={profile_path!}
+                originalName={original_name}
+                character={character}
+              />
+            )
+          })
+        }
+      </CarouselSection>
+
       <CarouselSection title='Películas similares'>
         {
-          similarMovies.map(similarMovie => {
-            const key = crypto.randomUUID()
+          similarMovies?.results.map(similarMovie => {
             const { id, poster_path, title, release_date, overview } = similarMovie
 
             return (
               <MovieCard
-                key={key}
+                key={id}
                 className='carouselMovieCardWidth'
                 movieId={id}
                 posterPath={poster_path}

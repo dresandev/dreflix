@@ -2,7 +2,7 @@ import { Carousel } from '@components/Carousel'
 import styles from './CarouselSection.module.css'
 
 interface MoviesSectionProps {
-  children: React.ReactNode[]
+  children: React.ReactNode | React.ReactNode[]
   title: string
 }
 
