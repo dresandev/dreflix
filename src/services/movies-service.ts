@@ -1,6 +1,11 @@
 import { API_BASE_URL, API_LANGUAGE, Authorization } from '@constants'
-import { MainMovieListResponse, MovieListResponse, MovieDetails } from '@models'
-import { MovieCreditsResponse } from '@models/MovieCreditsResponse'
+import {
+  MainMovieListResponse,
+  MovieListResponse,
+  MovieDetails,
+  MovieVideosResponse,
+  MovieCreditsResponse
+} from '@models'
 
 type MovieListType = 'now_playing' | 'popular' | 'top_rated' | 'upcoming'
 
@@ -101,5 +106,25 @@ export const getMovieCredits = async (
   } catch (error) {
     console.error('Error in getMovieCredits:', error)
     throw new Error('Error fetching movie credits')
+  }
+}
+
+export const getMovieVideos = async (
+  movieId: string | number,
+): Promise<MovieVideosResponse | null> => {
+  try {
+    const url = `${API_BASE_URL}/movie/${movieId}/videos?language=${API_LANGUAGE}`
+
+    const result = await fetch(url, commonGetOptions)
+
+    if (result.status === 200) {
+      const data = await result.json()
+      return data
+    }
+
+    return null
+  } catch (error) {
+    console.error('Error in getMovieVideos:', error)
+    throw new Error('Error fetching movie videos')
   }
 }

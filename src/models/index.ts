@@ -1,3 +1,7 @@
+export * from './MovieVideosResponse'
+export * from './MovieCreditsResponse'
 export * from './MovieListResponse'
 export * from './Movie'
 export * from './Cast'
+export * from './Crew'
+export * from './Video'

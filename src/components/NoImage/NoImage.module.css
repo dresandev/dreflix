@@ -1,7 +1,15 @@
 .noImage {
-  display: grid;
-  place-items: center;
   background-color: hsl(0, 0%, 87%);
-  width: 100%;
-  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  aspect-ratio: 2 / 3;
+}
+
+.profile {
+  background-image: url(/images/svg/profile-no-image.svg);
+}
+
+.movie {
+  border-radius: var(--border-radius);
+  background-image: url(/images/svg/movie-no-image.svg);
 }

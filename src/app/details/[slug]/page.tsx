@@ -1,15 +1,18 @@
+import { Fragment } from 'react'
 import { notFound } from 'next/navigation'
 import { IMAGES_BASE_URL } from '@constants'
+import { Cast } from '@models'
 import {
   getMovieCredits,
   getMovieDetails,
+  getMovieVideos,
   getSimilarMovies
 } from '@services/movies-service'
 import { formatDuration } from '@helpers/format-duration'
 import { CarouselSection } from '@components/CarouselSection'
 import { ActorCard } from '@components/ActorCard'
 import { MovieCard } from '@components/MovieCard'
-import { TrailerTextButton } from '@components/TrailerButtton'
+import { TrailerButton } from '@components/TrailerButton'
 import { IconButton } from '@components/IconButton'
 import { HeartIcon, PlusIcon } from '@components/SVG'
 import styles from './page.module.css'
@@ -41,6 +44,27 @@ export default async function Details({
 
   const similarMovies = await getSimilarMovies(id)
   const movieCredits = await getMovieCredits(id)
+
+  let mainCast: Cast[] = []
+
+  if (movieCredits) {
+    mainCast = movieCredits.cast
+      .filter(actor => actor.known_for_department === 'Acting')
+      .sort((a, b) => a.order - b.order)
+    mainCast.length = 20
+  }
+
+  const videos = await getMovieVideos(movieId)
+  let videoKey = ''
+
+  if (videos) {
+    for (const video of videos?.results) {
+      if (video.site === 'YouTube' && video.type === 'Trailer') {
+        videoKey = video.key
+        break
+      }
+    }
+  }
 
   return (
     <>
@@ -84,15 +108,9 @@ export default async function Details({
             <div className={styles.genres}>
               {
                 genres.map(({ id, name }, i) => (
-                  (++i !== genres.length)
-                    ? (
-                      <>
-                        <span key={id}>{name}</span>,&nbsp;
-                      </>
-                    )
-                    : (
-                      <span key={id}>{name}</span>
-                    )
+                  <Fragment key={id}>
+                    <span>{name}</span>{++i !== genres.length && <>,&nbsp;</>}
+                  </Fragment>
                 ))
               }
             </div>
@@ -104,7 +122,10 @@ export default async function Details({
           </div>
 
           <div className={styles.actions}>
-            <TrailerTextButton />
+            <TrailerButton
+              videoKey={videoKey}
+              variant='text'
+            />
             <IconButton ariaLabel='Agregar a lista'>
               <PlusIcon />
             </IconButton>
@@ -117,14 +138,13 @@ export default async function Details({
 
       <CarouselSection title='Reparto principal'>
         {
-          movieCredits?.cast.map(cast => {
-            if (cast.known_for_department !== 'Acting') return
-
-            const { id, profile_path, original_name, character } = cast
+          mainCast.map(actor => {
+            const key = crypto.randomUUID()
+            const { profile_path, original_name, character } = actor
 
             return (
               <ActorCard
-                key={id}
+                key={key}
                 className={styles.actorCard}
                 profilePath={profile_path!}
                 originalName={original_name}
@@ -135,25 +155,36 @@ export default async function Details({
         }
       </CarouselSection>
 
-      <CarouselSection title='Películas similares'>
-        {
-          similarMovies?.results.map(similarMovie => {
-            const { id, poster_path, title, release_date, overview } = similarMovie
+      {
+        !!similarMovies?.results.length
+          ? (
+            <CarouselSection title='Películas similares'>
+              {
+                similarMovies?.results.map(similarMovie => {
+                  const key = crypto.randomUUID()
+                  const { id, poster_path, title, release_date, overview } = similarMovie
 
-            return (
-              <MovieCard
-                key={id}
-                className='carouselMovieCardWidth'
-                movieId={id}
-                posterPath={poster_path}
-                title={title}
-                releaseDate={release_date}
-                overview={overview}
-              />
-            )
-          })
-        }
-      </CarouselSection>
+                  return (
+                    <MovieCard
+                      key={key}
+                      className='carouselMovieCardWidth'
+                      movieId={id}
+                      posterPath={poster_path}
+                      title={title}
+                      releaseDate={release_date}
+                      overview={overview}
+                    />
+                  )
+                })
+              }
+            </CarouselSection>
+          )
+          : (
+            <p className={styles.notFoundMessage}>
+              No se encontraron películas similares
+            </p>
+          )
+      }
     </>
   )
 }

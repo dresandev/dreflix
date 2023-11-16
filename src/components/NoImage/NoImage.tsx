@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import styles from './NoImage.module.css'
 
 interface NoImageProps {
@@ -8,8 +9,9 @@ export const NoImage: React.FC<NoImageProps> = ({
   holder
 }) => {
   return (
-    <div className={styles.noImage}>
-      a
-    </div>
+    <div className={clsx(
+      styles.noImage,
+      styles[holder]
+    )}></div>
   )
 }

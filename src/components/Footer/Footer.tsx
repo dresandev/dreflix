@@ -4,7 +4,7 @@ export const Footer = () => {
   return (
     <footer className={styles.footer}>
       <p>
-        Desarrollado por {' '}
+        Desarrollado por&nbsp;
         <a
           className={styles.dresanWebLink}
           href='https://www.dresan.me/'

@@ -31,11 +31,12 @@ export default async function Home() {
             >
               {
                 results.map(movie => {
+                  const key = crypto.randomUUID()
                   const { id, poster_path, title, release_date, overview } = movie
 
                   return (
                     <MovieCard
-                      key={id}
+                      key={key}
                       className='carouselMovieCardWidth'
                       movieId={id}
                       posterPath={poster_path}

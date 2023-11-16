@@ -25,6 +25,7 @@
 .detailsWrapper {
   position: relative;
   padding-block-start: 38vw;
+  margin-block-end: 5rem;
 }
 
 .details {
@@ -62,6 +63,10 @@
 
 .actorCard {
   inline-size: clamp(12rem, 11.4rem + 1.875vw, 15rem);
+}
+
+.notFoundMessage {
+  padding-inline-start: var(--inline-space);
 }
 
 @media (orientation: portrait) {

@@ -1,5 +1,6 @@
 .card {
   position: relative;
+  block-size: 100%;
 }
 
 .wrapperLink {
@@ -18,8 +19,9 @@
 .posterImage {
   inline-size: 100%;
   block-size: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
   border-radius: var(--border-radius);
-  pointer-events: none;
 }
 
 .figcaption {

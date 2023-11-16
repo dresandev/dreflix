@@ -1,18 +1,17 @@
 .card {
+  block-size: 100%;
   border-radius: var(--border-radius);
+  background-color: var(--secondary-bg-color);
   overflow: hidden;
 }
 
 .image {
   inline-size: 100%;
   block-size: auto;
-  aspect-ratio: 2 / 3;
-  object-fit: cover;
 }
 
 .info {
   padding: 1rem;
-  background-color: var(--secondary-bg-color);
   font-size: var(--secondary-font-size);
 }
 

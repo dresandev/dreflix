@@ -2,7 +2,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import { IMAGES_BASE_URL } from '@constants'
 import { formatDate } from '@helpers/format-date'
-import { TrailerIconButtton } from '@components/TrailerButtton'
+import { TrailerButton } from '@components/TrailerButton'
 import { IconButton } from '@components/IconButton'
 import { HeartIcon, PlusIcon } from '@components/SVG'
 import { NoImage } from '@components/NoImage'
@@ -39,21 +39,27 @@ export const MovieCard: React.FC<MovieCardProps> = ({
         {title}
       </Link>
 
-      <figure className={styles.cardPresentation}>
-        <img
-          className={styles.posterImage}
-          srcSet={`
+      <figure>
+        {
+          posterPath ? (
+            <img
+              className={styles.posterImage}
+              srcSet={`
             ${IMAGES_BASE_URL}/w342${posterPath} 342w,
             ${IMAGES_BASE_URL}/w500${posterPath} 500w,
           `}
-          sizes='
+              sizes='
             (max-width: 880px) 200px,
             350px
           '
-          src={`${IMAGES_BASE_URL}/w500${posterPath}`}
-          alt={title}
-          loading='eager'
-        />
+              src={`${IMAGES_BASE_URL}/w500${posterPath}`}
+              alt={title}
+              loading='eager'
+            />
+          ) : (
+            <NoImage holder='movie' />
+          )
+        }
 
         <figcaption className={styles.figcaption}>
           {title}
@@ -68,20 +74,24 @@ export const MovieCard: React.FC<MovieCardProps> = ({
       </figure>
 
       <section className={styles.cardInfo}>
-        <img
-          className={styles.cardInfoBgImage}
-          srcSet={`
+        {
+          posterPath && (
+            <img
+              className={styles.cardInfoBgImage}
+              srcSet={`
             ${IMAGES_BASE_URL}/w342${posterPath} 342w,
             ${IMAGES_BASE_URL}/w500${posterPath} 500w,
           `}
-          sizes='
+              sizes='
             (max-width: 880px) 200px,
             350px
           '
-          src={`${IMAGES_BASE_URL}/w500${posterPath}`}
-          alt={title}
-          loading='eager'
-        />
+              src={`${IMAGES_BASE_URL}/w500${posterPath}`}
+              alt={title}
+              loading='eager'
+            />
+          )
+        }
 
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.overview}>
@@ -89,7 +99,10 @@ export const MovieCard: React.FC<MovieCardProps> = ({
         </p>
 
         <div className={styles.cardActions}>
-          <TrailerIconButtton size='small' />
+          <TrailerButton
+            movieId={movieId}
+            variant='icon'
+          />
           <IconButton
             ariaLabel='Agregar a lista'
             size='small'
