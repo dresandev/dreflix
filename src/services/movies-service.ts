@@ -4,10 +4,10 @@ import {
   MovieListResponse,
   MovieDetails,
   MovieVideosResponse,
-  MovieCreditsResponse
+  MovieCreditsResponse,
+  Cast
 } from '@models'
-
-type MovieListType = 'now_playing' | 'popular' | 'top_rated' | 'upcoming'
+import { MovieListType } from '@types'
 
 const commonGetOptions = {
   method: 'GET',
@@ -89,42 +89,54 @@ export const getSimilarMovies = async (
   }
 }
 
-export const getMovieCredits = async (
+export const getMovieMovieMainCast = async (
   movieId: string | number,
-): Promise<MovieCreditsResponse | null> => {
+): Promise<Cast[] | null> => {
   try {
     const url = `${API_BASE_URL}/movie/${movieId}/credits?language=${API_LANGUAGE}`
 
     const result = await fetch(url, commonGetOptions)
 
     if (result.status === 200) {
-      const data = await result.json()
-      return data
+      const data = await result.json() as MovieCreditsResponse
+
+      const mainCast = data.cast
+        .filter(actor => actor.known_for_department === 'Acting')
+        .sort((a, b) => a.order - b.order)
+
+      mainCast.length = 20
+
+      return mainCast
     }
 
     return null
   } catch (error) {
-    console.error('Error in getMovieCredits:', error)
-    throw new Error('Error fetching movie credits')
+    console.error('Error in getMovieMovieMainCast:', error)
+    throw new Error('Error fetching movie main cast')
   }
 }
 
-export const getMovieVideos = async (
+export const getMovieTrailerKey = async (
   movieId: string | number,
-): Promise<MovieVideosResponse | null> => {
+): Promise<string | null> => {
   try {
     const url = `${API_BASE_URL}/movie/${movieId}/videos?language=${API_LANGUAGE}`
 
     const result = await fetch(url, commonGetOptions)
 
     if (result.status === 200) {
-      const data = await result.json()
-      return data
+      const data = await result.json() as MovieVideosResponse
+
+      for (const video of data.results) {
+        if (video.site === 'YouTube' && video.type === 'Trailer') {
+          return video.key
+        }
+      }
     }
 
     return null
   } catch (error) {
-    console.error('Error in getMovieVideos:', error)
-    throw new Error('Error fetching movie videos')
+    console.error('Error in getMovieTrailerKey:', error)
+    throw new Error('Error fetching movie trailer key')
   }
 }

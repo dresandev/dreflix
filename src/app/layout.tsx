@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Fira_Sans } from 'next/font/google'
 import { Header } from '@components/Header'
 import { Footer } from '@components/Footer'
-import { TrailerModal } from '@components/TrailerModal'
+import { TrailerModalCC } from '@components/TrailerModalCC'
 import '@styles/reset.css'
 import '@styles/globals.css'
 
@@ -42,7 +42,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <Footer />
         </div>
         <div id='modal-container'>
-          <TrailerModal />
+          <TrailerModalCC />
         </div>
       </body>
     </html>

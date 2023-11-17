@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import clsx from 'clsx'
+import { getMovieTrailerKey } from '@services/movies-service'
 import { IMAGES_BASE_URL } from '@constants'
-import { formatDate } from '@helpers/format-date'
 import { TrailerButton } from '@components/TrailerButton'
 import { IconButton } from '@components/IconButton'
 import { HeartIcon, PlusIcon } from '@components/SVG'
@@ -10,22 +10,22 @@ import styles from './MovieCard.module.css'
 
 interface MovieCardProps {
   className?: string
-  movieId: number
+  id: number
   posterPath: string
   title: string
   releaseDate: string
   overview: string
 }
 
-export const MovieCard: React.FC<MovieCardProps> = ({
+export const MovieCard: React.FC<MovieCardProps> = async ({
   className,
-  movieId,
+  id,
   posterPath,
   title,
   releaseDate,
-  overview
+  overview,
 }) => {
-  const formattedReleaseDate = formatDate(releaseDate)
+  const trailerKey = await getMovieTrailerKey(id)
 
   return (
     <article className={clsx(
@@ -34,7 +34,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
     )}>
       <Link
         className={styles.wrapperLink}
-        href={`/details/${movieId}`}
+        href={`/details/${id}`}
       >
         {title}
       </Link>
@@ -45,13 +45,13 @@ export const MovieCard: React.FC<MovieCardProps> = ({
             <img
               className={styles.posterImage}
               srcSet={`
-            ${IMAGES_BASE_URL}/w342${posterPath} 342w,
-            ${IMAGES_BASE_URL}/w500${posterPath} 500w,
-          `}
+                ${IMAGES_BASE_URL}/w342${posterPath} 342w,
+                ${IMAGES_BASE_URL}/w500${posterPath} 500w,
+              `}
               sizes='
-            (max-width: 880px) 200px,
-            350px
-          '
+                (max-width: 880px) 200px,
+                350px
+              '
               src={`${IMAGES_BASE_URL}/w500${posterPath}`}
               alt={title}
               loading='eager'
@@ -65,9 +65,9 @@ export const MovieCard: React.FC<MovieCardProps> = ({
           {title}
         </figcaption>
         {
-          formattedReleaseDate && (
+          releaseDate && (
             <p className={styles.year}>
-              {formattedReleaseDate}
+              {releaseDate}
             </p>
           )
         }
@@ -79,13 +79,13 @@ export const MovieCard: React.FC<MovieCardProps> = ({
             <img
               className={styles.cardInfoBgImage}
               srcSet={`
-            ${IMAGES_BASE_URL}/w342${posterPath} 342w,
-            ${IMAGES_BASE_URL}/w500${posterPath} 500w,
-          `}
+                ${IMAGES_BASE_URL}/w342${posterPath} 342w,
+                ${IMAGES_BASE_URL}/w500${posterPath} 500w,
+              `}
               sizes='
-            (max-width: 880px) 200px,
-            350px
-          '
+                (max-width: 880px) 200px,
+                350px
+              '
               src={`${IMAGES_BASE_URL}/w500${posterPath}`}
               alt={title}
               loading='eager'
@@ -99,10 +99,14 @@ export const MovieCard: React.FC<MovieCardProps> = ({
         </p>
 
         <div className={styles.cardActions}>
-          <TrailerButton
-            movieId={movieId}
-            variant='icon'
-          />
+          {
+            trailerKey && (
+              <TrailerButton
+                trailerKey={trailerKey}
+                variant='icon'
+              />
+            )
+          }
           <IconButton
             ariaLabel='Agregar a lista'
             size='small'

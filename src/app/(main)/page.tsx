@@ -1,4 +1,5 @@
 import { getMovieList } from '@services/movies-service'
+import { formatDate } from '@helpers/format-date'
 import { HeroCarousel } from '@components/HeroCarousel'
 import { CarouselSection } from '@components/CarouselSection'
 import { MovieCard } from '@components/MovieCard'
@@ -18,11 +19,11 @@ export default async function Home() {
       <HeroCarousel />
 
       {
-        results.map(({ status, value }) => {
-          if (status !== 'fulfilled' || !value) return
+        results.map(result => {
+          if (result.status === 'rejected' || !result.value) return
 
           const key = crypto.randomUUID()
-          const { listTitle, results } = value
+          const { listTitle, results } = result.value
 
           return (
             <CarouselSection
@@ -31,17 +32,16 @@ export default async function Home() {
             >
               {
                 results.map(movie => {
-                  const key = crypto.randomUUID()
                   const { id, poster_path, title, release_date, overview } = movie
 
                   return (
                     <MovieCard
-                      key={key}
+                      key={id}
                       className='carouselMovieCardWidth'
-                      movieId={id}
+                      id={id}
                       posterPath={poster_path}
                       title={title}
-                      releaseDate={release_date}
+                      releaseDate={formatDate(release_date)}
                       overview={overview}
                     />
                   )

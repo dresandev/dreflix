@@ -3,7 +3,11 @@
 import { useRef } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { useToggleBodyOverflow, useBoolean, useOnClickOutside } from '@hooks'
+import {
+  useToggleBodyOverflow,
+  useBoolean,
+  useOnClickOutside
+} from '@hooks'
 import { Dropdown } from '@components/Dropdown'
 import styles from './NavMenu.module.css'
 
@@ -49,10 +53,10 @@ export const NavMenu: React.FC<MenuProps> = ({
             <Dropdown label='Explorar'>
               {
                 [
-                  { href: '/', label: 'Popular' },
-                  { href: '/', label: 'En cartelera hoy' },
-                  { href: '/', label: 'Próximamente' },
-                  { href: '/', label: 'Mejor valoradas' },
+                  { href: '/movie/popular', label: 'Popular' },
+                  { href: '/movie/now_playing', label: 'En cartelera hoy' },
+                  { href: '/movie/upcoming', label: 'Próximamente' },
+                  { href: '/movie/top_rated', label: 'Mejor valoradas' },
                 ].map(({ href, label }) => {
                   const key = crypto.randomUUID()
                   return (

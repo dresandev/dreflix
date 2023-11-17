@@ -1,11 +1,10 @@
 import { Fragment } from 'react'
 import { notFound } from 'next/navigation'
 import { IMAGES_BASE_URL } from '@constants'
-import { Cast } from '@models'
 import {
-  getMovieCredits,
+  getMovieMovieMainCast,
   getMovieDetails,
-  getMovieVideos,
+  getMovieTrailerKey,
   getSimilarMovies
 } from '@services/movies-service'
 import { formatDuration } from '@helpers/format-duration'
@@ -43,28 +42,8 @@ export default async function Details({
   const formattedMovieDuration = formatDuration(runtime)
 
   const similarMovies = await getSimilarMovies(id)
-  const movieCredits = await getMovieCredits(id)
-
-  let mainCast: Cast[] = []
-
-  if (movieCredits) {
-    mainCast = movieCredits.cast
-      .filter(actor => actor.known_for_department === 'Acting')
-      .sort((a, b) => a.order - b.order)
-    mainCast.length = 20
-  }
-
-  const videos = await getMovieVideos(movieId)
-  let videoKey = ''
-
-  if (videos) {
-    for (const video of videos?.results) {
-      if (video.site === 'YouTube' && video.type === 'Trailer') {
-        videoKey = video.key
-        break
-      }
-    }
-  }
+  const mainCast = await getMovieMovieMainCast(id)
+  const trailerKey = await getMovieTrailerKey(movieId)
 
   return (
     <>
@@ -122,10 +101,14 @@ export default async function Details({
           </div>
 
           <div className={styles.actions}>
-            <TrailerButton
-              videoKey={videoKey}
-              variant='text'
-            />
+            {
+              trailerKey && (
+                <TrailerButton
+                  trailerKey={trailerKey}
+                  variant='text'
+                />
+              )
+            }
             <IconButton ariaLabel='Agregar a lista'>
               <PlusIcon />
             </IconButton>
@@ -138,13 +121,12 @@ export default async function Details({
 
       <CarouselSection title='Reparto principal'>
         {
-          mainCast.map(actor => {
-            const key = crypto.randomUUID()
-            const { profile_path, original_name, character } = actor
+          mainCast?.map(actor => {
+            const { id, profile_path, original_name, character } = actor
 
             return (
               <ActorCard
-                key={key}
+                key={id}
                 className={styles.actorCard}
                 profilePath={profile_path!}
                 originalName={original_name}
@@ -160,15 +142,14 @@ export default async function Details({
           ? (
             <CarouselSection title='Películas similares'>
               {
-                similarMovies?.results.map(similarMovie => {
-                  const key = crypto.randomUUID()
+                similarMovies.results.map(similarMovie => {
                   const { id, poster_path, title, release_date, overview } = similarMovie
 
                   return (
                     <MovieCard
-                      key={key}
+                      key={id}
                       className='carouselMovieCardWidth'
-                      movieId={id}
+                      id={id}
                       posterPath={poster_path}
                       title={title}
                       releaseDate={release_date}

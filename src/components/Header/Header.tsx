@@ -1,9 +1,7 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { NavMenu } from '@components/NavMenu'
 import { SearchMenu } from '@components/SearchMenu'
 import { DreflixLogo } from '@components/SVG'
-import profileImage from '@assets/images/profile-image.png'
 import styles from './Header.module.css'
 
 export const Header = () => {
@@ -22,10 +20,14 @@ export const Header = () => {
         <div className={styles.spacer}></div>
 
         <SearchMenu className={styles.searchMenu} />
-        <button>
-          <Image
-            src={profileImage}
-            alt='Imagen de perfil'
+        <button
+          type='button'
+          aria-label='Abrir menú de cuenta de usuario'
+        >
+          <img
+            src='images/profile-image.png'
+            alt=""
+            width={32}
           />
         </button>
       </header >

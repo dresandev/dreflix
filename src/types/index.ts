@@ -1,5 +1,6 @@
 export type Direction = 'RIGHT' | 'LEFT' | 'DOWN'
 export type Size = 'small' | 'medium'
+export type MovieListType = 'now_playing' | 'popular' | 'top_rated' | 'upcoming'
 
 export interface ImageSizes {
   original?: string

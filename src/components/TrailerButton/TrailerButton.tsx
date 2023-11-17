@@ -1,23 +1,23 @@
 'use client'
 
-import { useUiStore } from '@store/use-ui-store'
+import { useTrailerModalStore } from '@store/trailer-modal-store'
 import { IconButton } from '@components/IconButton'
 import { PlayIcon } from '@components/SVG'
 import styles from './TrailerButton.module.css'
 
 interface TrailerButtonProps {
-  videoKey: string
+  trailerKey: string
   variant: 'icon' | 'text'
 }
 
 export const TrailerButton: React.FC<TrailerButtonProps> = ({
-  videoKey,
+  trailerKey,
   variant
 }) => {
-  const { toggleShowTrailerModal, setVideoKey } = useUiStore()
+  const { toggleShowTrailerModal, setTrailerKey } = useTrailerModalStore()
 
   const handleOnClick = async () => {
-    setVideoKey(videoKey)
+    setTrailerKey(trailerKey)
     toggleShowTrailerModal()
   }
 

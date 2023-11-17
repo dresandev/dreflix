@@ -1,6 +1,7 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { useOnClickOutside, useBoolean } from '@hooks'
 import { ChevronArrow } from '@components/SVG'
@@ -17,11 +18,17 @@ export const Dropdown: React.FC<DropdownProps> = ({
   label,
   optionsInGrid,
 }) => {
+  const pathname = usePathname()
   const {
     value: dropdownIsOpen,
     setFalse: closeDropdown,
     toggle: toggleCloseDropdown
   } = useBoolean(false)
+
+  useEffect(() => {
+    dropdownIsOpen && closeDropdown()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname])
 
   const dropdownRef = useRef<HTMLDivElement>(null)
   useOnClickOutside(dropdownRef, closeDropdown)

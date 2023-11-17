@@ -1,16 +1,23 @@
-'use client'
-
-import { useUiStore } from '@store/use-ui-store'
-import { useToggleBodyOverflow } from '@hooks'
+import { useEffect } from 'react'
+import { useTrailerModalStore } from '@store/trailer-modal-store'
 import { InPortal } from '@components/InPortal'
 import { CloseIcon } from '@components/SVG'
 import styles from './TrailerModal.module.css'
 
 export const TrailerModal = () => {
-  const { videoKey, showTrailerModal, toggleShowTrailerModal } = useUiStore()
-  useToggleBodyOverflow(showTrailerModal)
+  const { trailerKey, toggleShowTrailerModal } = useTrailerModalStore()
 
-  if (!showTrailerModal) return
+  useEffect(() => {
+    const handlePressEscape = (e: KeyboardEvent) => {
+      (e.key === 'Escape') && toggleShowTrailerModal()
+    }
+
+    document.addEventListener('keydown', handlePressEscape)
+
+    return () => {
+      document.removeEventListener('keydown', handlePressEscape)
+    }
+  })
 
   return (
     <InPortal id='modal-container'>
@@ -24,7 +31,7 @@ export const TrailerModal = () => {
 
         <iframe
           className={styles.trailerFrame}
-          src={`https://www.youtube-nocookie.com/embed/${videoKey}?autoplay=1&si=F2Vt2iqn8TdSBHMP&amp;controls=1`}
+          src={`https://www.youtube-nocookie.com/embed/${trailerKey}?autoplay=1&si=F2Vt2iqn8TdSBHMP&amp;controls=1`}
           title='YouTube video player'
           allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
           allowFullScreen
