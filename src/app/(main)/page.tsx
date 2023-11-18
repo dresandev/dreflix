@@ -1,5 +1,4 @@
 import { getMovieList } from '@services/movies-service'
-import { formatDate } from '@helpers/format-date'
 import { HeroCarousel } from '@components/HeroCarousel'
 import { CarouselSection } from '@components/CarouselSection'
 import { MovieCard } from '@components/MovieCard'
@@ -41,7 +40,7 @@ export default async function Home() {
                       id={id}
                       posterPath={poster_path}
                       title={title}
-                      releaseDate={formatDate(release_date)}
+                      releaseDate={release_date}
                       overview={overview}
                     />
                   )

@@ -1,4 +1,4 @@
-import { API_BASE_URL, API_LANGUAGE, Authorization } from '@constants'
+import { API_BASE_URL, API_LANGUAGE, commonGetOptions } from '@constants'
 import {
   MainMovieListResponse,
   MovieListResponse,
@@ -8,14 +8,6 @@ import {
   Cast
 } from '@models'
 import { MovieListType } from '@types'
-
-const commonGetOptions = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization
-  }
-}
 
 const movieListTitle: { [key in MovieListType]: string } = {
   now_playing: 'En cartelera hoy',

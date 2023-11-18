@@ -2,7 +2,7 @@ import { FiltersMenu } from '@components/FiltersMenu'
 import { MovieGrid } from '@components/MovieGrid'
 import styles from './page.module.css'
 
-export default function Movie() {
+export default function Search() {
   return (
     <div className={styles.container}>
       <div className={styles.filtersWrapper}>
@@ -13,7 +13,7 @@ export default function Movie() {
         Resultados para <span>{'"Hola"'}</span>.
       </div>
 
-      <MovieGrid />
+      {/* <MovieGrid /> */}
     </div>
   )
 }

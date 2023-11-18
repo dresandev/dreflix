@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import clsx from 'clsx'
 import { getMovieTrailerKey } from '@services/movies-service'
+import { formatDate } from '@helpers/format-date'
 import { IMAGES_BASE_URL } from '@constants'
 import { TrailerButton } from '@components/TrailerButton'
 import { IconButton } from '@components/IconButton'
@@ -34,7 +35,7 @@ export const MovieCard: React.FC<MovieCardProps> = async ({
     )}>
       <Link
         className={styles.wrapperLink}
-        href={`/details/${id}`}
+        href={`/detalles/${id}`}
       >
         {title}
       </Link>
@@ -67,7 +68,7 @@ export const MovieCard: React.FC<MovieCardProps> = async ({
         {
           releaseDate && (
             <p className={styles.year}>
-              {releaseDate}
+              {formatDate(releaseDate)}
             </p>
           )
         }
