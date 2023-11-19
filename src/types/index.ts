@@ -14,3 +14,8 @@ export interface HeroMovie {
   image: ImageSizes
   logoImage: ImageSizes
 }
+
+export interface MovieListPage {
+  slug: MovieListType
+  title: string
+}

@@ -1,6 +1,5 @@
 import { MovieListType } from '@types'
 import { getMovieList } from '@services/movies-service'
-import { formatDate } from '@helpers/format-date'
 import { MovieCard } from '@components/MovieCard'
 import styles from './MovieGrid.module.css'
 
@@ -22,11 +21,10 @@ export const MovieGrid: React.FC<MovieGridProps> = async ({
           return (
             <MovieCard
               key={id}
-              className='carouselMovieCardWidth'
               id={id}
               posterPath={poster_path}
               title={title}
-              releaseDate={formatDate(release_date)}
+              releaseDate={release_date}
               overview={overview}
             />
           )

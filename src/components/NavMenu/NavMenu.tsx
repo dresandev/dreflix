@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
+import { movieListPages } from '@constants'
 import {
   useToggleBodyOverflow,
   useBoolean,
@@ -12,10 +13,12 @@ import { Dropdown } from '@components/Dropdown'
 import styles from './NavMenu.module.css'
 
 interface MenuProps {
+  children?: React.ReactNode | React.ReactNode[]
   className?: string
 }
 
 export const NavMenu: React.FC<MenuProps> = ({
+  children,
   className
 }) => {
   const menuRef = useRef<HTMLDivElement>(null)
@@ -26,6 +29,8 @@ export const NavMenu: React.FC<MenuProps> = ({
   } = useBoolean(false)
   useToggleBodyOverflow(isMenuOpen)
   useOnClickOutside(menuRef, closeMenu)
+
+  const childrenArray = Array.isArray(children) ? children : [children]
 
   return (
     <div
@@ -52,63 +57,31 @@ export const NavMenu: React.FC<MenuProps> = ({
           <li>
             <Dropdown label='Explorar'>
               {
-                [
-                  { href: '/movie/popular', label: 'Popular' },
-                  { href: '/movie/now_playing', label: 'En cartelera hoy' },
-                  { href: '/movie/upcoming', label: 'Próximamente' },
-                  { href: '/movie/top_rated', label: 'Mejor valoradas' },
-                ].map(({ href, label }) => {
+                movieListPages.map(({ slug, title }) => {
                   const key = crypto.randomUUID()
                   return (
                     <Link
                       key={key}
                       className={styles.dropdownLink}
-                      href={href}
+                      href={`movie/${slug}`}
                     >
-                      {label}
+                      {title}
                     </Link>
                   )
                 })
               }
             </Dropdown>
           </li>
-          <li>
-            <Dropdown
-              label='Géneros'
-              optionsInGrid
-            >
-              {
-                [
-                  { href: '/', label: 'Acción' },
-                  { href: '/', label: 'Western' },
-                  { href: '/', label: 'Fantasía' },
-                  { href: '/', label: 'Animacíon' },
-                  { href: '/', label: 'Historia' },
-                  { href: '/', label: 'Aventura' },
-                  { href: '/', label: 'Misterio' },
-                  { href: '/', label: 'Bélica' },
-                  { href: '/', label: 'Música' },
-                  { href: '/', label: 'Ciencia ficción' },
-                  { href: '/', label: 'Película de TV' },
-                  { href: '/', label: 'Comedia' },
-                  { href: '/', label: 'Romance' },
-                  { href: '/', label: 'Crimen' },
-                  { href: '/', label: 'Monster inside' },
-                ].map(({ href, label }) => {
-                  const key = crypto.randomUUID()
-                  return (
-                    <Link
-                      key={key}
-                      className={styles.dropdownLink}
-                      href={href}
-                    >
-                      {label}
-                    </Link>
-                  )
-                })
-              }
-            </Dropdown>
-          </li>
+          {
+            childrenArray.map(child => {
+              const key = crypto.randomUUID()
+              return (
+                <li key={key}>
+                  {child}
+                </li>
+              )
+            })
+          }
         </ul>
       </nav>
     </div >

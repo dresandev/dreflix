@@ -9,7 +9,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
   image,
   logoImage
 }) => {
-  const movieDetailsPath = `/detalles/${movieId}`
+  const movieDetailsPath = `/details/${movieId}`
 
   return (
     <article className={styles.heroCard}>

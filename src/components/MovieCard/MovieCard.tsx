@@ -35,7 +35,7 @@ export const MovieCard: React.FC<MovieCardProps> = async ({
     )}>
       <Link
         className={styles.wrapperLink}
-        href={`/detalles/${id}`}
+        href={`/details/${id}`}
       >
         {title}
       </Link>

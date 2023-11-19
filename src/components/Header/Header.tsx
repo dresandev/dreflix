@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { NavMenu } from '@components/NavMenu'
 import { SearchMenu } from '@components/SearchMenu'
 import { DreflixLogo } from '@components/SVG'
+import { GenresDropdown } from '@components/NavMenu/GenresDropdown'
 import styles from './Header.module.css'
 
 export const Header = () => {
@@ -15,7 +16,9 @@ export const Header = () => {
         >
           <DreflixLogo />
         </Link>
-        <NavMenu className={styles.navMenu} />
+        <NavMenu className={styles.navMenu} >
+          <GenresDropdown />
+        </NavMenu>
 
         <div className={styles.spacer}></div>
 
@@ -25,7 +28,7 @@ export const Header = () => {
           aria-label='Abrir menú de cuenta de usuario'
         >
           <img
-            src='images/profile-image.png'
+            src='/images/profile-image.png'
             alt=""
             width={32}
           />
