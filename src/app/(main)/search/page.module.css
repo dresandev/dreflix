@@ -1,0 +1,11 @@
+.container {
+  padding-inline: var(--inline-space);
+}
+
+.filtersWrapper {
+  padding-block: 2rem;
+}
+
+.searchQuery span {
+  color: var(--secondary-color);
+}

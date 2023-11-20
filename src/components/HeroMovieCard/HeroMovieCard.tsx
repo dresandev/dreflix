@@ -35,6 +35,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
         '
         src={image.original}
         alt={title}
+        loading='eager'
       />
 
       <section className={styles.heroCardInfo}>
@@ -53,7 +54,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
                   `}
                   sizes='(max-width: 880px) 350px, 700px'
                   src={logoImage.original}
-                  alt=''
+                  alt={title}
                   loading='eager'
                 />
               </Link>

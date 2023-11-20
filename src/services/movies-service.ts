@@ -135,10 +135,10 @@ export const getMovieTrailerKey = async (
 }
 
 export const getMovieListGenres = async (
-  language?: string
+  language: string
 ): Promise<GenresResponse | null> => {
   try {
-    const url = `${API_BASE_URL}/genre/movie/list?language=${language || API_LANGUAGE}`
+    const url = `${API_BASE_URL}/genre/movie/list?language=${language}`
 
     const result = await fetch(url, commonGetOptions)
 

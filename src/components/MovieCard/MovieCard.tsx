@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import clsx from 'clsx'
 import { getMovieTrailerKey } from '@services/movies-service'
-import { formatDate } from '@helpers/format-date'
+import { formatDate } from '@helpers'
 import { IMAGES_BASE_URL } from '@constants'
 import { TrailerButton } from '@components/TrailerButton'
 import { IconButton } from '@components/IconButton'
@@ -89,7 +89,7 @@ export const MovieCard: React.FC<MovieCardProps> = async ({
               '
               src={`${IMAGES_BASE_URL}/w500${posterPath}`}
               alt={title}
-              loading='eager'
+              loading='lazy'
             />
           )
         }

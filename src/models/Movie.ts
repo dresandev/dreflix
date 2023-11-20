@@ -20,7 +20,7 @@ export interface Movie {
 
 export interface MovieDetails {
   adult: boolean
-  backdrop_path: string
+  backdrop_path: string | null
   belongs_to_collection: null
   budget: number
   genres: Genre[]

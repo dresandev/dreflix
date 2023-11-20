@@ -7,8 +7,8 @@ import '@styles/reset.css'
 import '@styles/globals.css'
 
 export const metadata: Metadata = {
-  title: 'Dreflix: Explora y encuentra la película  indicada',
-  description: 'Explora a través de un gran catálogo de películas y encuentra la indicada',
+  title: 'Dreflix: Explora y encuentra la película que tanto deseas encontrar',
+  description: 'Explora a través de un gran catálogo de películas y encuentra la película que tanto deseas encontrar',
 }
 
 export const viewport: Viewport = {

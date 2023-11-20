@@ -2,7 +2,8 @@
   --grid-container-columns: 2;
   display: grid;
   grid-template-columns: repeat(var(--grid-container-columns), minmax(0, 1fr));
-  gap: 2rem;
+  column-gap: 2rem;
+  row-gap: 4rem;
   margin-block: 5rem;
 }
 
