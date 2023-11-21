@@ -1,10 +1,11 @@
 import Link from 'next/link'
-import { getGenresLinksInfo } from '@helpers'
+import { simpleSlugify } from '@utils/simple-slugify'
+import { getTranslatedMovieGenres } from '@helpers'
 import { Dropdown } from '@components/Dropdown'
 import styles from './NavMenu.module.css'
 
 export const GenresDropdown = async () => {
-  const genresLinksInfo = await getGenresLinksInfo()
+  const translatedMovieGenres = await getTranslatedMovieGenres()
 
   return (
     <Dropdown
@@ -12,14 +13,16 @@ export const GenresDropdown = async () => {
       optionsInGrid
     >
       {
-        genresLinksInfo?.map(({ id, name, slug }) => {
+        translatedMovieGenres?.map(({ id, spanishName, englishName }) => {
+          const slug = simpleSlugify(englishName)
+
           return (
             <Link
               key={id}
               className={styles.dropdownLink}
-              href={`/movie/${slug}`}
+              href={`/genre/${slug}`}
             >
-              {name}
+              {spanishName}
             </Link>
           )
         })

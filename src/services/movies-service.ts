@@ -7,6 +7,7 @@ import {
   MovieCreditsResponse,
   Cast,
   GenresResponse,
+  Genre,
 } from '@models'
 import { MovieListType } from '@types'
 
@@ -151,5 +152,26 @@ export const getMovieListGenres = async (
   } catch (error) {
     console.error('Error in getMovieListGenres:', error)
     throw new Error('Error fetching movie list genres')
+  }
+}
+
+export const getMoviesByGenre = async (
+  genre: number,
+  page = 1
+): Promise<MovieListResponse | null> => {
+  try {
+    const url = `${API_BASE_URL}/discover/movie?include_adult=false&include_video=false&page=${page}&sort_by=popularity.desc&language=${API_LANGUAGE}&with_genres=${genre}`
+
+    const result = await fetch(url, commonGetOptions)
+
+    if (result.status === 200) {
+      const data = await result.json()
+      return data
+    }
+
+    return null
+  } catch (error) {
+    console.error('Error in getMoviesByGenre:', error)
+    throw new Error('Error fetching movies by genre')
   }
 }

@@ -3,11 +3,12 @@
 import { useRef } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { movieListPages } from '@constants'
+import { movieListPages } from '@data/movie-list-pages'
 import {
   useToggleBodyOverflow,
   useBoolean,
-  useOnClickOutside
+  useOnClickOutside,
+  useOnPathnameChange
 } from '@hooks'
 import { Dropdown } from '@components/Dropdown'
 import styles from './NavMenu.module.css'
@@ -29,6 +30,10 @@ export const NavMenu: React.FC<MenuProps> = ({
   } = useBoolean(false)
   useToggleBodyOverflow(isMenuOpen)
   useOnClickOutside(menuRef, closeMenu)
+
+  useOnPathnameChange(() => {
+    isMenuOpen && closeMenu()
+  })
 
   const childrenArray = Array.isArray(children) ? children : [children]
 

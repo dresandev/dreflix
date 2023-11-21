@@ -29,8 +29,9 @@ export const Header = () => {
         >
           <img
             src='/images/profile-image.png'
-            alt=""
+            alt=''
             width={32}
+            height={32}
           />
         </button>
       </header >

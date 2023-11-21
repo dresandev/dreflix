@@ -1,0 +1,7 @@
+.container {
+  padding-inline: var(--inline-space);
+}
+
+.title {
+  margin-block: 2rem;
+}

@@ -1,21 +1,18 @@
-import { MovieListType } from '@types'
-import { getMovieList } from '@services/movies-service'
+import { Movie } from '@models'
 import { MovieCard } from '@components/MovieCard'
 import styles from './MovieGrid.module.css'
 
 interface MovieGridProps {
-  movieListType: MovieListType
+  movies: Movie[] | undefined
 }
 
 export const MovieGrid: React.FC<MovieGridProps> = async ({
-  movieListType
+  movies
 }) => {
-  const movies = await getMovieList(movieListType)
-
   return (
     <div className={styles.container}>
       {
-        movies?.results.map(movie => {
+        movies?.map(movie => {
           const { id, poster_path, title, release_date, overview } = movie
 
           return (

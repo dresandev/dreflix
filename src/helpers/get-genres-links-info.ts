@@ -1,6 +1,6 @@
 import { getMovieListGenres } from '@services/movies-service'
 
-export const getGenresLinksInfo = async () => {
+export const getTranslatedMovieGenres = async () => {
   const [spanishGenresResult, englishGenresResult] = await Promise.allSettled([
     getMovieListGenres('es-CO'),
     getMovieListGenres('en-US')
@@ -24,15 +24,16 @@ export const getGenresLinksInfo = async () => {
     englishGenres.map(
       genre => [
         genre.id,
-        genre.name.toLowerCase().split(' ').join('-')
+        genre.name
       ]
     )
   )
 
-  const genresLinksInfo = spanishGenres.map((spanishGenre) => ({
-    ...spanishGenre,
-    slug: genresMap.get(spanishGenre.id)
+  const translatedMovieGenres = spanishGenres.map(spanishGenre => ({
+    id: spanishGenre.id,
+    spanishName: spanishGenre.name,
+    englishName: genresMap.get(spanishGenre.id)!
   }))
 
-  return genresLinksInfo
+  return translatedMovieGenres
 }

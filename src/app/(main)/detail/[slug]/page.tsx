@@ -12,13 +12,13 @@ import { MovieDetails } from './components/MovieDetails'
 import { SimilarMovies } from './components/SimilarMovies'
 import styles from './page.module.css'
 
-interface DetailsProps {
+interface DetailsPageProps {
   params: {
     slug: string
   }
 }
 
-export async function generateMetadata({ params }: DetailsProps) {
+export async function generateMetadata({ params }: DetailsPageProps) {
   const movie = await getMovieDetails(params.slug)
 
   return {
@@ -27,9 +27,9 @@ export async function generateMetadata({ params }: DetailsProps) {
   }
 }
 
-export default async function Details({
+export default async function DetailPage({
   params
-}: DetailsProps) {
+}: DetailsPageProps) {
   const movie = await getMovieDetails(params.slug)
 
   if (!movie) return notFound()

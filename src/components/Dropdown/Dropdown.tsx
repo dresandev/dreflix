@@ -1,9 +1,12 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { usePathname } from 'next/navigation'
+import { useRef } from 'react'
 import clsx from 'clsx'
-import { useOnClickOutside, useBoolean } from '@hooks'
+import {
+  useOnClickOutside,
+  useBoolean,
+  useOnPathnameChange
+} from '@hooks'
 import { ChevronArrow } from '@components/SVG'
 import styles from './Dropdown.module.css'
 
@@ -18,20 +21,18 @@ export const Dropdown: React.FC<DropdownProps> = ({
   label,
   optionsInGrid,
 }) => {
-  const pathname = usePathname()
   const {
     value: dropdownIsOpen,
     setFalse: closeDropdown,
-    toggle: toggleCloseDropdown
+    toggle: toggleDropdownIsOpen
   } = useBoolean(false)
-
-  useEffect(() => {
-    dropdownIsOpen && closeDropdown()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname])
 
   const dropdownRef = useRef<HTMLDivElement>(null)
   useOnClickOutside(dropdownRef, closeDropdown)
+
+  useOnPathnameChange(() => {
+    dropdownIsOpen && closeDropdown()
+  })
 
   const childrenArray = Array.isArray(children) ? children : [children]
 
@@ -46,7 +47,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
             styles.labelBtn,
             dropdownIsOpen && styles.labelBtnOpen
           )}
-          onClick={toggleCloseDropdown}
+          onClick={toggleDropdownIsOpen}
         >
           {label}
           <ChevronArrow

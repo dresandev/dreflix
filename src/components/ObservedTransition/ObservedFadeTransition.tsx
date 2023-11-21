@@ -2,14 +2,17 @@
 
 import { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
-import styles from './ObservedFadeTransition.module.css'
 
-interface ObeservedFadeTransitionProps {
+interface ObeservedTransitionProps {
   children: React.ReactNode
+  className: string
+  isVisibleClassName: string
 }
 
-export const ObeservedFadeTransition: React.FC<ObeservedFadeTransitionProps> = ({
-  children
+export const ObeservedTransition: React.FC<ObeservedTransitionProps> = ({
+  children,
+  className,
+  isVisibleClassName,
 }) => {
   const animationRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -39,10 +42,8 @@ export const ObeservedFadeTransition: React.FC<ObeservedFadeTransitionProps> = (
     <div ref={animationRef}>
       <div
         className={clsx(
-          styles.transition,
-          isVisible
-            ? styles.fadeIn
-            : styles.fadeOut
+          className,
+          isVisible && isVisibleClassName
         )}
       >
         {children}

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { HeroMovie } from '@types'
-import { ObeservedFadeTransition } from '@components/ObservedFadeTransition'
+import { ObeservedTransition } from '@components/ObservedTransition'
 import styles from './HeroMovieCard.module.css'
 
 export const HeroMovieCard: React.FC<HeroMovie> = ({
@@ -9,7 +9,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
   image,
   logoImage
 }) => {
-  const movieDetailsPath = `/details/${movieId}`
+  const movieDetailsPath = `/detail/${movieId}`
 
   return (
     <article className={styles.heroCard}>
@@ -29,22 +29,27 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
           ${image.original} 2880w
         `}
         sizes='
-          (max-width: 880px) 800px,
+          (max-width: 768px) 340px,
           (max-width: 1600px) 1400px,
           2880px
         '
         src={image.original}
-        alt={title}
+        alt=''
         loading='eager'
+        width={1800}
       />
 
       <section className={styles.heroCardInfo}>
-        <ObeservedFadeTransition>
+        <ObeservedTransition
+          className={styles.fadeTransition}
+          isVisibleClassName={styles.fadeIn}
+        >
           <div className={styles.infoWrapper}>
             <h2>
               <Link
                 href={movieDetailsPath}
                 tabIndex={-1}
+                aria-hidden
               >
                 <img
                   className={styles.logoImage}
@@ -52,9 +57,11 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
                     ${logoImage.small} 350w,
                     ${logoImage.original} 700w
                   `}
-                  sizes='(max-width: 880px) 350px, 700px'
+                  sizes='(max-width: 880px) 200px, 600px'
                   src={logoImage.original}
                   alt={title}
+                  width={150}
+                  height={100}
                   loading='eager'
                 />
               </Link>
@@ -67,7 +74,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
               Más Información
             </Link>
           </div>
-        </ObeservedFadeTransition>
+        </ObeservedTransition>
       </section>
     </article>
   )

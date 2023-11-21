@@ -40,6 +40,19 @@
   display: none;
 }
 
+.fadeTransition {
+  opacity: 0;
+  transform: translateY(3rem);
+  transition-property: opacity, transform;
+  transition-duration: 600ms;
+  transition-timing-function: cubic-bezier(0.2, 0.45, 0, 1);
+}
+
+.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media screen and (min-width: 880px) {
   .heroImage {
     aspect-ratio: 3 / 1;

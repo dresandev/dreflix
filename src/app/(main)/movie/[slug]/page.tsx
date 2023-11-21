@@ -1,37 +1,39 @@
 import { notFound } from 'next/navigation'
+import { MovieListType } from '@types'
 import { getMovieListPage } from '@helpers'
 import { MovieGrid } from '@components/MovieGrid'
+import { getMovieList } from '@services/movies-service'
 import styles from './page.module.css'
 
-interface MovieProps {
+interface MovieListPageProps {
   params: {
     slug: string
   }
 }
 
-// TODO: genres movies, hacer que getMovieListPage retorne tambien la description
-export async function generateMetadata({ params }: MovieProps) {
+export async function generateMetadata({ params }: MovieListPageProps) {
   const movieListPage = getMovieListPage(params.slug)
+
   return {
-    title: `Disfruta de películas del género ${movieListPage?.title} en Dreflix`,
-    description: `Explora entre las películas del género ${movieListPage?.title} y mucho más en Dreflix.`
+    title: movieListPage?.SEOTitle,
   }
 }
 
-export default function Movie({
+export default async function MovieListPage({
   params
-}: MovieProps) {
-  const movieListPage = getMovieListPage(params.slug)
+}: MovieListPageProps) {
+  const movieListType: MovieListType | string = params.slug
+  const movieListPage = getMovieListPage(movieListType)
 
   if (!movieListPage) return notFound()
 
-  const { title, slug } = movieListPage
+  const movieListResult = await getMovieList(movieListType as MovieListType)
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>{title}</h1>
+      <h1 className={styles.title}>{movieListPage.title}</h1>
 
-      <MovieGrid movieListType={slug} />
+      <MovieGrid movies={movieListResult?.results} />
     </div>
   )
 }

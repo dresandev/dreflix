@@ -4,7 +4,7 @@ import { CarouselSection } from '@components/CarouselSection'
 import { MovieCard } from '@components/MovieCard'
 import styles from './page.module.css'
 
-export default async function Home() {
+export default async function HomePage() {
   const results = await Promise.allSettled([
     getMovieList('popular'),
     getMovieList('now_playing'),

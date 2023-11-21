@@ -1,5 +1,3 @@
-import { MovieListPage } from '@types'
-
 export const API_BASE_URL = process.env.API_BASE_URL
 export const IMAGES_BASE_URL = process.env.IMAGES_BASE_URL
 export const API_LANGUAGE = 'es-CO'
@@ -12,22 +10,3 @@ export const commonGetOptions = {
     Authorization
   }
 }
-
-export const movieListPages: MovieListPage[] = [
-  {
-    slug: 'now_playing',
-    title: 'En cartelera hoy',
-  },
-  {
-    slug: 'popular',
-    title: 'Popular',
-  },
-  {
-    slug: 'top_rated',
-    title: 'Mejor valoradas',
-  },
-  {
-    slug: 'upcoming',
-    title: 'Próximamente',
-  }
-]

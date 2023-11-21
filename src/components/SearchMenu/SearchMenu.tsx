@@ -8,7 +8,8 @@ import {
   useBoolean,
   useOnClickOutside,
   useAutoFocus,
-  useForm
+  useForm,
+  useOnPathnameChange
 } from '@hooks'
 import { CloseIcon, SearchIcon } from '@components/SVG'
 import styles from './SearchMenu.module.css'
@@ -43,9 +44,9 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
   useOnClickOutside(searchMenuRef, closeSearchMenu)
   useToggleBodyOverflow(isSearchMenuOpen)
 
-  const handleOnFocus = () => {
-
-  }
+  useOnPathnameChange(() => {
+    isSearchMenuOpen && closeSearchMenu()
+  })
 
   return (
     <div
@@ -83,7 +84,6 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
             autoCorrect='off'
             value={search_query}
             onChange={handleInputChange}
-            onFocus={handleOnFocus}
           />
         </div>
 

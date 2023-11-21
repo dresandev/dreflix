@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import clsx from 'clsx'
+import { IMAGES_BASE_URL } from '@constants'
 import { getMovieTrailerKey } from '@services/movies-service'
 import { formatDate } from '@helpers'
-import { IMAGES_BASE_URL } from '@constants'
 import { TrailerButton } from '@components/TrailerButton'
 import { IconButton } from '@components/IconButton'
 import { HeartIcon, PlusIcon } from '@components/SVG'
@@ -35,7 +35,7 @@ export const MovieCard: React.FC<MovieCardProps> = async ({
     )}>
       <Link
         className={styles.wrapperLink}
-        href={`/details/${id}`}
+        href={`/detail/${id}`}
       >
         {title}
       </Link>
@@ -45,16 +45,9 @@ export const MovieCard: React.FC<MovieCardProps> = async ({
           posterPath ? (
             <img
               className={styles.posterImage}
-              srcSet={`
-                ${IMAGES_BASE_URL}/w342${posterPath} 342w,
-                ${IMAGES_BASE_URL}/w500${posterPath} 500w,
-              `}
-              sizes='
-                (max-width: 880px) 200px,
-                350px
-              '
-              src={`${IMAGES_BASE_URL}/w500${posterPath}`}
+              src={`${IMAGES_BASE_URL}/w342${posterPath}`}
               alt={title}
+              width={150}
               loading='eager'
             />
           ) : (
@@ -79,15 +72,7 @@ export const MovieCard: React.FC<MovieCardProps> = async ({
           posterPath && (
             <img
               className={styles.cardInfoBgImage}
-              srcSet={`
-                ${IMAGES_BASE_URL}/w342${posterPath} 342w,
-                ${IMAGES_BASE_URL}/w500${posterPath} 500w,
-              `}
-              sizes='
-                (max-width: 880px) 200px,
-                350px
-              '
-              src={`${IMAGES_BASE_URL}/w500${posterPath}`}
+              src={`${IMAGES_BASE_URL}/w342${posterPath}`}
               alt={title}
               loading='lazy'
             />

@@ -18,4 +18,5 @@ export interface HeroMovie {
 export interface MovieListPage {
   slug: MovieListType
   title: string
+  SEOTitle: string
 }
