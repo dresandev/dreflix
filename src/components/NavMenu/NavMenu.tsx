@@ -69,6 +69,7 @@ export const NavMenu: React.FC<MenuProps> = ({
                       key={key}
                       className={styles.dropdownLink}
                       href={`/movie/${slug}`}
+                      prefetch={false}
                     >
                       {title}
                     </Link>

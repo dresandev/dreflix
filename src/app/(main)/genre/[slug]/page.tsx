@@ -1,7 +1,10 @@
 import { notFound } from 'next/navigation'
+import { getRandomIndex } from '@utils/get-random-index'
+import { genrePageColors } from '@data/genre-page-colors'
 import { getTranslatedMovieGenres } from '@helpers'
-import { getMoviesByGenre } from '@services/movies-service'
-import { MovieGrid } from '@components/MovieGrid'
+import { getMoviesByGenre } from '@actions/movies-actions'
+import { PageGradient } from '@components/PageGradient'
+import { InfiniteMovieGrid } from '@components/InfiniteMovieGrid'
 import styles from './page.module.css'
 
 interface MoviesByGenrePageProps {
@@ -40,13 +43,22 @@ export default async function MoviesByGenrePage({
 
   if (!movieListGenre) return notFound()
 
-  const moviesByGenreResult = await getMoviesByGenre(movieListGenre.id)
+  const { id, spanishName } = movieListGenre
+
+  const moviesByGenreResult = await getMoviesByGenre(id)
+
+  const randomIndex = getRandomIndex(genrePageColors.length)
+  const randomColor = genrePageColors[randomIndex]
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>{movieListGenre.spanishName}</h1>
+      <PageGradient gradientColor={randomColor} />
 
-      <MovieGrid movies={moviesByGenreResult?.results} />
+      <h1 className={styles.title}>
+        {spanishName}
+      </h1>
+
+      <InfiniteMovieGrid movies={moviesByGenreResult?.results} />
     </div>
   )
 }

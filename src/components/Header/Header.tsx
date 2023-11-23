@@ -13,6 +13,7 @@ export const Header = () => {
           className={styles.goHomeBtn}
           aria-label='Ir al inicio'
           href='/'
+          prefetch={false}
         >
           <DreflixLogo />
         </Link>

@@ -1,0 +1,1 @@
+export { PageGradient } from './PageGradient'

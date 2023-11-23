@@ -4,7 +4,7 @@ import {
   getMovieDetails,
   getMovieTrailerKey,
   getSimilarMovies
-} from '@services/movies-service'
+} from '@actions/movies-actions'
 import { CarouselSection } from '@components/CarouselSection'
 import { ActorCard } from '@components/ActorCard'
 import { HeroImage } from './components/HeroImage'

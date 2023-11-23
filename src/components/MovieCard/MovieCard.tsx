@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import clsx from 'clsx'
 import { IMAGES_BASE_URL } from '@constants'
-import { getMovieTrailerKey } from '@services/movies-service'
+import { getMovieTrailerKey } from '@actions/movies-actions'
 import { formatDate } from '@helpers'
 import { TrailerButton } from '@components/TrailerButton'
 import { IconButton } from '@components/IconButton'
@@ -18,7 +18,7 @@ interface MovieCardProps {
   overview: string
 }
 
-export const MovieCard: React.FC<MovieCardProps> = async ({
+export const MovieCard: React.FC<MovieCardProps> = ({
   className,
   id,
   posterPath,
@@ -26,7 +26,7 @@ export const MovieCard: React.FC<MovieCardProps> = async ({
   releaseDate,
   overview,
 }) => {
-  const trailerKey = await getMovieTrailerKey(id)
+  // const trailerKey = await getMovieTrailerKey(id)
 
   return (
     <article className={clsx(
@@ -36,11 +36,12 @@ export const MovieCard: React.FC<MovieCardProps> = async ({
       <Link
         className={styles.wrapperLink}
         href={`/detail/${id}`}
+        prefetch={false}
       >
         {title}
       </Link>
 
-      <figure>
+      <figure className={styles.cardPresentation}>
         {
           posterPath ? (
             <img
@@ -85,14 +86,14 @@ export const MovieCard: React.FC<MovieCardProps> = async ({
         </p>
 
         <div className={styles.cardActions}>
-          {
+          {/* {
             trailerKey && (
               <TrailerButton
                 trailerKey={trailerKey}
                 variant='icon'
               />
             )
-          }
+          } */}
           <IconButton
             ariaLabel='Agregar a lista'
             size='small'

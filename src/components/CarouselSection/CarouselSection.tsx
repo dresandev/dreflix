@@ -1,17 +1,23 @@
 import { Carousel } from '@components/Carousel'
 import styles from './CarouselSection.module.css'
+import clsx from 'clsx'
 
 interface MoviesSectionProps {
   children: React.ReactNode | React.ReactNode[]
   title: string
+  className?: string
 }
 
 export const CarouselSection: React.FC<MoviesSectionProps> = ({
   children,
-  title
+  className,
+  title,
 }) => {
   return (
-    <section className={styles.section}>
+    <section className={clsx(
+      styles.section,
+      className
+    )}>
       <h2 className={styles.title}>{title}</h2>
 
       <Carousel itemsGap='var(--carousel-items-gap)'>

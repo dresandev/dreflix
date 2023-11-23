@@ -1,6 +1,6 @@
 .card {
   position: relative;
-  block-size: 100%;
+  block-size: max-content;
 }
 
 .wrapperLink {
@@ -9,6 +9,7 @@
   font-size: 0;
   border-radius: var(--border-radius);
   outline-offset: 0.3rem;
+  overflow: hidden;
 }
 
 .wrapperLink:focus-visible,
@@ -38,6 +39,10 @@
 }
 
 @media (hover: hover) {
+  .card {
+    block-size: 100%;
+  }
+
   .cardInfo {
     position: absolute;
     inset: 0;

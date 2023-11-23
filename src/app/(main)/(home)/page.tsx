@@ -1,4 +1,4 @@
-import { getMovieList } from '@services/movies-service'
+import { getMovieList } from '@actions/movies-actions'
 import { HeroCarousel } from '@components/HeroCarousel'
 import { CarouselSection } from '@components/CarouselSection'
 import { MovieCard } from '@components/MovieCard'
@@ -27,6 +27,7 @@ export default async function HomePage() {
           return (
             <CarouselSection
               key={key}
+              className={styles.carouselSection}
               title={listTitle}
             >
               {

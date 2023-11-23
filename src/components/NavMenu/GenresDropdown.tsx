@@ -21,6 +21,7 @@ export const GenresDropdown = async () => {
               key={id}
               className={styles.dropdownLink}
               href={`/genre/${slug}`}
+              prefetch={false}
             >
               {spanishName}
             </Link>

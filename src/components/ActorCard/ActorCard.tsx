@@ -17,10 +17,7 @@ export const ActorCard: React.FC<ActorCardProps> = ({
   character,
 }) => {
   return (
-    <figure className={clsx(
-      styles.card,
-      className
-    )}>
+    <figure className={clsx(className)}>
       {
         profilePath
           ? (
@@ -39,7 +36,9 @@ export const ActorCard: React.FC<ActorCardProps> = ({
         <figcaption className={styles.name}>
           {originalName}
         </figcaption>
-        <p>{character}</p>
+        <p className={styles.characterName}>
+          {character}
+        </p>
       </div>
     </figure>
   )

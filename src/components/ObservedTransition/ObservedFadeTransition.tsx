@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
+import { useIsInView } from '@hooks'
 
 interface ObeservedTransitionProps {
   children: React.ReactNode
@@ -14,36 +15,44 @@ export const ObeservedTransition: React.FC<ObeservedTransitionProps> = ({
   className,
   isVisibleClassName,
 }) => {
-  const animationRef = useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
+  // const animationRef = useRef<HTMLDivElement>(null)
+  // const [isVisible, setIsVisible] = useState(false)
 
-  useEffect(() => {
-    const currentAnimationRef = animationRef.current
+  // useEffect(() => {
+  //   const currentAnimationRef = animationRef.current
 
-    if (!currentAnimationRef) return
+  //   if (!currentAnimationRef) return
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: isVisible ? .1 : .9
-      }
-    )
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => setIsVisible(entry.isIntersecting),
+  //     {
+  //       root: null,
+  //       rootMargin: '0px',
+  //       threshold: isVisible ? .1 : .9
+  //     }
+  //   )
 
-    observer.observe(currentAnimationRef)
+  //   observer.observe(currentAnimationRef)
 
-    return () => {
-      observer.unobserve(currentAnimationRef)
+  //   return () => {
+  //     observer.unobserve(currentAnimationRef)
+  //   }
+  // }, [animationRef, isVisible])
+
+  const { ref, isInView } = useIsInView(
+    {
+      root: null,
+      rootMargin: '0px',
+      threshold: isInView ? .1 : .9
     }
-  }, [animationRef, isVisible])
+  )
 
   return (
-    <div ref={animationRef}>
+    <div ref={ref}>
       <div
         className={clsx(
           className,
-          isVisible && isVisibleClassName
+          isInView && isVisibleClassName
         )}
       >
         {children}

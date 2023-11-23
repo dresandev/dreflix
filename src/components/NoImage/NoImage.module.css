@@ -3,6 +3,7 @@
   background-position: center;
   background-repeat: no-repeat;
   aspect-ratio: 2 / 3;
+  border-radius: var(--border-radius);
 }
 
 .profile {
@@ -10,6 +11,5 @@
 }
 
 .movie {
-  border-radius: var(--border-radius);
   background-image: url(/images/svg/movie-no-image.svg);
 }

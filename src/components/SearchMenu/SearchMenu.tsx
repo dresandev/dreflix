@@ -98,6 +98,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
                       <Link
                         className={styles.resultLink}
                         href='/'
+                        prefetch={false}
                       >
                         {resutl}
                       </Link>

@@ -1,4 +1,4 @@
-import { MovieGrid } from '@components/MovieGrid'
+import { MovieGrid } from '@components/InfiniteMovieGrid'
 import styles from './page.module.css'
 
 export default function SearchPage() {
