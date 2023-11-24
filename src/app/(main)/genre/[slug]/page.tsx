@@ -58,7 +58,7 @@ export default async function MoviesByGenrePage({
         {spanishName}
       </h1>
 
-      <InfiniteMovieGrid movies={moviesByGenreResult?.results} />
+      <InfiniteMovieGrid initMovies={moviesByGenreResult?.results} />
     </div>
   )
 }

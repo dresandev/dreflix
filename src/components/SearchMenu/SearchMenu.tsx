@@ -91,7 +91,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
           (SEARCH_RESULTS.length > 0) && (
             <ul className={clsx(styles.searchResults)}>
               {
-                SEARCH_RESULTS.map(resutl => {
+                SEARCH_RESULTS.map(result => {
                   const key = crypto.randomUUID()
                   return (
                     <li key={key}>
@@ -100,7 +100,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
                         href='/'
                         prefetch={false}
                       >
-                        {resutl}
+                        {result}
                       </Link>
                     </li>
                   )

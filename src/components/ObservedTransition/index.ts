@@ -1,1 +1,1 @@
-export { ObeservedTransition } from './ObservedFadeTransition'
+export { ObservedTransition } from './ObservedTransition'

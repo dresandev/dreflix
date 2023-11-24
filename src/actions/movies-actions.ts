@@ -80,8 +80,8 @@ export const getSimilarMovies = async (
 
     return null
   } catch (error) {
-    console.error('Error in getMovieRecomendations:', error)
-    throw new Error('Error fetching movie recomendations')
+    console.error('Error in getSimilarMovies:', error)
+    throw new Error('Error fetching similar movies')
   }
 }
 

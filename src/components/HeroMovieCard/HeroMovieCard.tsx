@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { HeroMovie } from '@types'
-import { ObeservedTransition } from '@components/ObservedTransition'
+import { ObservedTransition } from '@components/ObservedTransition'
 import styles from './HeroMovieCard.module.css'
 
 export const HeroMovieCard: React.FC<HeroMovie> = ({
@@ -41,7 +41,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
       />
 
       <section className={styles.heroCardInfo}>
-        <ObeservedTransition
+        <ObservedTransition
           className={styles.fadeTransition}
           isVisibleClassName={styles.fadeIn}
         >
@@ -77,7 +77,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
               Más Información
             </Link>
           </div>
-        </ObeservedTransition>
+        </ObservedTransition>
       </section>
     </article>
   )

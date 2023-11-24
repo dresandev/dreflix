@@ -1,25 +1,45 @@
 import { useEffect, useRef, useState } from 'react'
 
-export const useIsInView = (options?: IntersectionObserverInit) => {
-  const ref = useRef<HTMLElement | null>(null)
+interface UseIsInViewOptions extends IntersectionObserverInit {
+  thresholdsByVisibility?: {
+    isVisibleThreshold: number
+    notVisibleThreshold: number
+  }
+}
+
+export const useIsInView = <T extends HTMLElement>(options?: UseIsInViewOptions) => {
+  const ref = useRef<T | null>(null)
   const [isInView, setIsInView] = useState(false)
 
   useEffect(() => {
-    const obeserverTargetRefCurrent = ref.current
+    const observerTarget = ref.current
 
-    if (!obeserverTargetRefCurrent) return
+    if (!observerTarget) return
+
+    const { thresholdsByVisibility, ...observerOptions } = options || {}
+    const {
+      isVisibleThreshold,
+      notVisibleThreshold
+    } = thresholdsByVisibility || {}
 
     const observer = new IntersectionObserver(
-      ([entry]) => setIsInView(entry.isIntersecting),
-      options
+      ([entry]) => {
+        if (entry.isIntersecting !== isInView) {
+          setIsInView(entry.isIntersecting)
+        }
+      },
+      {
+        threshold: isInView ? isVisibleThreshold : notVisibleThreshold,
+        ...observerOptions,
+      }
     )
 
-    observer.observe(obeserverTargetRefCurrent)
+    observer.observe(observerTarget)
 
     return () => {
-      observer.unobserve(obeserverTargetRefCurrent)
+      observer.unobserve(observerTarget)
     }
-  }, [options])
+  }, [isInView, options])
 
   return { ref, isInView }
 }

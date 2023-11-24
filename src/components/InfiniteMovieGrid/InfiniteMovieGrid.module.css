@@ -1,5 +1,4 @@
 .container {
-  position: relative;
   --grid-container-columns: 2;
   display: grid;
   grid-template-columns: repeat(var(--grid-container-columns), minmax(0, 1fr));
@@ -31,7 +30,32 @@
   }
 }
 
-.test {
-  position: absolute;
-  bottom: 10%;
+.observerTarget {
+  width: 100%;
+  height: 100px;
+  /* height: 1rem;
+  width: 100%;
+  background-color: red; */
+  text-align: center;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 3px solid #fff;
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  margin-inline: auto;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
