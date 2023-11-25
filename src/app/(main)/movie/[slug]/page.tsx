@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { MovieListType } from '@types'
-import { getMovieListPage } from '@helpers'
+import { getMovieListPageInfo } from '@helpers'
 import { getMovieList } from '@actions/movies-actions'
 import { PageGradient } from '@components/PageGradient'
 import { InfiniteMovieGrid } from '@components/InfiniteMovieGrid'
@@ -13,10 +13,10 @@ interface MovieListPageProps {
 }
 
 export async function generateMetadata({ params }: MovieListPageProps) {
-  const movieListPage = getMovieListPage(params.slug)
+  const movieListPageInfo = getMovieListPageInfo(params.slug)
 
   return {
-    title: movieListPage?.SEOTitle,
+    title: movieListPageInfo?.SEOTitle,
   }
 }
 
@@ -24,21 +24,21 @@ export default async function MovieListPage({
   params
 }: MovieListPageProps) {
   const movieListType: MovieListType | string = params.slug
-  const movieListPage = getMovieListPage(movieListType)
+  const movieListPageInfo = getMovieListPageInfo(movieListType)
 
-  if (!movieListPage) return notFound()
+  if (!movieListPageInfo) return notFound()
 
-  const movieListResult = await getMovieList(movieListType as MovieListType, 1)
+  const movies = await getMovieList(movieListType as MovieListType, 1)
 
   return (
     <div className={styles.container}>
       <PageGradient gradientColor='hsl(47 96% 40% / .3)' />
 
       <h1 className={styles.title}>
-        {movieListPage.title}
+        {movieListPageInfo.title}
       </h1>
 
-      <InfiniteMovieGrid initMovies={movieListResult?.results} />
+      <InfiniteMovieGrid initMovies={movies} />
     </div>
   )
 }

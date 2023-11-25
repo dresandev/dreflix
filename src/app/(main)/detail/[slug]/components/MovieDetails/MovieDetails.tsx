@@ -33,7 +33,7 @@ export const MovieDetails: React.FC<MovieDetailsProps> = ({
         </h1>
 
         <p className={styles.overview}>
-          {overview || 'No se encontró una descripción en español 😔'}
+          {overview || 'No se encontró una descripción en español :('}
         </p>
 
         <div className={styles.badges}>

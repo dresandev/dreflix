@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { movieListPages } from '@data/movie-list-pages'
+import { movieListPagesInfo } from '@data/movie-list-pages'
 import {
   useToggleBodyOverflow,
   useBoolean,
@@ -62,7 +62,7 @@ export const NavMenu: React.FC<MenuProps> = ({
           <li>
             <Dropdown label='Explorar'>
               {
-                movieListPages.map(({ slug, title }) => {
+                movieListPagesInfo.map(({ slug, title }) => {
                   const key = crypto.randomUUID()
                   return (
                     <Link

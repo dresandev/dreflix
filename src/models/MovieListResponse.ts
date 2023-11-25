@@ -6,11 +6,3 @@ export interface MovieListResponse {
   total_pages: number
   total_results: number
 }
-
-export interface MainMovieListResponse extends MovieListResponse {
-  listTitle: string
-  dates?: {
-    maximum: string
-    minimum: string
-  }
-}

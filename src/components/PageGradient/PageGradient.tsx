@@ -11,7 +11,7 @@ export const PageGradient: React.FC<PageGradientProps> = ({
     backgroundImage: `linear-gradient(
       30deg,
       ${gradientColor} 0%,
-      transparent 50%
+      transparent 40%
     )`
   }
 

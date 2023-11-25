@@ -4,6 +4,7 @@
   background-repeat: no-repeat;
   aspect-ratio: 2 / 3;
   border-radius: var(--border-radius);
+  background-size: 50%;
 }
 
 .profile {

@@ -1,0 +1,17 @@
+.loader {
+  --size: 5.2rem;
+  display: block;
+  inline-size: var(--size);
+  block-size: var(--size);
+  margin-inline: auto;
+  border-top: 0.3rem solid currentColor;
+  border-right: 0.3rem solid transparent;
+  border-radius: 50%;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  to {
+    transform: rotate(360deg);
+  }
+}

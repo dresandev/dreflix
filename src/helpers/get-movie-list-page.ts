@@ -1,9 +1,11 @@
-import { movieListPages } from '@data/movie-list-pages'
-import { MovieListPage } from '@types'
+import { movieListPagesInfo } from '@data/movie-list-pages'
+import { PageInfo } from '@types'
 
-export const getMovieListPage = (
+export const getMovieListPageInfo = (
   slug: string
-): MovieListPage | undefined => {
-  const movieListPage = movieListPages.find(movieListType => movieListType.slug === slug)
-  return movieListPage
+): PageInfo | undefined => {
+  const movieListPageInfo = movieListPagesInfo.find(
+    pageInfo => pageInfo.slug === slug
+  )
+  return movieListPageInfo
 }

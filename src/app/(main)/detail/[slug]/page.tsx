@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import {
-  getMovieMovieMainCast,
+  getMovieMainCast,
   getMovieDetails,
   getMovieTrailerKey,
   getSimilarMovies
@@ -44,8 +44,8 @@ export default async function DetailPage({
     runtime,
   } = movie
 
-  const similarMoviesResponse = await getSimilarMovies(id)
-  const mainCast = await getMovieMovieMainCast(id)
+  const similarMovies = await getSimilarMovies(id)
+  const mainCast = await getMovieMainCast(id)
   const trailerKey = await getMovieTrailerKey(id)
 
   return (
@@ -80,7 +80,7 @@ export default async function DetailPage({
       </CarouselSection>
 
       <SimilarMovies
-        similarMovies={similarMoviesResponse?.results}
+        similarMovies={similarMovies}
       />
     </>
   )

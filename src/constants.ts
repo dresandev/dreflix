@@ -3,7 +3,7 @@ export const Authorization = `Bearer ${process.env.ACCESS_TOKEN_AUTH}`
 export const API_LANGUAGE = 'es-CO'
 export const IMAGES_BASE_URL = 'https://image.tmdb.org/t/p'
 
-export const commonGetOptions = {
+export const COMMON_GET_OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',

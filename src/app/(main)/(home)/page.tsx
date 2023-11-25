@@ -4,8 +4,15 @@ import { CarouselSection } from '@components/CarouselSection'
 import { MovieCard } from '@components/MovieCard'
 import styles from './page.module.css'
 
+const movieListTitle = [
+  'Popular',
+  'En cartelera hoy',
+  'Próximamente',
+  'Mejor valoradas',
+]
+
 export default async function HomePage() {
-  const results = await Promise.allSettled([
+  const moviesResult = await Promise.allSettled([
     getMovieList('popular'),
     getMovieList('now_playing'),
     getMovieList('upcoming'),
@@ -18,21 +25,20 @@ export default async function HomePage() {
       <HeroCarousel />
 
       {
-        results.map(result => {
-          if (result.status === 'rejected' || !result.value) return
+        moviesResult.map((movies, i) => {
+          if (movies.status === 'rejected') return
 
           const key = crypto.randomUUID()
-          const { listTitle, results } = result.value
 
           return (
             <CarouselSection
               key={key}
               className={styles.carouselSection}
-              title={listTitle}
+              title={movieListTitle[i]}
             >
               {
-                results.map(movie => {
-                  const { id, poster_path, title, release_date, overview } = movie
+                movies.value?.map(movie => {
+                  const { id, title, poster_path, release_date, overview, trailerKey } = movie
 
                   return (
                     <MovieCard
@@ -43,6 +49,7 @@ export default async function HomePage() {
                       title={title}
                       releaseDate={release_date}
                       overview={overview}
+                      trailerKey={trailerKey}
                     />
                   )
                 })

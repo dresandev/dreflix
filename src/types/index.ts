@@ -15,7 +15,7 @@ export interface HeroMovie {
   logoImage: ImageSizes
 }
 
-export interface MovieListPage {
+export interface PageInfo {
   slug: MovieListType
   title: string
   SEOTitle: string

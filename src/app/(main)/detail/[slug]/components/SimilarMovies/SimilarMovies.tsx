@@ -4,7 +4,7 @@ import { MovieCard } from '@components/MovieCard'
 import styles from './SimilarMovies.module.css'
 
 interface SimilarMoviesProps {
-  similarMovies?: Movie[]
+  similarMovies: Movie[] | null
 }
 
 export const SimilarMovies: React.FC<SimilarMoviesProps> = ({
@@ -22,7 +22,7 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({
       <CarouselSection title='Películas similares'>
         {
           similarMovies.map(similarMovie => {
-            const { id, poster_path, title, release_date, overview } = similarMovie
+            const { id, poster_path, title, release_date, overview, trailerKey } = similarMovie
 
             return (
               <MovieCard
@@ -33,6 +33,7 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({
                 title={title}
                 releaseDate={release_date}
                 overview={overview}
+                trailerKey={trailerKey}
               />
             )
           })

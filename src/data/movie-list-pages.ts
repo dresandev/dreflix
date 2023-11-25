@@ -1,6 +1,6 @@
-import { MovieListPage } from '@types'
+import { PageInfo } from '@types'
 
-export const movieListPages: MovieListPage[] = [
+export const movieListPagesInfo: PageInfo[] = [
   {
     slug: 'now_playing',
     title: 'En cartelera hoy',

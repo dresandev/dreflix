@@ -45,7 +45,7 @@ export default async function MoviesByGenrePage({
 
   const { id, spanishName } = movieListGenre
 
-  const moviesByGenreResult = await getMoviesByGenre(id)
+  const moviesByGenre = await getMoviesByGenre(id)
 
   const randomIndex = getRandomIndex(genrePageColors.length)
   const randomColor = genrePageColors[randomIndex]
@@ -58,7 +58,9 @@ export default async function MoviesByGenrePage({
         {spanishName}
       </h1>
 
-      <InfiniteMovieGrid initMovies={moviesByGenreResult?.results} />
+      <InfiniteMovieGrid
+        initMovies={moviesByGenre}
+      />
     </div>
   )
 }

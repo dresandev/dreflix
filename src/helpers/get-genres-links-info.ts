@@ -13,8 +13,8 @@ export const getTranslatedMovieGenres = async () => {
     throw new Error('Error al obtener los géneros de las películas')
   }
 
-  const englishGenres = englishGenresResult.value?.genres
-  const spanishGenres = spanishGenresResult.value?.genres
+  const englishGenres = englishGenresResult.value
+  const spanishGenres = spanishGenresResult.value
 
   if (!englishGenres || !spanishGenres) {
     return null
