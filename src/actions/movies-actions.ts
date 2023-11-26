@@ -28,7 +28,7 @@ export const getMovieList = async (
 
     if (result.status === 200) {
       const { results } = await result.json() as MovieListResponse
-      const movies = await getMoviesWithTrailerKey(results)
+      const movies = await setTrailerKeyToMovies(results)
       return movies
     }
 
@@ -70,7 +70,7 @@ export const getSimilarMovies = async (
 
     if (result.status === 200) {
       const { results } = await result.json() as MovieListResponse
-      const movies = await getMoviesWithTrailerKey(results)
+      const movies = await setTrailerKeyToMovies(results)
       return movies
     }
 
@@ -164,7 +164,7 @@ export const getMoviesByGenre = async (
 
     if (result.status === 200) {
       const { results } = await result.json() as MovieListResponse
-      const movies = await getMoviesWithTrailerKey(results)
+      const movies = await setTrailerKeyToMovies(results)
       return movies
     }
 
@@ -175,7 +175,7 @@ export const getMoviesByGenre = async (
   }
 }
 
-export const getMoviesWithTrailerKey = async (
+export const setTrailerKeyToMovies = async (
   movies: Movie[]
 ): Promise<Movie[]> => {
   const moviesWithTrailerKey = await Promise.all(

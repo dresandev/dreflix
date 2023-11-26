@@ -4,7 +4,7 @@ import { genrePageColors } from '@data/genre-page-colors'
 import { getTranslatedMovieGenres } from '@helpers'
 import { getMoviesByGenre } from '@actions/movies-actions'
 import { PageGradient } from '@components/PageGradient'
-import { InfiniteMovieGrid } from '@components/InfiniteMovieGrid'
+import { InfiniteMoviesByGenre } from '@components/InfiniteMovies'
 import styles from './page.module.css'
 
 interface MoviesByGenrePageProps {
@@ -58,8 +58,9 @@ export default async function MoviesByGenrePage({
         {spanishName}
       </h1>
 
-      <InfiniteMovieGrid
+      <InfiniteMoviesByGenre
         initMovies={moviesByGenre}
+        genre={id}
       />
     </div>
   )

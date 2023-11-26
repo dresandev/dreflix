@@ -52,7 +52,7 @@ export const MovieDetails: React.FC<MovieDetailsProps> = ({
             }
           </div>
           {
-            formattedMovieDuration || (
+            !!formattedMovieDuration && (
               <span>{formattedMovieDuration}</span>
             )
           }

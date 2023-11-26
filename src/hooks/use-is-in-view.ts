@@ -8,11 +8,11 @@ interface UseIsInViewOptions extends IntersectionObserverInit {
 }
 
 export const useIsInView = <T extends HTMLElement>(options?: UseIsInViewOptions) => {
-  const ref = useRef<T | null>(null)
+  const observerTargetRef = useRef<T | null>(null)
   const [isInView, setIsInView] = useState(false)
 
   useEffect(() => {
-    const observerTarget = ref.current
+    const observerTarget = observerTargetRef.current
 
     if (!observerTarget) return
 
@@ -39,7 +39,8 @@ export const useIsInView = <T extends HTMLElement>(options?: UseIsInViewOptions)
     return () => {
       observer.unobserve(observerTarget)
     }
-  }, [isInView, options])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isInView])
 
-  return { ref, isInView }
+  return { observerTargetRef, isInView }
 }

@@ -3,7 +3,7 @@ import { MovieListType } from '@types'
 import { getMovieListPageInfo } from '@helpers'
 import { getMovieList } from '@actions/movies-actions'
 import { PageGradient } from '@components/PageGradient'
-import { InfiniteMovieGrid } from '@components/InfiniteMovieGrid'
+import { InfiniteMovieList } from '@components/InfiniteMovies'
 import styles from './page.module.css'
 
 interface MovieListPageProps {
@@ -23,12 +23,12 @@ export async function generateMetadata({ params }: MovieListPageProps) {
 export default async function MovieListPage({
   params
 }: MovieListPageProps) {
-  const movieListType: MovieListType | string = params.slug
+  const movieListType = params.slug as MovieListType
   const movieListPageInfo = getMovieListPageInfo(movieListType)
 
   if (!movieListPageInfo) return notFound()
 
-  const movies = await getMovieList(movieListType as MovieListType, 1)
+  const movies = await getMovieList(movieListType)
 
   return (
     <div className={styles.container}>
@@ -38,7 +38,10 @@ export default async function MovieListPage({
         {movieListPageInfo.title}
       </h1>
 
-      <InfiniteMovieGrid initMovies={movies} />
+      <InfiniteMovieList
+        initMovies={movies}
+        movieListType={movieListType}
+      />
     </div>
   )
 }

@@ -14,7 +14,7 @@ export const ObservedTransition: React.FC<ObservedTransitionProps> = ({
   className,
   isVisibleClassName,
 }) => {
-  const { ref, isInView } = useIsInView<HTMLDivElement>({
+  const { observerTargetRef, isInView } = useIsInView<HTMLDivElement>({
     thresholdsByVisibility: {
       isVisibleThreshold: .1,
       notVisibleThreshold: .9
@@ -22,7 +22,7 @@ export const ObservedTransition: React.FC<ObservedTransitionProps> = ({
   })
 
   return (
-    <div ref={ref}>
+    <div ref={observerTargetRef}>
       <div
         className={clsx(
           className,

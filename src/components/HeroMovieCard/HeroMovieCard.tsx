@@ -48,6 +48,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
           <div className={styles.infoWrapper}>
             <h2>
               <Link
+                className={styles.logoLinkWrapper}
                 href={movieDetailsPath}
                 tabIndex={-1}
                 aria-hidden

@@ -1,70 +1,39 @@
-'use client'
-
-import { useEffect, useState } from 'react'
+import type { MutableRefObject } from 'react'
 import { Movie } from '@models'
-import { useIsInView } from '@hooks'
-import { getMovieList } from '@actions/movies-actions'
 import { MovieCard } from '@components/MovieCard'
 import { Loader } from '@components/Loader'
 import styles from './InfiniteMovieGrid.module.css'
 
 interface InfiniteMovieGridProps {
-  initMovies: Movie[] | null
+  movies: Movie[] | null
+  observerTargetRef: MutableRefObject<HTMLDivElement | null>
+  isLoading: boolean
+  hasError: boolean
 }
 
 export const InfiniteMovieGrid: React.FC<InfiniteMovieGridProps> = ({
-  initMovies,
+  movies,
+  observerTargetRef,
+  isLoading,
+  hasError
 }) => {
-  const [movies, setMovies] = useState<Movie[]>(initMovies || [])
-  const [dataInfo, setDataInfo] = useState({
-    page: 2,
-    isLoading: false
-  })
-  const { ref, isInView } = useIsInView<HTMLDivElement>({
-    rootMargin: '100%',
-    threshold: 1,
-  })
-
-  const { page, isLoading } = dataInfo
-
-  useEffect(() => {
-    if (!isInView || page > 15) return
-
-    const loadMoreMovies = async () => {
-      setDataInfo(prevPageInfo => ({
-        ...prevPageInfo,
-        isLoading: true
-      }))
-
-      const movies = await getMovieList('now_playing', page)
-
-      if (!movies) return
-
-      setMovies(prevMovies => ([
-        ...prevMovies,
-        ...movies
-      ]))
-      setDataInfo(prevPageInfo => ({
-        page: prevPageInfo.page + 1,
-        isLoading: false
-      }))
-    }
-
-    loadMoreMovies()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isInView])
-
   return (
     <>
       <div className={styles.container}>
         {
-          movies?.map(movie => {
-            const { id, poster_path, title, release_date, overview, trailerKey } = movie
-            const key = crypto.randomUUID()
+          movies?.map((movie, index) => {
+            const {
+              id,
+              poster_path,
+              title,
+              release_date,
+              overview,
+              trailerKey
+            } = movie
 
             return (
               <MovieCard
-                key={`${id}${key}`}
+                key={index}
                 id={id}
                 posterPath={poster_path}
                 title={title}
@@ -76,12 +45,12 @@ export const InfiniteMovieGrid: React.FC<InfiniteMovieGridProps> = ({
           })
         }
       </div>
+      {isLoading && <Loader />}
+      {hasError && <p>Error al cargar las películas, intente más tarde</p>}
       <div
-        ref={ref}
+        ref={observerTargetRef}
         className={styles.observerTarget}
-      >
-        {isLoading && <Loader />}
-      </div>
+      ></div>
     </>
   )
 }
