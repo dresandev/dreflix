@@ -21,10 +21,14 @@ export const useFetchMovies = (
   const { page, isLoading } = dataInfo
 
   useEffect(() => {
-    if (!isInView || isLoading || page > 15) return
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant'
+    })
+  }, [])
 
-    console.log({ isInView })
-    console.log({ page })
+  useEffect(() => {
+    if (!isInView || isLoading || page > 15) return
 
     const loadMoreMovies = async () => {
       try {

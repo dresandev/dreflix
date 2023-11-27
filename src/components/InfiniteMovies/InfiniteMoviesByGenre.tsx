@@ -1,9 +1,9 @@
 'use client'
 
 import { Movie } from '@models'
+import { getMoviesByGenre } from '@actions/movies-actions'
 import { useFetchMovies } from '@hooks/use-fetch-movies'
 import { InfiniteMovieGrid } from '@components/InfiniteMovieGrid'
-import { getMoviesByGenre } from '@actions/movies-actions'
 
 interface InfiniteMoviesByGenreProps {
   initMovies: Movie[] | null

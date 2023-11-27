@@ -24,7 +24,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   const {
     value: dropdownIsOpen,
     setFalse: closeDropdown,
-    toggle: toggleDropdownIsOpen
+    toggle: toggleDropdown
   } = useBoolean(false)
 
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -47,7 +47,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
             styles.labelBtn,
             dropdownIsOpen && styles.labelBtnOpen
           )}
-          onClick={toggleDropdownIsOpen}
+          onClick={toggleDropdown}
         >
           {label}
           <ChevronArrow

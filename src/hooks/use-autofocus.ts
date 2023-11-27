@@ -1,13 +1,13 @@
 import { useRef, useEffect } from 'react'
 
-export const useAutoFocus = ({ setFocus = true }) => {
+export const useAutoFocus = (force = true) => {
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    if (setFocus && inputRef.current) {
+    if (force && inputRef.current) {
       inputRef.current.focus()
     }
-  }, [setFocus])
+  }, [force])
 
   return inputRef
 }

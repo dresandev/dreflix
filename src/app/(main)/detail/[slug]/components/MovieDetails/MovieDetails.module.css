@@ -1,6 +1,6 @@
 .detailsWrapper {
   position: relative;
-  padding-block-start: 38vw;
+  padding-block-start: 42vw;
   margin-block-end: 5rem;
 }
 
@@ -37,18 +37,6 @@
   gap: 2rem;
 }
 
-@media (orientation: portrait) {
-  .detailsWrapper {
-    padding-block-start: 42vw;
-  }
-}
-
-@media (orientation: landscape) {
-  .detailsWrapper {
-    padding-block-start: 15vw;
-  }
-}
-
 @media screen and (min-width: 967px) {
   .detailsWrapper {
     min-block-size: calc(100vh - var(--header-block-size));
@@ -66,5 +54,24 @@
   .title {
     max-inline-size: calc(100vw / 2.5);
     margin-block-end: 3rem;
+  }
+}
+
+@media (orientation: portrait) {
+  .detailsWrapper {
+    padding-block-start: 42vw;
+    min-block-size: auto;
+  }
+
+  .details {
+    position: static;
+    padding-inline: var(--inline-space);
+    margin-block-end: var(--inline-space);
+  }
+}
+
+@media (orientation: landscape) {
+  .detailsWrapper {
+    padding-block-start: 20vw;
   }
 }

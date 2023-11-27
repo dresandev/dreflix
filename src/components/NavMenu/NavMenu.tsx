@@ -25,7 +25,7 @@ export const NavMenu: React.FC<MenuProps> = ({
   const menuRef = useRef<HTMLDivElement>(null)
   const {
     value: isMenuOpen,
-    toggle: toggleIsMenuOpen,
+    toggle: toggleMenu,
     setFalse: closeMenu
   } = useBoolean(false)
   useToggleBodyOverflow(isMenuOpen)
@@ -48,7 +48,7 @@ export const NavMenu: React.FC<MenuProps> = ({
           styles.menuBtn,
           isMenuOpen && styles.activeMenuBtn
         )}
-        onClick={toggleIsMenuOpen}
+        onClick={toggleMenu}
       >
         <span className={styles.menuBtnLine}></span>
         <span className={styles.menuBtnLine}></span>

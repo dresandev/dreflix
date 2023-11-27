@@ -15,10 +15,10 @@ import { CloseIcon, SearchIcon } from '@components/SVG'
 import styles from './SearchMenu.module.css'
 
 const SEARCH_RESULTS = [
-  // 'Avengers',
-  // 'Avengers los',
-  // 'Avengers cabezaa',
-  // 'Avengers inicios',
+  'Avengers',
+  'Avengers los',
+  'Avengers cabezaa',
+  'Avengers inicios',
 ] as const
 
 interface SearchMenuProps {
@@ -31,10 +31,15 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
   const searchMenuRef = useRef<HTMLDivElement>(null)
   const {
     value: isSearchMenuOpen,
-    toggle: toggleIsSearchMenuOpen,
+    toggle: toggleSearchMenu,
     setFalse: closeSearchMenu,
   } = useBoolean()
-  const inputRef = useAutoFocus({ setFocus: isSearchMenuOpen })
+  const {
+    value: isResultsVisible,
+    toggle: showResults,
+    setFalse: hideResults,
+  } = useBoolean()
+  const inputRef = useAutoFocus(isSearchMenuOpen)
   const { search_query, handleInputChange } = useForm({
     initState: {
       search_query: ''
@@ -56,7 +61,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
       <button
         aria-label='Buscar Película'
         className={styles.searchMenuBtn}
-        onClick={toggleIsSearchMenuOpen}
+        onClick={toggleSearchMenu}
       >
         {
           isSearchMenuOpen
@@ -84,12 +89,17 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
             autoCorrect='off'
             value={search_query}
             onChange={handleInputChange}
+            onFocus={showResults}
+            onBlur={hideResults}
           />
         </div>
 
         {
           (SEARCH_RESULTS.length > 0) && (
-            <ul className={clsx(styles.searchResults)}>
+            <ul className={clsx(
+              styles.results,
+              isResultsVisible && styles.resultsVisible
+            )}>
               {
                 SEARCH_RESULTS.map(result => {
                   const key = crypto.randomUUID()

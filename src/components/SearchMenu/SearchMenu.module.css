@@ -85,13 +85,18 @@
     font-size: 1.8rem;
   }
 
-  .searchResults {
+  .results {
     position: absolute;
     inset-block-start: calc(100% + 0.5rem);
     inset-inline: 0;
+    display: none;
     padding-block: 1rem;
     background-color: var(--secondary-bg-color);
     border-radius: var(--border-radius);
     overflow: hidden;
+  }
+
+  .resultsVisible {
+    display: block;
   }
 }

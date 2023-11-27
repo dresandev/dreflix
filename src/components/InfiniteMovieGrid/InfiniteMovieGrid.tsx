@@ -45,12 +45,12 @@ export const InfiniteMovieGrid: React.FC<InfiniteMovieGridProps> = ({
           })
         }
       </div>
-      {isLoading && <Loader />}
-      {hasError && <p>Error al cargar las películas, intente más tarde</p>}
       <div
         ref={observerTargetRef}
         className={styles.observerTarget}
       ></div>
+      {isLoading && <Loader />}
+      {hasError && <p>Error al cargar las películas, intente más tarde</p>}
     </>
   )
 }
