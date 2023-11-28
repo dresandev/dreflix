@@ -1,10 +1,10 @@
 'use client'
 
-import { Movie } from '@models'
-import { MovieListType } from '@types'
-import { useFetchMovies } from '@hooks/use-fetch-movies'
-import { InfiniteMovieGrid } from '@components/InfiniteMovieGrid'
-import { getMovieList } from '@actions/movies-actions'
+import { Movie } from '~/models'
+import { MovieListType } from '~/types'
+import { useFetchMovies } from '~/hooks/use-fetch-movies'
+import { InfiniteMovieGrid } from '~/components/InfiniteMovieGrid'
+import { getMovieList } from '~/actions/movies-actions'
 
 interface InfiniteMovieListProps {
   initMovies: Movie[] | null

@@ -1,7 +1,7 @@
 'use client'
 
 import clsx from 'clsx'
-import { useIsInView } from '@hooks'
+import { useIsInView } from '~/hooks'
 
 interface ObservedTransitionProps {
   children: React.ReactNode

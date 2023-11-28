@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import { useTrailerModalStore } from '@store/trailer-modal-store'
-import { InPortal } from '@components/InPortal'
-import { CloseIcon } from '@components/SVG'
+import { useTrailerModalStore } from '~/store/trailer-modal-store'
+import { InPortal } from '~/components/InPortal'
+import { CloseIcon } from '~/components/SVG'
 import styles from './TrailerModal.module.css'
 
 export const TrailerModal = () => {

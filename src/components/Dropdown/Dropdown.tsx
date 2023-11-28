@@ -6,8 +6,8 @@ import {
   useOnClickOutside,
   useBoolean,
   useOnPathnameChange
-} from '@hooks'
-import { ChevronArrow } from '@components/SVG'
+} from '~/hooks'
+import { ChevronArrow } from '~/components/SVG'
 import styles from './Dropdown.module.css'
 
 interface DropdownProps {

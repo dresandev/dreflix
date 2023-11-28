@@ -1,7 +1,7 @@
 import type { MutableRefObject } from 'react'
-import { Movie } from '@models'
-import { MovieCard } from '@components/MovieCard'
-import { Loader } from '@components/Loader'
+import { Movie } from '~/models'
+import { MovieCard } from '~/components/MovieCard'
+import { Loader } from '~/components/Loader'
 import styles from './InfiniteMovieGrid.module.css'
 
 interface InfiniteMovieGridProps {

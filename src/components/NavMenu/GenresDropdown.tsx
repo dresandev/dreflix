@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { simpleSlugify } from '@utils/simple-slugify'
-import { getTranslatedMovieGenres } from '@helpers'
-import { Dropdown } from '@components/Dropdown'
+import { simpleSlugify } from '~/utils/simple-slugify'
+import { getTranslatedMovieGenres } from '~/helpers'
+import { Dropdown } from '~/components/Dropdown'
 import styles from './NavMenu.module.css'
 
 export const GenresDropdown = async () => {

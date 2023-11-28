@@ -1,4 +1,4 @@
-import { IMAGES_BASE_URL } from '@constants'
+import { IMAGES_BASE_URL } from '~/constants'
 import styles from './HeroImage.module.css'
 
 interface HeroProps {

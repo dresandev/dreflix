@@ -1,9 +1,9 @@
 import { Fragment } from 'react'
-import { Genre } from '@models'
-import { formatDuration } from '@helpers'
-import { TrailerButton } from '@components/TrailerButton'
-import { IconButton } from '@components/IconButton'
-import { HeartIcon, PlusIcon } from '@components/SVG'
+import { Genre } from '~/models'
+import { formatDuration } from '~/helpers'
+import { TrailerButton } from '~/components/TrailerButton'
+import { IconButton } from '~/components/IconButton'
+import { HeartIcon, PlusIcon } from '~/components/SVG'
 import styles from './MovieDetails.module.css'
 
 interface MovieDetailsProps {

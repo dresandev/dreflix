@@ -1,16 +1,10 @@
 'use client'
 
-import { useRef } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { movieListPagesInfo } from '@data/movie-list-pages'
-import {
-  useToggleBodyOverflow,
-  useBoolean,
-  useOnClickOutside,
-  useOnPathnameChange
-} from '@hooks'
-import { Dropdown } from '@components/Dropdown'
+import { movieListPagesInfo } from '~/data/movie-list-pages-info'
+import { useMenu } from '~/hooks'
+import { Dropdown } from '~/components/Dropdown'
 import styles from './NavMenu.module.css'
 
 interface MenuProps {
@@ -22,18 +16,7 @@ export const NavMenu: React.FC<MenuProps> = ({
   children,
   className
 }) => {
-  const menuRef = useRef<HTMLDivElement>(null)
-  const {
-    value: isMenuOpen,
-    toggle: toggleMenu,
-    setFalse: closeMenu
-  } = useBoolean(false)
-  useToggleBodyOverflow(isMenuOpen)
-  useOnClickOutside(menuRef, closeMenu)
-
-  useOnPathnameChange(() => {
-    isMenuOpen && closeMenu()
-  })
+  const { menuRef, isMenuOpen, toggleMenu } = useMenu()
 
   const childrenArray = Array.isArray(children) ? children : [children]
 

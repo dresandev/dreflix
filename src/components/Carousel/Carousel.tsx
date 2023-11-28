@@ -2,9 +2,9 @@
 
 import clsx from 'clsx'
 import { useSnapCarousel } from 'react-snap-carousel'
-import { useHasMounted } from '@hooks'
-import { FadeIn } from '@components/FadeIn'
-import { ChevronArrow } from '@components/SVG'
+import { useHasMounted } from '~/hooks'
+import { FadeIn } from '~/components/FadeIn'
+import { ChevronArrow } from '~/components/SVG'
 import styles from './Carousel.module.css'
 
 interface CarouselProps {

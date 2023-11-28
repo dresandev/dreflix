@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
-import { MovieListType } from '@types'
-import { getMovieListPageInfo } from '@helpers'
-import { getMovieList } from '@actions/movies-actions'
-import { PageGradient } from '@components/PageGradient'
-import { InfiniteMovieList } from '@components/InfiniteMovies'
+import { MovieListType } from '~/types'
+import { getMovieListPageInfo } from '~/helpers'
+import { getMovieList } from '~/actions/movies-actions'
+import { PageGradient } from '~/components/PageGradient'
+import { InfiniteMovieList } from '~/components/InfiniteMovies'
 import styles from './page.module.css'
 
 interface MovieListPageProps {

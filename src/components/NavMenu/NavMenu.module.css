@@ -46,7 +46,8 @@
 }
 
 .dropdownLink {
-  display: block;
+  display: inline-block;
+  inline-size: 100%;
   padding: var(--button-padding);
 }
 
@@ -70,5 +71,9 @@
     transition: unset;
     overflow-y: unset;
     display: flex;
+  }
+
+  .dropdownLink {
+    inline-size: 20rem;
   }
 }

@@ -18,6 +18,7 @@
 }
 
 .posterImage {
+  background-color: var(--card-bg-color);
   inline-size: 100%;
   block-size: auto;
   aspect-ratio: 2 / 3;
@@ -50,7 +51,7 @@
     flex-direction: column;
     padding: 1rem;
     font-size: var(--secondary-font-size);
-    background-color: hsl(225, 10%, 15%);
+    background-color: var(--card-bg-color);
     opacity: 0;
     visibility: hidden;
     transition-property: opacity, visibility;

@@ -1,6 +1,6 @@
-import { Movie } from '@models'
-import { CarouselSection } from '@components/CarouselSection'
-import { MovieCard } from '@components/MovieCard'
+import { Movie } from '~/models'
+import { CarouselSection } from '~/components/CarouselSection'
+import { MovieCard } from '~/components/MovieCard'
 import styles from './SimilarMovies.module.css'
 
 interface SimilarMoviesProps {

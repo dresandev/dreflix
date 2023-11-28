@@ -4,9 +4,9 @@ import {
   getMovieDetails,
   getMovieTrailerKey,
   getSimilarMovies
-} from '@actions/movies-actions'
-import { CarouselSection } from '@components/CarouselSection'
-import { ActorCard } from '@components/ActorCard'
+} from '~/actions/movies-actions'
+import { CarouselSection } from '~/components/CarouselSection'
+import { ActorCard } from '~/components/ActorCard'
 import { HeroImage } from './components/HeroImage'
 import { MovieDetails } from './components/MovieDetails'
 import { SimilarMovies } from './components/SimilarMovies'

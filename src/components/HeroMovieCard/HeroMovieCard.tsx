@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { HeroMovie } from '@types'
-import { ObservedTransition } from '@components/ObservedTransition'
+import { HeroMovie } from '~/types'
+import { ObservedTransition } from '~/components/ObservedTransition'
 import styles from './HeroMovieCard.module.css'
 
 export const HeroMovieCard: React.FC<HeroMovie> = ({

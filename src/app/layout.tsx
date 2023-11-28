@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from 'next'
 import { Fira_Sans } from 'next/font/google'
-import { Header } from '@components/Header'
-import { Footer } from '@components/Footer'
-import { TrailerModalCC } from '@components/TrailerModalCC'
-import '@styles/reset.css'
-import '@styles/globals.css'
+import { Header } from '~/components/Header'
+import { Footer } from '~/components/Footer'
+import { TrailerModalCC } from '~/components/TrailerModalCC'
+import '~/styles/reset.css'
+import '~/styles/globals.css'
 
 export const metadata: Metadata = {
   title: 'Dreflix: Explora y encuentra la película que tanto deseas encontrar',

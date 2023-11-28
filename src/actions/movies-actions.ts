@@ -4,7 +4,7 @@ import {
   API_BASE_URL,
   API_LANGUAGE,
   COMMON_GET_OPTIONS
-} from '@constants'
+} from '~/constants'
 import {
   MovieListResponse,
   MovieDetails,
@@ -14,8 +14,8 @@ import {
   GenresResponse,
   Movie,
   Genre,
-} from '@models'
-import { MovieListType } from '@types'
+} from '~/models'
+import { MovieListType } from '~/types'
 
 export const getMovieList = async (
   movieListType: MovieListType,

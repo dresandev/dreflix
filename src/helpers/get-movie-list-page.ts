@@ -1,5 +1,5 @@
-import { movieListPagesInfo } from '@data/movie-list-pages'
-import { PageInfo } from '@types'
+import { movieListPagesInfo } from '~/data/movie-list-pages-info'
+import { PageInfo } from '~/types'
 
 export const getMovieListPageInfo = (
   slug: string

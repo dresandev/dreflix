@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import clsx from 'clsx'
-import { IMAGES_BASE_URL } from '@constants'
-import { formatDate } from '@helpers'
-import { TrailerButton } from '@components/TrailerButton'
-import { IconButton } from '@components/IconButton'
-import { HeartIcon, PlusIcon } from '@components/SVG'
-import { NoImage } from '@components/NoImage'
+import { IMAGES_BASE_URL } from '~/constants'
+import { formatDate } from '~/helpers'
+import { TrailerButton } from '~/components/TrailerButton'
+import { IconButton } from '~/components/IconButton'
+import { HeartIcon, PlusIcon } from '~/components/SVG'
+import { NoImage } from '~/components/NoImage'
 import styles from './MovieCard.module.css'
 
 interface MovieCardProps {

@@ -1,6 +1,6 @@
-import { HeroMovie } from '@types'
+import { HeroMovie } from '~/types'
 
-const base_url = '/images'
+const base_url = '/images/hero-carousel'
 
 export const heroMovies: HeroMovie[] = [
   {

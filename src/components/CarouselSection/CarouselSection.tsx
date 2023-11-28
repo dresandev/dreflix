@@ -1,4 +1,4 @@
-import { Carousel } from '@components/Carousel'
+import { Carousel } from '~/components/Carousel'
 import styles from './CarouselSection.module.css'
 import clsx from 'clsx'
 

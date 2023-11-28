@@ -1,4 +1,4 @@
-import { getMonthName } from '@utils'
+import { getMonthName } from '~/utils'
 
 export const formatDate = (originalDate: string) => {
   if (!originalDate) return ''

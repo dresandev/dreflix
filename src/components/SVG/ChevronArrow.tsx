@@ -1,5 +1,5 @@
 import { SVGProps } from 'react'
-import { Direction } from '@types'
+import { Direction } from '~/types'
 
 interface ChevronArrowProps extends SVGProps<SVGSVGElement> {
   direction?: Direction

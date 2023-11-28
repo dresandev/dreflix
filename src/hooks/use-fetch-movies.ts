@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Movie } from '@models'
+import { Movie } from '~/models'
 import { useIsInView } from './use-is-in-view'
 
 export const useFetchMovies = (

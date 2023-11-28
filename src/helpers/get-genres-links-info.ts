@@ -1,4 +1,4 @@
-import { getMovieListGenres } from '@actions/movies-actions'
+import { getMovieListGenres } from '~/actions/movies-actions'
 
 export const getTranslatedMovieGenres = async () => {
   const [spanishGenresResult, englishGenresResult] = await Promise.allSettled([

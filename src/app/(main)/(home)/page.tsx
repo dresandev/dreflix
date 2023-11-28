@@ -1,7 +1,7 @@
-import { getMovieList } from '@actions/movies-actions'
-import { HeroCarousel } from '@components/HeroCarousel'
-import { CarouselSection } from '@components/CarouselSection'
-import { MovieCard } from '@components/MovieCard'
+import { getMovieList } from '~/actions/movies-actions'
+import { HeroCarousel } from '~/components/HeroCarousel'
+import { CarouselSection } from '~/components/CarouselSection'
+import { MovieCard } from '~/components/MovieCard'
 import styles from './page.module.css'
 
 const movieListTitle = [

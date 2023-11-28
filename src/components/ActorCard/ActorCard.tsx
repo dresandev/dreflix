@@ -1,6 +1,6 @@
 import clsx from 'clsx'
-import { IMAGES_BASE_URL } from '@constants'
-import { NoImage } from '@components/NoImage'
+import { IMAGES_BASE_URL } from '~/constants'
+import { NoImage } from '~/components/NoImage'
 import styles from './ActorCard.module.css'
 
 interface ActorCardProps {

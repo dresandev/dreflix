@@ -1,17 +1,14 @@
 'use client'
 
-import { useRef } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
 import {
-  useToggleBodyOverflow,
   useBoolean,
-  useOnClickOutside,
   useAutoFocus,
   useForm,
-  useOnPathnameChange
-} from '@hooks'
-import { CloseIcon, SearchIcon } from '@components/SVG'
+  useMenu
+} from '~/hooks'
+import { CloseIcon, SearchIcon } from '~/components/SVG'
 import styles from './SearchMenu.module.css'
 
 const SEARCH_RESULTS = [
@@ -28,43 +25,31 @@ interface SearchMenuProps {
 export const SearchMenu: React.FC<SearchMenuProps> = ({
   className
 }) => {
-  const searchMenuRef = useRef<HTMLDivElement>(null)
-  const {
-    value: isSearchMenuOpen,
-    toggle: toggleSearchMenu,
-    setFalse: closeSearchMenu,
-  } = useBoolean()
+  const { menuRef, isMenuOpen, toggleMenu } = useMenu()
   const {
     value: isResultsVisible,
     toggle: showResults,
     setFalse: hideResults,
   } = useBoolean()
-  const inputRef = useAutoFocus(isSearchMenuOpen)
+  const inputRef = useAutoFocus(isMenuOpen)
   const { search_query, handleInputChange } = useForm({
     initState: {
       search_query: ''
     }
   })
 
-  useOnClickOutside(searchMenuRef, closeSearchMenu)
-  useToggleBodyOverflow(isSearchMenuOpen)
-
-  useOnPathnameChange(() => {
-    isSearchMenuOpen && closeSearchMenu()
-  })
-
   return (
     <div
-      ref={searchMenuRef}
+      ref={menuRef}
       className={clsx(className)}
     >
       <button
         aria-label='Buscar Película'
         className={styles.searchMenuBtn}
-        onClick={toggleSearchMenu}
+        onClick={toggleMenu}
       >
         {
-          isSearchMenuOpen
+          isMenuOpen
             ? <CloseIcon />
             : <SearchIcon />
         }
@@ -73,7 +58,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
       <div
         className={clsx(
           styles.searchMenu,
-          isSearchMenuOpen && styles.searchMenuOpen,
+          isMenuOpen && styles.searchMenuOpen,
         )}
       >
         <div className={styles.searchBarWrapper}>
