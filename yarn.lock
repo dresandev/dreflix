@@ -253,14 +253,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.2.38":
-  version: 18.2.38
-  resolution: "@types/react@npm:18.2.38"
+"@types/react@npm:18.2.39":
+  version: 18.2.39
+  resolution: "@types/react@npm:18.2.39"
   dependencies:
     "@types/prop-types": "npm:*"
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 9f9b9925c979e848d572dce6fff34951708127ba6b1fd4306c93fbcab74f5c6cff2b2e47d4222339eeb6c19d264e93450cb2ad6b255c73c536d0a1e2093cc98a
+  checksum: 870f7774c676ae0f3ab6339a62b3315f5a296e89412358b15a5249a61e781a8807a2253ef7ad2ec98e7a5bea1e8c3ddd95b02226d6b8ac4a085da59b4a496564
   languageName: node
   linkType: hard
 
@@ -757,7 +757,7 @@ __metadata:
   resolution: "dreflix@workspace:."
   dependencies:
     "@types/node": "npm:20.10.0"
-    "@types/react": "npm:18.2.38"
+    "@types/react": "npm:18.2.39"
     "@types/react-dom": "npm:18.2.17"
     clsx: "npm:2.0.0"
     eslint: "npm:8.54.0"
@@ -767,7 +767,7 @@ __metadata:
     react-dom: "npm:18.2.0"
     react-snap-carousel: "npm:0.3.2"
     typescript: "npm:5.3.2"
-    zustand: "npm:4.4.6"
+    zustand: "npm:4.4.7"
   languageName: unknown
   linkType: soft
 
@@ -2901,9 +2901,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zustand@npm:4.4.6":
-  version: 4.4.6
-  resolution: "zustand@npm:4.4.6"
+"zustand@npm:4.4.7":
+  version: 4.4.7
+  resolution: "zustand@npm:4.4.7"
   dependencies:
     use-sync-external-store: "npm:1.2.0"
   peerDependencies:
@@ -2917,6 +2917,6 @@ __metadata:
       optional: true
     react:
       optional: true
-  checksum: e2789fe5cc0f8806815afeed47d56eb02d30e872d61145e2bdd0456b16de5f59d20e2a957c34ebc9ac00f150165e89304d15a998b05476abcb486a521e77e448
+  checksum: 572e42d912362eb3aabde9a37bca47caa547391fc4563e41444d9aef7ca453ca730ee1f00aae4b25c2635ca293d69c23ab0a41688cd4db8394545732a2d9c236
   languageName: node
   linkType: hard

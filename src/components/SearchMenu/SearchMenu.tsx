@@ -10,6 +10,8 @@ import {
 } from '~/hooks'
 import { CloseIcon, SearchIcon } from '~/components/SVG'
 import styles from './SearchMenu.module.css'
+import { getMovieKeywords } from '~/actions/movies-actions'
+import { useState } from 'react'
 
 const SEARCH_RESULTS = [
   'Avengers',
@@ -38,6 +40,13 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
     }
   })
 
+  const [searchResults, setSearchResults] = useState([])
+
+  const onInputChange = async (e) => {
+    handleInputChange(e)
+    const newSearchResults = await getMovieKeywords(search_query)
+  }
+
   return (
     <div
       ref={menuRef}
@@ -61,7 +70,10 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
           isMenuOpen && styles.searchMenuOpen,
         )}
       >
-        <div className={styles.searchBarWrapper}>
+        <form
+          className={styles.searchBarWrapper}
+          action={`/search?search_query=${search_query}`}
+        >
           <SearchIcon />
           <input
             ref={inputRef}
@@ -77,16 +89,16 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
             onFocus={showResults}
             onBlur={hideResults}
           />
-        </div>
+        </form>
 
         {
-          (SEARCH_RESULTS.length > 0) && (
+          (searchResults.length > 0) && (
             <ul className={clsx(
               styles.results,
               isResultsVisible && styles.resultsVisible
             )}>
               {
-                SEARCH_RESULTS.map(result => {
+                searchResults.map(result => {
                   const key = crypto.randomUUID()
                   return (
                     <li key={key}>

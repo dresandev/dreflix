@@ -23,7 +23,7 @@ export const TrailerModal = () => {
     <InPortal id='modal-container'>
       <div className={styles.modal}>
         <button
-          className={styles.closeModal}
+          className={styles.closeModalBtn}
           onClick={toggleShowTrailerModal}
         >
           <CloseIcon />

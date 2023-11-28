@@ -6,7 +6,7 @@ import {
   COMMON_GET_OPTIONS
 } from '~/constants'
 import {
-  MovieListResponse,
+  GenericResponse,
   MovieDetails,
   MovieVideosResponse,
   MovieCreditsResponse,
@@ -27,8 +27,8 @@ export const getMovieList = async (
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
     if (result.status === 200) {
-      const { results } = await result.json() as MovieListResponse
-      const movies = await setTrailerKeyToMovies(results)
+      const { results } = await result.json() as GenericResponse
+      const movies = await setTrailerKeyToMovies(results as Movie[])
       return movies
     }
 
@@ -69,8 +69,8 @@ export const getSimilarMovies = async (
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
     if (result.status === 200) {
-      const { results } = await result.json() as MovieListResponse
-      const movies = await setTrailerKeyToMovies(results)
+      const { results } = await result.json() as GenericResponse
+      const movies = await setTrailerKeyToMovies(results as Movie[])
       return movies
     }
 
@@ -163,8 +163,8 @@ export const getMoviesByGenre = async (
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
     if (result.status === 200) {
-      const { results } = await result.json() as MovieListResponse
-      const movies = await setTrailerKeyToMovies(results)
+      const { results } = await result.json() as GenericResponse
+      const movies = await setTrailerKeyToMovies(results as Movie[])
       return movies
     }
 
@@ -172,6 +172,48 @@ export const getMoviesByGenre = async (
   } catch (error) {
     console.error('Error in getMoviesByGenre:', error)
     throw new Error('Error fetching movies by genre')
+  }
+}
+
+export const getMovieKeywords = async (
+  query: string,
+): Promise<string[] | null> => {
+  try {
+    const url = `${API_BASE_URL}/movie/keyword?query=${query}&page=1`
+
+    const result = await fetch(url, COMMON_GET_OPTIONS)
+
+    if (result.status === 200) {
+      const data = await result.json() as GenericResponse
+      return data.results as string[]
+    }
+
+    return null
+  } catch (error) {
+    console.error('Error in getMovieKeywords:', error)
+    throw new Error('Error fetching movie keywords')
+  }
+}
+
+export const getMoviesByKeyword = async (
+  query: string,
+  page = 1
+): Promise<Movie[] | null> => {
+  try {
+    const url = `${API_BASE_URL}/search/movie?query=${query}&include_adult=false&language=${API_LANGUAGE}&page=${page}`
+
+    const result = await fetch(url, COMMON_GET_OPTIONS)
+
+    if (result.status === 200) {
+      const { results } = await result.json() as GenericResponse
+      const movies = await setTrailerKeyToMovies(results as Movie[])
+      return movies
+    }
+
+    return null
+  } catch (error) {
+    console.error('Error in getMovieList:', error)
+    throw new Error('Error fetching movie list')
   }
 }
 

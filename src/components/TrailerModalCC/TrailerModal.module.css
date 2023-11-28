@@ -7,10 +7,18 @@
   backdrop-filter: grayscale(100%) blur(0.6rem);
 }
 
-.closeModal {
+.closeModalBtn {
   position: absolute;
   inset-block-start: 2rem;
   inset-inline-end: 2rem;
+  border-radius: var(--border-radius);
+  padding: 0.4rem;
+}
+
+@media (hover: hover) {
+  .closeModalBtn:is(:hover) {
+    background-color: var(--secondary-bg-color);
+  }
 }
 
 .trailerFrame {
