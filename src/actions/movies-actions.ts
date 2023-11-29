@@ -14,6 +14,7 @@ import {
   GenresResponse,
   Movie,
   Genre,
+  MovieTitle,
 } from '~/models'
 import { MovieListType } from '~/types'
 
@@ -175,32 +176,34 @@ export const getMoviesByGenre = async (
   }
 }
 
-export const getMovieKeywords = async (
-  query: string,
-): Promise<string[] | null> => {
+export const getMovieTitles = async (
+  title: string,
+): Promise<MovieTitle[] | null> => {
   try {
-    const url = `${API_BASE_URL}/movie/keyword?query=${query}&page=1`
+    const movies = await getMoviesByTitle(title)
 
-    const result = await fetch(url, COMMON_GET_OPTIONS)
+    if (!movies) return null
 
-    if (result.status === 200) {
-      const data = await result.json() as GenericResponse
-      return data.results as string[]
-    }
+    const movieTitles = movies.map(({ id, title }) => ({
+      id,
+      name: title
+    }))
 
-    return null
+    movieTitles.length = 10
+
+    return movieTitles
   } catch (error) {
-    console.error('Error in getMovieKeywords:', error)
-    throw new Error('Error fetching movie keywords')
+    console.error('Error in getMovieTitles:', error)
+    throw new Error('Error movie titles')
   }
 }
 
-export const getMoviesByKeyword = async (
-  query: string,
+export const getMoviesByTitle = async (
+  title: string,
   page = 1
 ): Promise<Movie[] | null> => {
   try {
-    const url = `${API_BASE_URL}/search/movie?query=${query}&include_adult=false&language=${API_LANGUAGE}&page=${page}`
+    const url = `${API_BASE_URL}/search/movie?query=${title}&include_adult=false&language=${API_LANGUAGE}&page=${page}`
 
     const result = await fetch(url, COMMON_GET_OPTIONS)
 

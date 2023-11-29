@@ -10,19 +10,31 @@ interface SimilarMoviesProps {
 export const SimilarMovies: React.FC<SimilarMoviesProps> = ({
   similarMovies
 }) => {
+  const title = 'Películas similares'
+  const hasSimilarMovies = similarMovies?.length
 
-  if (!similarMovies?.length) return (
-    <p className={styles.notFoundMessage}>
-      No se encontraron películas similares
-    </p>
+  if (!hasSimilarMovies) return (
+    <>
+      <h2 className='carouselSectionTitle'>{title}</h2>
+      <p className={styles.notFoundMessage}>
+        No se encontraron películas similares
+      </p>
+    </>
   )
 
   return (
     <>
-      <CarouselSection title='Películas similares'>
+      <CarouselSection title={title}>
         {
           similarMovies.map(similarMovie => {
-            const { id, poster_path, title, release_date, overview, trailerKey } = similarMovie
+            const {
+              id,
+              poster_path,
+              title,
+              release_date,
+              overview,
+              trailerKey
+            } = similarMovie
 
             return (
               <MovieCard

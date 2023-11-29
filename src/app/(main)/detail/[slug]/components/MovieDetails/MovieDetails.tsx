@@ -46,7 +46,8 @@ export const MovieDetails: React.FC<MovieDetailsProps> = ({
             {
               genres.map(({ id, name }, i) => (
                 <Fragment key={id}>
-                  <span>{name}</span>{++i !== genres.length && <>,&nbsp;</>}
+                  <span>{name}</span>
+                  {++i !== genres.length && <>,&nbsp;</>}
                 </Fragment>
               ))
             }

@@ -2,6 +2,7 @@
 
 import clsx from 'clsx'
 import { useSnapCarousel } from 'react-snap-carousel'
+import { ensureArray } from '~/utils'
 import { useHasMounted } from '~/hooks'
 import { FadeIn } from '~/components/FadeIn'
 import { ChevronArrow } from '~/components/SVG'
@@ -33,7 +34,7 @@ export const Carousel: React.FC<CarouselProps> = ({
     snapPointIndexes
   } = useSnapCarousel()
 
-  const childrenArray = Array.isArray(children) ? children : [children]
+  const childrenArray = ensureArray(children)
 
   const renderPagination = () => {
     if (!showPagination) return

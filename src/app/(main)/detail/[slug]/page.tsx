@@ -64,7 +64,12 @@ export default async function DetailPage({
       <CarouselSection title='Reparto principal'>
         {
           mainCast?.map(actor => {
-            const { id, profile_path, original_name, character } = actor
+            const {
+              id,
+              profile_path,
+              original_name,
+              character
+            } = actor
 
             return (
               <ActorCard

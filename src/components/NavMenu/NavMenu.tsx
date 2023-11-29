@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import clsx from 'clsx'
+import { ensureArray } from '~/utils'
 import { movieListPagesInfo } from '~/data/movie-list-pages-info'
 import { useMenu } from '~/hooks'
 import { Dropdown } from '~/components/Dropdown'
@@ -18,7 +19,7 @@ export const NavMenu: React.FC<MenuProps> = ({
 }) => {
   const { menuRef, isMenuOpen, toggleMenu } = useMenu()
 
-  const childrenArray = Array.isArray(children) ? children : [children]
+  const childrenArray = ensureArray(children)
 
   return (
     <div

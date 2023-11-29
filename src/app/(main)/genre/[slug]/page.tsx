@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getRandomIndex } from '~/utils/get-random-index'
+import { getRandomIndex } from '~/utils'
 import { genrePageColors } from '~/data/genre-page-colors'
 import { getTranslatedMovieGenres } from '~/helpers'
 import { getMoviesByGenre } from '~/actions/movies-actions'

@@ -38,7 +38,14 @@ export default async function HomePage() {
             >
               {
                 movies.value?.map(movie => {
-                  const { id, title, poster_path, release_date, overview, trailerKey } = movie
+                  const {
+                    id,
+                    title,
+                    poster_path,
+                    release_date,
+                    overview,
+                    trailerKey
+                  } = movie
 
                   return (
                     <MovieCard

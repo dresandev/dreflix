@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
+import { InfiniteMovieResults } from '~/components/InfiniteMovies'
+import { getMoviesByTitle } from '~/actions/movies-actions'
 import styles from './page.module.css'
-import { InfiniteMovieResults } from '~/components/InfiniteMovies/InfiniteMovieResults'
-import { getMoviesByKeyword } from '~/actions/movies-actions'
 
 interface SearchPageProps {
   searchParams: {
@@ -21,7 +21,7 @@ export default async function SearchPage({
 
   const { search_query } = searchParams
 
-  const movies = await getMoviesByKeyword(search_query)
+  const movies = await getMoviesByTitle(search_query)
 
   return (
     <div className={styles.container}>

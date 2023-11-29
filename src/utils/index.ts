@@ -1,3 +1,5 @@
+export * from './ensure-array'
 export * from './get-month-name'
+export * from './get-random-index'
 export * from './simple-slugify'
 export * from './toggle-body-overflow'

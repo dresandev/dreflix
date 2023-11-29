@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import clsx from 'clsx'
+import { ensureArray } from '~/utils'
 import {
   useOnClickOutside,
   useBoolean,
@@ -34,7 +35,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
     dropdownIsOpen && closeDropdown()
   })
 
-  const childrenArray = Array.isArray(children) ? children : [children]
+  const childrenArray = ensureArray(children)
 
   return (
     <div

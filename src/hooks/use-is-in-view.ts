@@ -29,7 +29,9 @@ export const useIsInView = <T extends HTMLElement>(options?: UseIsInViewOptions)
         }
       },
       {
-        threshold: isInView ? isVisibleThreshold : notVisibleThreshold,
+        threshold: (isInView)
+          ? isVisibleThreshold
+          : notVisibleThreshold,
         ...observerOptions,
       }
     )

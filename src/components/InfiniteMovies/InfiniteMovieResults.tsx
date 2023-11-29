@@ -1,7 +1,7 @@
 'use client'
 
 import { Movie } from '~/models'
-import { getMoviesByKeyword } from '~/actions/movies-actions'
+import { getMoviesByTitle } from '~/actions/movies-actions'
 import { useFetchMovies } from '~/hooks/use-fetch-movies'
 import { InfiniteMovieGrid } from '~/components/InfiniteMovieGrid'
 
@@ -16,7 +16,7 @@ export const InfiniteMovieResults: React.FC<InfiniteMovieResultsProps> = ({
 }) => {
   const { observerTargetRef, movies, dataInfo } = useFetchMovies(
     initMovies || [],
-    (page) => getMoviesByKeyword(keyword, page)
+    (page) => getMoviesByTitle(keyword, page)
   )
   const { isLoading, hasError } = dataInfo
 
