@@ -39,9 +39,9 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
   const debouncedSearchQuery = useDebounce<string>(search_query, 200)
 
   useEffect(() => {
-    const fetchMovieTitles = async () => {
-      if (!debouncedSearchQuery.trim()) return
+    if (!debouncedSearchQuery.trim()) return
 
+    const fetchMovieTitles = async () => {
       try {
         const newSearchResults = await getMovieTitles(debouncedSearchQuery) || []
         setSearchResults(newSearchResults)
@@ -110,6 +110,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
                 type='reset'
                 name='reset'
                 value='Borrar'
+                aria-label='Borrar la consulta de búsqueda'
               />
             )
           }
