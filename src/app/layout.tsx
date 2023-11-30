@@ -32,7 +32,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang='es'>
+    <html lang='en'>
       <body className={firaSans.className}>
         <div className='__next'>
           <Header />

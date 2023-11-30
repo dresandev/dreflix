@@ -81,7 +81,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
 
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.overview}>
-          {overview || 'No se encontró una descripción en español :('}
+          {overview || 'No overview found'}
         </p>
 
         <div className={styles.cardActions}>
@@ -94,13 +94,13 @@ export const MovieCard: React.FC<MovieCardProps> = ({
             )
           }
           <IconButton
-            ariaLabel='Agregar a lista'
+            ariaLabel='Add to list'
             size='small'
           >
             <PlusIcon />
           </IconButton>
           <IconButton
-            ariaLabel='Agregar a favoritos'
+            ariaLabel='Mark as favorite'
             size='small'
           >
             <HeartIcon />

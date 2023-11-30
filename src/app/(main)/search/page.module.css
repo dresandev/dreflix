@@ -2,10 +2,8 @@
   padding-inline: var(--inline-space);
 }
 
-.filtersWrapper {
-  padding-block: 2rem;
-}
-
-.searchQuery span {
-  color: var(--secondary-color);
+.searchQuery{
+  font-size: 2rem;
+  font-weight: 500;
+  padding-block: 3rem;
 }

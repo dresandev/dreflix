@@ -1,11 +1,12 @@
 import type { MouseEventHandler, ReactNode } from 'react'
 import clsx from 'clsx'
+import { Size } from '~/types'
 import styles from './IconButton.module.css'
 
 interface IconButtonProps {
   children: ReactNode
   ariaLabel: string
-  size?: 'small' | 'medium'
+  size?: Size
   className?: string
   onClick?: MouseEventHandler<HTMLButtonElement>
 }

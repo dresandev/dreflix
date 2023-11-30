@@ -41,10 +41,6 @@
 }
 
 @media (hover: hover) {
-  .card {
-    block-size: 100%;
-  }
-
   .cardInfo {
     position: absolute;
     inset: 0;

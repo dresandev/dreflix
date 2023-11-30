@@ -75,7 +75,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
               href={movieDetailsPath}
               prefetch={false}
             >
-              Más Información
+              More details
             </Link>
           </div>
         </ObservedTransition>

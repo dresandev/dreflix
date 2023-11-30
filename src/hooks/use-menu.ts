@@ -6,23 +6,23 @@ import {
   useOnPathnameChange
 } from '~/hooks'
 
-export const useMenu = () => {
+export const useMenu = (toggleBodyOverflow?: boolean) => {
   const menuRef = useRef<HTMLDivElement>(null)
   const {
     value: isMenuOpen,
+    setTrue: openMenu,
+    setFalse: closeMenu,
     toggle: toggleMenu,
-    setFalse: closeMenu
   } = useBoolean(false)
-  useToggleBodyOverflow(isMenuOpen)
+  useToggleBodyOverflow(toggleBodyOverflow ?? isMenuOpen)
   useOnClickOutside(menuRef, closeMenu)
-
-  useOnPathnameChange(() => {
-    isMenuOpen && closeMenu()
-  })
+  useOnPathnameChange(() => isMenuOpen && closeMenu())
 
   return {
     menuRef,
     isMenuOpen,
+    openMenu,
+    closeMenu,
     toggleMenu,
   }
 }

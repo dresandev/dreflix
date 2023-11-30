@@ -9,7 +9,7 @@ export const CloseIcon = (props: SVGProps<SVGSVGElement>) => (
     fill='none'
     {...props}
   >
-    <title>Cerrar</title>
+    <title>Close</title>
     <line
       x1='8'
       y1='8'

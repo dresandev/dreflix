@@ -33,7 +33,7 @@ export const MovieDetails: React.FC<MovieDetailsProps> = ({
         </h1>
 
         <p className={styles.overview}>
-          {overview || 'No se encontró una descripción en español :('}
+          {overview || 'No overview found'}
         </p>
 
         <div className={styles.badges}>
@@ -68,10 +68,10 @@ export const MovieDetails: React.FC<MovieDetailsProps> = ({
               />
             )
           }
-          <IconButton ariaLabel='Agregar a lista'>
+          <IconButton ariaLabel='Add to list'>
             <PlusIcon />
           </IconButton>
-          <IconButton ariaLabel='Agregar a favoritos'>
+          <IconButton ariaLabel='Mark as favorite'>
             <HeartIcon />
           </IconButton>
         </div>

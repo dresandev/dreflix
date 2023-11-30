@@ -11,7 +11,7 @@ export const Header = () => {
       <header className={styles.header}>
         <Link
           className={styles.goHomeBtn}
-          aria-label='Ir al inicio'
+          aria-label='Go home'
           href='/'
           prefetch={false}
         >
@@ -26,7 +26,7 @@ export const Header = () => {
         <SearchMenu className={styles.searchMenu} />
         <button
           type='button'
-          aria-label='Abrir menú de cuenta de usuario'
+          aria-label='Open user account menu'
         >
           <img
             src='/images/profile-image.png'

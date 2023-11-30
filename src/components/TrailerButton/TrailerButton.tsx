@@ -24,7 +24,7 @@ export const TrailerButton: React.FC<TrailerButtonProps> = ({
   const buttonVariant = {
     icon: (
       <IconButton
-        ariaLabel='Ver trailer'
+        ariaLabel='Play Trailer'
         size='small'
         onClick={handleOnClick}
       >
@@ -39,7 +39,7 @@ export const TrailerButton: React.FC<TrailerButtonProps> = ({
         <div className={styles.playIcon}>
           <PlayIcon />
         </div>
-        <span className={styles.text}>Ver tráiler</span>
+        <span className={styles.text}>Play Trailer</span>
       </button>
     ),
   }

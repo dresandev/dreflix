@@ -6,9 +6,9 @@ import styles from './page.module.css'
 
 const movieListTitle = [
   'Popular',
-  'En cartelera hoy',
-  'Próximamente',
-  'Mejor valoradas',
+  'Now Playing',
+  'Upcoming',
+  'Top Rated',
 ]
 
 export default async function HomePage() {
@@ -21,7 +21,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <h1 className={styles.title}>Películas</h1>
+      <h1 className={styles.title}>Movies</h1>
       <HeroCarousel />
 
       {

@@ -1,18 +1,17 @@
 'use client'
 
 import { useState, useEffect, FormEvent } from 'react'
-import Link from 'next/link'
 import clsx from 'clsx'
 import { MovieTitle } from '~/models'
+import { getMovieTitles } from '~/actions/movies-actions'
 import {
-  useBoolean,
   useAutoFocus,
   useForm,
   useMenu,
-  useDebounce
+  useDebounce,
 } from '~/hooks'
-import { getMovieTitles } from '~/actions/movies-actions'
 import { CloseIcon, SearchIcon } from '~/components/SVG'
+import { SearchResults } from './SearchResults'
 import styles from './SearchMenu.module.css'
 
 interface SearchMenuProps {
@@ -22,29 +21,35 @@ interface SearchMenuProps {
 export const SearchMenu: React.FC<SearchMenuProps> = ({
   className
 }) => {
-  const { menuRef, isMenuOpen, toggleMenu } = useMenu()
   const {
-    value: isResultsVisible,
-    toggle: showResults,
-    setFalse: hideResults,
-  } = useBoolean()
-  const inputRef = useAutoFocus(isMenuOpen)
-  const { search_query, handleInputChange, resetForm } = useForm({
-    initState: {
-      search_query: ''
-    }
-  })
+    menuRef,
+    isMenuOpen,
+    toggleMenu
+  } = useMenu()
+  const {
+    menuRef: resultsRef,
+    isMenuOpen: isResultsOpen,
+    openMenu: openResults,
+  } = useMenu(false)
 
+  const inputRef = useAutoFocus(isMenuOpen)
+  const {
+    search_query,
+    handleInputChange,
+    resetForm
+  } = useForm({ initState: { search_query: '' } })
+  const debouncedSearchQuery = useDebounce(search_query, 100)
   const [searchResults, setSearchResults] = useState<MovieTitle[]>([])
-  const debouncedSearchQuery = useDebounce<string>(search_query, 200)
 
   useEffect(() => {
-    if (!debouncedSearchQuery.trim()) return
+    if (!debouncedSearchQuery.trim()) {
+      return setSearchResults([])
+    }
 
     const fetchMovieTitles = async () => {
       try {
-        const newSearchResults = await getMovieTitles(debouncedSearchQuery) || []
-        setSearchResults(newSearchResults)
+        const newSearchResults = await getMovieTitles(debouncedSearchQuery)
+        setSearchResults(newSearchResults || [])
       } catch (error) {
         console.log(error)
         setSearchResults([])
@@ -52,10 +57,10 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
     }
 
     fetchMovieTitles()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchQuery])
 
   const handleResetForm = () => {
+    inputRef.current?.focus()
     resetForm()
     setSearchResults([])
   }
@@ -70,14 +75,11 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
         className={styles.searchMenuBtn}
         onClick={toggleMenu}
       >
-        {
-          isMenuOpen
-            ? <CloseIcon />
-            : <SearchIcon />
-        }
+        {isMenuOpen ? <CloseIcon /> : <SearchIcon />}
       </button>
 
       <div
+        ref={resultsRef}
         className={clsx(
           styles.searchMenu,
           isMenuOpen && styles.searchMenuOpen,
@@ -101,46 +103,24 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
             required
             value={search_query}
             onChange={handleInputChange}
-            onFocus={showResults}
+            onFocus={openResults}
           />
           {
             search_query && (
               <input
+                aria-label='Borrar la consulta de búsqueda'
                 className={styles.resetSearchBar}
                 type='reset'
-                name='reset'
                 value='Borrar'
-                aria-label='Borrar la consulta de búsqueda'
               />
             )
           }
         </form>
 
-        {
-          searchResults.length > 0 && (
-            <ul className={clsx(
-              styles.results,
-              isResultsVisible && styles.resultsVisible
-            )}>
-              {
-                searchResults.map(({ name }) => {
-                  const key = crypto.randomUUID()
-                  return (
-                    <li key={key}>
-                      <Link
-                        className={styles.resultLink}
-                        href={`/search?search_query=${name}`}
-                        prefetch={false}
-                      >
-                        {name}
-                      </Link>
-                    </li>
-                  )
-                })
-              }
-            </ul>
-          )
-        }
+        <SearchResults
+          results={searchResults}
+          isResultsOpen={isResultsOpen}
+        />
       </div>
     </div>
   )

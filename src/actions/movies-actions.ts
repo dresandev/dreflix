@@ -96,8 +96,7 @@ export const getMovieMainCast = async (
       const mainCast = data.cast
         .filter(actor => actor.known_for_department === 'Acting')
         .sort((a, b) => a.order - b.order)
-
-      mainCast.length = 20
+        .slice(0, 20)
 
       return mainCast
     }
@@ -134,11 +133,9 @@ export const getMovieTrailerKey = async (
   }
 }
 
-export const getMovieListGenres = async (
-  language: string
-): Promise<Genre[] | null> => {
+export const getMovieListGenres = async (): Promise<Genre[] | null> => {
   try {
-    const url = `${API_BASE_URL}/genre/movie/list?language=${language}`
+    const url = `${API_BASE_URL}/genre/movie/list?language=${API_LANGUAGE}`
 
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
@@ -176,25 +173,30 @@ export const getMoviesByGenre = async (
   }
 }
 
+
 export const getMovieTitles = async (
   title: string,
 ): Promise<MovieTitle[] | null> => {
   try {
     const movies = await getMoviesByTitle(title)
 
-    if (!movies) return null
+    if (!movies?.length) return null
 
-    const movieTitles = movies.map(({ id, title }) => ({
-      id,
-      name: title
-    }))
+    const uniqueMovieTitles: MovieTitle[] = []
+    const uniqueNames = new Set<string>()
 
-    movieTitles.length = 10
+    for (const { id, title: name } of movies) {
+      const lowerCaseName = name.toLowerCase()
+      if (!uniqueNames.has(lowerCaseName)) {
+        uniqueNames.add(lowerCaseName)
+        uniqueMovieTitles.push({ id, name })
+      }
+    }
 
-    return movieTitles
+    return uniqueMovieTitles.slice(0, 10)
   } catch (error) {
     console.error('Error in getMovieTitles:', error)
-    throw new Error('Error movie titles')
+    throw new Error('Error fetching movie titles')
   }
 }
 

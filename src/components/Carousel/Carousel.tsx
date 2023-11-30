@@ -48,7 +48,7 @@ export const Carousel: React.FC<CarouselProps> = ({
                 pages.map((_, i) => (
                   <button
                     key={i}
-                    aria-label={`Mostrar slide ${i} de ${pages.length}`}
+                    aria-label={`Show slide ${i} of ${pages.length}`}
                     className={clsx(
                       styles.paginationBtn,
                       activePageIndex === i && styles.paginationBtnActive

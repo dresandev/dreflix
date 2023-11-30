@@ -55,7 +55,7 @@ body {
   isolation: isolate;
   display: flex;
   flex-direction: column;
-  height: inherit;
+  block-size: inherit;
 }
 
 main {

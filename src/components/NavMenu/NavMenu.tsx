@@ -27,7 +27,7 @@ export const NavMenu: React.FC<MenuProps> = ({
       ref={menuRef}
     >
       <button
-        aria-label='Abir menú'
+        aria-label='Open menu'
         className={clsx(
           styles.menuBtn,
           isMenuOpen && styles.activeMenuBtn
@@ -44,7 +44,7 @@ export const NavMenu: React.FC<MenuProps> = ({
           isMenuOpen && styles.menuOpen
         )}>
           <li>
-            <Dropdown label='Explorar'>
+            <Dropdown label='Explore'>
               {
                 movieListPagesInfo.map(({ slug, title }) => {
                   const key = crypto.randomUUID()

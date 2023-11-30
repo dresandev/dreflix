@@ -79,18 +79,6 @@
   cursor: pointer;
 }
 
-.resultLink {
-  display: block;
-  padding: var(--button-padding);
-  font-size: 1.6rem;
-}
-
-@media (hover: hover) {
-  .resultLink:is(:hover) {
-    background-color: var(--tertiary-bg-color);
-  }
-}
-
 @media screen and (min-width: 880px) {
   .searchMenuBtn {
     display: none;
@@ -116,20 +104,5 @@
   .searchBar {
     padding-block: 0.8rem;
     font-size: 1.8rem;
-  }
-
-  .results {
-    position: absolute;
-    inset-block-start: calc(100% + 0.5rem);
-    inset-inline: 0;
-    display: none;
-    padding-block: 1rem;
-    background-color: var(--secondary-bg-color);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-  }
-
-  .resultsVisible {
-    display: block;
   }
 }

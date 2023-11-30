@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
-import { InfiniteMovieResults } from '~/components/InfiniteMovies'
 import { getMoviesByTitle } from '~/actions/movies-actions'
+import { InfiniteMovieResults } from '~/components/InfiniteMovies'
+import { PageGradient } from '~/components/PageGradient'
 import styles from './page.module.css'
 
 interface SearchPageProps {
@@ -25,14 +26,16 @@ export default async function SearchPage({
 
   return (
     <div className={styles.container}>
-      <div className={styles.searchQuery}>
-        Resultados para <span>{`"${search_query}"`}</span>.
-      </div>
+      <PageGradient gradientColor='hsl(210 100% 12% / .9)' />
+
+      <h2 className={styles.searchQuery}>
+        Resultados para {`"${search_query}"`}.
+      </h2>
 
       <InfiniteMovieResults
         initMovies={movies}
         keyword={search_query}
       />
-    </div>
+    </div >
   )
 }

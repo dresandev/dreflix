@@ -1,6 +1,6 @@
+import { heroMovies } from '~/data/hero-movies'
 import { Carousel } from '~/components/Carousel'
 import { HeroMovieCard } from '~/components/HeroMovieCard'
-import { heroMovies } from '~/data/hero-movies'
 
 export const HeroCarousel = async () => {
   return (

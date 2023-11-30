@@ -61,7 +61,7 @@ export default async function DetailPage({
         trailerKey={trailerKey}
       />
 
-      <CarouselSection title='Reparto principal'>
+      <CarouselSection title='Top Billed Cast'>
         {
           mainCast?.map(actor => {
             const {
