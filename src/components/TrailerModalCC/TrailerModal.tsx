@@ -9,7 +9,9 @@ export const TrailerModal = () => {
 
   useEffect(() => {
     const handlePressEscape = (e: KeyboardEvent) => {
-      (e.key === 'Escape') && toggleShowTrailerModal()
+      if (e.key === 'Escape') {
+        toggleShowTrailerModal()
+      }
     }
 
     document.addEventListener('keydown', handlePressEscape)
@@ -17,7 +19,7 @@ export const TrailerModal = () => {
     return () => {
       document.removeEventListener('keydown', handlePressEscape)
     }
-  })
+  }, [toggleShowTrailerModal])
 
   return (
     <InPortal id='modal-container'>

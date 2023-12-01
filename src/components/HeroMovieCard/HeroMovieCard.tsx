@@ -18,6 +18,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
         href={movieDetailsPath}
         aria-label={title}
         prefetch={false}
+        as={movieDetailsPath}
       >
         {title}
       </Link>
@@ -53,6 +54,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
                 tabIndex={-1}
                 aria-hidden
                 prefetch={false}
+                as={movieDetailsPath}
               >
                 <img
                   className={styles.logoImage}
@@ -74,6 +76,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
               className={styles.moreInfoLink}
               href={movieDetailsPath}
               prefetch={false}
+              as={movieDetailsPath}
             >
               More details
             </Link>

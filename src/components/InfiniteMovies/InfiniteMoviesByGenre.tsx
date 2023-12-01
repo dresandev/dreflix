@@ -7,16 +7,19 @@ import { InfiniteMovieGrid } from '~/components/InfiniteMovieGrid'
 
 interface InfiniteMoviesByGenreProps {
   initMovies: Movie[] | null
-  genre: number
+  totalPages: number
+  genreId: number
 }
 
 export const InfiniteMoviesByGenre: React.FC<InfiniteMoviesByGenreProps> = ({
   initMovies,
-  genre
+  totalPages,
+  genreId,
 }) => {
   const { observerTargetRef, movies, dataInfo } = useFetchMovies(
     initMovies || [],
-    (page) => getMoviesByGenre(genre, page)
+    totalPages,
+    (page) => getMoviesByGenre(genreId, page)
   )
   const { isLoading, hasError } = dataInfo
 

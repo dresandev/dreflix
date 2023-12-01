@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation'
-import { getRandomIndex } from '~/utils'
+import { getRandomIndex, slugToText } from '~/utils'
 import { genrePageColors } from '~/data/genre-page-colors'
-import { getTranslatedMovieGenres } from '~/helpers'
-import { getMoviesByGenre } from '~/actions/movies-actions'
+import { getGenreByName, getMoviesByGenre } from '~/actions/movies-actions'
 import { PageGradient } from '~/components/PageGradient'
 import { InfiniteMoviesByGenre } from '~/components/InfiniteMovies'
 import styles from './page.module.css'
@@ -13,40 +12,34 @@ interface MoviesByGenrePageProps {
   }
 }
 
-const getMovieListGenreFromSlug = async (slug: string) => {
-  const translatedMovieGenres = await getTranslatedMovieGenres()
-  const movieListGenre = translatedMovieGenres?.find(genre => {
-    const genreFromSlug = slug.split('-').join(' ')
-    const genreEnglishName = genre.englishName.toLowerCase()
+const getGenreFromSlug = async (slug: string) => {
+  const genreName = slugToText(slug)
+  const genre = await getGenreByName(genreName)
 
-    return (genreFromSlug === genreEnglishName)
-  })
+  if (!genre) return notFound()
 
-  return movieListGenre
+  return genre
 }
 
-export async function generateMetadata({ params }: MoviesByGenrePageProps) {
-  const movieListGenre = await getMovieListGenreFromSlug(params.slug)
-
-  const genreName = movieListGenre?.spanishName
+export async function generateMetadata({
+  params
+}: MoviesByGenrePageProps) {
+  const genre = await getGenreFromSlug(params.slug)
 
   return {
-    title: `Disfruta de películas del género ${genreName} en Dreflix`,
-    description: `Explora entre las películas del género ${genreName} y mucho más en Dreflix.`
+    title: `Enjoy movies of the genre ${genre?.name} on Dreflix`,
+    description: `Explore movies in the ${genre?.name} genre and much more on Dreflix.`
   }
 }
 
 export default async function MoviesByGenrePage({
   params
 }: MoviesByGenrePageProps) {
-  const movieListGenre = await getMovieListGenreFromSlug(params.slug)
+  const genre = await getGenreFromSlug(params.slug)
 
-  if (!movieListGenre) return notFound()
+  const { id, name } = genre
 
-  const { id, spanishName } = movieListGenre
-
-  const moviesByGenre = await getMoviesByGenre(id)
-
+  const movieListResult = await getMoviesByGenre(id)
   const randomIndex = getRandomIndex(genrePageColors.length)
   const randomColor = genrePageColors[randomIndex]
 
@@ -55,12 +48,13 @@ export default async function MoviesByGenrePage({
       <PageGradient gradientColor={randomColor} />
 
       <h1 className={styles.title}>
-        {spanishName}
+        {name}
       </h1>
 
       <InfiniteMoviesByGenre
-        initMovies={moviesByGenre}
-        genre={id}
+        initMovies={movieListResult!.results}
+        totalPages={movieListResult!.total_pages}
+        genreId={id}
       />
     </div>
   )

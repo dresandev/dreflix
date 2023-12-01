@@ -72,8 +72,4 @@
     overflow-y: unset;
     display: flex;
   }
-
-  .dropdownLink {
-    inline-size: 20rem;
-  }
 }

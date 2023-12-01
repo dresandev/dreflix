@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { MovieTitle } from '~/models'
 import styles from './SearchResults.module.css'
 
@@ -20,13 +19,12 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
           {
             results.map(({ id, name }) => (
               <li key={id}>
-                <Link
+                <a
                   className={styles.resultLink}
-                  href={`/search?search_query=${name}`}
-                  prefetch={false}
+                  href={`/search?search_query=${name.toLowerCase()}`}
                 >
                   {name}
-                </Link>
+                </a>
               </li>
             ))
           }

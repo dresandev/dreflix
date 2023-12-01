@@ -1,8 +1,8 @@
 import { Movie } from '.'
 
-export interface GenericResponse {
+export interface MovieListResponse {
   page: number
-  results: Movie[] | SearchResult[]
+  results: Movie[]
   total_pages: number
   total_results: number
 }

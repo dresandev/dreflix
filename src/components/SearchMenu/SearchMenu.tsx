@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, FormEvent } from 'react'
+import { useState, useEffect } from 'react'
 import clsx from 'clsx'
 import { MovieTitle } from '~/models'
 import { getMovieTitles } from '~/actions/movies-actions'
@@ -11,6 +11,7 @@ import {
   useDebounce,
 } from '~/hooks'
 import { CloseIcon, SearchIcon } from '~/components/SVG'
+import { SearchBar } from './SearchBar'
 import { SearchResults } from './SearchResults'
 import styles from './SearchMenu.module.css'
 
@@ -71,7 +72,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
       className={clsx(className)}
     >
       <button
-        aria-label='Buscar Película'
+        aria-label='Search movie'
         className={styles.searchMenuBtn}
         onClick={toggleMenu}
       >
@@ -85,37 +86,13 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
           isMenuOpen && styles.searchMenuOpen,
         )}
       >
-        <form
-          className={styles.searchBarWrapper}
-          action={`/search?search_query=${search_query}`}
-          onReset={handleResetForm}
-        >
-          <SearchIcon />
-          <input
-            ref={inputRef}
-            className={styles.searchBar}
-            name='search_query'
-            type='search'
-            placeholder='Buscar'
-            spellCheck={false}
-            autoComplete='off'
-            autoCorrect='off'
-            required
-            value={search_query}
-            onChange={handleInputChange}
-            onFocus={openResults}
-          />
-          {
-            search_query && (
-              <input
-                aria-label='Borrar la consulta de búsqueda'
-                className={styles.resetSearchBar}
-                type='reset'
-                value='Borrar'
-              />
-            )
-          }
-        </form>
+        <SearchBar
+          inputRef={inputRef}
+          search_query={search_query}
+          handleInputChange={handleInputChange}
+          openResults={openResults}
+          handleResetForm={handleResetForm}
+        />
 
         <SearchResults
           results={searchResults}

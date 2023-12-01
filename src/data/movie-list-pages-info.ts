@@ -2,23 +2,23 @@ import { PageInfo } from '~/types'
 
 export const movieListPagesInfo: PageInfo[] = [
   {
-    slug: 'now_playing',
-    title: 'En cartelera hoy',
-    SEOTitle: 'Explora las peliculas que estan en cartelera hoy - Dreflix'
-  },
-  {
     slug: 'popular',
     title: 'Popular',
-    SEOTitle: 'Películas mas populares - Dreflix'
+    SEOTitle: 'Explore the movies in theaters today - Dreflix'
   },
   {
-    slug: 'top_rated',
-    title: 'Mejor valoradas',
-    SEOTitle: 'Películas mejor valoradas - Dreflix'
+    slug: 'now_playing',
+    title: 'Now Playing',
+    SEOTitle: 'Most popular movies - Dreflix'
   },
   {
     slug: 'upcoming',
-    title: 'Próximamente',
-    SEOTitle: 'Mantente al día con las proximas películas'
+    title: 'Upcoming',
+    SEOTitle: 'Top rated movies - Dreflix'
+  },
+  {
+    slug: 'top_rated',
+    title: 'Top Rated',
+    SEOTitle: 'Stay up to date with upcoming movies'
   }
 ]

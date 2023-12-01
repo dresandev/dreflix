@@ -37,7 +37,7 @@ export default async function HomePage() {
               title={movieListTitle[i]}
             >
               {
-                movies.value?.map(movie => {
+                movies.value?.results.map(movie => {
                   const {
                     id,
                     title,

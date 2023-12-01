@@ -6,7 +6,7 @@ import {
   COMMON_GET_OPTIONS
 } from '~/constants'
 import {
-  GenericResponse,
+  MovieListResponse,
   MovieDetails,
   MovieVideosResponse,
   MovieCreditsResponse,
@@ -21,16 +21,16 @@ import { MovieListType } from '~/types'
 export const getMovieList = async (
   movieListType: MovieListType,
   page = 1
-): Promise<Movie[] | null> => {
+): Promise<MovieListResponse | null> => {
   try {
     const url = `${API_BASE_URL}/movie/${movieListType}?language=${API_LANGUAGE}&page=${page}`
 
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
     if (result.status === 200) {
-      const { results } = await result.json() as GenericResponse
-      const movies = await setTrailerKeyToMovies(results as Movie[])
-      return movies
+      const movieListResult = await result.json() as MovieListResponse
+      movieListResult.results = await setTrailerKeyToMovies(movieListResult.results)
+      return movieListResult
     }
 
     return null
@@ -63,16 +63,16 @@ export const getMovieDetails = async (
 export const getSimilarMovies = async (
   movieId: string | number,
   page = 1
-): Promise<Movie[] | null> => {
+): Promise<MovieListResponse | null> => {
   try {
     const url = `${API_BASE_URL}/movie/${movieId}/similar?language=${API_LANGUAGE}&page=${page}`
 
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
     if (result.status === 200) {
-      const { results } = await result.json() as GenericResponse
-      const movies = await setTrailerKeyToMovies(results as Movie[])
-      return movies
+      const movieListResult = await result.json() as MovieListResponse
+      movieListResult.results = await setTrailerKeyToMovies(movieListResult.results)
+      return movieListResult
     }
 
     return null
@@ -151,19 +151,38 @@ export const getMovieListGenres = async (): Promise<Genre[] | null> => {
   }
 }
 
+export const getGenreByName = async (
+  name: string
+): Promise<Genre | null> => {
+  try {
+    const movieListGenres = await getMovieListGenres()
+
+    if (!movieListGenres) return null
+
+    const genre = movieListGenres.find(genre =>
+      genre.name === name
+    )
+
+    return genre ?? null
+  } catch (error) {
+    console.error('Error in getGenreByName:', error)
+    throw new Error('Error fetching getMovieListGenres')
+  }
+}
+
 export const getMoviesByGenre = async (
   genre: number,
   page = 1
-): Promise<Movie[] | null> => {
+): Promise<MovieListResponse | null> => {
   try {
     const url = `${API_BASE_URL}/discover/movie?include_adult=false&include_video=false&page=${page}&sort_by=popularity.desc&language=${API_LANGUAGE}&with_genres=${genre}`
 
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
     if (result.status === 200) {
-      const { results } = await result.json() as GenericResponse
-      const movies = await setTrailerKeyToMovies(results as Movie[])
-      return movies
+      const movieListResult = await result.json() as MovieListResponse
+      movieListResult.results = await setTrailerKeyToMovies(movieListResult.results)
+      return movieListResult
     }
 
     return null
@@ -173,19 +192,18 @@ export const getMoviesByGenre = async (
   }
 }
 
-
 export const getMovieTitles = async (
   title: string,
 ): Promise<MovieTitle[] | null> => {
   try {
-    const movies = await getMoviesByTitle(title)
+    const movieListResult = await getMoviesByTitle(title)
 
-    if (!movies?.length) return null
+    if (!movieListResult?.results.length) return null
 
     const uniqueMovieTitles: MovieTitle[] = []
     const uniqueNames = new Set<string>()
 
-    for (const { id, title: name } of movies) {
+    for (const { id, title: name } of movieListResult.results) {
       const lowerCaseName = name.toLowerCase()
       if (!uniqueNames.has(lowerCaseName)) {
         uniqueNames.add(lowerCaseName)
@@ -203,16 +221,16 @@ export const getMovieTitles = async (
 export const getMoviesByTitle = async (
   title: string,
   page = 1
-): Promise<Movie[] | null> => {
+): Promise<MovieListResponse | null> => {
   try {
     const url = `${API_BASE_URL}/search/movie?query=${title}&include_adult=false&language=${API_LANGUAGE}&page=${page}`
 
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
     if (result.status === 200) {
-      const { results } = await result.json() as GenericResponse
-      const movies = await setTrailerKeyToMovies(results as Movie[])
-      return movies
+      const movieListResult = await result.json() as MovieListResponse
+      movieListResult.results = await setTrailerKeyToMovies(movieListResult.results)
+      return movieListResult
     }
 
     return null

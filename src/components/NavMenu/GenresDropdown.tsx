@@ -9,7 +9,7 @@ export const GenresDropdown = async () => {
 
   return (
     <Dropdown
-      label='Géneros'
+      label='Genres'
       optionsInGrid
     >
       {
@@ -31,4 +31,3 @@ export const GenresDropdown = async () => {
     </Dropdown>
   )
 }
-

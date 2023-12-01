@@ -21,6 +21,8 @@ interface DetailsPageProps {
 export async function generateMetadata({ params }: DetailsPageProps) {
   const movie = await getMovieDetails(params.slug)
 
+  if (!movie) return notFound()
+
   return {
     title: `Dreflix: ${movie?.title}`,
     description: movie?.overview

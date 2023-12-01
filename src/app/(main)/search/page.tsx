@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { getMoviesByTitle } from '~/actions/movies-actions'
 import { InfiniteMovieResults } from '~/components/InfiniteMovies'
 import { PageGradient } from '~/components/PageGradient'
@@ -8,6 +8,10 @@ interface SearchPageProps {
   searchParams: {
     [key: string]: string | undefined
   }
+}
+
+export const metadata = {
+  title: 'Dreflix: Search',
 }
 
 export default async function SearchPage({
@@ -22,18 +26,21 @@ export default async function SearchPage({
 
   const { search_query } = searchParams
 
-  const movies = await getMoviesByTitle(search_query)
+  const movieListResult = await getMoviesByTitle(search_query)
+
+  if (!movieListResult) return notFound()
 
   return (
     <div className={styles.container}>
-      <PageGradient gradientColor='hsl(210 100% 12% / .9)' />
+      <PageGradient gradientColor='hsl(0 100% 31% / .3)' />
 
       <h2 className={styles.searchQuery}>
-        Resultados para {`"${search_query}"`}.
+        Results for {`"${search_query}"`}.
       </h2>
 
       <InfiniteMovieResults
-        initMovies={movies}
+        initMovies={movieListResult.results}
+        totalPages={movieListResult.total_pages}
         keyword={search_query}
       />
     </div >

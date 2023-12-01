@@ -1,12 +1,19 @@
 import { useState, useEffect } from 'react'
-import { Movie } from '~/models'
+import { Movie, MovieListResponse } from '~/models'
 import { useIsInView } from './use-is-in-view'
 
-export const useFetchMovies = (
-  initMovies: Movie[],
-  fetchMovies: (page: number) => Promise<Movie[] | null>
-) => {
-  const [movies, setMovies] = useState(initMovies)
+interface useFetchMoviesProps {
+  initMovies: Movie[] | null
+  totalPages: number
+  fetchMovies: (page: number) => Promise<MovieListResponse | null>
+}
+
+export const useFetchMovies = ({
+  initMovies,
+  totalPages,
+  fetchMovies,
+}: useFetchMoviesProps) => {
+  const [movies, setMovies] = useState(initMovies || [])
   const [dataInfo, setDataInfo] = useState({
     page: 2,
     isLoading: false,
@@ -28,7 +35,7 @@ export const useFetchMovies = (
   }, [])
 
   useEffect(() => {
-    if (!isInView || isLoading || page > 15) return
+    if (!isInView || isLoading || page > totalPages) return
 
     const loadMoreMovies = async () => {
       try {
@@ -37,12 +44,16 @@ export const useFetchMovies = (
           isLoading: true,
         }))
 
-        const newMovies = await fetchMovies(page)
+        const movieListResult = await fetchMovies(page)
 
-        if (!newMovies) throw new Error('Failed to fetch movies')
+        if (!movieListResult) throw new Error('Failed to fetch movies')
 
-        setMovies(prevMovies => [...prevMovies, ...newMovies])
+        setMovies(prevMovies => [
+          ...prevMovies,
+          ...movieListResult.results
+        ])
         setDataInfo(prevDataInfo => ({
+          ...prevDataInfo,
           page: prevDataInfo.page + 1,
           isLoading: false,
           hasError: false,
@@ -51,8 +62,12 @@ export const useFetchMovies = (
         console.error(error)
         setDataInfo(prevDataInfo => ({
           ...prevDataInfo,
-          isLoading: false,
           hasError: true,
+        }))
+      } finally {
+        setDataInfo(prevDataInfo => ({
+          ...prevDataInfo,
+          isLoading: false,
         }))
       }
     }

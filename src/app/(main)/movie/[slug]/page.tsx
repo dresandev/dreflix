@@ -28,7 +28,7 @@ export default async function MovieListPage({
 
   if (!movieListPageInfo) return notFound()
 
-  const movies = await getMovieList(movieListType)
+  const movieListResult = await getMovieList(movieListType)
 
   return (
     <div className={styles.container}>
@@ -39,7 +39,8 @@ export default async function MovieListPage({
       </h1>
 
       <InfiniteMovieList
-        initMovies={movies}
+        initMovies={movieListResult!.results}
+        totalPages={movieListResult!.total_pages}
         movieListType={movieListType}
       />
     </div>

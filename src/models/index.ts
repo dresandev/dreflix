@@ -1,6 +1,6 @@
 export * from './Cast'
 export * from './Crew'
-export * from './GenericResponse'
+export * from './MovieListResponse'
 export * from './Genre'
 export * from './GenresResponse'
 export * from './Movie'
