@@ -16,11 +16,12 @@ export const InfiniteMoviesByGenre: React.FC<InfiniteMoviesByGenreProps> = ({
   totalPages,
   genreId,
 }) => {
-  const { observerTargetRef, movies, dataInfo } = useFetchMovies(
-    initMovies || [],
+  const { observerTargetRef, movies, dataInfo } = useFetchMovies({
+    initMovies,
     totalPages,
-    (page) => getMoviesByGenre(genreId, page)
-  )
+    fetchMovies: (page) => getMoviesByGenre(genreId, page)
+  })
+
   const { isLoading, hasError } = dataInfo
 
   return (

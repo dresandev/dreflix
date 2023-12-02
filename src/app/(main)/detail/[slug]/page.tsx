@@ -21,7 +21,7 @@ interface DetailsPageProps {
 export async function generateMetadata({ params }: DetailsPageProps) {
   const movie = await getMovieDetails(params.slug)
 
-  if (!movie) return notFound()
+  if (!movie) notFound()
 
   return {
     title: `Dreflix: ${movie?.title}`,
@@ -34,7 +34,7 @@ export default async function DetailPage({
 }: DetailsPageProps) {
   const movie = await getMovieDetails(params.slug)
 
-  if (!movie) return notFound()
+  if (!movie) notFound()
 
   const {
     id,
@@ -46,9 +46,15 @@ export default async function DetailPage({
     runtime,
   } = movie
 
-  const similarMovies = await getSimilarMovies(id)
-  const mainCast = await getMovieMainCast(id)
-  const trailerKey = await getMovieTrailerKey(id)
+  const [
+    similarMoviesResult,
+    mainCast,
+    trailerKey,
+  ] = await Promise.allSettled([
+    getSimilarMovies(id),
+    getMovieMainCast(id),
+    getMovieTrailerKey(id),
+  ])
 
   return (
     <>
@@ -60,34 +66,44 @@ export default async function DetailPage({
         releaseDate={release_date}
         genres={genres}
         runtime={runtime}
-        trailerKey={trailerKey}
+        trailerKey={
+          (trailerKey.status === 'fulfilled')
+            ? trailerKey.value
+            : null
+        }
       />
 
       <CarouselSection title='Top Billed Cast'>
         {
-          mainCast?.map(actor => {
-            const {
-              id,
-              profile_path,
-              original_name,
-              character
-            } = actor
+          mainCast.status === 'fulfilled' && (
+            mainCast.value?.map(actor => {
+              const {
+                id,
+                profile_path,
+                original_name,
+                character
+              } = actor
 
-            return (
-              <ActorCard
-                key={id}
-                className={styles.actorCard}
-                profilePath={profile_path!}
-                originalName={original_name}
-                character={character}
-              />
-            )
-          })
+              return (
+                <ActorCard
+                  key={id}
+                  className={styles.actorCard}
+                  profilePath={profile_path!}
+                  originalName={original_name}
+                  character={character}
+                />
+              )
+            })
+          )
         }
       </CarouselSection>
 
       <SimilarMovies
-        similarMovies={similarMovies}
+        similarMovies={
+          (similarMoviesResult.status === 'fulfilled')
+            ? similarMoviesResult.value?.results ?? null
+            : null
+        }
       />
     </>
   )

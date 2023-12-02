@@ -27,7 +27,7 @@
 }
 
 .infoWrapper {
-  inline-size: calc(100% / 2);
+  inline-size: max-content;
   pointer-events: visible;
 }
 
@@ -38,6 +38,7 @@
 
 .logoImage {
   inline-size: auto;
+  max-block-size: calc(100vw / 4);
   block-size: auto;
 }
 
@@ -92,7 +93,9 @@
     outline-offset: 0.5rem;
   }
 
-  .moreInfoLink:hover {
-    transform: scale(1.05);
+  @media (hover: hover) {
+    .moreInfoLink:hover {
+      transform: scale(1.05);
+    }
   }
 }

@@ -40,19 +40,15 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           onChange={handleInputChange}
           onFocus={openResults}
         />
-        {
-
-          <input
-            aria-label='Delete search query'
-            className={clsx(
-              styles.resetSearchBarInput,
-              search_query && styles.showResetSearchBarInput
-            )}
-            type='reset'
-            value='Delete'
-          />
-
-        }
+        <input
+          aria-label='Delete search query'
+          className={clsx(
+            styles.resetSearchBarInput,
+            search_query && styles.showResetSearchBarInput
+          )}
+          type='reset'
+          value='Delete'
+        />
       </form>
     </>
   )

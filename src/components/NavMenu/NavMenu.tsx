@@ -5,7 +5,9 @@ import clsx from 'clsx'
 import { ensureArray } from '~/utils'
 import { movieListPagesInfo } from '~/data/movie-list-pages-info'
 import { useMenu } from '~/hooks'
+import { BurgerBtn } from './BurgerBtn'
 import { Dropdown } from '~/components/Dropdown'
+import commonStyles from './common.module.css'
 import styles from './NavMenu.module.css'
 
 interface MenuProps {
@@ -26,17 +28,10 @@ export const NavMenu: React.FC<MenuProps> = ({
       className={clsx(className)}
       ref={menuRef}
     >
-      <button
-        aria-label='Open menu'
-        className={clsx(
-          styles.menuBtn,
-          isMenuOpen && styles.activeMenuBtn
-        )}
-        onClick={toggleMenu}
-      >
-        <span className={styles.menuBtnLine}></span>
-        <span className={styles.menuBtnLine}></span>
-      </button>
+      <BurgerBtn
+        isMenuOpen={isMenuOpen}
+        toggleMenu={toggleMenu}
+      />
 
       <nav>
         <ul className={clsx(
@@ -51,7 +46,10 @@ export const NavMenu: React.FC<MenuProps> = ({
                   return (
                     <Link
                       key={key}
-                      className={styles.dropdownLink}
+                      className={clsx(
+                        commonStyles.dropdownLink,
+                        commonStyles.dropdownLinkMinInlineSize
+                      )}
                       href={`/movie/${slug}`}
                       prefetch={false}
                     >

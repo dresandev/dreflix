@@ -8,21 +8,21 @@
 
 .title {
   font-size: clamp(15rem, 14rem + 3.125vw, 20rem);
+  line-height: normal;
 }
 
 .goBackHomeLink {
   display: block;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 6rem;
   margin-block-start: 3rem;
-  inline-size: 28rem;
-  background-color: var(--secondary-bg-color);
-  text-align: center;
+  background-color: var(--primary-text-color);
+  color: var(--bg-color);
   border-radius: var(--border-radius);
-  transition: background-color 150ms ease;
+  font-weight: 500;
 }
 
 @media (hover: hover) {
   .goBackHomeLink:is(:hover) {
-    background-color: var(--secondary-color);
+    filter: brightness(0.9);
   }
 }

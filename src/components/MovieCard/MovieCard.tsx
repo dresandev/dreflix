@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import clsx from 'clsx'
 import { IMAGES_BASE_URL } from '~/constants'
+import { simpleSlugify } from '~/utils'
 import { formatDate } from '~/helpers'
 import { TrailerButton } from '~/components/TrailerButton'
 import { IconButton } from '~/components/IconButton'
@@ -34,7 +35,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
     )}>
       <Link
         className={styles.wrapperLink}
-        href={`/detail/${id}`}
+        href={`/detail/${id}-${simpleSlugify(title)}`}
         prefetch={false}
       >
         {title}

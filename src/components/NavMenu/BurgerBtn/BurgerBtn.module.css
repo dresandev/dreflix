@@ -1,0 +1,33 @@
+.menuBtn {
+  --size: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: center;
+  align-items: center;
+  inline-size: var(--size);
+  block-size: var(--size);
+}
+
+.menuBtnLine {
+  inline-size: 80%;
+  block-size: 0.3rem;
+  border-radius: 0.2rem;
+  background-color: currentColor;
+  transform-origin: 0.7rem;
+  transition: transform 300ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.activeMenuBtn .menuBtnLine:nth-child(1) {
+  transform: rotateZ(45deg) translate(0.2rem);
+}
+
+.activeMenuBtn .menuBtnLine:nth-child(2) {
+  transform: rotateZ(-45deg) translate(0.2rem);
+}
+
+@media screen and (min-width: 880px) {
+  .menuBtn {
+    display: none;
+  }
+}

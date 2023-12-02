@@ -17,11 +17,11 @@ export const InfiniteMovieList: React.FC<InfiniteMovieListProps> = ({
   totalPages,
   movieListType,
 }) => {
-  const { observerTargetRef, movies, dataInfo } = useFetchMovies(
-    initMovies || [],
+  const { observerTargetRef, movies, dataInfo } = useFetchMovies({
+    initMovies,
     totalPages,
-    (page) => getMovieList(movieListType, page)
-  )
+    fetchMovies: (page) => getMovieList(movieListType, page)
+  })
   const { isLoading, hasError } = dataInfo
 
   return (

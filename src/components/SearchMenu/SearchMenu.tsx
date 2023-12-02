@@ -52,7 +52,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
         const newSearchResults = await getMovieTitles(debouncedSearchQuery)
         setSearchResults(newSearchResults || [])
       } catch (error) {
-        console.log(error)
+        console.error(error)
         setSearchResults([])
       }
     }
@@ -89,8 +89,8 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
         <SearchBar
           inputRef={inputRef}
           search_query={search_query}
-          handleInputChange={handleInputChange}
           openResults={openResults}
+          handleInputChange={handleInputChange}
           handleResetForm={handleResetForm}
         />
 

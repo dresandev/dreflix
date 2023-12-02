@@ -1,0 +1,15 @@
+.dropdownLink {
+  display: inline-block;
+  inline-size: 100%;
+  padding: var(--button-padding);
+}
+
+.dropdownLinkMinInlineSize {
+  min-inline-size: 20rem;
+}
+
+@media (hover: hover) {
+  .dropdownLink:is(:hover) {
+    background-color: var(--tertiary-bg-color);
+  }
+}

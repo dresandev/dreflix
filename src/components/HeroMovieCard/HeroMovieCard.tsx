@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { HeroMovie } from '~/types'
+import { simpleSlugify } from '~/utils'
 import { ObservedTransition } from '~/components/ObservedTransition'
 import styles from './HeroMovieCard.module.css'
 
@@ -9,7 +10,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
   image,
   logoImage
 }) => {
-  const movieDetailsPath = `/detail/${movieId}`
+  const movieDetailsPath = `/detail/${movieId}-${simpleSlugify(title)}`
 
   return (
     <article className={styles.heroCard}>
