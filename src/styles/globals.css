@@ -66,11 +66,6 @@ main {
   overflow: hidden;
 }
 
-.carouselSectionTitle {
-  padding-inline-start: var(--inline-space);
-  padding-block-end: 1.6rem;
-}
-
 .carouselMovieCardWidth {
   --items-amount: 4;
   --card-width: calc(

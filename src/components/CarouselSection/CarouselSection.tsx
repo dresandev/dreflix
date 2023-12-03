@@ -18,7 +18,7 @@ export const CarouselSection: React.FC<MoviesSectionProps> = ({
       styles.section,
       className
     )}>
-      <h2 className='carouselSectionTitle'>
+      <h2 className={styles.title}>
         {title}
       </h2>
 

@@ -1,7 +1,7 @@
 import { Movie } from '~/models'
 import { CarouselSection } from '~/components/CarouselSection'
 import { MovieCard } from '~/components/MovieCard'
-import styles from './SimilarMovies.module.css'
+import { NoItemsFound } from '~/components/NoItemsFound'
 
 interface SimilarMoviesProps {
   similarMovies: Movie[] | null
@@ -14,14 +14,10 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({
   const hasSimilarMovies = similarMovies?.length
 
   if (!hasSimilarMovies) return (
-    <>
-      <h2 className='carouselSectionTitle'>
-        {title}
-      </h2>
-      <p className={styles.notFoundMessage}>
-        No similar movies found
-      </p>
-    </>
+    <NoItemsFound
+      title={title}
+      message='No similar movies found'
+    />
   )
 
   return (

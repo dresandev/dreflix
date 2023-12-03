@@ -28,9 +28,9 @@ export const getMovieList = async (
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
     if (result.status === 200) {
-      const movieListResult = await result.json() as MovieListResponse
-      movieListResult.results = await setTrailerKeyToMovies(movieListResult.results)
-      return movieListResult
+      const movieListResponse = await result.json() as MovieListResponse
+      movieListResponse.results = await setTrailerKeyToMovies(movieListResponse.results)
+      return movieListResponse
     }
 
     return null
@@ -70,9 +70,9 @@ export const getSimilarMovies = async (
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
     if (result.status === 200) {
-      const movieListResult = await result.json() as MovieListResponse
-      movieListResult.results = await setTrailerKeyToMovies(movieListResult.results)
-      return movieListResult
+      const movieListResponse = await result.json() as MovieListResponse
+      movieListResponse.results = await setTrailerKeyToMovies(movieListResponse.results)
+      return movieListResponse
     }
 
     return null
@@ -180,9 +180,9 @@ export const getMoviesByGenre = async (
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
     if (result.status === 200) {
-      const movieListResult = await result.json() as MovieListResponse
-      movieListResult.results = await setTrailerKeyToMovies(movieListResult.results)
-      return movieListResult
+      const movieListResponse = await result.json() as MovieListResponse
+      movieListResponse.results = await setTrailerKeyToMovies(movieListResponse.results)
+      return movieListResponse
     }
 
     return null
@@ -196,14 +196,14 @@ export const getMovieTitles = async (
   title: string,
 ): Promise<MovieTitle[] | null> => {
   try {
-    const movieListResult = await getMoviesByTitle(title)
+    const movieListResponse = await getMoviesByTitle(title)
 
-    if (!movieListResult?.results.length) return null
+    if (!movieListResponse?.results.length) return null
 
     const uniqueMovieTitles: MovieTitle[] = []
     const uniqueNames = new Set<string>()
 
-    for (const { id, title: name } of movieListResult.results) {
+    for (const { id, title: name } of movieListResponse.results) {
       const lowerCaseName = name.toLowerCase()
       if (!uniqueNames.has(lowerCaseName)) {
         uniqueNames.add(lowerCaseName)
@@ -228,9 +228,9 @@ export const getMoviesByTitle = async (
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
     if (result.status === 200) {
-      const movieListResult = await result.json() as MovieListResponse
-      movieListResult.results = await setTrailerKeyToMovies(movieListResult.results)
-      return movieListResult
+      const movieListResponse = await result.json() as MovieListResponse
+      movieListResponse.results = await setTrailerKeyToMovies(movieListResponse.results)
+      return movieListResponse
     }
 
     return null

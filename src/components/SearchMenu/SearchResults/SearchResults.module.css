@@ -5,6 +5,10 @@
   text-transform: lowercase;
 }
 
+.selectedOption {
+  background-color: var(--tertiary-bg-color);
+}
+
 @media (hover: hover) {
   .resultLink:is(:hover) {
     background-color: var(--tertiary-bg-color);

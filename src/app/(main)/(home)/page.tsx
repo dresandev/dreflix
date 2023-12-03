@@ -1,3 +1,4 @@
+import { isFulfilled } from '~/utils/is-fulfilled'
 import { getMovieList } from '~/actions/movies-actions'
 import { HeroCarousel } from '~/components/HeroCarousel'
 import { CarouselSection } from '~/components/CarouselSection'
@@ -26,7 +27,7 @@ export default async function HomePage() {
 
       {
         moviesResult.map((movies, i) => {
-          if (movies.status === 'rejected') return
+          if (!isFulfilled(movies)) return
 
           const key = crypto.randomUUID()
 
