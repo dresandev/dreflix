@@ -5,7 +5,8 @@ import styles from './SearchBar.module.css'
 
 interface SearchBarProps {
   inputRef: RefObject<HTMLInputElement>
-  search_query: string
+  searchQuery: string
+  hasSelectedOption: boolean
   handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void
   openResults: () => void
   handleResetForm: () => void
@@ -13,16 +14,18 @@ interface SearchBarProps {
 
 export const SearchBar: React.FC<SearchBarProps> = ({
   inputRef,
-  search_query,
+  searchQuery,
+  hasSelectedOption,
   handleInputChange,
-  openResults,
   handleResetForm,
+  openResults,
 }) => {
   return (
     <>
       <form
         className={styles.searchBar}
-        action={`/search?search_query=${search_query}`}
+        action={`/search?search_query=${searchQuery}`}
+        onSubmit={(e) => hasSelectedOption && e.preventDefault()}
         onReset={handleResetForm}
       >
         <SearchIcon />
@@ -36,7 +39,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           autoComplete='off'
           autoCorrect='off'
           required
-          value={search_query}
           onChange={handleInputChange}
           onFocus={openResults}
         />
@@ -44,7 +46,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           aria-label='Delete search query'
           className={clsx(
             styles.resetSearchBarInput,
-            search_query && styles.showResetSearchBarInput
+            searchQuery && styles.showResetSearchBarInput
           )}
           type='reset'
           value='Delete'

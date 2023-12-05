@@ -1,40 +1,58 @@
-import { useEffect, useRef, useState } from 'react'
+import {
+  type Dispatch,
+  type SetStateAction,
+  useEffect,
+  useRef,
+  useState
+} from 'react'
 import { MovieTitle } from '~/models'
 import styles from './SearchResults.module.css'
 
 interface SearchResultsProps {
   results: MovieTitle[]
   isResultsOpen: boolean
+  setHasSelectedOption: Dispatch<SetStateAction<boolean>>
 }
 
 export const SearchResults: React.FC<SearchResultsProps> = ({
   results,
   isResultsOpen,
+  setHasSelectedOption
 }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const resultsRef = useRef<HTMLUListElement>(null)
-
-  const hasResults = results.length > 0
+  const resultsLength = results.length
 
   useEffect(() => {
-    if (!resultsRef.current || !hasResults) return
+    if (!resultsRef.current || resultsLength === 0) return
 
     const handleKeydown = (e: KeyboardEvent) => {
-      if (results.length === 0) return
-
       switch (e.key) {
-        case 'ArrowUp':
+        case 'ArrowUp': {
           setSelectedIndex((prevIndex) =>
-            prevIndex === null ? results.length - 1 : Math.max(prevIndex - 1, 0)
+            prevIndex === null || prevIndex === 0
+              ? resultsLength - 1
+              : Math.max(prevIndex - 1, 0)
           )
+        }
           break
-        case 'ArrowDown':
+        case 'ArrowDown': {
           setSelectedIndex((prevIndex) =>
-            prevIndex === null ? 0 : Math.min(prevIndex + 1, results.length - 1)
+            prevIndex === null || prevIndex === resultsLength - 1
+              ? 0
+              : Math.min(prevIndex + 1, resultsLength - 1)
           )
+        }
           break
-        default:
+        case 'Enter': {
+          if (resultsRef.current && selectedIndex !== null) {
+            const resultOptions = resultsRef.current.children
+            const selectedElement = resultOptions.item(selectedIndex)!.firstElementChild as HTMLLIElement
+            selectedElement.click()
+          }
+        }
           break
+        default: break
       }
     }
 
@@ -43,25 +61,30 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
     return () => {
       window.removeEventListener('keydown', handleKeydown)
     }
-
-  }, [hasResults, results.length])
+  }, [resultsLength, selectedIndex])
 
   useEffect(() => {
-    const selectedOptionClassName = styles.selectedOption
+    const selectedOptClass = styles.selectedOption
 
-    if (isResultsOpen && selectedIndex !== null && resultsRef.current) {
-      const selectedElement = resultsRef.current.children[selectedIndex] as HTMLLIElement
+    if (!isResultsOpen || selectedIndex === null || !resultsRef.current) return
 
-      if (selectedElement) {
-        selectedElement.previousElementSibling?.classList.remove(selectedOptionClassName)
-        selectedElement.nextElementSibling?.classList.remove(selectedOptionClassName)
-        selectedElement.classList.add(selectedOptionClassName)
-      }
+    const resultOptions = resultsRef.current.children
+
+    for (let i = 0; i < resultOptions.length; i++) {
+      resultOptions[i].classList.remove(selectedOptClass)
     }
 
-  }, [isResultsOpen, selectedIndex])
+    const selectedElement = resultOptions.item(selectedIndex)!
+    setHasSelectedOption(true)
+    selectedElement.classList.add(selectedOptClass)
+  }, [isResultsOpen, selectedIndex, setHasSelectedOption])
 
-  if (!hasResults || !isResultsOpen) return null
+  useEffect(() => {
+    setSelectedIndex(null)
+    setHasSelectedOption(false)
+  }, [results, setHasSelectedOption])
+
+  if (resultsLength === 0 || !isResultsOpen) return null
 
   return (
     <>
@@ -75,7 +98,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
               <li key={id}>
                 <a
                   className={styles.resultLink}
-                  href={`/search?search_query=${name.toLowerCase()}`}
+                  href={`/search?search_query=${name.replace(' ', '+')}`}
                 >
                   {name}
                 </a>

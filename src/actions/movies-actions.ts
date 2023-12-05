@@ -207,7 +207,7 @@ export const getMovieTitles = async (
       const lowerCaseName = name.toLowerCase()
       if (!uniqueNames.has(lowerCaseName)) {
         uniqueNames.add(lowerCaseName)
-        uniqueMovieTitles.push({ id, name })
+        uniqueMovieTitles.push({ id, name: lowerCaseName })
       }
     }
 

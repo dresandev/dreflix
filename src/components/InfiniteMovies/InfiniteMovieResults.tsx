@@ -27,8 +27,8 @@ export const InfiniteMovieResults: React.FC<InfiniteMovieResultsProps> = ({
   return (
     <>
       <InfiniteMovieGrid
-        movies={movies}
         observerTargetRef={observerTargetRef}
+        movies={movies}
         isLoading={isLoading}
         hasError={hasError}
       />

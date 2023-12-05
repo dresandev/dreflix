@@ -1,12 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ChangeEvent } from 'react'
 import clsx from 'clsx'
 import { MovieTitle } from '~/models'
 import { getMovieTitles } from '~/actions/movies-actions'
 import {
   useAutoFocus,
-  useForm,
   useMenu,
   useDebounce,
 } from '~/hooks'
@@ -18,6 +17,8 @@ import styles from './SearchMenu.module.css'
 interface SearchMenuProps {
   className?: string
 }
+
+const DEBOUNCE_DELAY = 150
 
 export const SearchMenu: React.FC<SearchMenuProps> = ({
   className
@@ -34,12 +35,9 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
   } = useMenu(false)
 
   const inputRef = useAutoFocus(isMenuOpen)
-  const {
-    search_query,
-    handleInputChange,
-    resetForm
-  } = useForm({ initState: { search_query: '' } })
-  const debouncedSearchQuery = useDebounce(search_query, 100)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [hasSelectedOption, setHasSelectedOption] = useState(false)
+  const debouncedSearchQuery = useDebounce(searchQuery, DEBOUNCE_DELAY)
   const [searchResults, setSearchResults] = useState<MovieTitle[]>([])
 
   useEffect(() => {
@@ -60,9 +58,15 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
     fetchMovieTitles()
   }, [debouncedSearchQuery])
 
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.persist()
+    const value = e.target.value
+    setSearchQuery(value)
+  }
+
   const handleResetForm = () => {
     inputRef.current?.focus()
-    resetForm()
+    setSearchQuery('')
     setSearchResults([])
   }
 
@@ -88,15 +92,17 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
       >
         <SearchBar
           inputRef={inputRef}
-          search_query={search_query}
+          searchQuery={searchQuery}
           openResults={openResults}
           handleInputChange={handleInputChange}
           handleResetForm={handleResetForm}
+          hasSelectedOption={hasSelectedOption}
         />
 
         <SearchResults
           results={searchResults}
           isResultsOpen={isResultsOpen}
+          setHasSelectedOption={setHasSelectedOption}
         />
       </div>
     </div>
