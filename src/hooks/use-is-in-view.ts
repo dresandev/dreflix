@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { RefObject, useEffect, useRef, useState } from 'react'
 
 interface UseIsInViewOptions extends IntersectionObserverInit {
   thresholdsByVisibility?: {
@@ -8,7 +8,7 @@ interface UseIsInViewOptions extends IntersectionObserverInit {
 }
 
 export const useIsInView = <T extends HTMLElement>(options?: UseIsInViewOptions) => {
-  const observerTargetRef = useRef<T | null>(null)
+  const observerTargetRef = useRef<T>(null)
   const [isInView, setIsInView] = useState(false)
 
   useEffect(() => {

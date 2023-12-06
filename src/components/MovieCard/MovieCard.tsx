@@ -28,6 +28,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
   overview,
   trailerKey,
 }) => {
+  const movieDetailsPath = `/detail/${id}-${simpleSlugify(title)}`
   return (
     <article className={clsx(
       styles.card,
@@ -35,7 +36,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
     )}>
       <Link
         className={styles.wrapperLink}
-        href={`/detail/${id}-${simpleSlugify(title)}`}
+        href={movieDetailsPath}
         prefetch={false}
       >
         {title}

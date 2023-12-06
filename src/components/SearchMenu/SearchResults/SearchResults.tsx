@@ -3,7 +3,6 @@ import {
   type SetStateAction,
   useEffect,
   useRef,
-  useState
 } from 'react'
 import { MovieTitle } from '~/models'
 import styles from './SearchResults.module.css'
@@ -11,15 +10,16 @@ import styles from './SearchResults.module.css'
 interface SearchResultsProps {
   results: MovieTitle[]
   isResultsOpen: boolean
-  setHasSelectedOption: Dispatch<SetStateAction<boolean>>
+  selectedIndex: number | null
+  setSelectedIndex: Dispatch<SetStateAction<number | null>>
 }
 
 export const SearchResults: React.FC<SearchResultsProps> = ({
   results,
   isResultsOpen,
-  setHasSelectedOption
+  selectedIndex,
+  setSelectedIndex,
 }) => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const resultsRef = useRef<HTMLUListElement>(null)
   const resultsLength = results.length
 
@@ -34,24 +34,24 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
               ? resultsLength - 1
               : Math.max(prevIndex - 1, 0)
           )
-        }
           break
+        }
         case 'ArrowDown': {
           setSelectedIndex((prevIndex) =>
             prevIndex === null || prevIndex === resultsLength - 1
               ? 0
               : Math.min(prevIndex + 1, resultsLength - 1)
           )
-        }
           break
+        }
         case 'Enter': {
-          if (resultsRef.current && selectedIndex !== null) {
-            const resultOptions = resultsRef.current.children
-            const selectedElement = resultOptions.item(selectedIndex)!.firstElementChild as HTMLLIElement
-            selectedElement.click()
-          }
-        }
+          if (selectedIndex === null) return
+
+          const resultOptions = resultsRef.current!.children
+          const selectedElement = resultOptions.item(selectedIndex)!.firstElementChild as HTMLLIElement
+          selectedElement.click()
           break
+        }
         default: break
       }
     }
@@ -61,13 +61,16 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
     return () => {
       window.removeEventListener('keydown', handleKeydown)
     }
-  }, [resultsLength, selectedIndex])
+  }, [resultsLength, selectedIndex, setSelectedIndex])
 
   useEffect(() => {
+    if (
+      !isResultsOpen ||
+      selectedIndex === null ||
+      !resultsRef.current
+    ) return
+
     const selectedOptClass = styles.selectedOption
-
-    if (!isResultsOpen || selectedIndex === null || !resultsRef.current) return
-
     const resultOptions = resultsRef.current.children
 
     for (let i = 0; i < resultOptions.length; i++) {
@@ -75,16 +78,10 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
     }
 
     const selectedElement = resultOptions.item(selectedIndex)!
-    setHasSelectedOption(true)
     selectedElement.classList.add(selectedOptClass)
-  }, [isResultsOpen, selectedIndex, setHasSelectedOption])
+  }, [isResultsOpen, selectedIndex])
 
-  useEffect(() => {
-    setSelectedIndex(null)
-    setHasSelectedOption(false)
-  }, [results, setHasSelectedOption])
-
-  if (resultsLength === 0 || !isResultsOpen) return null
+  if (resultsLength === 0 || !isResultsOpen) return
 
   return (
     <>
@@ -94,16 +91,19 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
           className={styles.results}
         >
           {
-            results.map(({ id, name }) => (
-              <li key={id}>
-                <a
-                  className={styles.resultLink}
-                  href={`/search?search_query=${name.replace(' ', '+')}`}
-                >
-                  {name}
-                </a>
-              </li>
-            ))
+            results.map(({ id, name }) => {
+              const resultPath = `/search?search_query=${name.replace(' ', '+')}`
+              return (
+                <li key={id}>
+                  <a
+                    className={styles.resultLink}
+                    href={resultPath}
+                  >
+                    {name}
+                  </a>
+                </li>
+              )
+            })
           }
         </ul>
       }

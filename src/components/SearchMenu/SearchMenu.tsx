@@ -36,9 +36,13 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
 
   const inputRef = useAutoFocus(isMenuOpen)
   const [searchQuery, setSearchQuery] = useState('')
-  const [hasSelectedOption, setHasSelectedOption] = useState(false)
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const debouncedSearchQuery = useDebounce(searchQuery, DEBOUNCE_DELAY)
   const [searchResults, setSearchResults] = useState<MovieTitle[]>([])
+
+  useEffect(() => {
+    setSelectedIndex(null)
+  }, [searchResults])
 
   useEffect(() => {
     if (!debouncedSearchQuery.trim()) {
@@ -96,13 +100,14 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
           openResults={openResults}
           handleInputChange={handleInputChange}
           handleResetForm={handleResetForm}
-          hasSelectedOption={hasSelectedOption}
+          selectedIndex={selectedIndex}
         />
 
         <SearchResults
           results={searchResults}
           isResultsOpen={isResultsOpen}
-          setHasSelectedOption={setHasSelectedOption}
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
         />
       </div>
     </div>

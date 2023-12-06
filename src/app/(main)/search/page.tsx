@@ -17,10 +17,7 @@ export const metadata = {
 export default async function SearchPage({
   searchParams
 }: SearchPageProps) {
-  if (
-    !('search_query' in searchParams) ||
-    !searchParams.search_query
-  ) {
+  if (!searchParams.search_query) {
     return redirect('/')
   }
 

@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next'
+import type { Metadata } from 'next'
 import { Fira_Sans } from 'next/font/google'
 import { Header } from '~/components/Header'
 import { Footer } from '~/components/Footer'
@@ -7,14 +7,8 @@ import '~/styles/reset.css'
 import '~/styles/globals.css'
 
 export const metadata: Metadata = {
-  title: 'Dreflix: Explora y encuentra la película que tanto deseas encontrar',
-  description: 'Explora a través de un gran catálogo de películas y encuentra la película que tanto deseas encontrar',
-}
-
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  userScalable: false
+  title: 'Dreflix: Explore and find the movie you want to find so much',
+  description: 'Explore through a large catalog of movies and find the movie you want to find so badly.',
 }
 
 const firaSans = Fira_Sans({
