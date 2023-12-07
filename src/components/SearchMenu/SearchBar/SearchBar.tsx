@@ -1,4 +1,9 @@
-import type { ChangeEvent, FormEvent, RefObject } from 'react'
+import type {
+  ChangeEvent,
+  FC,
+  FormEvent,
+  RefObject
+} from 'react'
 import clsx from 'clsx'
 import { SearchIcon } from '~/components/SVG'
 import styles from './SearchBar.module.css'
@@ -6,22 +11,22 @@ import styles from './SearchBar.module.css'
 interface SearchBarProps {
   inputRef: RefObject<HTMLInputElement>
   searchQuery: string
-  selectedIndex: number | null
+  hasSelectedItem: boolean
   handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void
   openResults: () => void
   handleResetForm: () => void
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({
+export const SearchBar: FC<SearchBarProps> = ({
   inputRef,
   searchQuery,
-  selectedIndex,
+  hasSelectedItem,
   handleInputChange,
   handleResetForm,
   openResults,
 }) => {
   const handleOnSubmit = (e: FormEvent) => {
-    if (selectedIndex !== null) e.preventDefault()
+    if (hasSelectedItem) e.preventDefault()
   }
 
   return (

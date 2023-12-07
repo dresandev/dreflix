@@ -100,15 +100,17 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
           openResults={openResults}
           handleInputChange={handleInputChange}
           handleResetForm={handleResetForm}
-          selectedIndex={selectedIndex}
+          hasSelectedItem={selectedIndex !== null}
         />
-
-        <SearchResults
-          results={searchResults}
-          isResultsOpen={isResultsOpen}
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex}
-        />
+        {
+          (searchResults.length > 0 && isResultsOpen) && (
+            <SearchResults
+              results={searchResults}
+              selectedIndex={selectedIndex}
+              setSelectedIndex={setSelectedIndex}
+            />
+          )
+        }
       </div>
     </div>
   )

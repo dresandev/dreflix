@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+.error {
+  max-inline-size: 65ch;
+}
+
 .actions {
   display: flex;
   align-items: center;

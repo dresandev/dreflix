@@ -6,6 +6,7 @@ export const HeroCarousel = async () => {
   return (
     <Carousel
       showPagination
+      autoPlay
       itemScrollSnapStopAlways
       itemsGap='var(--inline-space)'
       btnHoverVariant='scaleHover'

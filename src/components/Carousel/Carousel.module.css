@@ -104,36 +104,3 @@
     transform: scale(1.4);
   }
 }
-
-.paginationWrapper {
-  --padding-block: 2rem;
-  --pagination-block-size: 2.4rem;
-  min-block-size: calc(var(--padding-block) * 2 + var(--pagination-block-size));
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  padding-block: 2rem;
-}
-
-.paginationBtn {
-  padding: 0.8rem 0.6rem;
-  flex-basis: 4rem;
-  transition: flex-basis 300ms ease;
-}
-
-.paginationPill {
-  inline-size: 100%;
-  block-size: 0.8rem;
-  background-color: var(--hover-color);
-  border-radius: 0.4rem;
-}
-
-.paginationBtnActive {
-  flex-basis: 5.6rem;
-}
-
-.paginationBtnActive > .paginationPill {
-  background-color: var(--primary-color);
-}

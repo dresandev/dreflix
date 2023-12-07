@@ -1,16 +1,18 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import clsx from 'clsx'
 import { useSnapCarousel } from 'react-snap-carousel'
+import { usePageVisibility } from '~/hooks/use-page-visibility'
 import { ensureArray } from '~/utils'
-import { useHasMounted } from '~/hooks'
-import { FadeIn } from '~/components/FadeIn'
 import { ChevronArrow } from '~/components/SVG'
+import { Pagination } from './Pagination'
 import styles from './Carousel.module.css'
 
 interface CarouselProps {
   children: React.ReactNode | React.ReactNode[]
   itemsGap?: string
+  autoPlay?: boolean
   itemScrollSnapStopAlways?: boolean
   showPagination?: boolean
   btnHoverVariant?: 'shadowHover' | 'scaleHover'
@@ -19,11 +21,15 @@ interface CarouselProps {
 export const Carousel: React.FC<CarouselProps> = ({
   children,
   itemsGap = '2rem',
+  autoPlay = false,
   itemScrollSnapStopAlways = false,
   showPagination = false,
   btnHoverVariant = 'shadowHover'
 }) => {
-  const isMounted = useHasMounted()
+  const firstPageBtnRef = useRef<HTMLButtonElement>(null)
+  const forwardBtnRef = useRef<HTMLButtonElement>(null)
+  const allSlidesViewed = useRef(false)
+  const isPageVisible = usePageVisibility()
   const {
     scrollRef,
     pages,
@@ -34,43 +40,36 @@ export const Carousel: React.FC<CarouselProps> = ({
     snapPointIndexes
   } = useSnapCarousel()
 
+  useEffect(() => {
+    if (
+      !autoPlay ||
+      allSlidesViewed.current ||
+      !isPageVisible
+    ) return
+
+    const passSlideIntervalId = setInterval(() => {
+      if (activePageIndex === pages.length - 1) {
+        allSlidesViewed.current = true
+        firstPageBtnRef.current?.click()
+      }
+
+      if (activePageIndex >= 0) {
+        forwardBtnRef.current?.click()
+      }
+    }, 6000)
+
+    return () => {
+      clearInterval(passSlideIntervalId)
+    }
+  }, [autoPlay, activePageIndex, pages.length, isPageVisible])
+
   const childrenArray = ensureArray(children)
-
-  const renderPagination = () => {
-    if (!showPagination) return
-
-    return (
-      <div className={styles.paginationWrapper}>
-        {
-          isMounted && (
-            <FadeIn className={styles.pagination}>
-              {
-                pages.map((_, i) => (
-                  <button
-                    key={i}
-                    aria-label={`Show slide ${i} of ${pages.length}`}
-                    className={clsx(
-                      styles.paginationBtn,
-                      activePageIndex === i && styles.paginationBtnActive
-                    )}
-                    onClick={() => goTo(i)}
-                  >
-                    <div className={styles.paginationPill}></div>
-                  </button>
-                ))
-              }
-            </FadeIn>
-          )
-        }
-      </div>
-    )
-  }
 
   return (
     <>
       <div className={styles.carouselWrapper}>
         <button
-          aria-label='Anterior'
+          aria-label='Previous slide'
           className={clsx(
             styles.btn,
             styles[btnHoverVariant],
@@ -84,7 +83,8 @@ export const Carousel: React.FC<CarouselProps> = ({
           />
         </button>
         <button
-          aria-label='Siguiente'
+          ref={forwardBtnRef}
+          aria-label='Next slide'
           className={clsx(
             styles.btn,
             styles[btnHoverVariant],
@@ -99,9 +99,9 @@ export const Carousel: React.FC<CarouselProps> = ({
         </button>
 
         <ul
+          ref={scrollRef}
           style={{ gap: itemsGap }}
           className={styles.carousel}
-          ref={scrollRef}
           tabIndex={-1}
         >
           {
@@ -122,7 +122,17 @@ export const Carousel: React.FC<CarouselProps> = ({
           }
         </ul>
       </div>
-      {renderPagination()}
+
+      {
+        showPagination && (
+          <Pagination
+            pages={pages}
+            activePageIndex={activePageIndex}
+            firstPageBtnRef={firstPageBtnRef}
+            goTo={goTo}
+          />
+        )
+      }
     </>
   )
 }

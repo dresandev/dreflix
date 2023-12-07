@@ -20,8 +20,8 @@ export default function Error({
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Something went wrong!</h1>
-      <p>{error.message}</p>
+      <h1>Something went wrong!</h1>
+      <p className={styles.error}>{error.message}</p>
       <div className={styles.actions}>
         <button
           className={clsx(

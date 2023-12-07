@@ -1,22 +1,21 @@
 import {
   type Dispatch,
+  type FC,
   type SetStateAction,
   useEffect,
-  useRef,
+  useRef
 } from 'react'
 import { MovieTitle } from '~/models'
 import styles from './SearchResults.module.css'
 
 interface SearchResultsProps {
   results: MovieTitle[]
-  isResultsOpen: boolean
   selectedIndex: number | null
   setSelectedIndex: Dispatch<SetStateAction<number | null>>
 }
 
-export const SearchResults: React.FC<SearchResultsProps> = ({
+export const SearchResults: FC<SearchResultsProps> = ({
   results,
-  isResultsOpen,
   selectedIndex,
   setSelectedIndex,
 }) => {
@@ -24,21 +23,21 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
   const resultsLength = results.length
 
   useEffect(() => {
-    if (!resultsRef.current || resultsLength === 0) return
+    if (!resultsRef.current) return
 
-    const handleKeydown = (e: KeyboardEvent) => {
-      switch (e.key) {
+    const handleKeydown = ({ key }: KeyboardEvent) => {
+      switch (key) {
         case 'ArrowUp': {
-          setSelectedIndex((prevIndex) =>
-            prevIndex === null || prevIndex === 0
+          setSelectedIndex(prevIndex =>
+            (prevIndex === null || prevIndex === 0)
               ? resultsLength - 1
               : Math.max(prevIndex - 1, 0)
           )
           break
         }
         case 'ArrowDown': {
-          setSelectedIndex((prevIndex) =>
-            prevIndex === null || prevIndex === resultsLength - 1
+          setSelectedIndex(prevIndex =>
+            (prevIndex === null || prevIndex === resultsLength - 1)
               ? 0
               : Math.min(prevIndex + 1, resultsLength - 1)
           )
@@ -65,7 +64,6 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
 
   useEffect(() => {
     if (
-      !isResultsOpen ||
       selectedIndex === null ||
       !resultsRef.current
     ) return
@@ -79,9 +77,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
 
     const selectedElement = resultOptions.item(selectedIndex)!
     selectedElement.classList.add(selectedOptClass)
-  }, [isResultsOpen, selectedIndex])
-
-  if (resultsLength === 0 || !isResultsOpen) return
+  }, [selectedIndex])
 
   return (
     <>
