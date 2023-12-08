@@ -1,30 +1,27 @@
-import type {
-  ChangeEvent,
-  FC,
-  FormEvent,
-  RefObject
+import {
+  forwardRef,
+  type ChangeEvent,
+  type FormEvent,
 } from 'react'
 import clsx from 'clsx'
 import { SearchIcon } from '~/components/SVG'
 import styles from './SearchBar.module.css'
 
 interface SearchBarProps {
-  inputRef: RefObject<HTMLInputElement>
-  searchQuery: string
+  value: string
   hasSelectedItem: boolean
-  handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void
-  openResults: () => void
-  handleResetForm: () => void
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  onReset: () => void
+  onFocus: () => void
 }
 
-export const SearchBar: FC<SearchBarProps> = ({
-  inputRef,
-  searchQuery,
+export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
+  value,
   hasSelectedItem,
-  handleInputChange,
-  handleResetForm,
-  openResults,
-}) => {
+  onChange,
+  onReset,
+  onFocus,
+}, ref) => {
   const handleOnSubmit = (e: FormEvent) => {
     if (hasSelectedItem) e.preventDefault()
   }
@@ -33,13 +30,13 @@ export const SearchBar: FC<SearchBarProps> = ({
     <>
       <form
         className={styles.searchBar}
-        action={`/search?search_query=${searchQuery}`}
+        action={`/search?search_query=${value}`}
         onSubmit={handleOnSubmit}
-        onReset={handleResetForm}
+        onReset={onReset}
       >
         <SearchIcon />
         <input
-          ref={inputRef}
+          ref={ref}
           className={styles.searchBarInput}
           name='search_query'
           type='search'
@@ -48,14 +45,14 @@ export const SearchBar: FC<SearchBarProps> = ({
           autoComplete='off'
           autoCorrect='off'
           required
-          onChange={handleInputChange}
-          onFocus={openResults}
+          onChange={onChange}
+          onFocus={onFocus}
         />
         <input
           aria-label='Delete search query'
           className={clsx(
             styles.resetSearchBarInput,
-            searchQuery && styles.showResetSearchBarInput
+            value && styles.showResetSearchBarInput
           )}
           type='reset'
           value='Delete'
@@ -63,4 +60,6 @@ export const SearchBar: FC<SearchBarProps> = ({
       </form>
     </>
   )
-}
+})
+
+SearchBar.displayName = 'SearchBar'

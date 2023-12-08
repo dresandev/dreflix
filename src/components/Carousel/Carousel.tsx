@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { useSnapCarousel } from 'react-snap-carousel'
 import { ensureArray } from '~/utils'
 import { useIsInView, usePageVisibility } from '~/hooks'
-import { ChevronArrow } from '~/components/SVG'
+import { Buttons } from './Buttons'
 import { Pagination } from './Pagination'
 import styles from './Carousel.module.css'
 
@@ -29,7 +29,9 @@ export const Carousel: React.FC<CarouselProps> = ({
   const firstPageBtnRef = useRef<HTMLButtonElement>(null)
   const forwardBtnRef = useRef<HTMLButtonElement>(null)
   const allSlidesViewed = useRef(false)
-  const { isInView, observerTargetRef } = useIsInView<HTMLDivElement>()
+  const { isInView, observerTargetRef } = useIsInView<HTMLDivElement>({
+    threshold: .5
+  })
   const isPageVisible = usePageVisibility()
   const {
     scrollRef,
@@ -73,35 +75,14 @@ export const Carousel: React.FC<CarouselProps> = ({
         ref={observerTargetRef}
         className={styles.carouselWrapper}
       >
-        <button
-          aria-label='Previous slide'
-          className={clsx(
-            styles.btn,
-            styles[btnHoverVariant],
-            activePageIndex === 0 && styles.hideBtn
-          )}
-          onClick={prev}
-        >
-          <ChevronArrow
-            className={styles.btnArrowIcon}
-            direction='LEFT'
-          />
-        </button>
-        <button
-          ref={forwardBtnRef}
-          aria-label='Next slide'
-          className={clsx(
-            styles.btn,
-            styles[btnHoverVariant],
-            activePageIndex === (pages.length - 1) && styles.hideBtn
-          )}
-          onClick={next}
-        >
-          <ChevronArrow
-            className={styles.btnArrowIcon}
-            direction='RIGHT'
-          />
-        </button>
+        <Buttons
+          onClickPrev={prev}
+          onClickNext={next}
+          showPrevButton={activePageIndex === 0}
+          showNextButton={activePageIndex === (pages.length - 1)}
+          btnHoverVariant={btnHoverVariant}
+          forwardBtnRef={forwardBtnRef}
+        />
 
         <ul
           ref={scrollRef}

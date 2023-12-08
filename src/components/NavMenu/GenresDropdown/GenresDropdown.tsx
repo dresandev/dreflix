@@ -5,7 +5,7 @@ import { Dropdown } from '~/components/Dropdown'
 import styles from '../common.module.css'
 
 export const GenresDropdown = async () => {
-  const translatedMovieGenres = await getMovieListGenres()
+  const movieListGenres = await getMovieListGenres()
 
   return (
     <Dropdown
@@ -13,7 +13,7 @@ export const GenresDropdown = async () => {
       optionsInGrid
     >
       {
-        translatedMovieGenres?.map(({ id, name }) => {
+        movieListGenres?.map(({ id, name }) => {
           const slug = simpleSlugify(name)
 
           return (

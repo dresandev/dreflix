@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { NavMenu } from '~/components/NavMenu'
 import { SearchMenu } from '~/components/SearchMenu'
 import { DreflixLogo } from '~/components/SVG'
-import { GenresDropdown } from '~/components/NavMenu/GenresDropdown/GenresDropdown'
+import { GenresDropdown } from '~/components/NavMenu/GenresDropdown'
 import styles from './Header.module.css'
 
 export const Header = () => (

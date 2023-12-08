@@ -1,3 +1,7 @@
 export const toggleBodyOverflow = (force?: boolean) => {
-  document.body.classList.toggle('hideOverflow', force)
+  try {
+    document.body.classList.toggle('hideOverflow', force)
+  } catch (error) {
+    return
+  }
 }

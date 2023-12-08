@@ -1,6 +1,10 @@
 'use client'
 
-import { useState, useEffect, ChangeEvent } from 'react'
+import {
+  useState,
+  useEffect,
+  type ChangeEvent
+} from 'react'
 import clsx from 'clsx'
 import { MovieTitle } from '~/models'
 import { getMovieTitles } from '~/actions/movies-actions'
@@ -36,13 +40,9 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
 
   const inputRef = useAutoFocus(isMenuOpen)
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const debouncedSearchQuery = useDebounce(searchQuery, DEBOUNCE_DELAY)
   const [searchResults, setSearchResults] = useState<MovieTitle[]>([])
-
-  useEffect(() => {
-    setSelectedIndex(null)
-  }, [searchResults])
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
   useEffect(() => {
     if (!debouncedSearchQuery.trim()) {
@@ -64,8 +64,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.persist()
-    const value = e.target.value
-    setSearchQuery(value)
+    setSearchQuery(e.target.value)
   }
 
   const handleResetForm = () => {
@@ -95,12 +94,12 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
         )}
       >
         <SearchBar
-          inputRef={inputRef}
-          searchQuery={searchQuery}
-          openResults={openResults}
-          handleInputChange={handleInputChange}
-          handleResetForm={handleResetForm}
+          ref={inputRef}
+          value={searchQuery}
           hasSelectedItem={selectedIndex !== null}
+          onChange={handleInputChange}
+          onReset={handleResetForm}
+          onFocus={openResults}
         />
         {
           (searchResults.length > 0 && isResultsOpen) && (

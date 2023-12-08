@@ -1,9 +1,9 @@
 import {
-  type Dispatch,
   type FC,
+  type Dispatch,
   type SetStateAction,
   useEffect,
-  useRef
+  useRef,
 } from 'react'
 import { MovieTitle } from '~/models'
 import styles from './SearchResults.module.css'
@@ -23,35 +23,35 @@ export const SearchResults: FC<SearchResultsProps> = ({
   const resultsLength = results.length
 
   useEffect(() => {
+    setSelectedIndex(null)
+  }, [results, setSelectedIndex])
+
+  useEffect(() => {
     if (!resultsRef.current) return
 
     const handleKeydown = ({ key }: KeyboardEvent) => {
-      switch (key) {
-        case 'ArrowUp': {
-          setSelectedIndex(prevIndex =>
-            (prevIndex === null || prevIndex === 0)
-              ? resultsLength - 1
-              : Math.max(prevIndex - 1, 0)
-          )
-          break
-        }
-        case 'ArrowDown': {
-          setSelectedIndex(prevIndex =>
-            (prevIndex === null || prevIndex === resultsLength - 1)
-              ? 0
-              : Math.min(prevIndex + 1, resultsLength - 1)
-          )
-          break
-        }
-        case 'Enter': {
-          if (selectedIndex === null) return
+      if (key === 'ArrowUp') {
+        setSelectedIndex(prevIndex => (
+          (prevIndex === null || prevIndex === 0)
+            ? resultsLength - 1
+            : Math.max(prevIndex - 1, 0)
+        ))
+      }
 
-          const resultOptions = resultsRef.current!.children
-          const selectedElement = resultOptions.item(selectedIndex)!.firstElementChild as HTMLLIElement
-          selectedElement.click()
-          break
-        }
-        default: break
+      if (key === 'ArrowDown') {
+        setSelectedIndex(prevIndex => (
+          (prevIndex === null || prevIndex === resultsLength - 1)
+            ? 0
+            : Math.min(prevIndex + 1, resultsLength - 1)
+        ))
+      }
+
+      if (key === 'Enter') {
+        if (selectedIndex === null) return
+
+        const resultOptions = resultsRef.current!.children
+        const selectedElement = resultOptions.item(selectedIndex)!.firstElementChild as HTMLLIElement
+        selectedElement.click()
       }
     }
 

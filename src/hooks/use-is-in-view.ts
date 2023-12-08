@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface UseIsInViewOptions extends IntersectionObserverInit {
   thresholdsByVisibility?: {
@@ -41,8 +41,7 @@ export const useIsInView = <T extends HTMLElement>(options?: UseIsInViewOptions)
     return () => {
       observer.unobserve(observerTarget)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isInView])
+  }, [isInView, options])
 
   return { observerTargetRef, isInView }
 }
