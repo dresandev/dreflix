@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { isFulfilled } from '~/utils/is-fulfilled'
+import { isFulfilled } from '~/utils'
 import {
   getMovieMainCast,
   getMovieDetails,

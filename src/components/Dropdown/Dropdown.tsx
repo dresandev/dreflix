@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import clsx from 'clsx'
-import { ensureArray } from '~/utils'
+import { ensureArray, getRandomKey } from '~/utils'
 import {
   useOnClickOutside,
   useBoolean,
@@ -65,14 +65,11 @@ export const Dropdown: React.FC<DropdownProps> = ({
         optionsInGrid && styles.dropdownGrid
       )}>
         {
-          childrenArray.map(option => {
-            const key = crypto.randomUUID()
-            return (
-              <li key={key}>
-                {option}
-              </li>
-            )
-          })
+          childrenArray.map(option => (
+            <li key={getRandomKey()}>
+              {option}
+            </li>
+          ))
         }
       </ul>
     </div>

@@ -17,12 +17,9 @@
   scroll-margin-inline-start: var(--inline-space);
 }
 
-.itemSnapPoint {
-  scroll-snap-align: start;
-}
-
 .itemScrollSnapStopAlways {
   scroll-snap-stop: always;
+  scroll-snap-align: start;
 }
 
 .btn {
@@ -32,6 +29,10 @@
 @media (hover: hover) {
   .carouselWrapper {
     position: relative;
+  }
+
+  .itemSnapPoint {
+    scroll-snap-align: start;
   }
 
   .btn {

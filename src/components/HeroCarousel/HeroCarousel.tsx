@@ -1,3 +1,4 @@
+import { getRandomKey } from '~/utils'
 import { heroMovies } from '~/data/hero-movies'
 import { Carousel } from '~/components/Carousel'
 import { HeroMovieCard } from '~/components/HeroMovieCard'
@@ -12,15 +13,11 @@ export const HeroCarousel = async () => {
       btnHoverVariant='scaleHover'
     >
       {
-        heroMovies.map(movie => {
-          const key = crypto.randomUUID()
-          return (
-            <HeroMovieCard
-              key={key}
-              {...movie}
-            />
-          )
-        })
+        heroMovies.map(movie => (
+          <HeroMovieCard
+            key={getRandomKey()}
+            {...movie} />
+        ))
       }
     </Carousel>
   )

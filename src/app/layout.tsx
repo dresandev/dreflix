@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Fira_Sans } from 'next/font/google'
+import { ProgressBar } from '~/components/ProgressBar'
 import { Header } from '~/components/Header'
 import { Footer } from '~/components/Footer'
 import { TrailerModalCC } from '~/components/TrailerModalCC'
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='en'>
       <body className={firaSans.className}>
+        <ProgressBar />
         <div className='__next'>
           <Header />
           <main>

@@ -3,8 +3,8 @@
 import { useEffect, useRef } from 'react'
 import clsx from 'clsx'
 import { useSnapCarousel } from 'react-snap-carousel'
-import { usePageVisibility } from '~/hooks/use-page-visibility'
 import { ensureArray } from '~/utils'
+import { useIsInView, usePageVisibility } from '~/hooks'
 import { ChevronArrow } from '~/components/SVG'
 import { Pagination } from './Pagination'
 import styles from './Carousel.module.css'
@@ -29,6 +29,7 @@ export const Carousel: React.FC<CarouselProps> = ({
   const firstPageBtnRef = useRef<HTMLButtonElement>(null)
   const forwardBtnRef = useRef<HTMLButtonElement>(null)
   const allSlidesViewed = useRef(false)
+  const { isInView, observerTargetRef } = useIsInView<HTMLDivElement>()
   const isPageVisible = usePageVisibility()
   const {
     scrollRef,
@@ -44,7 +45,8 @@ export const Carousel: React.FC<CarouselProps> = ({
     if (
       !autoPlay ||
       allSlidesViewed.current ||
-      !isPageVisible
+      !isPageVisible ||
+      !isInView
     ) return
 
     const passSlideIntervalId = setInterval(() => {
@@ -61,13 +63,16 @@ export const Carousel: React.FC<CarouselProps> = ({
     return () => {
       clearInterval(passSlideIntervalId)
     }
-  }, [autoPlay, activePageIndex, pages.length, isPageVisible])
+  }, [isPageVisible, isInView, autoPlay, activePageIndex, pages.length])
 
   const childrenArray = ensureArray(children)
 
   return (
     <>
-      <div className={styles.carouselWrapper}>
+      <div
+        ref={observerTargetRef}
+        className={styles.carouselWrapper}
+      >
         <button
           aria-label='Previous slide'
           className={clsx(

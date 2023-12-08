@@ -4,6 +4,19 @@ const base_url = '/images/hero-carousel'
 
 export const heroMovies: HeroMovie[] = [
   {
+    movieId: 667216,
+    image: {
+      original: `${base_url}/infinity-pool/image/2880w.webp`,
+      medium: `${base_url}/infinity-pool/image/1440w.webp`,
+      small: `${base_url}/infinity-pool/image/800w.webp`,
+    },
+    logoImage: {
+      original: `${base_url}/infinity-pool/logo/700w.webp`,
+      small: `${base_url}/infinity-pool/logo/350w.webp`,
+    },
+    title: 'Infinity pool',
+  },
+  {
     movieId: 744857,
     image: {
       original: `${base_url}/when-evil-lurks/image/2880w.webp`,
@@ -41,19 +54,6 @@ export const heroMovies: HeroMovie[] = [
       small: `${base_url}/train-to-busan/logo/350w.webp`,
     },
     title: 'Train to Busan',
-  },
-  {
-    movieId: 667216,
-    image: {
-      original: `${base_url}/infinity-pool/image/2880w.webp`,
-      medium: `${base_url}/infinity-pool/image/1440w.webp`,
-      small: `${base_url}/infinity-pool/image/800w.webp`,
-    },
-    logoImage: {
-      original: `${base_url}/infinity-pool/logo/700w.webp`,
-      small: `${base_url}/infinity-pool/logo/350w.webp`,
-    },
-    title: 'Infinity pool',
   },
   {
     movieId: 949423,

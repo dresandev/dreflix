@@ -1,4 +1,4 @@
-import { isFulfilled } from '~/utils/is-fulfilled'
+import { isFulfilled, getRandomKey } from '~/utils'
 import { getMovieList } from '~/actions/movies-actions'
 import { HeroCarousel } from '~/components/HeroCarousel'
 import { CarouselSection } from '~/components/CarouselSection'
@@ -29,11 +29,9 @@ export default async function HomePage() {
         moviesResult.map((movies, i) => {
           if (!isFulfilled(movies)) return
 
-          const key = crypto.randomUUID()
-
           return (
             <CarouselSection
-              key={key}
+              key={getRandomKey()}
               className={styles.carouselSection}
               title={movieListTitle[i]}
             >
