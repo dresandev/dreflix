@@ -27,6 +27,16 @@ export default async function SearchPage({
 
   if (!movieListResult) return notFound()
 
+  const { results, total_pages } = movieListResult
+
+  if (!results.length) {
+    return (
+      <p className={styles.noMatchesMessage}>
+        {`We didn't find any matches for "${search_query}".`}
+      </p>
+    )
+  }
+
   return (
     <div className={styles.container}>
       <PageGradient gradientColor='hsl(0 100% 31% / .3)' />
@@ -36,8 +46,8 @@ export default async function SearchPage({
       </h2>
 
       <InfiniteMovieResults
-        initMovies={movieListResult.results}
-        totalPages={movieListResult.total_pages}
+        initMovies={results}
+        totalPages={total_pages}
         keyword={search_query}
       />
     </div >

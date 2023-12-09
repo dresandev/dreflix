@@ -5,7 +5,7 @@ import { Loader } from '~/components/Loader'
 import styles from './InfiniteMovieGrid.module.css'
 
 interface InfiniteMovieGridProps {
-  movies: Movie[] | null
+  movies: Movie[]
   observerTargetRef: MutableRefObject<HTMLDivElement | null>
   isLoading: boolean
   hasError: boolean
@@ -21,7 +21,7 @@ export const InfiniteMovieGrid: React.FC<InfiniteMovieGridProps> = ({
     <>
       <div className={styles.container}>
         {
-          movies?.map((movie, index) => {
+          movies.map((movie, index) => {
             const {
               id,
               poster_path,

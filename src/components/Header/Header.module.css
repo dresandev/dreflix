@@ -26,12 +26,12 @@
   }
 }
 
-.spacer {
-  flex-grow: 1;
-}
-
 .navMenu {
   order: -1;
+}
+
+.searchMenu {
+  margin-inline-start: auto;
 }
 
 @media screen and (min-width: 880px) {
@@ -42,6 +42,5 @@
   .searchMenu {
     flex: 1;
     max-inline-size: 45rem;
-    min-inline-size: 30rem;
   }
 }

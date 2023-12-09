@@ -5,6 +5,10 @@ import {
   useEffect,
   useRef,
 } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next-nprogress-bar'
+import clsx from 'clsx'
+import { removeFocusActiveElement } from '~/utils'
 import { MovieTitle } from '~/models'
 import styles from './SearchResults.module.css'
 
@@ -19,8 +23,8 @@ export const SearchResults: FC<SearchResultsProps> = ({
   selectedIndex,
   setSelectedIndex,
 }) => {
+  const router = useRouter()
   const resultsRef = useRef<HTMLUListElement>(null)
-  const resultsLength = results.length
 
   useEffect(() => {
     setSelectedIndex(null)
@@ -33,25 +37,26 @@ export const SearchResults: FC<SearchResultsProps> = ({
       if (key === 'ArrowUp') {
         setSelectedIndex(prevIndex => (
           (prevIndex === null || prevIndex === 0)
-            ? resultsLength - 1
+            ? results.length - 1
             : Math.max(prevIndex - 1, 0)
         ))
       }
 
       if (key === 'ArrowDown') {
         setSelectedIndex(prevIndex => (
-          (prevIndex === null || prevIndex === resultsLength - 1)
+          (prevIndex === null || prevIndex === results.length - 1)
             ? 0
-            : Math.min(prevIndex + 1, resultsLength - 1)
+            : Math.min(prevIndex + 1, results.length - 1)
         ))
       }
 
       if (key === 'Enter') {
         if (selectedIndex === null) return
 
-        const resultOptions = resultsRef.current!.children
-        const selectedElement = resultOptions.item(selectedIndex)!.firstElementChild as HTMLLIElement
-        selectedElement.click()
+        removeFocusActiveElement()
+
+        const href = `/search?search_query=${results[selectedIndex].name}`
+        router.push(href, {}, { showProgressBar: true })
       }
     }
 
@@ -60,49 +65,33 @@ export const SearchResults: FC<SearchResultsProps> = ({
     return () => {
       window.removeEventListener('keydown', handleKeydown)
     }
-  }, [resultsLength, selectedIndex, setSelectedIndex])
-
-  useEffect(() => {
-    if (
-      selectedIndex === null ||
-      !resultsRef.current
-    ) return
-
-    const selectedOptClass = styles.selectedOption
-    const resultOptions = resultsRef.current.children
-
-    for (let i = 0; i < resultOptions.length; i++) {
-      resultOptions[i].classList.remove(selectedOptClass)
-    }
-
-    const selectedElement = resultOptions.item(selectedIndex)!
-    selectedElement.classList.add(selectedOptClass)
-  }, [selectedIndex])
+  }, [results, router, selectedIndex, setSelectedIndex])
 
   return (
-    <>
+    <ul
+      ref={resultsRef}
+      className={styles.results}
+    >
       {
-        <ul
-          ref={resultsRef}
-          className={styles.results}
-        >
-          {
-            results.map(({ id, name }) => {
-              const resultPath = `/search?search_query=${name.replace(' ', '+')}`
-              return (
-                <li key={id}>
-                  <a
-                    className={styles.resultLink}
-                    href={resultPath}
-                  >
-                    {name}
-                  </a>
-                </li>
-              )
-            })
-          }
-        </ul>
+        results.map(({ id, name }, i) => (
+          <li key={id}>
+            <Link
+              className={clsx(
+                styles.resultLink,
+                selectedIndex === i && styles.selectedOption
+              )}
+              href={{
+                pathname: '/search',
+                query: {
+                  'search_query': name
+                },
+              }}
+            >
+              {name}
+            </Link>
+          </li>
+        ))
       }
-    </>
+    </ul>
   )
 }

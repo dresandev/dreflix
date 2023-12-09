@@ -22,7 +22,7 @@ interface SearchMenuProps {
   className?: string
 }
 
-const DEBOUNCE_DELAY = 150
+const DEBOUNCE_DELAY = 200
 
 export const SearchMenu: React.FC<SearchMenuProps> = ({
   className
@@ -45,13 +45,15 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
   useEffect(() => {
-    if (!debouncedSearchQuery.trim()) {
+    const trimmedSearchQuery = debouncedSearchQuery.trim()
+
+    if (!trimmedSearchQuery || trimmedSearchQuery.length <= 2) {
       return setSearchResults([])
     }
 
     const fetchMovieTitles = async () => {
       try {
-        const newSearchResults = await getMovieTitles(debouncedSearchQuery)
+        const newSearchResults = await getMovieTitles(trimmedSearchQuery)
         setSearchResults(newSearchResults || [])
       } catch (error) {
         console.error(error)

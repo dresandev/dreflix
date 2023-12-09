@@ -7,7 +7,7 @@ import { InfiniteMovieGrid } from '~/components/InfiniteMovieGrid'
 import { getMovieList } from '~/actions/movies-actions'
 
 interface InfiniteMovieListProps {
-  initMovies: Movie[] | null
+  initMovies: Movie[]
   totalPages: number
   movieListType: MovieListType
 }

@@ -3,7 +3,7 @@ import { Movie, MovieListResponse } from '~/models'
 import { useIsInView } from './use-is-in-view'
 
 interface useFetchMoviesProps {
-  initMovies: Movie[] | null
+  initMovies: Movie[]
   totalPages: number
   fetchMovies: (page: number) => Promise<MovieListResponse | null>
 }
@@ -13,7 +13,7 @@ export const useFetchMovies = ({
   totalPages,
   fetchMovies,
 }: useFetchMoviesProps) => {
-  const [movies, setMovies] = useState(initMovies || [])
+  const [movies, setMovies] = useState(initMovies)
   const [dataInfo, setDataInfo] = useState({
     page: 2,
     isLoading: false,
@@ -35,6 +35,10 @@ export const useFetchMovies = ({
   }, [])
 
   useEffect(() => {
+    setMovies(initMovies)
+  }, [initMovies])
+
+  useEffect(() => {
     if (!isInView || isLoading || page > totalPages) return
 
     const loadMoreMovies = async () => {
@@ -46,7 +50,9 @@ export const useFetchMovies = ({
 
         const movieListResult = await fetchMovies(page)
 
-        if (!movieListResult) throw new Error('Failed to fetch movies')
+        if (!movieListResult) {
+          throw new Error('Failed to fetch movies')
+        }
 
         setMovies(prevMovies => [
           ...prevMovies,

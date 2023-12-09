@@ -3,7 +3,9 @@ import {
   type ChangeEvent,
   type FormEvent,
 } from 'react'
+import { useRouter } from 'next-nprogress-bar'
 import clsx from 'clsx'
+import { removeFocusActiveElement } from '~/utils'
 import { SearchIcon } from '~/components/SVG'
 import styles from './SearchBar.module.css'
 
@@ -22,15 +24,23 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
   onReset,
   onFocus,
 }, ref) => {
+  const router = useRouter()
+
   const handleOnSubmit = (e: FormEvent) => {
-    if (hasSelectedItem) e.preventDefault()
+    e.preventDefault()
+
+    if (hasSelectedItem) return
+
+    removeFocusActiveElement()
+
+    const href = `/search?search_query=${value.replace(' ', '+')}`
+    router.push(href, {}, { showProgressBar: true })
   }
 
   return (
     <>
       <form
         className={styles.searchBar}
-        action={`/search?search_query=${value}`}
         onSubmit={handleOnSubmit}
         onReset={onReset}
       >

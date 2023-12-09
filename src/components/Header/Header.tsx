@@ -20,8 +20,6 @@ export const Header = () => (
         <GenresDropdown />
       </NavMenu>
 
-      <div className={styles.spacer}></div>
-
       <SearchMenu className={styles.searchMenu} />
       <button
         type='button'

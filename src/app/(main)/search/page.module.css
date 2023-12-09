@@ -1,8 +1,10 @@
+.noMatchesMessage,
 .container {
   padding-inline: var(--inline-space);
 }
 
-.searchQuery{
+.noMatchesMessage,
+.searchQuery {
   font-size: 2rem;
   font-weight: 500;
   padding-block: 3rem;

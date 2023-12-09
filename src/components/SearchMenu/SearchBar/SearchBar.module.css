@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   padding-inline: 1.6rem;
-  margin: 1.6rem var(--inline-space);
+  margin: 1.2rem var(--inline-space);
   border-radius: 3rem;
   border: 0.1rem solid var(--tertiary-bg-color);
 }

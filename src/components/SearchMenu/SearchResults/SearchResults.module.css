@@ -1,3 +1,8 @@
+.results {
+  block-size: calc(100vh - 13.5rem);
+  overflow-y: auto;
+}
+
 .resultLink {
   display: block;
   padding: var(--button-padding);
@@ -18,11 +23,12 @@
 @media screen and (min-width: 880px) {
   .results {
     position: absolute;
-    inset-block-start: calc(100% + 0.5rem);
+    inset-block-start: 110%;
     inset-inline: 0;
+    block-size: unset;
     padding-block: 1rem;
     background-color: var(--secondary-bg-color);
     border-radius: var(--border-radius);
-    overflow: hidden;
+    overflow-y: unset;
   }
 }

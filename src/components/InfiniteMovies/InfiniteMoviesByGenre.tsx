@@ -6,7 +6,7 @@ import { useFetchMovies } from '~/hooks/use-fetch-movies'
 import { InfiniteMovieGrid } from '~/components/InfiniteMovieGrid'
 
 interface InfiniteMoviesByGenreProps {
-  initMovies: Movie[] | null
+  initMovies: Movie[]
   totalPages: number
   genreId: number
 }
