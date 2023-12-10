@@ -1,3 +1,4 @@
+export * from './adapt-search-query'
 export * from './ensure-array'
 export * from './get-month-name'
 export * from './get-random-index'

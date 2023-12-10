@@ -8,7 +8,7 @@ import {
 import Link from 'next/link'
 import { useRouter } from 'next-nprogress-bar'
 import clsx from 'clsx'
-import { removeFocusActiveElement } from '~/utils'
+import { removeFocusActiveElement, adaptSearchQuery } from '~/utils'
 import { MovieTitle } from '~/models'
 import styles from './SearchResults.module.css'
 
@@ -54,8 +54,8 @@ export const SearchResults: FC<SearchResultsProps> = ({
         if (selectedIndex === null) return
 
         removeFocusActiveElement()
-
-        const href = `/search?search_query=${results[selectedIndex].name}`
+        const searchQuery = adaptSearchQuery(results[selectedIndex].name)
+        const href = `/search?search_query=${searchQuery}`
         router.push(href, {}, { showProgressBar: true })
       }
     }
@@ -80,18 +80,13 @@ export const SearchResults: FC<SearchResultsProps> = ({
                 styles.resultLink,
                 selectedIndex === i && styles.selectedOption
               )}
-              href={{
-                pathname: '/search',
-                query: {
-                  'search_query': name
-                },
-              }}
+              href={`/search?search_query=${adaptSearchQuery(name)}`}
             >
               {name}
             </Link>
           </li>
         ))
       }
-    </ul>
+    </ul >
   )
 }

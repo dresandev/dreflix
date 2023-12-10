@@ -5,7 +5,7 @@ import {
 } from 'react'
 import { useRouter } from 'next-nprogress-bar'
 import clsx from 'clsx'
-import { removeFocusActiveElement } from '~/utils'
+import { removeFocusActiveElement, adaptSearchQuery } from '~/utils'
 import { SearchIcon } from '~/components/SVG'
 import styles from './SearchBar.module.css'
 
@@ -32,8 +32,8 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
     if (hasSelectedItem) return
 
     removeFocusActiveElement()
-
-    const href = `/search?search_query=${value.replace(' ', '+')}`
+    const searchQuery = adaptSearchQuery(value)
+    const href = `/search?search_query=${searchQuery}`
     router.push(href, {}, { showProgressBar: true })
   }
 
@@ -44,7 +44,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
         onSubmit={handleOnSubmit}
         onReset={onReset}
       >
-        <SearchIcon />
+        <SearchIcon className={styles.searchIcon}/>
         <input
           ref={ref}
           className={styles.searchBarInput}
