@@ -53,6 +53,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
 
     const fetchMovieTitles = async () => {
       try {
+        console.log('llamado')
         const newSearchResults = await getMovieTitles(trimmedSearchQuery)
         setSearchResults(newSearchResults || [])
       } catch (error) {

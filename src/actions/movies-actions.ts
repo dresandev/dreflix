@@ -225,8 +225,8 @@ export const getMoviesByTitle = async (
   try {
     const url = `${API_BASE_URL}/search/movie?query=${title}&include_adult=false&language=${API_LANGUAGE}&page=${page}`
 
-    // const result = await fetch(url, { ...COMMON_GET_OPTIONS, cache: 'no-cache' })
-    const result = await fetch(url, COMMON_GET_OPTIONS)
+    const result = await fetch(url, { ...COMMON_GET_OPTIONS, cache: 'no-cache' })
+    // const result = await fetch(url, COMMON_GET_OPTIONS)
 
     if (result.status === 200) {
       const movieListResponse = await result.json() as MovieListResponse
