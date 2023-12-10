@@ -38,6 +38,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
         src={image.original}
         alt=''
         loading='eager'
+        fetchPriority='high'
         width={1800}
       />
 
@@ -67,6 +68,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
                   width={150}
                   height={100}
                   loading='eager'
+                  fetchPriority='high'
                 />
               </Link>
             </h2>

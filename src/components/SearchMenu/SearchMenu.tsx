@@ -38,7 +38,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
 
   const inputRef = useAutoFocus(isMenuOpen)
   const [searchQuery, setSearchQuery] = useState('')
-  const debouncedSearchQuery = useDebounce(searchQuery, 350)
+  const debouncedSearchQuery = useDebounce(searchQuery, 300)
   const [searchResults, setSearchResults] = useState<MovieTitle[]>([])
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
@@ -52,7 +52,6 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
     const fetchMovieTitles = async () => {
       try {
         const newSearchResults = await getMovieTitles(trimmedSearchQuery)
-        console.log(newSearchResults)
         setSearchResults(newSearchResults || [])
       } catch (error) {
         console.error(error)
