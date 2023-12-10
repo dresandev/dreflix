@@ -23,7 +23,7 @@ export default async function SearchPage({
 
   const { search_query } = searchParams
 
-  const movieListResult = await getMoviesByTitle(search_query)
+  const movieListResult = await getMoviesByTitle({ title: search_query })
 
   if (!movieListResult) return notFound()
 

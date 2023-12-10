@@ -22,8 +22,6 @@ interface SearchMenuProps {
   className?: string
 }
 
-const DEBOUNCE_DELAY = 200
-
 export const SearchMenu: React.FC<SearchMenuProps> = ({
   className
 }) => {
@@ -40,7 +38,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
 
   const inputRef = useAutoFocus(isMenuOpen)
   const [searchQuery, setSearchQuery] = useState('')
-  const debouncedSearchQuery = useDebounce(searchQuery, DEBOUNCE_DELAY)
+  const debouncedSearchQuery = useDebounce(searchQuery, 350)
   const [searchResults, setSearchResults] = useState<MovieTitle[]>([])
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
@@ -53,8 +51,8 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
 
     const fetchMovieTitles = async () => {
       try {
-        console.log('llamado')
         const newSearchResults = await getMovieTitles(trimmedSearchQuery)
+        console.log(newSearchResults)
         setSearchResults(newSearchResults || [])
       } catch (error) {
         console.error(error)

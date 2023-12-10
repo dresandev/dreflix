@@ -196,7 +196,10 @@ export const getMovieTitles = async (
   title: string,
 ): Promise<MovieTitle[] | null> => {
   try {
-    const movieListResponse = await getMoviesByTitle(title)
+    const movieListResponse = await getMoviesByTitle({
+      title,
+      fetchOptions: { cache: 'no-store' }
+    })
 
     if (!movieListResponse?.results.length) return null
 
@@ -218,15 +221,24 @@ export const getMovieTitles = async (
   }
 }
 
-export const getMoviesByTitle = async (
-  title: string,
-  page = 1
-): Promise<MovieListResponse | null> => {
+interface MovieActionProps {
+  title: string
+  page?: number
+  fetchOptions?: RequestInit
+}
+
+export const getMoviesByTitle = async ({
+  title,
+  page = 1,
+  fetchOptions,
+}: MovieActionProps): Promise<MovieListResponse | null> => {
   try {
     const url = `${API_BASE_URL}/search/movie?query=${title}&include_adult=false&language=${API_LANGUAGE}&page=${page}`
 
-    const result = await fetch(url, { ...COMMON_GET_OPTIONS, cache: 'no-cache' })
-    // const result = await fetch(url, COMMON_GET_OPTIONS)
+    const result = await fetch(url, {
+      ...COMMON_GET_OPTIONS,
+      ...fetchOptions
+    })
 
     if (result.status === 200) {
       const movieListResponse = await result.json() as MovieListResponse

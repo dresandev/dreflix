@@ -19,7 +19,9 @@ export const InfiniteMovieResults: React.FC<InfiniteMovieResultsProps> = ({
   const { observerTargetRef, movies, dataInfo } = useFetchMovies({
     initMovies,
     totalPages,
-    fetchMovies: (page) => getMoviesByTitle(keyword, page)
+    fetchMovies: (page) => {
+      return getMoviesByTitle({ title: keyword, page })
+    }
   })
 
   const { isLoading, hasError } = dataInfo
