@@ -41,7 +41,7 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
         alt=''
         loading={loading}
         fetchPriority={fetchPriority}
-        width={1800}
+        width={340}
       />
 
       <section className={styles.heroCardInfo}>

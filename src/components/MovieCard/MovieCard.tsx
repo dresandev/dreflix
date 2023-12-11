@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import clsx from 'clsx'
-import { FetchPriority, Loading } from '~/types'
+import { Loading } from '~/types'
 import { IMAGES_BASE_URL } from '~/constants'
 import { simpleSlugify } from '~/utils'
 import { formatDate } from '~/helpers'
