@@ -16,7 +16,7 @@ const getGenreFromSlug = async (slug: string) => {
   const genreName = slugToText(slug)
   const genre = await getGenreByName(genreName)
 
-  if (!genre) return notFound()
+  if (!genre) notFound()
 
   return genre
 }

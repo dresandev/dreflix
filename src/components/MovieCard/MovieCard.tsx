@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import clsx from 'clsx'
+import { FetchPriority, Loading } from '~/types'
 import { IMAGES_BASE_URL } from '~/constants'
 import { simpleSlugify } from '~/utils'
 import { formatDate } from '~/helpers'
@@ -17,6 +18,7 @@ interface MovieCardProps {
   releaseDate: string
   overview: string
   trailerKey: string | null
+  loading?: Loading
 }
 
 export const MovieCard: React.FC<MovieCardProps> = ({
@@ -27,6 +29,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
   releaseDate,
   overview,
   trailerKey,
+  loading,
 }) => {
   const movieDetailsPath = `/detail/${id}-${simpleSlugify(title)}`
   return (
@@ -50,7 +53,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
               src={`${IMAGES_BASE_URL}/w342${posterPath}`}
               alt={title}
               width={150}
-              loading='eager'
+              loading={loading}
             />
           ) : (
             <NoImage holder='movie' />

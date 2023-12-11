@@ -8,7 +8,9 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
   movieId,
   title,
   image,
-  logoImage
+  logoImage,
+  loading,
+  fetchPriority,
 }) => {
   const movieDetailsPath = `/detail/${movieId}-${simpleSlugify(title)}`
 
@@ -37,8 +39,8 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
         '
         src={image.original}
         alt=''
-        loading='eager'
-        fetchPriority='high'
+        loading={loading}
+        fetchPriority={fetchPriority}
         width={1800}
       />
 
@@ -67,8 +69,8 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
                   alt={title}
                   width={150}
                   height={100}
-                  loading='eager'
-                  fetchPriority='high'
+                  loading={loading}
+                  fetchPriority={fetchPriority}
                 />
               </Link>
             </h2>

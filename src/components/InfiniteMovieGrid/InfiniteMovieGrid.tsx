@@ -15,13 +15,13 @@ export const InfiniteMovieGrid: React.FC<InfiniteMovieGridProps> = ({
   movies,
   observerTargetRef,
   isLoading,
-  hasError
+  hasError,
 }) => {
   return (
     <>
       <div className={styles.container}>
         {
-          movies.map((movie, index) => {
+          movies.map((movie, i) => {
             const {
               id,
               poster_path,
@@ -33,13 +33,14 @@ export const InfiniteMovieGrid: React.FC<InfiniteMovieGridProps> = ({
 
             return (
               <MovieCard
-                key={index}
+                key={i}
                 id={id}
                 posterPath={poster_path}
                 title={title}
                 releaseDate={release_date}
                 overview={overview}
                 trailerKey={trailerKey}
+                loading={i < 12 ? 'eager' : 'lazy'}
               />
             )
           })

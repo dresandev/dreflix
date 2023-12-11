@@ -12,7 +12,9 @@ interface MovieListPageProps {
   }
 }
 
-export async function generateMetadata({ params }: MovieListPageProps) {
+export async function generateMetadata({
+  params
+}: MovieListPageProps) {
   const movieListPageInfo = getMovieListPageInfo(params.slug)
 
   return {
@@ -26,21 +28,24 @@ export default async function MovieListPage({
   const movieListType = params.slug as MovieListType
   const movieListPageInfo = getMovieListPageInfo(movieListType)
 
-  if (!movieListPageInfo) return notFound()
+  if (!movieListPageInfo) notFound()
 
   const movieListResult = await getMovieList(movieListType)
+
+  const { title } = movieListPageInfo
+  const { results, total_pages } = movieListResult!
 
   return (
     <div className={styles.container}>
       <PageGradient gradientColor='hsl(47 96% 40% / .3)' />
 
       <h1 className={styles.title}>
-        {movieListPageInfo.title}
+        {title}
       </h1>
 
       <InfiniteMovieList
-        initMovies={movieListResult!.results}
-        totalPages={movieListResult!.total_pages}
+        initMovies={results}
+        totalPages={total_pages}
         movieListType={movieListType}
       />
     </div>

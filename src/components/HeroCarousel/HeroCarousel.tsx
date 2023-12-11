@@ -13,10 +13,13 @@ export const HeroCarousel = async () => {
       btnHoverVariant='scaleHover'
     >
       {
-        heroMovies.map(movie => (
+        heroMovies.map((movie, i) => (
           <HeroMovieCard
             key={getRandomKey()}
-            {...movie} />
+            {...movie}
+            loading={i < 2 ? 'eager' : 'lazy'}
+            fetchPriority={i < 2 ? 'high' : 'auto'}
+          />
         ))
       }
     </Carousel>

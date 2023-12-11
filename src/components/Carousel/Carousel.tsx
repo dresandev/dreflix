@@ -60,7 +60,7 @@ export const Carousel: React.FC<CarouselProps> = ({
       if (activePageIndex >= 0) {
         forwardBtnRef.current?.click()
       }
-    }, 6000)
+    }, 5000)
 
     return () => {
       clearInterval(passSlideIntervalId)

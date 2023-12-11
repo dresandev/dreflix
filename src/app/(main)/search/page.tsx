@@ -17,15 +17,13 @@ export const metadata = {
 export default async function SearchPage({
   searchParams
 }: SearchPageProps) {
-  if (!searchParams.search_query) {
-    return redirect('/')
-  }
+  if (!searchParams.search_query) redirect('/')
 
   const { search_query } = searchParams
 
   const movieListResult = await getMoviesByTitle({ title: search_query })
 
-  if (!movieListResult) return notFound()
+  if (!movieListResult) notFound()
 
   const { results, total_pages } = movieListResult
 
