@@ -22,6 +22,8 @@ interface SearchMenuProps {
   className?: string
 }
 
+const DEBOUNCE_DELAY = 280
+
 export const SearchMenu: React.FC<SearchMenuProps> = ({
   className
 }) => {
@@ -38,7 +40,7 @@ export const SearchMenu: React.FC<SearchMenuProps> = ({
 
   const inputRef = useAutoFocus(isMenuOpen)
   const [searchQuery, setSearchQuery] = useState('')
-  const debouncedSearchQuery = useDebounce(searchQuery, 300)
+  const debouncedSearchQuery = useDebounce(searchQuery, DEBOUNCE_DELAY)
   const [searchResults, setSearchResults] = useState<MovieTitle[]>([])
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 

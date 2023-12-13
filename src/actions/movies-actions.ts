@@ -160,7 +160,7 @@ export const getGenreByName = async (
     if (!movieListGenres) return null
 
     const genre = movieListGenres.find(genre =>
-      genre.name === name
+      genre.name.toLowerCase() === name
     )
 
     return genre ?? null

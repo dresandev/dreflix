@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getRandomIndex, slugToText } from '~/utils'
+import { getRandomIndex, removeHyphen } from '~/utils'
 import { genrePageColors } from '~/data/genre-page-colors'
 import { getGenreByName, getMoviesByGenre } from '~/actions/movies-actions'
 import { PageGradient } from '~/components/PageGradient'
@@ -13,7 +13,8 @@ interface MoviesByGenrePageProps {
 }
 
 const getGenreFromSlug = async (slug: string) => {
-  const genreName = slugToText(slug)
+  const genreName = removeHyphen(slug)
+
   const genre = await getGenreByName(genreName)
 
   if (!genre) notFound()

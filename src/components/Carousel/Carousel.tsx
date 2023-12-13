@@ -18,6 +18,8 @@ interface CarouselProps {
   btnHoverVariant?: 'shadowHover' | 'scaleHover'
 }
 
+const AUTOPLAY_INTERVAL = 5000
+
 export const Carousel: React.FC<CarouselProps> = ({
   children,
   itemsGap = '2rem',
@@ -60,7 +62,7 @@ export const Carousel: React.FC<CarouselProps> = ({
       if (activePageIndex >= 0) {
         forwardBtnRef.current?.click()
       }
-    }, 5000)
+    }, AUTOPLAY_INTERVAL)
 
     return () => {
       clearInterval(passSlideIntervalId)
