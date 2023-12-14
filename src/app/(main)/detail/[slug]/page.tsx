@@ -1,12 +1,11 @@
 import { notFound } from 'next/navigation'
-import { isFulfilled, simpleSlugify } from '~/utils'
+import { isFulfilled } from '~/utils'
 import {
   getMovieMainCast,
   getMovieDetails,
   getMovieTrailerKey,
   getSimilarMovies
 } from '~/actions/movies-actions'
-import { heroMovies } from '~/data/hero-movies'
 import { HeroImage } from './components/HeroImage'
 import { MovieDetails } from './components/MovieDetails'
 import { MainCast } from './components/MainCast'
@@ -27,12 +26,6 @@ export async function generateMetadata({ params }: DetailsPageProps) {
     title: `Dreflix: ${movie.title}`,
     description: movie.overview
   }
-}
-
-export async function generateStaticParams() {
-  return heroMovies.map(({ movieId, title }) => ({
-    slug: `${movieId}-${simpleSlugify(title)}`,
-  }))
 }
 
 export default async function DetailPage({
