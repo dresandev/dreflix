@@ -12,12 +12,28 @@ const movieListTitle = [
   'Top Rated',
 ]
 
+const fetchOptions = {
+  next: { revalidate: 86400 }
+}
+
 export default async function HomePage() {
   const moviesResult = await Promise.allSettled([
-    getMovieList('popular'),
-    getMovieList('now_playing'),
-    getMovieList('upcoming'),
-    getMovieList('top_rated'),
+    getMovieList({
+      movieListType: 'popular',
+      fetchOptions
+    }),
+    getMovieList({
+      movieListType: 'now_playing',
+      fetchOptions
+    }),
+    getMovieList({
+      movieListType: 'upcoming',
+      fetchOptions
+    }),
+    getMovieList({
+      movieListType: 'top_rated',
+      fetchOptions
+    }),
   ])
 
   return (

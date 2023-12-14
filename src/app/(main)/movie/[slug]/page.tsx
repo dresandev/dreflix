@@ -30,7 +30,7 @@ export default async function MovieListPage({
 
   if (!movieListPageInfo) notFound()
 
-  const movieListResult = await getMovieList(movieListType)
+  const movieListResult = await getMovieList({ movieListType })
 
   const { title } = movieListPageInfo
   const { results, total_pages } = movieListResult!

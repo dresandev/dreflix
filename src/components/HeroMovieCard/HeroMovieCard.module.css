@@ -19,26 +19,23 @@
 }
 
 .heroCardInfo {
+  --padding: 1.6rem;
   position: absolute;
   inset: 0;
   inset-block-start: unset;
-  padding: 1.6rem;
+  padding-inline: var(--padding);
+  padding-block-end: var(--padding);
   pointer-events: none;
 }
 
 .infoWrapper {
-  inline-size: max-content;
   pointer-events: visible;
 }
 
-.logoLinkWrapper {
-  display: block;
-  inline-size: max-content;
-}
-
 .logoImage {
+  max-inline-size: calc(100vw * 0.6);
+  max-block-size: calc(100vw * 9 / 16 * 0.5);
   inline-size: auto;
-  max-block-size: calc(100vw / 4);
   block-size: auto;
 }
 
@@ -67,13 +64,14 @@
 
   .logoImage {
     max-block-size: calc(100vw / 12);
+    max-inline-size: calc(100vw * 0.33);
   }
 
   .heroCardInfo {
     inset: 0;
     block-size: max-content;
     padding-inline: 4rem;
-    padding-block-end: unset;
+    padding-block: unset;
     margin-block: auto;
   }
 

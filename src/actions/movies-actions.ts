@@ -18,14 +18,24 @@ import {
 } from '~/models'
 import { MovieListType } from '~/types'
 
-export const getMovieList = async (
+interface GetMovieListProps {
   movieListType: MovieListType,
-  page = 1
-): Promise<MovieListResponse | null> => {
+  page?: number
+  fetchOptions?: RequestInit
+}
+
+export const getMovieList = async ({
+  movieListType,
+  page = 1,
+  fetchOptions,
+}: GetMovieListProps): Promise<MovieListResponse | null> => {
   try {
     const url = `${API_BASE_URL}/movie/${movieListType}?language=${API_LANGUAGE}&page=${page}`
 
-    const result = await fetch(url, COMMON_GET_OPTIONS)
+    const result = await fetch(url, {
+      ...COMMON_GET_OPTIONS,
+      ...fetchOptions
+    })
 
     if (result.status === 200) {
       const movieListResponse = await result.json() as MovieListResponse
@@ -221,7 +231,7 @@ export const getMovieTitles = async (
   }
 }
 
-interface MovieActionProps {
+interface GetMoviesByTitleProps {
   title: string
   page?: number
   fetchOptions?: RequestInit
@@ -231,7 +241,7 @@ export const getMoviesByTitle = async ({
   title,
   page = 1,
   fetchOptions,
-}: MovieActionProps): Promise<MovieListResponse | null> => {
+}: GetMoviesByTitleProps): Promise<MovieListResponse | null> => {
   try {
     const url = `${API_BASE_URL}/search/movie?query=${title}&include_adult=false&language=${API_LANGUAGE}&page=${page}`
 

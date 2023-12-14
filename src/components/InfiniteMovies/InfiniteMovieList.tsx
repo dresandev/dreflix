@@ -20,7 +20,7 @@ export const InfiniteMovieList: React.FC<InfiniteMovieListProps> = ({
   const { observerTargetRef, movies, dataInfo } = useFetchMovies({
     initMovies,
     totalPages,
-    fetchMovies: (page) => getMovieList(movieListType, page)
+    fetchMovies: (page) => getMovieList({ movieListType, page })
   })
   const { isLoading, hasError } = dataInfo
 
