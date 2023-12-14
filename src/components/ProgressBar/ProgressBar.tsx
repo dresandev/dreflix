@@ -15,7 +15,7 @@ export const ProgressBar = (props: ProgressBarProps) => (
             inset-block-start: 0;
             z-index: 100;
             inline-size: 100%;
-            block-size: 0.4rem;
+            block-size: 0.3rem;
             background-image: linear-gradient(
               60deg,
               hsl(30, 92%, 58%),
