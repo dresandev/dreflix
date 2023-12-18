@@ -81,7 +81,6 @@
   .overview {
     --max-lines: 6;
     display: -webkit-box;
-    max-block-size: calc(var(--max-lines) * 2.4rem);
     word-wrap: break-word;
     word-break: break-word;
     -webkit-line-clamp: var(--max-lines);

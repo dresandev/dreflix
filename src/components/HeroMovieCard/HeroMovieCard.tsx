@@ -20,7 +20,6 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
         className={styles.wrapperLink}
         href={movieDetailsPath}
         aria-label={title}
-        prefetch={false}
       >
         {title}
       </Link>

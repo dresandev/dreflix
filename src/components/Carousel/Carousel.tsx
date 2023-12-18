@@ -78,12 +78,12 @@ export const Carousel: React.FC<CarouselProps> = ({
         className={styles.carouselWrapper}
       >
         <Buttons
-          onClickPrev={prev}
-          onClickNext={next}
+          forwardBtnRef={forwardBtnRef}
+          btnHoverVariant={btnHoverVariant}
           showPrevButton={activePageIndex === 0}
           showNextButton={activePageIndex === (pages.length - 1)}
-          btnHoverVariant={btnHoverVariant}
-          forwardBtnRef={forwardBtnRef}
+          onClickPrev={prev}
+          onClickNext={next}
         />
 
         <ul

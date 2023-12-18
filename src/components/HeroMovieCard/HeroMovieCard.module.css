@@ -29,6 +29,7 @@
 }
 
 .infoWrapper {
+  inline-size: max-content;
   pointer-events: visible;
 }
 

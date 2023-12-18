@@ -12,7 +12,6 @@ export const Header = () => (
         className={styles.goHomeBtn}
         aria-label='Go home'
         href='/'
-        prefetch={false}
       >
         <DreflixLogo />
       </Link>
