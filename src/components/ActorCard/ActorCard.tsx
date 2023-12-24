@@ -25,6 +25,7 @@ export const ActorCard: React.FC<ActorCardProps> = ({
               className={styles.image}
               src={`${IMAGES_BASE_URL}/w185/${profilePath}`}
               alt={originalName}
+              loading='lazy'
             />
           )
           : (

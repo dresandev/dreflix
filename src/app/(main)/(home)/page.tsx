@@ -1,3 +1,4 @@
+import { MovieListType } from '~/types'
 import { isFulfilled, getRandomKey } from '~/utils'
 import { getMovieList } from '~/actions/movies-actions'
 import { HeroCarousel } from '~/components/HeroCarousel'
@@ -5,36 +6,26 @@ import { CarouselSection } from '~/components/CarouselSection'
 import { MovieCard } from '~/components/MovieCard'
 import styles from './page.module.css'
 
-const movieListTitle = [
-  'Popular',
-  'Now Playing',
-  'Upcoming',
-  'Top Rated',
-]
-
-const fetchOptions = {
-  next: { revalidate: 86400 }
+const movieList: { [key in MovieListType]: string } = {
+  popular: 'Popular',
+  now_playing: 'Now Playing',
+  upcoming: 'Upcoming',
+  top_rated: 'Top Rated',
 }
 
+const moviePromises = Object
+  .keys(movieList)
+  .map(movieListType => (
+    getMovieList({
+      movieListType: movieListType as MovieListType,
+      fetchOptions: { next: { revalidate: 43200 } }
+    }))
+  )
+
+const movieListTitles = Object.values(movieList)
+
 export default async function HomePage() {
-  const moviesResult = await Promise.allSettled([
-    getMovieList({
-      movieListType: 'popular',
-      fetchOptions
-    }),
-    getMovieList({
-      movieListType: 'now_playing',
-      fetchOptions
-    }),
-    getMovieList({
-      movieListType: 'upcoming',
-      fetchOptions
-    }),
-    getMovieList({
-      movieListType: 'top_rated',
-      fetchOptions
-    }),
-  ])
+  const moviesResult = await Promise.allSettled(moviePromises)
 
   return (
     <>
@@ -49,7 +40,7 @@ export default async function HomePage() {
             <CarouselSection
               key={getRandomKey()}
               className={styles.carouselSection}
-              title={movieListTitle[i]}
+              title={movieListTitles[i]}
             >
               {
                 movies.value?.results.map((movie, i) => {
