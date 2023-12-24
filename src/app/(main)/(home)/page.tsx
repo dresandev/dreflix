@@ -6,6 +6,8 @@ import { CarouselSection } from '~/components/CarouselSection'
 import { MovieCard } from '~/components/MovieCard'
 import styles from './page.module.css'
 
+export const revalidate = 43200
+
 const movieList: { [key in MovieListType]: string } = {
   popular: 'Popular',
   now_playing: 'Now Playing',
@@ -17,8 +19,7 @@ const moviePromises = Object
   .keys(movieList)
   .map(movieListType => (
     getMovieList({
-      movieListType: movieListType as MovieListType,
-      fetchOptions: { next: { revalidate: 43200 } }
+      movieListType: movieListType as MovieListType
     }))
   )
 

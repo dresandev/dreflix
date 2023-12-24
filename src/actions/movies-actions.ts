@@ -21,21 +21,16 @@ import { MovieListType } from '~/types'
 interface GetMovieListProps {
   movieListType: MovieListType,
   page?: number
-  fetchOptions?: RequestInit
 }
 
 export const getMovieList = async ({
   movieListType,
   page = 1,
-  fetchOptions,
 }: GetMovieListProps): Promise<MovieListResponse | null> => {
   try {
     const url = `${API_BASE_URL}/movie/${movieListType}?language=${API_LANGUAGE}&page=${page}`
 
-    const result = await fetch(url, {
-      ...COMMON_GET_OPTIONS,
-      ...fetchOptions
-    })
+    const result = await fetch(url, COMMON_GET_OPTIONS)
 
     if (result.status === 200) {
       const movieListResponse = await result.json() as MovieListResponse
