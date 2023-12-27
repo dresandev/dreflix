@@ -28,9 +28,17 @@ export const getMovieList = async ({
   page = 1,
 }: GetMovieListProps): Promise<MovieListResponse | null> => {
   try {
-    const url = `${API_BASE_URL}/movie/${movieListType}?language=${API_LANGUAGE}&page=${page}`
+    const endpoint = `/movie/${movieListType}`
+    const queryParams = [
+      `page=${page}`,
+      `language=${API_LANGUAGE}`,
+    ]
+    const url = `${API_BASE_URL}${endpoint}?${queryParams.join('&')}`
 
-    const result = await fetch(url, COMMON_GET_OPTIONS)
+    const result = await fetch(url, {
+      ...COMMON_GET_OPTIONS,
+      next: { revalidate: 21600 }
+    })
 
     if (result.status === 200) {
       const movieListResponse = await result.json() as MovieListResponse
@@ -49,7 +57,11 @@ export const getMovieDetails = async (
   movieId: string | number
 ): Promise<MovieDetails | null> => {
   try {
-    const url = `${API_BASE_URL}/movie/${movieId}?language=${API_LANGUAGE}`
+    const endpoint = `/movie/${movieId}`
+    const queryParams = [
+      `language=${API_LANGUAGE}`,
+    ]
+    const url = `${API_BASE_URL}${endpoint}?${queryParams.join('&')}`
 
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
@@ -70,7 +82,12 @@ export const getSimilarMovies = async (
   page = 1
 ): Promise<MovieListResponse | null> => {
   try {
-    const url = `${API_BASE_URL}/movie/${movieId}/similar?language=${API_LANGUAGE}&page=${page}`
+    const endpoint = `/movie/${movieId}/similar`
+    const queryParams = [
+      `page=${page}`,
+      `language=${API_LANGUAGE}`,
+    ]
+    const url = `${API_BASE_URL}${endpoint}?${queryParams.join('&')}`
 
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
@@ -91,7 +108,11 @@ export const getMovieMainCast = async (
   movieId: string | number,
 ): Promise<Cast[] | null> => {
   try {
-    const url = `${API_BASE_URL}/movie/${movieId}/credits?language=${API_LANGUAGE}`
+    const endpoint = `/movie/${movieId}/credits`
+    const queryParams = [
+      `language=${API_LANGUAGE}`,
+    ]
+    const url = `${API_BASE_URL}${endpoint}?${queryParams.join('&')}`
 
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
@@ -117,7 +138,11 @@ export const getMovieTrailerKey = async (
   movieId: string | number,
 ): Promise<string | null> => {
   try {
-    const url = `${API_BASE_URL}/movie/${movieId}/videos?language=${API_LANGUAGE}`
+    const endpoint = `/movie/${movieId}/videos`
+    const queryParams = [
+      `language=${API_LANGUAGE}`,
+    ]
+    const url = `${API_BASE_URL}${endpoint}?${queryParams.join('&')}`
 
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
@@ -140,7 +165,11 @@ export const getMovieTrailerKey = async (
 
 export const getMovieListGenres = async (): Promise<Genre[] | null> => {
   try {
-    const url = `${API_BASE_URL}/genre/movie/list?language=${API_LANGUAGE}`
+    const endpoint = '/genre/movie/list'
+    const queryParams = [
+      `language=${API_LANGUAGE}`,
+    ]
+    const url = `${API_BASE_URL}${endpoint}?${queryParams.join('&')}`
 
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
@@ -180,13 +209,24 @@ export const getMoviesByGenre = async (
   page = 1
 ): Promise<MovieListResponse | null> => {
   try {
-    const url = `${API_BASE_URL}/discover/movie?include_adult=false&include_video=false&page=${page}&sort_by=popularity.desc&language=${API_LANGUAGE}&with_genres=${genre}`
+    const endpoint = '/discover/movie'
+    const queryParams = [
+      `page=${page}`,
+      'include_adult=false',
+      'include_video=false',
+      'sort_by=popularity.desc',
+      `language=${API_LANGUAGE}`,
+      `with_genres=${genre}`,
+    ]
+    const url = `${API_BASE_URL}${endpoint}?${queryParams.join('&')}`
 
     const result = await fetch(url, COMMON_GET_OPTIONS)
 
     if (result.status === 200) {
-      const movieListResponse = await result.json() as MovieListResponse
-      movieListResponse.results = await setTrailerKeyToMovies(movieListResponse.results)
+      const movieListResponse = (await result.json()) as MovieListResponse
+      movieListResponse.results = await setTrailerKeyToMovies(
+        movieListResponse.results
+      )
       return movieListResponse
     }
 
@@ -238,7 +278,14 @@ export const getMoviesByTitle = async ({
   fetchOptions,
 }: GetMoviesByTitleProps): Promise<MovieListResponse | null> => {
   try {
-    const url = `${API_BASE_URL}/search/movie?query=${title}&include_adult=false&language=${API_LANGUAGE}&page=${page}`
+    const endpoint = '/search/movie'
+    const queryParams = [
+      `page=${page}`,
+      `query=${title}`,
+      'include_adult=false',
+      `language=${API_LANGUAGE}`,
+    ]
+    const url = `${API_BASE_URL}${endpoint}?${queryParams.join('&')}`
 
     const result = await fetch(url, {
       ...COMMON_GET_OPTIONS,

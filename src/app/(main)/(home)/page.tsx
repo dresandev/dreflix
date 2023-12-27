@@ -6,8 +6,6 @@ import { CarouselSection } from '~/components/CarouselSection'
 import { MovieCard } from '~/components/MovieCard'
 import styles from './page.module.css'
 
-export const revalidate = 43200
-
 const movieList: { [key in MovieListType]: string } = {
   popular: 'Popular',
   now_playing: 'Now Playing',

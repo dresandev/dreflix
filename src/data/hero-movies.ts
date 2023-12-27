@@ -4,6 +4,19 @@ const base_url = '/images/hero-carousel'
 
 export const heroMovies: HeroMovie[] = [
   {
+    movieId: 310131,
+    image: {
+      original: `${base_url}/the-witch/image/2880w.webp`,
+      medium: `${base_url}/the-witch/image/1440w.webp`,
+      small: `${base_url}/the-witch/image/800w.webp`,
+    },
+    logoImage: {
+      original: `${base_url}/the-witch/logo/700w.webp`,
+      small: `${base_url}/the-witch/logo/350w.webp`,
+    },
+    title: 'The witch',
+  },
+  {
     movieId: 667216,
     image: {
       original: `${base_url}/infinity-pool/image/2880w.webp`,
@@ -67,18 +80,5 @@ export const heroMovies: HeroMovie[] = [
       small: `${base_url}/pearl/logo/350w.webp`,
     },
     title: 'Pearl',
-  },
-  {
-    movieId: 310131,
-    image: {
-      original: `${base_url}/the-witch/image/2880w.webp`,
-      medium: `${base_url}/the-witch/image/1440w.webp`,
-      small: `${base_url}/the-witch/image/800w.webp`,
-    },
-    logoImage: {
-      original: `${base_url}/the-witch/logo/700w.webp`,
-      small: `${base_url}/the-witch/logo/350w.webp`,
-    },
-    title: 'The witch',
   },
 ]
