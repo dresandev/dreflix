@@ -27,13 +27,11 @@ export const InfiniteMovieResults: React.FC<InfiniteMovieResultsProps> = ({
   const { isLoading, hasError } = dataInfo
 
   return (
-    <>
-      <InfiniteMovieGrid
-        observerTargetRef={observerTargetRef}
-        movies={movies}
-        isLoading={isLoading}
-        hasError={hasError}
-      />
-    </>
+    <InfiniteMovieGrid
+      observerTargetRef={observerTargetRef}
+      movies={movies}
+      isLoading={isLoading}
+      hasError={hasError}
+    />
   )
 }

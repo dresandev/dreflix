@@ -28,13 +28,6 @@ export const useFetchMovies = ({
   const { page, isLoading } = dataInfo
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'instant'
-    })
-  }, [])
-
-  useEffect(() => {
     setMovies(initMovies)
   }, [initMovies])
 

@@ -38,37 +38,35 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
   }
 
   return (
-    <>
-      <form
-        className={styles.searchBar}
-        onSubmit={handleOnSubmit}
-        onReset={onReset}
-      >
-        <SearchIcon className={styles.searchIcon}/>
-        <input
-          ref={ref}
-          className={styles.searchBarInput}
-          name='search_query'
-          type='search'
-          placeholder='Search'
-          spellCheck={false}
-          autoComplete='off'
-          autoCorrect='off'
-          required
-          onChange={onChange}
-          onFocus={onFocus}
-        />
-        <input
-          aria-label='Delete search query'
-          className={clsx(
-            styles.resetSearchBarInput,
-            value && styles.showResetSearchBarInput
-          )}
-          type='reset'
-          value='Delete'
-        />
-      </form>
-    </>
+    <form
+      className={styles.searchBar}
+      onSubmit={handleOnSubmit}
+      onReset={onReset}
+    >
+      <SearchIcon className={styles.searchIcon} />
+      <input
+        ref={ref}
+        className={styles.searchBarInput}
+        name='search_query'
+        type='search'
+        placeholder='Search'
+        spellCheck={false}
+        autoComplete='off'
+        autoCorrect='off'
+        required
+        onChange={onChange}
+        onFocus={onFocus}
+      />
+      <input
+        aria-label='Delete search query'
+        className={clsx(
+          styles.resetInput,
+          value && styles.showResetInput
+        )}
+        type='reset'
+        value='Delete'
+      />
+    </form>
   )
 })
 

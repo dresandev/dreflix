@@ -19,19 +19,9 @@
   outline: none;
 }
 
-.searchBarInput[type='search']::-webkit-search-clear-button {
-  -webkit-appearance: none;
-  appearance: none;
+.searchBarInput::-webkit-search-clear-button,
+.searchBarInput::-webkit-search-cancel-button {
   display: none;
-}
-.searchBarInput[type='search']::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  appearance: none;
-  display: none;
-}
-.searchBarInput[type='search'] {
-  -webkit-appearance: none;
-  appearance: none;
 }
 
 .searchBarInput::placeholder {
@@ -43,7 +33,7 @@
   flex-shrink: 1;
 }
 
-.resetSearchBarInput {
+.resetInput {
   --size: 2.4rem;
   display: none;
   padding-inline: 0;
@@ -56,7 +46,7 @@
   cursor: pointer;
 }
 
-.showResetSearchBarInput {
+.showResetInput {
   display: block;
 }
 
@@ -67,7 +57,7 @@
   }
 
   .searchBarInput {
-    padding-block: 0.8rem;
+    padding: 0.8rem 1.2rem;
     font-size: 1.8rem;
   }
 }

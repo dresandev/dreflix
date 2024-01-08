@@ -21,8 +21,7 @@ export const TrailerModal = () => {
       if (document.fullscreenElement) return
 
       window.scrollTo({
-        top: prevScrollY.current,
-        behavior: 'instant'
+        top: prevScrollY.current
       })
     }
 
@@ -35,9 +34,8 @@ export const TrailerModal = () => {
 
   useEffect(() => {
     const handlePressEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        toggleShowTrailerModal()
-      }
+      if (e.key !== 'Escape') return
+      toggleShowTrailerModal()
     }
 
     document.addEventListener('keydown', handlePressEscape)
