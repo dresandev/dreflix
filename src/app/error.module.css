@@ -1,0 +1,36 @@
+.container {
+	display: grid;
+	row-gap: 30px;
+	justify-items: center;
+	align-content: center;
+	block-size: var(--content-block-size);
+}
+
+.error {
+	max-inline-size: 65ch;
+}
+
+.actions {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+}
+
+.actionOption {
+	display: block;
+	padding: 10px 20px;
+	background-color: var(--secondary-bg-color);
+	border-radius: var(--border-radius);
+	font-weight: 500;
+}
+
+.mainActionOption {
+	background-color: var(--primary-text-color);
+	color: var(--bg-color);
+}
+
+@media (hover: hover) {
+	.actionOption:is(:hover) {
+		filter: brightness(0.9);
+	}
+}

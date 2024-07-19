@@ -1,0 +1,37 @@
+.carousel {
+  display: flex;
+  padding-inline: var(--inline-space);
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.item {
+  max-inline-size: 100%;
+  flex-shrink: 0;
+  scroll-margin-inline-start: var(--inline-space);
+}
+
+.itemScrollSnapStopAlways {
+  scroll-snap-stop: always;
+  scroll-snap-align: start;
+}
+
+@media (hover: hover) {
+  .carouselWrapper {
+    position: relative;
+  }
+
+  .carouselWrapper:hover > button {
+    display: flex;
+  }
+
+  .fadeItemTransition {
+    transition: opacity 600ms cubic-bezier(0.2, 0.45, 0, 1);
+  }
+
+  .fadeItem {
+    opacity: 0.3;
+  }
+}

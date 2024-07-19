@@ -1,0 +1,18 @@
+.image {
+	inline-size: 100%;
+	block-size: auto;
+	border-radius: var(--border-radius);
+}
+
+.info {
+	padding-block-start: 10px;
+	font-size: var(--secondary-font-size);
+}
+
+.name {
+	font-weight: 500;
+}
+
+.characterName {
+	color: var(--secondary-text-color);
+}

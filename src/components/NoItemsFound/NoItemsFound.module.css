@@ -1,0 +1,12 @@
+.notFoundItems {
+	margin-block-end: 50px;
+}
+
+.title {
+	padding-inline-start: var(--inline-space);
+	padding-block-end: 16px;
+}
+
+.message {
+	padding-inline-start: var(--inline-space);
+}

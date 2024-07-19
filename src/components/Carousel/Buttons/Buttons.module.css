@@ -1,0 +1,71 @@
+.btn {
+	display: none;
+}
+
+@media (hover: hover) {
+	.btn {
+		--inline-size: clamp(40px, 32.96px + 1.408vw, 60px);
+		position: absolute;
+		z-index: 1;
+		inset-block: 0;
+		justify-content: center;
+		align-items: center;
+		inline-size: var(--inline-size);
+	}
+
+	.btn:nth-of-type(2) {
+		inset-inline-end: 0;
+	}
+
+	.btn.shadowHover {
+		--gradient-dir: to left;
+		--gradient: linear-gradient(
+			var(--gradient-dir),
+			hsla(0, 0%, 0%, 0),
+			hsla(0, 0%, 0%, 0.502) calc(var(--inline-size) / 2),
+			hsla(0, 0%, 0%, 0.702)
+		);
+		background-image: var(--gradient);
+		transition: background-image 300ms ease-in-out;
+	}
+
+	.btn.shadowHover::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background-image: var(--gradient);
+		opacity: 0;
+		transition: opacity 150ms;
+	}
+
+	.btn.shadowHover:hover::before {
+		opacity: 1;
+	}
+
+	.btn.shadowHover:nth-of-type(2) {
+		--gradient-dir: to right;
+	}
+
+	.hideBtn {
+		display: none !important;
+	}
+
+	.btn.scaleHover {
+		overflow: hidden;
+	}
+
+	.btnArrowIcon {
+		--size: 40px;
+		inline-size: var(--size);
+		block-size: var(--size);
+	}
+
+	.btn.scaleHover .btnArrowIcon {
+		transition: transform 150ms ease;
+	}
+
+	.btn.scaleHover:hover .btnArrowIcon {
+		transform: scale(1.4);
+	}
+}

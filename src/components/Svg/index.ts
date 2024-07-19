@@ -1,0 +1,7 @@
+export * from "./ChevronArrow"
+export * from "./X"
+export * from "./DreflixLogo"
+export * from "./HeartIcon"
+export * from "./PlayIcon"
+export * from "./PlusIcon"
+export * from "./SearchIcon"

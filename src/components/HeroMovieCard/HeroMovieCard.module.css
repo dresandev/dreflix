@@ -1,0 +1,100 @@
+.heroCard {
+	position: relative;
+	border-radius: var(--border-radius);
+	overflow: hidden;
+}
+
+.heroImage {
+	inline-size: 100vw;
+	block-size: auto;
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+	object-position: top center;
+}
+
+.wrapperLink {
+	position: absolute;
+	inset: 0;
+	font-size: 0;
+}
+
+.heroCardInfo {
+	--padding: 16px;
+	position: absolute;
+	inset: 0;
+	inset-block-start: unset;
+	padding-inline: var(--padding);
+	padding-block-end: var(--padding);
+	pointer-events: none;
+}
+
+.infoWrapper {
+	inline-size: max-content;
+	pointer-events: visible;
+}
+
+.logoImage {
+	max-inline-size: calc(100vw * 0.6);
+	max-block-size: calc(100vw * 9 / 16 * 0.5);
+	inline-size: auto;
+	block-size: auto;
+}
+
+.moreInfoLink {
+	display: none;
+}
+
+.fadeTransition {
+	opacity: 0;
+	transform: translateY(30px);
+	transition-property: opacity, transform;
+	transition-duration: 600ms;
+	transition-timing-function: cubic-bezier(0.2, 0.45, 0, 1);
+}
+
+.fadeIn {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@media screen and (min-width: 880px) {
+	.heroImage {
+		aspect-ratio: 3 / 1;
+		object-position: top;
+	}
+
+	.logoImage {
+		max-block-size: calc(100vw / 12);
+		max-inline-size: calc(100vw * 0.33);
+	}
+
+	.heroCardInfo {
+		inset: 0;
+		block-size: max-content;
+		padding-inline: 40px;
+		padding-block: unset;
+		margin-block: auto;
+	}
+
+	.infoWrapper {
+		inline-size: calc(100% / 4);
+	}
+
+	.moreInfoLink {
+		display: inline-block;
+		padding: 16px 20px;
+		margin-block-start: 40px;
+		background-color: hsl(0, 0%, 100%);
+		font-weight: 500;
+		color: var(--bg-color);
+		border-radius: var(--border-radius);
+		transition: transform 200ms cubic-bezier(0.25, 1, 0.5, 1);
+		outline-offset: 5px;
+	}
+
+	@media (hover: hover) {
+		.moreInfoLink:hover {
+			transform: scale(1.05);
+		}
+	}
+}

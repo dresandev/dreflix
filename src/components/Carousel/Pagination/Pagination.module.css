@@ -1,0 +1,20 @@
+.paginationWrapper {
+  min-block-size: 52px;
+}
+
+.pagination {
+  inline-size: max-content;
+  margin-inline: auto;
+  padding-block: 4px 16px;
+}
+
+.paginationBtn {
+  padding: 6px;
+  border: 8px solid var(--bg-color);
+  background-color: var(--tertiary-bg-color);
+  border-radius: 50%;
+}
+
+.paginationBtnActive {
+  background-color: currentColor;
+}

@@ -1,0 +1,18 @@
+.title {
+	padding-inline-start: var(--inline-space);
+	padding-block-end: 24px;
+}
+
+.carouselSection {
+	margin-block-end: 30px;
+}
+
+@media screen and (min-width: 880px) {
+	.title {
+		padding-block-start: 24px;
+	}
+
+	.carouselSection {
+		margin-block-end: 50px;
+	}
+}

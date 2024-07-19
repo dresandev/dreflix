@@ -1,0 +1,31 @@
+.menu {
+	position: fixed;
+	inset: 0;
+	inset-block-start: var(--header-block-size);
+	background-color: var(--bg-color);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-10px);
+	transition: var(--menu-transition);
+	overflow-y: auto;
+	scrollbar-width: thin;
+}
+
+.menuOpen {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+	transition: var(--menu-open-transition);
+}
+
+@media screen and (min-width: 880px) {
+	.menu {
+		position: static;
+		inset: unset;
+		opacity: initial;
+		visibility: initial;
+		transform: unset;
+		transition: unset;
+		display: flex;
+	}
+}

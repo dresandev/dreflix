@@ -1,0 +1,8 @@
+.title {
+	padding-inline-start: var(--inline-space);
+	padding-block-end: 16px;
+}
+
+.section {
+	margin-block-end: 50px;
+}

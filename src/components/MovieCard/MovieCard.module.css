@@ -1,0 +1,97 @@
+.card {
+  position: relative;
+  block-size: max-content;
+}
+
+.wrapperLink {
+  position: absolute;
+  inset: 0;
+  font-size: 0;
+  border-radius: var(--border-radius);
+  outline-offset: 3px;
+  overflow: hidden;
+}
+
+.wrapperLink:focus-visible,
+.wrapperLink:focus-visible + .cardPresentation {
+  transform: scale(0.95);
+}
+
+.posterImage {
+  background-color: var(--card-bg-color);
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
+.figcaption {
+  margin-block-start: 8px;
+  word-wrap: break-word;
+}
+
+.year {
+  color: var(--secondary-text-color);
+  font-size: var(--secondary-font-size);
+}
+
+.cardInfo {
+  display: none;
+}
+
+@media (hover: hover) {
+  .cardInfo {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    font-size: var(--secondary-font-size);
+    background-color: var(--card-bg-color);
+    opacity: 0;
+    visibility: hidden;
+    transition-property: opacity, visibility;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .card:is(:hover) > .cardInfo {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .cardInfoBgImage {
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    object-fit: cover;
+    inline-size: 100%;
+    block-size: 100%;
+    opacity: 0.05;
+    transform: scale(1.2);
+  }
+
+  .title {
+    margin-block-end: 10px;
+  }
+
+  .overview {
+    --max-lines: 6;
+    display: -webkit-box;
+    word-wrap: break-word;
+    word-break: break-word;
+    -webkit-line-clamp: var(--max-lines);
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .cardActions {
+    display: flex;
+    gap: 10px;
+    margin-block-start: auto;
+    pointer-events: visible;
+  }
+}

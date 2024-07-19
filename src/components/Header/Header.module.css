@@ -1,0 +1,47 @@
+.header {
+	position: sticky;
+	z-index: 5;
+	inset-block-start: 0;
+	inset-inline-start: 0;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	block-size: var(--header-block-size);
+	padding-inline: var(--inline-space);
+	background-color: var(--bg-color);
+}
+
+.goHomeBtn {
+	color: var(--primary-color);
+	transition: color 200ms ease;
+}
+
+@media (hover: hover) {
+	.goHomeBtn:is(:hover) {
+		color: var(--primary-text-color);
+	}
+}
+
+.navMenu {
+	order: -1;
+}
+
+.searchMenu {
+	margin-inline-start: auto;
+}
+
+.userMenuButton {
+	border-radius: 100%;
+	overflow: hidden;
+}
+
+@media screen and (min-width: 880px) {
+	.navMenu {
+		order: initial;
+	}
+
+	.searchMenu {
+		flex: 1;
+		max-inline-size: 450px;
+	}
+}

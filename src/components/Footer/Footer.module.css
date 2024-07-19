@@ -1,0 +1,12 @@
+.footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+	padding-block: 50px;
+}
+
+.dresanWebLink {
+	font-weight: bold;
+	color: var(--secondary-color);
+}
