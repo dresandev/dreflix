@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-tooltip": "^1.1.2",
     "clsx": "^2.1.1",
     "next": "14.2.5",
     "next-nprogress-bar": "^2.3.13",
@@ -17,6 +18,7 @@
     "react-snap-carousel": "^0.4.0"
   },
   "devDependencies": {
+    "@radix-ui/react-dialog": "^1.1.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

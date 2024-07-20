@@ -5,8 +5,9 @@ import { IMAGES_BASE_URL } from "~/constants"
 import { simpleSlugify } from "~/utils/simple-slugify"
 import { formatDate } from "~/helpers/format-date"
 import { IconButton } from "~/components/IconButton"
-import { HeartIcon, PlusIcon } from "~/components/Svg"
+import { HeartIcon, PlayIcon, PlusIcon } from "~/components/Svg"
 import { NoImage } from "~/components/NoImage"
+import { TrailerModal } from "~/components/TrailerModal"
 import styles from "./MovieCard.module.css"
 
 interface MovieCardProps {
@@ -68,6 +69,16 @@ export const MovieCard: React.FC<MovieCardProps> = ({
 				<p className={styles.overview}>{overview || "No overview found"}</p>
 
 				<div className={styles.cardActions}>
+					{trailerKey && (
+						<TrailerModal
+							trigger={
+								<IconButton ariaLabel="Play trailer" size="small">
+									<PlayIcon />
+								</IconButton>
+							}
+							trailerKey={trailerKey}
+						/>
+					)}
 					<IconButton ariaLabel="Add to list" size="small">
 						<PlusIcon />
 					</IconButton>

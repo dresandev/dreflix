@@ -1,0 +1,16 @@
+.trailerFrame {
+	inline-size: 95vw;
+	block-size: auto;
+	aspect-ratio: 16 / 9;
+	border: 1px solid var(--secondary-bg-color);
+}
+
+.title {
+	display: none;
+}
+
+@media (orientation: landscape) {
+	.trailerFrame {
+		inline-size: 68vw;
+	}
+}

@@ -23,8 +23,6 @@ const movieListTitles = Object.values(movieList)
 
 export default async function HomePage() {
 	const moviesResult = await Promise.allSettled(moviePromises)
-console.log("as");
-	console.log(moviesResult)
 
 	return (
 		<>

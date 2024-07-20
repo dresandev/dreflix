@@ -12,14 +12,11 @@ Web application to explore movies, with features such as infinite scroll, a movi
 
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file.
-Personally I use the .env.local file to work locally with the environment variables and avoid uploading the variables with their values ​​to the repository
-
 `API_BASE_URL`
 
 `ACCESS_TOKEN_AUTH`
 
-here you can get the values ​​for the environment variables: https://developer.themoviedb.org/reference/intro/authentication
+here you can get the `ACCESS_TOKEN_AUTH`: https://developer.themoviedb.org/reference/intro/authentication
 
 ## Run development server
 
