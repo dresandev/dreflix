@@ -3,6 +3,7 @@
 	block-size: auto;
 	aspect-ratio: 16 / 9;
 	border: 1px solid var(--secondary-bg-color);
+	background-color: var(--secondary-bg-color);
 }
 
 .title {

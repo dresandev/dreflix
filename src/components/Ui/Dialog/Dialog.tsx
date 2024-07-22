@@ -25,7 +25,7 @@ export const DialogContent = forwardRef<
 >(({ className, children, ...props }, ref) => (
 	<DialogPortal>
 		<DialogOverlay />
-		<DialogPrimitive.Content aria-describedby="" ref={ref} className={clsx(styles.content, className)} {...props}>
+		<DialogPrimitive.Content ref={ref} className={clsx(styles.content, className)} {...props}>
 			{children}
 			<DialogClose aria-label="Cerrar" className={styles.close}>
 				<X />

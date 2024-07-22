@@ -4,5 +4,11 @@
 }
 
 .section {
-	margin-block-end: 50px;
+	margin-block-end: 30px;
+}
+
+@media screen and (min-width: 880px) {
+	.carouselSection {
+		margin-block-end: 40px;
+	}
 }

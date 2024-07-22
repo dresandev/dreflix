@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
 
 export const usePageVisibility = () => {
-  const [isVisible, setIsVisible] = useState(true)
+	const [isVisible, setIsVisible] = useState(true)
 
-  const handleVisibilityChange = () => {
-    setIsVisible(!document.hidden)
-  }
+	const handleVisibilityChange = () => {
+		setIsVisible(!document.hidden)
+	}
 
-  useEffect(() => {
-    document.addEventListener('visibilitychange', handleVisibilityChange)
+	useEffect(() => {
+		document.addEventListener("visibilitychange", handleVisibilityChange)
 
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange)
-    }
-  }, [])
+		return () => {
+			document.removeEventListener("visibilitychange", handleVisibilityChange)
+		}
+	}, [])
 
-  return isVisible
+	return isVisible
 }

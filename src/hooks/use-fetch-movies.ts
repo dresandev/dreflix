@@ -1,66 +1,48 @@
-import { useState, useEffect } from 'react'
-import { Movie, MovieListResponse } from '~/models'
-import { useIsInView } from './use-is-in-view'
+import { useState, useEffect } from "react"
+import { Movie, MovieListResponse } from "~/interfaces"
+import { useIsInView } from "./use-is-in-view"
 
-interface useFetchMoviesProps {
-  initMovies: Movie[]
-  totalPages: number
-  fetchMovies: (page: string) => Promise<MovieListResponse>
+interface UseFetchMoviesProps {
+	initMovies: Movie[]
+	totalPages: number
+	fetchMovies: (page: string) => Promise<MovieListResponse>
 }
 
-export const useFetchMovies = ({
-  initMovies,
-  totalPages,
-  fetchMovies,
-}: useFetchMoviesProps) => {
-  const [moviesData, setMoviesData] = useState({
-    movies: initMovies,
-    page: 2,
-    isLoading: false,
-    hasError: false,
-  })
+export const useFetchMovies = ({ initMovies, totalPages, fetchMovies }: UseFetchMoviesProps) => {
+	const [moviesData, setMoviesData] = useState({
+		movies: initMovies,
+		page: 1,
+		isLoading: false,
+		hasError: false,
+	})
 
-  const { observerTargetRef, isInView } = useIsInView<HTMLDivElement>({
-    rootMargin: '0px 0px 800px 0px',
-  })
+	const { observerTargetRef, isInView } = useIsInView<HTMLDivElement>({
+		rootMargin: "0px 0px 100% 0px",
+	})
 
-  const { page, isLoading } = moviesData
+	useEffect(() => {
+		const loadMovies = async () => {
+			if (!isInView || moviesData.isLoading || moviesData.page > totalPages) return
 
-  useEffect(() => {
-    if (!isInView || isLoading || page > totalPages) return
+			setMoviesData((prev) => ({ ...prev, isLoading: true }))
 
-    const loadMoreMovies = async () => {
-      try {
-        setMoviesData((prevMoviesData) => ({
-          ...prevMoviesData,
-          isLoading: true,
-        }))
+			try {
+				const { results: newMovies } = await fetchMovies(moviesData.page.toString())
+				setMoviesData((prev) => ({
+					...prev,
+					movies: [...prev.movies, ...newMovies],
+					page: prev.page + 1,
+					hasError: false,
+					isLoading: false,
+				}))
+			} catch (error) {
+				console.error("Error fetching movies:", error)
+				setMoviesData((prev) => ({ ...prev, hasError: true, isLoading: false }))
+			}
+		}
 
-        const { results: newMovies } = await fetchMovies(page.toString())
+		loadMovies()
+	}, [isInView, moviesData.page, moviesData.isLoading, totalPages, fetchMovies])
 
-        setMoviesData(prevData => ({
-          ...prevData,
-          movies: [...prevData.movies, ...newMovies],
-          page: prevData.page + 2,
-          hasError: false,
-        }))
-      } catch (error) {
-        console.error('Error fetching movies:', error)
-        setMoviesData(prevData => ({
-          ...prevData,
-          hasError: true,
-        }))
-      } finally {
-        setMoviesData(prevData => ({
-          ...prevData,
-          isLoading: false,
-        }))
-      }
-    }
-
-    loadMoreMovies()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isInView])
-
-  return { observerTargetRef, ...moviesData }
+	return { observerTargetRef, ...moviesData }
 }

@@ -7,20 +7,18 @@
 
 .title {
 	font-size: clamp(150px, 140px + 3.125vw, 200px);
-	line-height: normal;
+	line-height: 1;
 }
 
 .goBackHomeLink {
-	padding: 15px 60px;
-	margin-block-start: 30px;
+	padding: 12px 28px;
+	margin-block-start: 24px;
 	font-weight: 500;
 	background-color: var(--primary-text-color);
 	color: var(--bg-color);
 	border-radius: var(--border-radius);
 }
 
-@media (hover: hover) {
-	.goBackHomeLink:hover {
-		filter: brightness(0.9);
-	}
+.goBackHomeLink:hover {
+	filter: brightness(0.9);
 }

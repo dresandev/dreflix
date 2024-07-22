@@ -36,7 +36,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
 					<main>{children}</main>
 					<Footer />
 				</div>
-				<div id="tooltip-container"></div>
 			</body>
 		</html>
 	)

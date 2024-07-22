@@ -6,9 +6,9 @@
 	block-size: var(--size);
 	background-color: hsl(var(--primary-text-color-hsl) / 0.1);
 	border-radius: 50%;
-	aspect-ratio: 1 / 1;
 	transition-property: transform, background-color;
 	transition-duration: 200ms;
+	will-change: transform;
 }
 
 .small {

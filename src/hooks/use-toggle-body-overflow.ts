@@ -1,13 +1,13 @@
-import { useEffect } from 'react'
+import { useEffect } from "react"
 
 export const useToggleBodyOverflow = (isMenuOpen: boolean) => {
-  useEffect(() => {
-    const body = document.body
+	useEffect(() => {
+		const body = document.body
 
-    body.classList.toggle('hideOverflow', isMenuOpen)
+		body.classList.toggle("hideOverflow", isMenuOpen)
 
-    return () => {
-      body.classList.remove('hideOverflow')
-    }
-  }, [isMenuOpen])
+		return () => {
+			body.classList.remove("hideOverflow")
+		}
+	}, [isMenuOpen])
 }

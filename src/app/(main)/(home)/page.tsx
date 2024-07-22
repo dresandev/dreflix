@@ -32,14 +32,18 @@ export default async function HomePage() {
 			{moviesResult.map((movies, i) => {
 				if (!isFulfilled(movies)) return
 
+				const { value: { results } } = movies
+
 				return (
-					<CarouselSection key={i} className={styles.carouselSection} title={movieListTitles[i]}>
-						{movies.value.results.map(
-							({ id, title, poster_path, release_date, overview, trailerKey }, i) => (
+					<CarouselSection key={i} title={movieListTitles[i]}>
+						{results.map((movie, i) => {
+							const { id, title, poster_path, release_date, overview, trailerKey } = movie
+
+							return (
 								<MovieCard
 									key={id}
-									className="carouselMovieCardWidth"
 									id={id}
+									className="carouselMovieCardWidth"
 									posterPath={poster_path}
 									title={title}
 									releaseDate={release_date}
@@ -48,7 +52,7 @@ export default async function HomePage() {
 									posterLoading={i < 6 ? "eager" : "lazy"}
 								/>
 							)
-						)}
+						})}
 					</CarouselSection>
 				)
 			})}

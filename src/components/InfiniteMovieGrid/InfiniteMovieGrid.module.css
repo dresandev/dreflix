@@ -1,0 +1,38 @@
+.container {
+	--grid-container-columns: 2;
+	display: grid;
+	grid-template-columns: repeat(var(--grid-container-columns), minmax(0, 1fr));
+	column-gap: 20px;
+	row-gap: 30px;
+}
+
+.statusContainer {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	block-size: 104px;
+}
+
+@media screen and (min-width: 550px) {
+	.container {
+		--grid-container-columns: 3;
+	}
+}
+
+@media screen and (min-width: 880px) {
+	.container {
+		--grid-container-columns: 4;
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	.container {
+		--grid-container-columns: 5;
+	}
+}
+
+@media screen and (min-width: 1400px) {
+	.container {
+		--grid-container-columns: 6;
+	}
+}

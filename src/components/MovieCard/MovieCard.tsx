@@ -8,6 +8,7 @@ import { IconButton } from "~/components/IconButton"
 import { HeartIcon, PlayIcon, PlusIcon } from "~/components/Svg"
 import { NoImage } from "~/components/NoImage"
 import { TrailerModal } from "~/components/TrailerModal"
+import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "~/components/Ui/Tooltip"
 import styles from "./MovieCard.module.css"
 
 interface MovieCardProps {
@@ -32,6 +33,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
 	posterLoading,
 }) => {
 	const movieDetailsPath = `/detail/${id}-${simpleSlugify(title)}`
+
 	return (
 		<article className={clsx(styles.card, className)}>
 			<Link className={styles.wrapperLink} href={movieDetailsPath} prefetch={false}>
@@ -70,21 +72,53 @@ export const MovieCard: React.FC<MovieCardProps> = ({
 
 				<div className={styles.cardActions}>
 					{trailerKey && (
-						<TrailerModal
-							trigger={
-								<IconButton ariaLabel="Play trailer" size="small">
-									<PlayIcon />
-								</IconButton>
-							}
-							trailerKey={trailerKey}
-						/>
+						<TooltipProvider>
+							<Tooltip delayDuration={100} disableHoverableContent>
+								<TrailerModal
+									trigger={
+										<TooltipTrigger asChild>
+											<IconButton ariaLabel="Play trailer" size="small">
+												<PlayIcon />
+											</IconButton>
+										</TooltipTrigger>
+									}
+									trailerKey={trailerKey}
+								/>
+
+								<TooltipContent side="bottom" sideOffset={10}>
+									<label>{"Play trailer"}</label>
+								</TooltipContent>
+							</Tooltip>
+						</TooltipProvider>
 					)}
-					<IconButton ariaLabel="Add to list" size="small">
-						<PlusIcon />
-					</IconButton>
-					<IconButton ariaLabel="Mark as favorite" size="small">
-						<HeartIcon />
-					</IconButton>
+
+					<TooltipProvider>
+						<Tooltip delayDuration={100} disableHoverableContent>
+							<TooltipTrigger asChild>
+								<IconButton ariaLabel="Add to list" size="small">
+									<PlusIcon />
+								</IconButton>
+							</TooltipTrigger>
+
+							<TooltipContent side="bottom" sideOffset={10}>
+								<label>{"Add to list"}</label>
+							</TooltipContent>
+						</Tooltip>
+					</TooltipProvider>
+
+					<TooltipProvider>
+						<Tooltip delayDuration={100} disableHoverableContent>
+							<TooltipTrigger asChild>
+								<IconButton ariaLabel="Mark as favorite" size="small">
+									<HeartIcon />
+								</IconButton>
+							</TooltipTrigger>
+
+							<TooltipContent side="bottom" sideOffset={10}>
+								<label>{"Mark as favorite"}</label>
+							</TooltipContent>
+						</Tooltip>
+					</TooltipProvider>
 				</div>
 			</section>
 		</article>

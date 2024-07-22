@@ -1,19 +1,19 @@
-import { Dispatch, SetStateAction, useCallback, useState } from 'react'
+import { Dispatch, SetStateAction, useCallback, useState } from "react"
 
 interface UseBooleanOutput {
-  value: boolean
-  setValue: Dispatch<SetStateAction<boolean>>
-  setTrue: () => void
-  setFalse: () => void
-  toggle: () => void
+	value: boolean
+	setValue: Dispatch<SetStateAction<boolean>>
+	setTrue: () => void
+	setFalse: () => void
+	toggle: () => void
 }
 
 export const useBoolean = (defaultValue?: boolean): UseBooleanOutput => {
-  const [value, setValue] = useState(!!defaultValue)
+	const [value, setValue] = useState(!!defaultValue)
 
-  const setTrue = useCallback(() => setValue(true), [])
-  const setFalse = useCallback(() => setValue(false), [])
-  const toggle = useCallback(() => setValue(x => !x), [])
+	const setTrue = useCallback(() => setValue(true), [])
+	const setFalse = useCallback(() => setValue(false), [])
+	const toggle = useCallback(() => setValue((x) => !x), [])
 
-  return { value, setValue, setTrue, setFalse, toggle }
+	return { value, setValue, setTrue, setFalse, toggle }
 }

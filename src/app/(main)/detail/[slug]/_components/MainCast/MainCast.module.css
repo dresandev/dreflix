@@ -1,0 +1,3 @@
+.actorCard {
+	inline-size: clamp(100px, 90px + 3.125vw, 150px);
+}

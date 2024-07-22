@@ -32,7 +32,7 @@ export const ActorCard: React.FC<ActorCardProps> = ({
 
 			<div className={styles.info}>
 				<figcaption className={styles.name}>{originalName}</figcaption>
-				<p className={styles.characterName}>{character}</p>
+				<p className={styles.character}>{character}</p>
 			</div>
 		</figure>
 	)
