@@ -1,4 +1,4 @@
-import type { ChangeEvent, FormEvent } from "react"
+import { forwardRef, type ChangeEvent, type FormEvent } from "react"
 import { useAutoFocus } from "~/hooks/use-autofocus"
 import { SearchIcon } from "~/components/Svg"
 import styles from "./SearchBar.module.css"
@@ -12,15 +12,10 @@ interface SearchBarProps {
 	onKeyDown: React.KeyboardEventHandler<HTMLInputElement>
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({
-	open,
-	value,
-	onFocus,
-	onChange,
-	onSubmit,
-	onKeyDown,
-}) => {
-	const inputRef = useAutoFocus(open)
+export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>((props, ref) => {
+	const { open, value, onFocus, onChange, onSubmit, onKeyDown } = props
+
+	useAutoFocus(ref as React.RefObject<HTMLInputElement>, open)
 
 	const handleOnSubmit = (e: FormEvent) => {
 		e.preventDefault()
@@ -35,7 +30,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 		<form className={styles.searchBar} onSubmit={handleOnSubmit}>
 			<SearchIcon className={styles.searchIcon} />
 			<input
-				ref={inputRef}
+				ref={ref}
 				className={styles.input}
 				name="search_query"
 				type="search"
@@ -51,4 +46,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 			/>
 		</form>
 	)
-}
+})
+
+SearchBar.displayName = "SearchBar"

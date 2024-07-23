@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
 import clsx from "clsx"
 import type { MovieTitle } from "~/interfaces"
@@ -33,6 +33,7 @@ export const SearchMenu = () => {
 		openMenu: openMoviesSuggester,
 	} = useMenu(false)
 	const [inputValue, setInputValue] = useState(params.get("search_query") || "")
+	const inputRef = useRef<HTMLInputElement>(null)
 	const [suggestedMovies, setSuggestedMovies] = useState<MovieTitle[]>([])
 	const [suggestedMovieIdx, setSuggestedMovieIdx] = useState<number | null>(null)
 	const debouncedInputValue = useDebounce(inputValue, DEBOUNCE_DELAY)
@@ -98,17 +99,17 @@ export const SearchMenu = () => {
 		},
 	}
 
-	const handleSubmit = () => {
-		removeActiveElementFocus()
-		const searchParams = new URLSearchParams({ search_query: inputValue }).toString()
-		router.push(`/search?${searchParams}`)
-	}
-
 	const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
 		if (!(e.key in keyDownHandledEvents)) return
 
 		const handler = keyDownHandledEvents[e.key as keyof KeyDownHandledEvent]
 		handler(e)
+	}
+
+	const handleSubmit = () => {
+		removeActiveElementFocus()
+		const searchParams = new URLSearchParams({ search_query: inputValue }).toString()
+		router.push(`/search?${searchParams}`)
 	}
 
 	return (
@@ -122,6 +123,7 @@ export const SearchMenu = () => {
 				className={clsx(styles.searchMenu, { [styles.open]: isMenuOpen })}
 			>
 				<SearchBar
+					ref={inputRef}
 					open={isMenuOpen}
 					value={inputValue}
 					onFocus={openMoviesSuggester}

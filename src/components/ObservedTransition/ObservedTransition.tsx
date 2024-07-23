@@ -23,7 +23,7 @@ export const ObservedTransition: React.FC<ObservedTransitionProps> = ({
 
 	return (
 		<div ref={observerTargetRef}>
-			<div className={clsx(className, isInView && isVisibleClassName)}>{children}</div>
+			<div className={clsx(className, { [isVisibleClassName]: isInView })}>{children}</div>
 		</div>
 	)
 }
