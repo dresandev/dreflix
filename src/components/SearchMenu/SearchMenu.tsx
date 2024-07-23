@@ -5,14 +5,12 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation"
 import clsx from "clsx"
 import type { MovieTitle } from "~/interfaces"
 import { getMovieTitles } from "~/actions/movies-actions"
-import { removeActiveElementFocus } from "~/utils/remove-active-element-focus"
 import { useDebounce } from "~/hooks/use-debounce"
 import { useMenu } from "~/hooks/use-menu"
 import { X, SearchIcon } from "~/components/Svg"
 import { SearchBar } from "./SearchBar"
 import { MoviesSuggester } from "./MoviesSuggester"
 import styles from "./SearchMenu.module.css"
-import { useOnRouteChange } from "~/hooks/use-on-route-change"
 
 type HandledEvent = "ArrowUp" | "ArrowDown" | "Enter"
 
@@ -107,9 +105,9 @@ export const SearchMenu = () => {
 	}
 
 	const handleSubmit = () => {
-		removeActiveElementFocus()
 		const searchParams = new URLSearchParams({ search_query: inputValue }).toString()
 		router.push(`/search?${searchParams}`)
+		inputRef.current?.blur()
 	}
 
 	return (
