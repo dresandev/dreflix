@@ -1,0 +1,44 @@
+.searchMenuBtn {
+	vertical-align: middle;
+}
+
+.searchMenu {
+	position: fixed;
+	inset-block-start: var(--header-block-size);
+	inset-inline: 0;
+	block-size: 100%;
+	background-color: var(--secondary-bg-color);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-10px);
+	transition: var(--menu-transition);
+}
+
+.searchMenu.open {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+	transition: var(--menu-open-transition);
+}
+
+@media screen and (min-width: 880px) {
+	.wrapper {
+		flex: 1 0;
+		max-inline-size: 450px;
+	}
+
+	.searchMenuBtn {
+		display: none;
+	}
+
+	.searchMenu {
+		position: relative;
+		inset: unset;
+		opacity: unset;
+		visibility: unset;
+		transform: unset;
+		transition: unset;
+		padding: unset;
+		background-color: unset;
+	}
+}

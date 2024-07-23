@@ -1,5 +1,5 @@
-import { Genre } from './'
+import type { Genre } from "./"
 
 export interface GenresResponse {
-  genres: Genre[]
+	genres: Genre[]
 }

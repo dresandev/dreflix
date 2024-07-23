@@ -11,7 +11,7 @@ interface UseFetchMoviesProps {
 export const useFetchMovies = ({ initMovies, totalPages, fetchMovies }: UseFetchMoviesProps) => {
 	const [moviesData, setMoviesData] = useState({
 		movies: initMovies,
-		page: 1,
+		page: 2,
 		isLoading: false,
 		hasError: false,
 	})

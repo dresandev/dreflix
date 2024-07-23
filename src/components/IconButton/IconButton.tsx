@@ -23,3 +23,5 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>((props, ref) => {
 		</button>
 	)
 })
+
+IconButton.displayName = "IconButton"

@@ -26,8 +26,8 @@
 	order: -1;
 }
 
-.searchMenu {
-	margin-inline-start: auto;
+.spacer {
+	flex-grow: 1;
 }
 
 .userMenuButton {

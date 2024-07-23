@@ -1,6 +1,6 @@
-import { Video } from './'
+import { Video } from "./"
 
 export interface MovieVideosResponse {
-  id: number
-  results: Video[]
+	id: number
+	results: Video[]
 }

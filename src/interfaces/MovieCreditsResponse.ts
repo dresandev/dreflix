@@ -1,7 +1,7 @@
-import { Cast, Crew } from './'
+import type { Cast, Crew } from "./"
 
 export interface MovieCreditsResponse {
-  id: number
-  cast: Cast[]
-  crew: Crew[]
+	id: number
+	cast: Cast[]
+	crew: Crew[]
 }

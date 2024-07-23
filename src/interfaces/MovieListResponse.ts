@@ -1,8 +1,8 @@
-import { Movie } from '.'
+import type { Movie } from "./"
 
 export interface MovieListResponse {
-  page: number
-  results: Movie[]
-  total_pages: number
-  total_results: number
+	page: number
+	results: Movie[]
+	total_pages: number
+	total_results: number
 }

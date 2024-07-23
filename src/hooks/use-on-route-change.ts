@@ -7,5 +7,5 @@ export const useOnRouteChange = (handler: () => void) => {
 
 	useEffect(() => {
 		handler()
-	}, [pathname, searchParams])
+	}, [pathname, searchParams, handler])
 }

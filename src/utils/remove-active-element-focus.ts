@@ -1,4 +1,4 @@
-export const removeFocusActiveElement = () => {
+export const removeActiveElementFocus = () => {
 	const activeElement = document.activeElement as HTMLElement
 	activeElement.blur()
 }

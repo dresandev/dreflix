@@ -1,7 +1,7 @@
 import { Suspense } from "react"
 import Link from "next/link"
 import { NavMenu } from "~/components/NavMenu"
-// import { SearchMenu } from "~/components/SearchMenu"
+import { SearchMenu } from "~/components/SearchMenu"
 import { DreflixLogo } from "~/components/Svg"
 import styles from "./Header.module.css"
 
@@ -13,7 +13,8 @@ export const Header = () => (
 
 		<Suspense>
 			<NavMenu className={styles.navMenu} />
-			{/* <SearchMenu className={styles.searchMenu} /> */}
+			<div className={styles.spacer}></div>
+			<SearchMenu />
 		</Suspense>
 
 		<button className={styles.userMenuButton} type="button" aria-label="Open user account menu">
