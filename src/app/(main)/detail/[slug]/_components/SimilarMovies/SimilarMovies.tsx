@@ -1,4 +1,4 @@
-import type { Movie } from "~/interfaces"
+import type { Movie } from "~/interfaces/Movie"
 import { CarouselSection } from "~/components/CarouselSection"
 import { MovieCard } from "~/components/MovieCard"
 import { NoItemsFound } from "~/components/NoItemsFound"

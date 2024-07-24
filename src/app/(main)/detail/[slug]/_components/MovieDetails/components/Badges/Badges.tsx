@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 import Link from "next/link"
-import { Genre } from "~/interfaces"
+import type { Genre } from "~/interfaces/Genre"
 import { simpleSlugify } from "~/utils/simple-slugify"
 import { formatDuration } from "~/helpers/format-duration"
 import styles from "./Badges.module.css"

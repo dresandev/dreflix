@@ -1,4 +1,4 @@
-import type { Cast } from "~/interfaces"
+import type { Cast } from "~/interfaces/Cast"
 import { CarouselSection } from "~/components/CarouselSection"
 import { ActorCard } from "~/components/ActorCard"
 import { NoItemsFound } from "~/components/NoItemsFound"

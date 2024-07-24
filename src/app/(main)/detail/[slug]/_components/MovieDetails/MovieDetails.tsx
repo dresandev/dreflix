@@ -1,4 +1,4 @@
-import type { Genre } from "~/interfaces"
+import type { Genre } from "~/interfaces/Genre"
 import { Badges } from "./components/Badges"
 import { Actions } from "./components/Actions"
 import { Links } from "./components/Links"
