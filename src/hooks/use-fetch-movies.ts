@@ -22,6 +22,10 @@ export const useFetchMovies = ({ initMovies, totalPages, fetchMovies }: UseFetch
 	})
 
 	useEffect(() => {
+		setMoviesData((prevData) => ({ ...prevData, movies: initMovies }))
+	}, [initMovies])
+
+	useEffect(() => {
 		const loadMovies = async () => {
 			if (!isInView || moviesData.isLoading || moviesData.page > totalPages) return
 
