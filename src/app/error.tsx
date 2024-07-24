@@ -19,11 +19,11 @@ export default function Error({ error, reset }: ErrorProps) {
 		<div className={styles.container}>
 			<h1>Something went wrong!</h1>
 			<p className={styles.error}>Error fetching movies</p>
-			<div className={styles.actions}>
-				<button className={clsx(styles.actionOption, styles.mainActionOption)} onClick={reset}>
+			<div className={styles.actionsWrapper}>
+				<button className={clsx(styles.action, styles.mainAction)} onClick={reset}>
 					Try again
 				</button>
-				<Link className={styles.actionOption} href="/">
+				<Link className={styles.action} href="/">
 					Go home
 				</Link>
 			</div>

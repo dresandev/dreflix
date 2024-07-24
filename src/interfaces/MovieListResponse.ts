@@ -1,4 +1,4 @@
-import type { Movie } from "./"
+import type { Movie } from "./Movie"
 
 export interface MovieListResponse {
 	page: number

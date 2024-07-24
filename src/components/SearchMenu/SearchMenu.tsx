@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
 import clsx from "clsx"
-import type { MovieTitle } from "~/interfaces"
+import type { MovieTitle } from "~/interfaces/MovieTitle"
 import { getMovieTitles } from "~/actions/movies-actions"
 import { useDebounce } from "~/hooks/use-debounce"
 import { useMenu } from "~/hooks/use-menu"
@@ -23,14 +23,13 @@ const DEBOUNCE_DELAY = 280
 export const SearchMenu = () => {
 	const router = useRouter()
 	const pathname = usePathname()
-	const params = useSearchParams()
 	const { menuRef, isMenuOpen, toggleMenu } = useMenu()
 	const {
 		menuRef: moviesSuggesterRef,
 		isMenuOpen: isMoviesSuggesterOpen,
 		openMenu: openMoviesSuggester,
 	} = useMenu(false)
-	const [inputValue, setInputValue] = useState(params.get("search_query") || "")
+	const [inputValue, setInputValue] = useState("")
 	const inputRef = useRef<HTMLInputElement>(null)
 	const [suggestedMovies, setSuggestedMovies] = useState<MovieTitle[]>([])
 	const [suggestedMovieIdx, setSuggestedMovieIdx] = useState<number | null>(null)
@@ -105,7 +104,7 @@ export const SearchMenu = () => {
 	}
 
 	const handleSubmit = () => {
-		const searchParams = new URLSearchParams({ search_query: inputValue }).toString()
+		const searchParams = new URLSearchParams({ phrase: inputValue }).toString()
 		router.push(`/search?${searchParams}`)
 		inputRef.current?.blur()
 	}

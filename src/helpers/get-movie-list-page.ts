@@ -1,4 +1,4 @@
-import { PageInfo } from "~/types"
+import type { PageInfo } from "~/types"
 import { movieListPagesInfo } from "~/data/movie-list-pages-info"
 
 export const getMovieListPageInfo = (slug: string): PageInfo | undefined => {

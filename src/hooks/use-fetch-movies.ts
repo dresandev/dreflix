@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
-import { Movie, MovieListResponse } from "~/interfaces"
+import type { MovieListResponse } from "~/interfaces/MovieListResponse"
+import type { Movie } from "~/interfaces/Movie"
 import { useIsInView } from "./use-is-in-view"
 
 interface UseFetchMoviesProps {

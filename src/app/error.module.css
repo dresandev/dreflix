@@ -10,13 +10,13 @@
 	max-inline-size: 65ch;
 }
 
-.actions {
+.actionsWrapper {
 	display: flex;
 	align-items: center;
 	gap: 30px;
 }
 
-.actionOption {
+.action {
 	display: block;
 	padding: 10px 20px;
 	background-color: var(--secondary-bg-color);
@@ -24,13 +24,11 @@
 	font-weight: 500;
 }
 
-.mainActionOption {
+.mainAction {
 	background-color: var(--primary-text-color);
 	color: var(--bg-color);
 }
 
-@media (hover: hover) {
-	.actionOption:is(:hover) {
-		filter: brightness(0.9);
-	}
+.action:hover {
+	filter: brightness(0.9);
 }

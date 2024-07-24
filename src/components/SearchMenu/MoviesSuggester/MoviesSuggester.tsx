@@ -1,6 +1,6 @@
 import Link from "next/link"
 import clsx from "clsx"
-import type { MovieTitle } from "~/interfaces"
+import type { MovieTitle } from "~/interfaces/MovieTitle"
 import styles from "./MoviesSuggester.module.css"
 
 interface Props {
@@ -12,7 +12,7 @@ export const MoviesSuggester: React.FC<Props> = ({ suggestedMovies, suggestedMov
 	return (
 		<ul className={styles.results}>
 			{suggestedMovies.map(({ id, title }, i) => {
-				const searchParams = new URLSearchParams({ search_query: title }).toString()
+				const searchParams = new URLSearchParams({ phrase: title }).toString()
 				return (
 					<li key={id}>
 						<Link

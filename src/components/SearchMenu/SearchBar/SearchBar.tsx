@@ -32,7 +32,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>((props, re
 			<input
 				ref={ref}
 				className={styles.input}
-				name="search_query"
+				name="phrase"
 				type="search"
 				placeholder="Search"
 				spellCheck={false}

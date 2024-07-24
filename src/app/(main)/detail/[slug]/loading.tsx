@@ -1,5 +1,5 @@
 import { ScrollToTop } from "~/components/ScrollToTop"
-import { Skeleton } from "~/components/Skeleton"
+import { Skeleton } from "~/components/Ui/Skeleton"
 import styles from "./loading.module.css"
 
 export default function Loading() {

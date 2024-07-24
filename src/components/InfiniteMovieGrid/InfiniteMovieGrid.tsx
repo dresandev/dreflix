@@ -1,5 +1,5 @@
 import type { MutableRefObject } from "react"
-import type { Movie } from "~/interfaces"
+import type { Movie } from "~/interfaces/Movie"
 import { MovieCard } from "~/components/MovieCard"
 import { RingLoader } from "~/components/Loaders"
 import styles from "./InfiniteMovieGrid.module.css"

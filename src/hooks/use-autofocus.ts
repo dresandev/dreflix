@@ -5,5 +5,5 @@ export const useAutoFocus = (ref: React.RefObject<HTMLInputElement>, force = tru
 		if (force && ref.current) {
 			ref.current.focus()
 		}
-	}, [force])
+	}, [ref, force])
 }

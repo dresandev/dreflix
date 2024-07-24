@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import { HOST_URL } from "~/constants"
 import { Fira_Sans } from "next/font/google"
 import { Header } from "~/components/Header"
 import { ProgressBar } from "~/components/ProgressBar"
@@ -8,7 +7,7 @@ import "~/styles/reset.css"
 import "~/styles/globals.css"
 
 export const metadata: Metadata = {
-	metadataBase: new URL(HOST_URL),
+	metadataBase: new URL(process.env.HOST_URL!),
 	title: "Dreflix: Explore and find the movie you want to find so much",
 	description:
 		"Explore through a large catalog of movies and find the movie you want to find so badly.",

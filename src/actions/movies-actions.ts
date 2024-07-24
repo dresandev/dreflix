@@ -1,19 +1,16 @@
 "use server"
 
-import { API_BASE_URL, API_LANGUAGE, API_HEADERS } from "~/constants"
-import { createAPIMethod } from "~/utils/create-api-method"
-import type {
-	MovieListResponse,
-	MovieDetails,
-	MovieVideosResponse,
-	MovieCreditsResponse,
-	Cast,
-	GenresResponse,
-	Movie,
-	Genre,
-	MovieTitle,
-} from "~/interfaces"
+import type { MovieListResponse } from "~/interfaces/MovieListResponse"
+import type { MovieVideosResponse } from "~/interfaces/MovieVideosResponse"
+import type { MovieCreditsResponse } from "~/interfaces/MovieCreditsResponse"
+import type { Cast } from "~/interfaces/Cast"
+import type { GenresResponse } from "~/interfaces/GenresResponse"
+import type { Movie, MovieDetails } from "~/interfaces/Movie"
+import type { Genre } from "~/interfaces/Genre"
+import type { MovieTitle } from "~/interfaces/MovieTitle"
 import type { MovieListType } from "~/types"
+import { API_LANGUAGE, API_HEADERS } from "~/constants"
+import { createAPIMethod } from "~/utils/create-api-method"
 
 interface GetMovieListProps {
 	movieListType: MovieListType
@@ -28,7 +25,7 @@ export const getMovieList = async ({ movieListType, page = "1" }: GetMovieListPr
 		},
 		MovieListResponse
 	>({
-		url: `${API_BASE_URL}/movie/${movieListType}`,
+		url: `${process.env.API_BASE_URL}/movie/${movieListType}`,
 		init: {
 			...API_HEADERS,
 			next: { revalidate: 60 * 60 * 24 * 7 },
@@ -55,7 +52,7 @@ export const getMovieDetails = async (movieId: string) => {
 		},
 		MovieDetails
 	>({
-		url: `${API_BASE_URL}/movie/${movieId}`,
+		url: `${process.env.API_BASE_URL}/movie/${movieId}`,
 		init: API_HEADERS,
 	})
 
@@ -72,7 +69,7 @@ export const getSimilarMovies = async (movieId: string, page = "1") => {
 		},
 		MovieListResponse
 	>({
-		url: `${API_BASE_URL}/movie/${movieId}/similar`,
+		url: `${process.env.API_BASE_URL}/movie/${movieId}/similar`,
 		init: API_HEADERS,
 	})
 
@@ -96,7 +93,7 @@ export const getMovieMainCast = async (movieId: string): Promise<Cast[]> => {
 		},
 		MovieCreditsResponse
 	>({
-		url: `${API_BASE_URL}/movie/${movieId}/credits`,
+		url: `${process.env.API_BASE_URL}/movie/${movieId}/credits`,
 		init: API_HEADERS,
 	})
 
@@ -119,7 +116,7 @@ export const getMovieTrailerKey = async (movieId: string) => {
 		},
 		MovieVideosResponse
 	>({
-		url: `${API_BASE_URL}/movie/${movieId}/videos`,
+		url: `${process.env.API_BASE_URL}/movie/${movieId}/videos`,
 		init: API_HEADERS,
 	})
 
@@ -141,7 +138,7 @@ export const getMovieListGenres = async (): Promise<Genre[]> => {
 		},
 		GenresResponse
 	>({
-		url: `${API_BASE_URL}/genre/movie/list`,
+		url: `${process.env.API_BASE_URL}/genre/movie/list`,
 		init: API_HEADERS,
 	})
 
@@ -176,7 +173,7 @@ export const getMoviesByGenre = async (genre: string, page = "1") => {
 		},
 		MovieListResponse
 	>({
-		url: `${API_BASE_URL}/discover/movie`,
+		url: `${process.env.API_BASE_URL}/discover/movie`,
 		init: API_HEADERS,
 	})
 
@@ -214,7 +211,7 @@ export const getMoviesByTitle = async ({ page = "1", title }: GetMoviesByTitlePr
 		},
 		MovieListResponse
 	>({
-		url: `${API_BASE_URL}/search/movie`,
+		url: `${process.env.API_BASE_URL}/search/movie`,
 		init: API_HEADERS,
 	})
 
@@ -243,7 +240,7 @@ export const getMovieTitles = async (title: string) => {
 		},
 		MovieListResponse
 	>({
-		url: `${API_BASE_URL}/search/movie`,
+		url: `${process.env.API_BASE_URL}/search/movie`,
 		init: {
 			...API_HEADERS,
 			cache: "no-store",

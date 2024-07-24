@@ -15,11 +15,11 @@ export const metadata = {
 }
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
-	if (!searchParams.search_query) redirect("/")
+	if (!searchParams.phrase) redirect("/")
 
-	const { search_query } = searchParams
+	const { phrase } = searchParams
 
-	const movieListResult = await getMoviesByTitle({ title: search_query })
+	const movieListResult = await getMoviesByTitle({ title: phrase })
 
 	if (!movieListResult) notFound()
 
@@ -27,24 +27,17 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
 	if (!results.length) {
 		return (
-			<p className={styles.noMatchesMessage}>
-				{`We didn't find any matches for "${search_query}".`}
-			</p>
+			<p className={styles.noMatchesMessage}>{`We didn't find any matches for "${phrase}".`}</p>
 		)
 	}
 
 	return (
 		<div className={styles.container}>
-			<PageGradient gradientColor="hsl(0 100% 31% / .15)" />
+			<PageGradient gradientColor="hsl(208 96% 52% / .1)" />
 
-			<h2 className={styles.searchQuery}>Results for {`"${search_query}"`}.</h2>
+			<h2 className={styles.searchQuery}>Results for {`"${phrase}"`}.</h2>
 
-			<InfiniteMovieResults
-				key={search_query}
-				initMovies={results}
-				totalPages={total_pages}
-				keyword={search_query}
-			/>
+			<InfiniteMovieResults initMovies={results} totalPages={total_pages} keyword={phrase} />
 		</div>
 	)
 }

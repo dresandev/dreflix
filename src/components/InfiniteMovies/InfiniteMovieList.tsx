@@ -1,6 +1,6 @@
 "use client"
 
-import { Movie } from "~/interfaces"
+import { Movie } from "~/interfaces/Movie"
 import { MovieListType } from "~/types"
 import { getMovieList } from "~/actions/movies-actions"
 import { useFetchMovies } from "~/hooks/use-fetch-movies"
