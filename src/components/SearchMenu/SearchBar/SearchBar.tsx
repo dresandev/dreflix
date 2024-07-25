@@ -31,6 +31,11 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>((props, re
 			<SearchIcon className={styles.searchIcon} />
 			<input
 				ref={ref}
+				role="combobox"
+				aria-expanded={open}
+				aria-controls="movies-title-popup"
+				aria-autocomplete="list"
+				aria-haspopup="listbox"
 				className={styles.input}
 				name="phrase"
 				type="search"

@@ -1,34 +1,34 @@
-.results {
-  block-size: calc(100vh - 135px);
-  overflow-y: auto;
+.suggestedMovieList {
+	block-size: calc(100vh - 135px);
+	overflow-y: auto;
 }
 
-.resultLink {
-  display: block;
-  padding: var(--button-padding);
-  font-size: 16px;
-  text-transform: lowercase;
+.suggestedMovie {
+	display: block;
+	padding: var(--button-padding);
+	font-size: 16px;
+	text-transform: lowercase;
 }
 
-.selectedOption {
-  background-color: var(--tertiary-bg-color);
+.suggestedMovie[aria-selected="true"] {
+	background-color: var(--tertiary-bg-color);
 }
 
 @media (hover: hover) {
-  .resultLink:is(:hover) {
-    background-color: var(--tertiary-bg-color);
-  }
+	.suggestedMovie:hover {
+		background-color: var(--tertiary-bg-color);
+	}
 }
 
 @media screen and (min-width: 880px) {
-  .results {
-    position: absolute;
-    inset-block-start: 110%;
-    inset-inline: 0;
-    block-size: unset;
-    padding-block: 10px;
-    background-color: var(--secondary-bg-color);
-    border-radius: var(--border-radius);
-    overflow-y: unset;
-  }
+	.suggestedMovieList {
+		position: absolute;
+		inset-block-start: 110%;
+		inset-inline: 0;
+		block-size: unset;
+		padding-block: 10px;
+		background-color: var(--secondary-bg-color);
+		border-radius: var(--border-radius);
+		overflow-y: unset;
+	}
 }
