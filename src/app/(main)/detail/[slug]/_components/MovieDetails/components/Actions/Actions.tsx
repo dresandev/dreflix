@@ -4,11 +4,11 @@ import { TrailerModal } from "~/components/TrailerModal"
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "~/components/Ui/Tooltip"
 import styles from "./Actions.module.css"
 
-interface ActionsProps {
+interface Props {
 	trailerKey?: string
 }
 
-export const Actions: React.FC<ActionsProps> = ({ trailerKey }) => {
+export const Actions: React.FC<Props> = ({ trailerKey }) => {
 	return (
 		<div className={styles.actions}>
 			{trailerKey && (

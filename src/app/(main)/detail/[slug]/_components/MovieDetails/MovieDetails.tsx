@@ -4,7 +4,7 @@ import { Actions } from "./components/Actions"
 import { Links } from "./components/Links"
 import styles from "./MovieDetails.module.css"
 
-interface MovieDetailsProps {
+interface Props {
 	movieId: string
 	title: string
 	overview: string
@@ -17,7 +17,7 @@ interface MovieDetailsProps {
 	homepage: string
 }
 
-export const MovieDetails: React.FC<MovieDetailsProps> = ({
+export const MovieDetails: React.FC<Props> = ({
 	movieId,
 	title,
 	overview,

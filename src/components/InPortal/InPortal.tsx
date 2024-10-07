@@ -4,12 +4,12 @@ import type { ReactElement, ReactNode } from "react"
 import { createPortal } from "react-dom"
 import { useHasMounted } from "~/hooks/use-has-mounted"
 
-interface InPortalProps {
+interface Props {
 	children: ReactNode
 	id: string
 }
 
-export const InPortal: React.FC<InPortalProps> = ({ children, id }) => {
+export const InPortal: React.FC<Props> = ({ children, id }) => {
 	const hasMounted = useHasMounted()
 
 	if (!hasMounted) return null

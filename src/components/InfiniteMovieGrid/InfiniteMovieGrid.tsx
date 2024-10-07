@@ -4,14 +4,14 @@ import { MovieCard } from "~/components/MovieCard"
 import { RingLoader } from "~/components/Loaders"
 import styles from "./InfiniteMovieGrid.module.css"
 
-interface InfiniteMovieGridProps {
+interface Props {
 	movies: Movie[]
 	observerTargetRef: MutableRefObject<HTMLDivElement | null>
 	isLoading: boolean
 	hasError: boolean
 }
 
-export const InfiniteMovieGrid: React.FC<InfiniteMovieGridProps> = ({
+export const InfiniteMovieGrid: React.FC<Props> = ({
 	movies,
 	observerTargetRef,
 	isLoading,

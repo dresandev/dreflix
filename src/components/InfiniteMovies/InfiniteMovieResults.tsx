@@ -5,13 +5,13 @@ import { getMoviesByTitle } from "~/actions/movies-actions"
 import { useFetchMovies } from "~/hooks/use-fetch-movies"
 import { InfiniteMovieGrid } from "~/components/InfiniteMovieGrid"
 
-interface InfiniteMovieResultsProps {
+interface Props {
 	initMovies: Movie[]
 	totalPages: number
 	keyword: string
 }
 
-export const InfiniteMovieResults: React.FC<InfiniteMovieResultsProps> = ({
+export const InfiniteMovieResults: React.FC<Props> = ({
 	initMovies,
 	totalPages,
 	keyword,

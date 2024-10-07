@@ -1,10 +1,10 @@
 import styles from "./PageGradient.module.css"
 
-interface PageGradientProps {
+interface Props {
 	gradientColor: string
 }
 
-export const PageGradient: React.FC<PageGradientProps> = ({ gradientColor }) => {
+export const PageGradient: React.FC<Props> = ({ gradientColor }) => {
 	const inlineStyles = {
 		backgroundImage: `linear-gradient(
       30deg,

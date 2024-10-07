@@ -3,7 +3,7 @@ import { useAutoFocus } from "~/hooks/use-autofocus"
 import { SearchIcon } from "~/components/Svg"
 import styles from "./SearchBar.module.css"
 
-interface SearchBarProps {
+interface Props {
 	open: boolean
 	value: string
 	onFocus?: () => void
@@ -12,7 +12,7 @@ interface SearchBarProps {
 	onKeyDown: React.KeyboardEventHandler<HTMLInputElement>
 }
 
-export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>((props, ref) => {
+export const SearchBar = forwardRef<HTMLInputElement, Props>((props, ref) => {
 	const { open, value, onFocus, onChange, onSubmit, onKeyDown } = props
 
 	useAutoFocus(ref as React.RefObject<HTMLInputElement>, open)

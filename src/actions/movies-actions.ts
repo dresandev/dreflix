@@ -201,7 +201,10 @@ interface GetMoviesByTitleProps {
 	withTrailerKey?: boolean
 }
 
-export const getMoviesByTitle = async ({ page = "1", title }: GetMoviesByTitleProps) => {
+export const getMoviesByTitle = async ({
+	page = "1",
+	title
+}: GetMoviesByTitleProps) => {
 	const fetchMoviesByTitle = createAPIMethod<
 		{
 			page: string

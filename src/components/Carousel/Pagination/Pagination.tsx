@@ -3,14 +3,14 @@ import { useHasMounted } from "~/hooks/use-has-mounted"
 import { FadeIn } from "~/components/FadeIn"
 import styles from "./Pagination.module.css"
 
-interface PaginationProps {
+interface Props {
 	pages: number[][]
 	activePageIndex: number
 	firstPageBtnRef: React.RefObject<HTMLButtonElement>
 	goTo: (pageIndex: number) => void
 }
 
-export const Pagination: React.FC<PaginationProps> = ({
+export const Pagination: React.FC<Props> = ({
 	pages,
 	activePageIndex,
 	firstPageBtnRef,

@@ -1,11 +1,11 @@
 import styles from "./NoItemsFound.module.css"
 
-interface NoItemsFoundProps {
+interface Props {
 	title: string
 	message: string
 }
 
-export const NoItemsFound: React.FC<NoItemsFoundProps> = ({ title, message }) => {
+export const NoItemsFound: React.FC<Props> = ({ title, message }) => {
 	return (
 		<div className={styles.notFoundItems}>
 			<h2 className={styles.title}>{title}</h2>

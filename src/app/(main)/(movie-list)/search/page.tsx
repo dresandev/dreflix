@@ -4,7 +4,7 @@ import { InfiniteMovieResults } from "~/components/InfiniteMovies"
 import { PageGradient } from "~/components/PageGradient"
 import styles from "./page.module.css"
 
-interface SearchPageProps {
+interface Props {
 	searchParams: {
 		[key: string]: string | undefined
 	}
@@ -14,7 +14,7 @@ export const metadata = {
 	title: "Dreflix: Search",
 }
 
-export default async function SearchPage({ searchParams }: SearchPageProps) {
+export default async function SearchPage({ searchParams }: Props) {
 	if (!searchParams.phrase) redirect("/")
 
 	const { phrase } = searchParams

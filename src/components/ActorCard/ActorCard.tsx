@@ -2,14 +2,14 @@ import { IMAGES_BASE_URL } from "~/constants"
 import { NoImage } from "~/components/NoImage"
 import styles from "./ActorCard.module.css"
 
-interface ActorCardProps {
+interface Props {
 	className?: string
 	profilePath: string
 	character: string
 	originalName: string
 }
 
-export const ActorCard: React.FC<ActorCardProps> = ({
+export const ActorCard: React.FC<Props> = ({
 	className,
 	profilePath,
 	originalName,

@@ -1,15 +1,19 @@
-.dropdownLink {
+.navLink {
 	display: inline-block;
 	inline-size: 100%;
 	padding: var(--button-padding);
 }
 
-.dropdownLinkMinInlineSize {
+.minLinkInlineSize {
 	min-inline-size: 200px;
 }
 
+.navLink:focus-visible {
+	outline-offset: -1px;
+}
+
 @media (hover: hover) {
-	.dropdownLink:is(:hover) {
+	.navLink:hover {
 		background-color: var(--tertiary-bg-color);
 	}
 }

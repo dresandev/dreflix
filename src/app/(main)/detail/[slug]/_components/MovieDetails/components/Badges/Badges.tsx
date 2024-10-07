@@ -5,13 +5,13 @@ import { simpleSlugify } from "~/utils/simple-slugify"
 import { formatDuration } from "~/helpers/format-duration"
 import styles from "./Badges.module.css"
 
-interface BadgesProps {
+interface Props {
 	releaseDate: string
 	genres: Genre[]
 	runtime: number
 }
 
-export const Badges: React.FC<BadgesProps> = ({ releaseDate, genres, runtime }) => {
+export const Badges: React.FC<Props> = ({ releaseDate, genres, runtime }) => {
 	const releaseYear = releaseDate.split("-")[0]
 	const formattedMovieDuration = formatDuration(runtime)
 

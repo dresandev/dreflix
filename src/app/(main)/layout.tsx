@@ -1,10 +1,10 @@
 import styles from "./layout.module.css"
 
-interface MainLayoutProps {
+interface Props {
 	children: React.ReactNode
 }
 
-export default function MainLayout({ children }: MainLayoutProps) {
+export default function MainLayout({ children }: Props) {
 	return (
 		<>
 			{children}

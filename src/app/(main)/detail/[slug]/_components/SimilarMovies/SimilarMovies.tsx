@@ -3,11 +3,11 @@ import { CarouselSection } from "~/components/CarouselSection"
 import { MovieCard } from "~/components/MovieCard"
 import { NoItemsFound } from "~/components/NoItemsFound"
 
-interface SimilarMoviesProps {
+interface Props {
 	similarMovies: Movie[]
 }
 
-export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ similarMovies }) => {
+export const SimilarMovies: React.FC<Props> = ({ similarMovies }) => {
 	const title = "Similar movies"
 	const hasSimilarMovies = similarMovies.length
 

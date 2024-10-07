@@ -1,20 +1,15 @@
 "use client"
 
-import { useEffect } from "react"
 import Link from "next/link"
-import styles from "./error.module.css"
 import clsx from "clsx"
+import styles from "./error.module.css"
 
-type ErrorProps = {
+type Props = {
 	error: Error & { digest?: string }
 	reset: () => void
 }
 
-export default function Error({ error, reset }: ErrorProps) {
-	useEffect(() => {
-		console.error(error)
-	}, [error])
-
+export default function Error({ reset }: Props) {
 	return (
 		<div className={styles.container}>
 			<h1>Something went wrong!</h1>

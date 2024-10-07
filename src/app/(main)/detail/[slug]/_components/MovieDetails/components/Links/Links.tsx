@@ -1,12 +1,12 @@
 import styles from "./Links.module.css"
 
-interface LinksProps {
+interface Props {
 	movieId: string
 	imdbId: string
 	homepageUrl: string
 }
 
-export const Links: React.FC<LinksProps> = ({ movieId, imdbId, homepageUrl }) => {
+export const Links: React.FC<Props> = ({ movieId, imdbId, homepageUrl }) => {
 	return (
 		<div className={styles.links}>
 			<a

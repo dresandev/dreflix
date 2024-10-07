@@ -3,6 +3,7 @@ import Link from "next/link"
 import { NavMenu } from "~/components/NavMenu"
 import { SearchMenu } from "~/components/SearchMenu"
 import { DreflixLogo } from "~/components/Svg"
+import { Spacer } from "~/components/Ui/Spacer"
 import styles from "./Header.module.css"
 
 export const Header = () => (
@@ -11,9 +12,11 @@ export const Header = () => (
 			<DreflixLogo />
 		</Link>
 
-		<Suspense>
-			<NavMenu className={styles.navMenu} />
-			<div className={styles.spacer}></div>
+		<Suspense fallback={<Spacer flexGrow={1} />}>
+			<div className={styles.navMenuWrapper}>
+				<NavMenu />
+			</div>
+			<Spacer flexGrow={1} />
 			<SearchMenu />
 		</Suspense>
 

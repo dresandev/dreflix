@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { useRouter, useSearchParams, usePathname } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import clsx from "clsx"
 import type { MovieTitle } from "~/interfaces/MovieTitle"
 import { getMovieTitles } from "~/actions/movies-actions"

@@ -3,13 +3,17 @@ import type { MovieListResponse } from "~/interfaces/MovieListResponse"
 import type { Movie } from "~/interfaces/Movie"
 import { useIsInView } from "./use-is-in-view"
 
-interface UseFetchMoviesProps {
+interface Props {
 	initMovies: Movie[]
 	totalPages: number
 	fetchMovies: (page: string) => Promise<MovieListResponse>
 }
 
-export const useFetchMovies = ({ initMovies, totalPages, fetchMovies }: UseFetchMoviesProps) => {
+export const useFetchMovies = ({
+	initMovies,
+	totalPages,
+	fetchMovies,
+}: Props) => {
 	const [moviesData, setMoviesData] = useState({
 		movies: initMovies,
 		page: 2,
@@ -26,11 +30,15 @@ export const useFetchMovies = ({ initMovies, totalPages, fetchMovies }: UseFetch
 	}, [initMovies])
 
 	useEffect(() => {
+		if (
+			!isInView ||
+			moviesData.isLoading ||
+			moviesData.page > totalPages
+		) return
+
+		setMoviesData((prev) => ({ ...prev, isLoading: true }))
+
 		const loadMovies = async () => {
-			if (!isInView || moviesData.isLoading || moviesData.page > totalPages) return
-
-			setMoviesData((prev) => ({ ...prev, isLoading: true }))
-
 			try {
 				const { results: newMovies } = await fetchMovies(moviesData.page.toString())
 				setMoviesData((prev) => ({
@@ -38,11 +46,12 @@ export const useFetchMovies = ({ initMovies, totalPages, fetchMovies }: UseFetch
 					movies: [...prev.movies, ...newMovies],
 					page: prev.page + 1,
 					hasError: false,
-					isLoading: false,
 				}))
 			} catch (error) {
 				console.error("Error fetching movies:", error)
-				setMoviesData((prev) => ({ ...prev, hasError: true, isLoading: false }))
+				setMoviesData((prev) => ({ ...prev, hasError: true }))
+			} finally {
+				setMoviesData((prev) => ({ ...prev, isLoading: false }))
 			}
 		}
 

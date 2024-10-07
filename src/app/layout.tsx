@@ -21,11 +21,11 @@ const firaSans = Fira_Sans({
 	weight: ["400", "500", "700"],
 })
 
-interface RootLayoutProps {
+interface Props {
 	children: React.ReactNode
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: Props) {
 	return (
 		<html lang="en">
 			<body className={firaSans.className}>

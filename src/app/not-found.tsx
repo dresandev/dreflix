@@ -11,7 +11,7 @@ export default function NotFound() {
 			<h1 className={styles.title}>404</h1>
 			<p>We have not found the page</p>
 
-			<Link className={styles.goBackHomeLink} href="/">
+			<Link className={styles.goHomeLink} href="/">
 				Go to Dreflix home
 			</Link>
 		</div>

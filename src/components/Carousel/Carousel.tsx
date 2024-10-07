@@ -10,7 +10,7 @@ import { Buttons } from "./Buttons"
 import { Pagination } from "./Pagination"
 import styles from "./Carousel.module.css"
 
-interface CarouselProps {
+interface Props {
 	children: React.ReactNode | React.ReactNode[]
 	itemsGap?: string
 	autoPlay?: boolean
@@ -22,7 +22,7 @@ interface CarouselProps {
 
 const AUTOPLAY_INTERVAL = 5000
 
-export const Carousel: React.FC<CarouselProps> = ({
+export const Carousel: React.FC<Props> = ({
 	children,
 	itemsGap = "20px",
 	autoPlay = false,

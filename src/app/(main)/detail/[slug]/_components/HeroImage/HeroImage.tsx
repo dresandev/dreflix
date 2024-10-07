@@ -1,11 +1,11 @@
 import { IMAGES_BASE_URL } from "~/constants"
 import styles from "./HeroImage.module.css"
 
-interface HeroProps {
+interface Props {
 	backdropPath: string | null
 }
 
-export const HeroImage: React.FC<HeroProps> = ({ backdropPath }) => {
+export const HeroImage: React.FC<Props> = ({ backdropPath }) => {
 	return (
 		<div className={styles.hero}>
 			{backdropPath ? (

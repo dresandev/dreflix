@@ -1,29 +1,27 @@
 import { notFound } from "next/navigation"
 import { removeHyphen } from "~/utils/remove-hyphen"
-import { getRandomIndex } from "~/utils/get-random-index"
+import { getRandomNumber } from "~/utils/get-random-number"
 import { genrePageColors } from "~/data/genre-page-colors"
 import { getMovieListGenreByName, getMoviesByGenre } from "~/actions/movies-actions"
 import { PageGradient } from "~/components/PageGradient"
 import { InfiniteMoviesByGenre } from "~/components/InfiniteMovies"
 import styles from "./page.module.css"
 
-interface MoviesByGenrePageProps {
-	params: {
-		slug: string
-	}
+interface Props {
+	params: { slug: string }
 }
 
 const getGenreFromSlug = async (slug: string) => {
-	const genreName = removeHyphen(slug)
+	const slugGenre = removeHyphen(slug)
 
-	const genre = await getMovieListGenreByName(genreName)
+	const genre = await getMovieListGenreByName(slugGenre)
 
 	if (!genre) notFound()
 
 	return genre
 }
 
-export async function generateMetadata({ params }: MoviesByGenrePageProps) {
+export async function generateMetadata({ params }: Props) {
 	const { name } = await getGenreFromSlug(params.slug)
 
 	return {
@@ -32,12 +30,14 @@ export async function generateMetadata({ params }: MoviesByGenrePageProps) {
 	}
 }
 
-export default async function MoviesByGenrePage({ params }: MoviesByGenrePageProps) {
+export default async function MoviesByGenrePage({ params }: Props) {
 	const { id, name } = await getGenreFromSlug(params.slug)
 
 	const movieListResult = await getMoviesByGenre(id.toString())
-	const randomIndex = getRandomIndex(genrePageColors.length)
+	const randomIndex = getRandomNumber(0, genrePageColors.length - 1)
 	const randomColor = genrePageColors[randomIndex]
+
+	const { results, total_pages } = movieListResult
 
 	return (
 		<div className={styles.container}>
@@ -46,8 +46,8 @@ export default async function MoviesByGenrePage({ params }: MoviesByGenrePagePro
 			<h1 className={styles.title}>{name}</h1>
 
 			<InfiniteMoviesByGenre
-				initMovies={movieListResult.results}
-				totalPages={movieListResult.total_pages}
+				initMovies={results}
+				totalPages={total_pages}
 				genreId={id.toString()}
 			/>
 		</div>

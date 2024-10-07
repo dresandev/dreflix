@@ -3,13 +3,13 @@
 import clsx from "clsx"
 import { useIsInView } from "~/hooks/use-is-in-view"
 
-interface ObservedTransitionProps {
+interface Props {
 	children: React.ReactNode
 	className: string
 	isVisibleClassName: string
 }
 
-export const ObservedTransition: React.FC<ObservedTransitionProps> = ({
+export const ObservedTransition: React.FC<Props> = ({
 	children,
 	className,
 	isVisibleClassName,

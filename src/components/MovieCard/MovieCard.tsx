@@ -11,7 +11,7 @@ import { TrailerModal } from "~/components/TrailerModal"
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "~/components/Ui/Tooltip"
 import styles from "./MovieCard.module.css"
 
-interface MovieCardProps {
+interface Props {
 	className?: string
 	id: number
 	posterPath: string
@@ -22,7 +22,7 @@ interface MovieCardProps {
 	posterLoading?: Loading
 }
 
-export const MovieCard: React.FC<MovieCardProps> = ({
+export const MovieCard: React.FC<Props> = ({
 	className,
 	id,
 	posterPath,

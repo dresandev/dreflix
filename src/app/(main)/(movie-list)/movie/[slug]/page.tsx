@@ -1,18 +1,16 @@
 import { notFound } from "next/navigation"
 import { MovieListType } from "~/types"
-import { getMovieListPageInfo } from "~/helpers/get-movie-list-page"
+import { getMovieListPageInfo } from "~/helpers/get-movie-list-page-info"
 import { getMovieList } from "~/actions/movies-actions"
 import { PageGradient } from "~/components/PageGradient"
 import { InfiniteMovieList } from "~/components/InfiniteMovies"
 import styles from "./page.module.css"
 
-interface MovieListPageProps {
-	params: {
-		slug: string
-	}
+interface Props {
+	params: { slug: string }
 }
 
-export async function generateMetadata({ params }: MovieListPageProps) {
+export async function generateMetadata({ params }: Props) {
 	const movieListPageInfo = getMovieListPageInfo(params.slug)
 
 	if (!movieListPageInfo) notFound()
@@ -22,7 +20,7 @@ export async function generateMetadata({ params }: MovieListPageProps) {
 	}
 }
 
-export default async function MovieListPage({ params }: MovieListPageProps) {
+export default async function MovieListPage({ params }: Props) {
 	const movieListType = params.slug as MovieListType
 	const movieListPageInfo = getMovieListPageInfo(movieListType)
 

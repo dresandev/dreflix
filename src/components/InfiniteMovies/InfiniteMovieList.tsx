@@ -6,13 +6,13 @@ import { getMovieList } from "~/actions/movies-actions"
 import { useFetchMovies } from "~/hooks/use-fetch-movies"
 import { InfiniteMovieGrid } from "~/components/InfiniteMovieGrid"
 
-interface InfiniteMovieListProps {
+interface Props {
 	initMovies: Movie[]
 	totalPages: number
 	movieListType: MovieListType
 }
 
-export const InfiniteMovieList: React.FC<InfiniteMovieListProps> = ({
+export const InfiniteMovieList: React.FC<Props> = ({
 	initMovies,
 	totalPages,
 	movieListType,

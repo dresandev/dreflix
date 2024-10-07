@@ -4,11 +4,11 @@ import { ActorCard } from "~/components/ActorCard"
 import { NoItemsFound } from "~/components/NoItemsFound"
 import styles from "./MainCast.module.css"
 
-interface MainCastProps {
+interface Props {
 	cast: Cast[]
 }
 
-export const MainCast: React.FC<MainCastProps> = ({ cast }) => {
+export const MainCast: React.FC<Props> = ({ cast }) => {
 	const title = "Top Billed Cast"
 	const hasCast = cast.length
 

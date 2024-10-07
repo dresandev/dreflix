@@ -1,14 +1,14 @@
 import clsx from "clsx"
 import styles from "./FadeIn.module.css"
 
-interface FadeInProps {
+interface Props {
 	children: React.ReactNode
 	duration?: number
 	delay?: number
 	className?: string
 }
 
-export const FadeIn: React.FC<FadeInProps> = ({
+export const FadeIn: React.FC<Props> = ({
 	children,
 	duration = 300,
 	delay = 0,
