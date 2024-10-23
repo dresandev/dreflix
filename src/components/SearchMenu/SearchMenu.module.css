@@ -1,13 +1,12 @@
-.searchMenuBtn {
+.menuBtn {
 	vertical-align: middle;
 }
 
 .searchMenu {
 	position: fixed;
-	inset-block-start: var(--header-block-size);
-	inset-inline: 0;
-	block-size: 100%;
+	inset: var(--header-block-size) 0 0;
 	background-color: var(--secondary-bg-color);
+	overflow-y: auto;
 	opacity: 0;
 	visibility: hidden;
 	transform: translateY(-10px);
@@ -23,22 +22,22 @@
 
 @media screen and (min-width: 880px) {
 	.wrapper {
-		flex: 1 0;
+		flex: 1;
 		max-inline-size: 450px;
 	}
 
-	.searchMenuBtn {
+	.menuBtn {
 		display: none;
 	}
 
 	.searchMenu {
 		position: relative;
 		inset: unset;
+		background-color: unset;
+		overflow-y: unset;
 		opacity: unset;
 		visibility: unset;
 		transform: unset;
 		transition: unset;
-		padding: unset;
-		background-color: unset;
 	}
 }

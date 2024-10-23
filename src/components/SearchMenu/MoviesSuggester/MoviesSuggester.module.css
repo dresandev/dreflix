@@ -1,34 +1,27 @@
-.suggestedMovieList {
-	block-size: calc(100vh - 135px);
-	overflow-y: auto;
+.movie[aria-selected="true"] > .movieLink {
+	background-color: var(--tertiary-bg-color);
 }
 
-.suggestedMovie {
+@media (hover: hover) {
+	.movieLink:hover {
+		background-color: var(--tertiary-bg-color);
+	}
+}
+
+.movieLink {
 	display: block;
 	padding: var(--button-padding);
 	font-size: 16px;
 	text-transform: lowercase;
 }
 
-.suggestedMovie[aria-selected="true"] {
-	background-color: var(--tertiary-bg-color);
-}
-
-@media (hover: hover) {
-	.suggestedMovie:hover {
-		background-color: var(--tertiary-bg-color);
-	}
-}
-
 @media screen and (min-width: 880px) {
-	.suggestedMovieList {
+	.movieList {
 		position: absolute;
 		inset-block-start: 110%;
 		inset-inline: 0;
-		block-size: unset;
 		padding-block: 10px;
 		background-color: var(--secondary-bg-color);
 		border-radius: var(--border-radius);
-		overflow-y: unset;
 	}
 }

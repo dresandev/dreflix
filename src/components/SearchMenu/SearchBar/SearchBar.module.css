@@ -8,12 +8,12 @@
 }
 
 .searchBar:focus-within {
-	outline: none;
 	border-color: var(--secondary-color);
 }
 
 .input {
 	flex: 1;
+	min-inline-size: 0;
 	padding: 12px 8px;
 	background-color: transparent;
 	border: none;
@@ -30,12 +30,13 @@
 
 @media screen and (min-width: 880px) {
 	.searchBar {
+		min-inline-size: 350px;
 		margin: unset;
 		background-color: var(--secondary-bg-color);
 	}
 
 	.input {
-		padding: 8px 12px;
+		padding: 8px 4px 8px 12px;
 		font-size: 18px;
 	}
 }

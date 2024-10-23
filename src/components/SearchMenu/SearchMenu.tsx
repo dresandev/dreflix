@@ -111,7 +111,7 @@ export const SearchMenu = () => {
 
 	return (
 		<div ref={menuRef} className={styles.wrapper}>
-			<button aria-label="Search movie" className={styles.searchMenuBtn} onClick={toggleMenu}>
+			<button aria-label={`${isMenuOpen ? "Close" : "Open"} search menu`} className={styles.menuBtn} onClick={toggleMenu}>
 				{isMenuOpen ? <X /> : <SearchIcon />}
 			</button>
 
@@ -130,8 +130,8 @@ export const SearchMenu = () => {
 				/>
 				{showMoviesSuggester && (
 					<MoviesSuggester
-						suggestedMovies={suggestedMovies}
-						suggestedMovieIdx={suggestedMovieIdx}
+						movies={suggestedMovies}
+						selectedMovieIdx={suggestedMovieIdx}
 					/>
 				)}
 			</div>
