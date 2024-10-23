@@ -30,31 +30,31 @@ export default async function HomePage() {
 			<HeroCarousel />
 
 			{moviesResult.map((movies, i) => {
-				if (!isFulfilled(movies)) return
+				if (isFulfilled(movies)) {
+					const { value: { results } } = movies
 
-				const { value: { results } } = movies
+					return (
+						<CarouselSection key={i} title={movieListTitles[i]}>
+							{results.map((movie, i) => {
+								const { id, title, poster_path, release_date, overview, trailerKey } = movie
 
-				return (
-					<CarouselSection key={i} title={movieListTitles[i]}>
-						{results.map((movie, i) => {
-							const { id, title, poster_path, release_date, overview, trailerKey } = movie
-
-							return (
-								<MovieCard
-									key={id}
-									id={id}
-									className="carouselMovieCardWidth"
-									posterPath={poster_path}
-									title={title}
-									releaseDate={release_date}
-									overview={overview}
-									trailerKey={trailerKey}
-									posterLoading={i < 6 ? "eager" : "lazy"}
-								/>
-							)
-						})}
-					</CarouselSection>
-				)
+								return (
+									<MovieCard
+										key={id}
+										id={id}
+										className="carouselMovieCardWidth"
+										posterPath={poster_path}
+										title={title}
+										releaseDate={release_date}
+										overview={overview}
+										trailerKey={trailerKey}
+										posterLoading={i < 6 ? "eager" : "lazy"}
+									/>
+								)
+							})}
+						</CarouselSection>
+					)
+				}
 			})}
 		</>
 	)
