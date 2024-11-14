@@ -1,7 +1,7 @@
 "use client"
 
-import Link from "next/link"
-import clsx from "clsx"
+import { useEffect } from "react"
+import { Button } from "~/components/Ui/Button"
 import styles from "./error.module.css"
 
 type Props = {
@@ -9,19 +9,17 @@ type Props = {
 	reset: () => void
 }
 
-export default function Error({ reset }: Props) {
+export default function Error({ error, reset }: Props) {
+	useEffect(() => {
+		console.error(error)
+	}, [error])
+
 	return (
 		<div className={styles.container}>
-			<h1>Something went wrong!</h1>
-			<p className={styles.error}>Error fetching movies</p>
-			<div className={styles.actionsWrapper}>
-				<button className={clsx(styles.action, styles.mainAction)} onClick={reset}>
-					Try again
-				</button>
-				<Link className={styles.action} href="/">
-					Go home
-				</Link>
-			</div>
+			<h1>Ups! Something went wrong!</h1>
+			<Button onClick={reset}>
+				Try again
+			</Button>
 		</div>
 	)
 }

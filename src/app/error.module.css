@@ -5,30 +5,3 @@
 	align-content: center;
 	block-size: var(--content-block-size);
 }
-
-.error {
-	max-inline-size: 65ch;
-}
-
-.actionsWrapper {
-	display: flex;
-	align-items: center;
-	gap: 30px;
-}
-
-.action {
-	display: block;
-	padding: 10px 20px;
-	background-color: var(--secondary-bg-color);
-	border-radius: var(--border-radius);
-	font-weight: 500;
-}
-
-.mainAction {
-	background-color: var(--primary-text-color);
-	color: var(--bg-color);
-}
-
-.action:hover {
-	filter: brightness(0.9);
-}
