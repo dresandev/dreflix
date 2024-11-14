@@ -42,3 +42,15 @@ export const DialogTitle = forwardRef<
 	<DialogPrimitive.Title ref={ref} className={clsx(styles.title, className)} {...props} />
 ))
 DialogTitle.displayName = DialogPrimitive.Title.displayName
+
+export const DialogDescription = forwardRef<
+	React.ElementRef<typeof DialogPrimitive.Description>,
+	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
+>(({ className, ...props }, ref) => (
+	<DialogPrimitive.Description
+		ref={ref}
+		className={clsx(styles.description, className)}
+		{...props}
+	/>
+))
+DialogDescription.displayName = DialogPrimitive.Description.displayName

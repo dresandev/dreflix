@@ -50,6 +50,10 @@
 	font-size: 24px;
 }
 
+.description {
+	font-size: 18px;
+}
+
 @keyframes overlay-show {
 	from {
 		opacity: 0;
