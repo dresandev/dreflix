@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "~/components/Ui/Dialog"
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "~/components/Ui/Dialog"
 import styles from "./TrailerModal.module.css"
 
 interface Props {
@@ -11,7 +11,8 @@ export const TrailerModal: React.FC<Props> = ({ trigger, trailerKey }) => {
 		<Dialog modal>
 			<DialogTrigger asChild>{trigger}</DialogTrigger>
 			<DialogContent className={styles.modal}>
-				<DialogTitle className={styles.title}>Trailer de la película</DialogTitle>
+				<DialogTitle></DialogTitle>
+				<DialogDescription></DialogDescription>
 				<iframe
 					className={styles.trailerFrame}
 					src={`https://www.youtube-nocookie.com/embed/${trailerKey}?autoplay=1&si=F2Vt2iqn8TdSBHMP&amp;controls=1`}

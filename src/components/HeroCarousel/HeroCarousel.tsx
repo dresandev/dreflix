@@ -1,7 +1,7 @@
 import { headers } from "next/headers"
 import { heroMovies } from "~/data/hero-movies"
 import { Carousel } from "~/components/Carousel"
-import { HeroMovieCard } from "~/components/HeroMovieCard"
+import { HeroMovieCard } from "~/components/Cards/HeroMovieCard"
 import { isMobile } from "~/utils/is-mobile"
 
 export const HeroCarousel = async () => {

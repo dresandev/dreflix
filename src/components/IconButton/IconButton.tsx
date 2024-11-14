@@ -16,7 +16,7 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>((props, ref) => {
 		<button
 			ref={ref}
 			aria-label={ariaLabel}
-			className={clsx(styles.button, styles[size], className)}
+			className={clsx(styles.button, styles[`size_${size}`], className)}
 			{...delegate}
 		>
 			{children}

@@ -1,0 +1,11 @@
+.navLink {
+	inline-size: 100%;
+}
+
+.navLink:focus-visible {
+	outline-offset: -1px;
+}
+
+.minInlineSize {
+	min-inline-size: 200px;
+}

@@ -6,10 +6,6 @@
 	background-color: var(--secondary-bg-color);
 }
 
-.title {
-	display: none;
-}
-
 @media (orientation: landscape) {
 	.trailerFrame {
 		inline-size: 68vw;

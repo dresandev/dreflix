@@ -11,33 +11,24 @@
 	background-color: var(--bg-color);
 }
 
-.goHomeBtn {
+.goHomeLink {
 	color: var(--primary-color);
 	transition: color 200ms ease;
 }
 
+.goHomeLink:focus-visible {
+	outline-offset: 8px;
+}
+
 @media (hover: hover) {
-	.goHomeBtn:is(:hover) {
+	.goHomeLink:focus-visible,
+	.goHomeLink:hover {
 		color: var(--primary-text-color);
 	}
 }
 
-.navMenuWrapper {
-	order: -1;
-}
-
-.userMenuButton {
-	border-radius: 100%;
-	overflow: hidden;
-}
-
-@media screen and (min-width: 880px) {
+@media screen and (max-width: 879px) {
 	.navMenuWrapper {
-		order: initial;
-	}
-
-	.searchMenu {
-		flex: 1;
-		max-inline-size: 450px;
+		order: -1;
 	}
 }

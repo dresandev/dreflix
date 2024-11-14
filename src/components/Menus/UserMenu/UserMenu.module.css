@@ -1,0 +1,36 @@
+.triggerBtn {
+	display: flex;
+	align-items: center;
+	gap: 0 8px;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	gap: 0 12px;
+	padding: 8px 16px;
+	margin-block-end: 12px;
+}
+
+.name {
+	font-weight: 500;
+	font-size: 20px;
+}
+
+.optionBtn {
+	display: flex;
+	gap: 0 16px;
+	inline-size: 100%;
+	font-size: 16px;
+}
+
+.mainOptions {
+	padding-block: 12px;
+	border-block: 1px solid var(--tertiary-bg-color);
+}
+
+@media screen and (max-width: 880px) {
+	.triggerBtn {
+		padding-inline: 8px;
+	}
+}

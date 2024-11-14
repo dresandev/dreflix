@@ -1,5 +1,6 @@
 import { notFound, redirect } from "next/navigation"
 import { getMoviesByTitle } from "~/actions/movies-actions"
+import { getSessionId } from "~/helpers/server-session-id"
 import { InfiniteMovieResults } from "~/components/InfiniteMovies"
 import { PageGradient } from "~/components/PageGradient"
 import styles from "./page.module.css"
@@ -19,7 +20,9 @@ export default async function SearchPage({ searchParams }: Props) {
 
 	const { phrase } = searchParams
 
-	const movieListResult = await getMoviesByTitle({ title: phrase })
+	const sessionId = getSessionId()
+
+	const movieListResult = await getMoviesByTitle({ sessionId, title: phrase })
 
 	if (!movieListResult) notFound()
 
@@ -27,17 +30,24 @@ export default async function SearchPage({ searchParams }: Props) {
 
 	if (!results.length) {
 		return (
-			<p className={styles.noMatchesMessage}>{`We didn't find any matches for "${phrase}".`}</p>
+			<p className={styles.noMatchesMessage}>
+				{`We didn't find any matches for "${phrase}".`}
+			</p>
 		)
 	}
 
 	return (
-		<div className={styles.container}>
+		<>
 			<PageGradient gradientColor="hsl(208 96% 52% / .1)" />
 
 			<h2 className={styles.searchQuery}>Results for {`"${phrase}"`}.</h2>
 
-			<InfiniteMovieResults initMovies={results} totalPages={total_pages} keyword={phrase} />
-		</div>
+			<InfiniteMovieResults
+				sessionId={sessionId}
+				initMovies={results}
+				totalPages={total_pages}
+				keyword={phrase}
+			/>
+		</>
 	)
 }

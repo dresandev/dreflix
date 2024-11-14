@@ -11,14 +11,6 @@
 }
 
 .goHomeLink {
-	padding: 12px 28px;
 	margin-block-start: 24px;
 	font-weight: 500;
-	background-color: var(--primary-text-color);
-	color: var(--bg-color);
-	border-radius: var(--border-radius);
-}
-
-.goHomeLink:hover {
-	filter: brightness(0.9);
 }

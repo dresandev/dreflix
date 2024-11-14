@@ -1,0 +1,9 @@
+.link {
+	outline-offset: -1px;
+}
+
+@media screen and (max-width: 888px) {
+	.link {
+		padding-inline: 8px;
+	}
+}

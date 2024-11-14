@@ -4,24 +4,20 @@ import { isFulfilled } from "~/utils/is-fulfilled"
 import {
 	getMovieMainCast,
 	getMovieDetails,
-	getMovieTrailerKey,
 	getSimilarMovies,
 } from "~/actions/movies-actions"
 import { HeroImage } from "./_components/HeroImage"
 import { MovieDetails } from "./_components/MovieDetails"
 import { MainCast } from "./_components/MainCast"
 import { SimilarMovies } from "./_components/SimilarMovies"
+import { getSessionId } from "~/helpers/server-session-id"
 
 interface Props {
-	params: {
-		slug: string
-	}
+	params: { slug: string }
 }
 
 export async function generateMetadata({ params }: Props) {
-	const movie = await getMovieDetails(params.slug)
-
-	if (!movie) notFound()
+	const movie = await getMovieDetails({ movieId: params.slug })
 
 	return {
 		metadataBase: new URL(`${IMAGES_BASE_URL}/w780`),
@@ -34,7 +30,8 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function DetailPage({ params }: Props) {
-	const movie = await getMovieDetails(params.slug)
+	const sessionId = getSessionId()
+	const movie = await getMovieDetails({ sessionId, movieId: params.slug })
 
 	if (!movie) notFound()
 
@@ -49,14 +46,15 @@ export default async function DetailPage({ params }: Props) {
 		imdb_id,
 		homepage,
 		tagline,
+		isFavorite,
+		trailerKey,
 	} = movie
 
 	const movieId = id.toString()
 
-	const [similarMoviesResponse, mainCast, trailerKey] = await Promise.allSettled([
-		getSimilarMovies(movieId),
+	const [similarMoviesResponse, mainCast] = await Promise.allSettled([
+		getSimilarMovies({ sessionId, movieId }),
 		getMovieMainCast(movieId),
-		getMovieTrailerKey(movieId),
 	])
 
 	return (
@@ -64,7 +62,7 @@ export default async function DetailPage({ params }: Props) {
 			<HeroImage backdropPath={backdrop_path} />
 
 			<MovieDetails
-				movieId={movieId}
+				movieId={id}
 				title={title}
 				overview={overview}
 				releaseDate={release_date}
@@ -73,13 +71,14 @@ export default async function DetailPage({ params }: Props) {
 				imdbId={imdb_id}
 				homepage={homepage}
 				tagline={tagline}
-				trailerKey={isFulfilled(trailerKey) ? trailerKey.value : undefined}
+				trailerKey={trailerKey}
+				isFavorite={isFavorite}
 			/>
 
 			{isFulfilled(mainCast) && <MainCast cast={mainCast.value} />}
 
 			{isFulfilled(similarMoviesResponse) && (
-				<SimilarMovies similarMovies={similarMoviesResponse.value.results} />
+				<SimilarMovies movies={similarMoviesResponse.value.results} />
 			)}
 		</>
 	)

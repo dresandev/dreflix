@@ -7,12 +7,14 @@ import { useFetchMovies } from "~/hooks/use-fetch-movies"
 import { InfiniteMovieGrid } from "~/components/InfiniteMovieGrid"
 
 interface Props {
+	sessionId?: string
 	initMovies: Movie[]
 	totalPages: number
 	movieListType: MovieListType
 }
 
 export const InfiniteMovieList: React.FC<Props> = ({
+	sessionId,
 	initMovies,
 	totalPages,
 	movieListType,
@@ -20,13 +22,13 @@ export const InfiniteMovieList: React.FC<Props> = ({
 	const { observerTargetRef, movies, isLoading, hasError } = useFetchMovies({
 		initMovies,
 		totalPages,
-		fetchMovies: (page) => getMovieList({ movieListType, page }),
+		fetchMovies: (page) => getMovieList({ sessionId, movieListType, page }),
 	})
 
 	return (
 		<InfiniteMovieGrid
-			movies={movies}
 			observerTargetRef={observerTargetRef}
+			movies={movies}
 			isLoading={isLoading}
 			hasError={hasError}
 		/>

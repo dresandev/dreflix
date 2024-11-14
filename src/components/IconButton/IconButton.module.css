@@ -11,18 +11,22 @@
 	will-change: transform;
 }
 
-.small {
-	--size: 36px;
+.size_small {
+	--size: 38px;
 }
 
-.medium {
+.size_default {
 	--size: clamp(45px, 42px + 0.938vw, 60px);
 }
 
 @media (hover: hover) {
 	.button:hover {
-		transform: scale(1.1);
+		transform: scale(1.05);
 		background-color: hsl(var(--primary-text-color-hsl));
 		color: var(--bg-color);
 	}
+}
+
+.button:active {
+	transform: scale(0.95);
 }

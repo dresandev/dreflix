@@ -27,6 +27,71 @@
 	margin-block-end: 12px;
 }
 
+.badges,
+.genres {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.badges {
+	column-gap: 15px;
+	margin-block-end: 20px;
+	color: var(--secondary-text-color);
+}
+
+.genres {
+	gap: 5px;
+}
+
+.genre {
+	transition: color 200ms ease;
+}
+
+.genre:hover {
+	color: var(--primary-text-color);
+}
+
+.links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+	margin-block-end: 20px;
+}
+
+.link {
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+}
+
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+}
+
+.trailerButton {
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+	transition: opacity 200ms ease;
+}
+
+@media (hover: hover) {
+	.trailerButton:hover {
+		opacity: 0.5;
+	}
+}
+
+.playIcon {
+	padding: clamp(10px, 11.76px + -0.55vw, 1.2px);
+	border-radius: 50%;
+	background-color: var(--primary-color);
+}
+
+.trailerButton span {
+	letter-spacing: 6px;
+}
+
 @media screen and (min-width: 967px) {
 	.detailsWrapper {
 		min-block-size: calc(100vh - var(--header-block-size));

@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation"
 import { MovieListType } from "~/types"
+import { movieListPageColor } from "~/data/page-colors"
 import { getMovieListPageInfo } from "~/helpers/get-movie-list-page-info"
+import { getSessionId } from "~/helpers/server-session-id"
 import { getMovieList } from "~/actions/movies-actions"
 import { PageGradient } from "~/components/PageGradient"
 import { InfiniteMovieList } from "~/components/InfiniteMovies"
@@ -12,11 +14,8 @@ interface Props {
 
 export async function generateMetadata({ params }: Props) {
 	const movieListPageInfo = getMovieListPageInfo(params.slug)
-
-	if (!movieListPageInfo) notFound()
-
 	return {
-		title: movieListPageInfo.SEOTitle,
+		title: movieListPageInfo?.SEOTitle,
 	}
 }
 
@@ -26,22 +25,25 @@ export default async function MovieListPage({ params }: Props) {
 
 	if (!movieListPageInfo) notFound()
 
-	const movieListResult = await getMovieList({ movieListType })
+	const sessionId = getSessionId()
+
+	const movieListResult = await getMovieList({ sessionId, movieListType })
 
 	const { title } = movieListPageInfo
 	const { results, total_pages } = movieListResult
 
 	return (
-		<div className={styles.container}>
-			<PageGradient gradientColor="hsl(47 96% 40% / .1)" />
+		<>
+			<PageGradient gradientColor={movieListPageColor} />
 
 			<h1 className={styles.title}>{title}</h1>
 
 			<InfiniteMovieList
+				sessionId={sessionId}
 				initMovies={results}
 				totalPages={total_pages}
 				movieListType={movieListType}
 			/>
-		</div>
+		</>
 	)
 }

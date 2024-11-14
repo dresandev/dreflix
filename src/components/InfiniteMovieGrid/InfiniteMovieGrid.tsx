@@ -1,7 +1,7 @@
 import type { MutableRefObject } from "react"
 import type { Movie } from "~/interfaces/Movie"
-import { MovieCard } from "~/components/MovieCard"
-import { RingLoader } from "~/components/Loaders"
+import { MovieCard } from "~/components/Cards/MovieCard"
+import { RingLoader } from "~/components/Loaders/RingLoader"
 import styles from "./InfiniteMovieGrid.module.css"
 
 interface Props {
@@ -20,7 +20,15 @@ export const InfiniteMovieGrid: React.FC<Props> = ({
 	return (
 		<>
 			<div className={styles.container}>
-				{movies.map(({ id, poster_path, title, release_date, overview, trailerKey }, i) => (
+				{movies.map(({
+					id,
+					poster_path,
+					title,
+					release_date,
+					overview,
+					trailerKey,
+					isFavorite
+				}, i) => (
 					<MovieCard
 						key={i}
 						id={id}
@@ -30,6 +38,7 @@ export const InfiniteMovieGrid: React.FC<Props> = ({
 						overview={overview}
 						trailerKey={trailerKey}
 						posterLoading={i < 12 ? "eager" : "lazy"}
+						isFavorite={isFavorite}
 					/>
 				))}
 			</div>

@@ -1,28 +1,28 @@
-import { MovieListType } from "~/types"
+import type { MovieListType } from "~/types"
 import { isFulfilled } from "~/utils/is-fulfilled"
 import { getMovieList } from "~/actions/movies-actions"
+import { getSessionId } from "~/helpers/server-session-id"
 import { HeroCarousel } from "~/components/HeroCarousel"
 import { CarouselSection } from "~/components/CarouselSection"
-import { MovieCard } from "~/components/MovieCard"
+import { MovieCard } from "~/components/Cards/MovieCard"
 import styles from "./page.module.css"
 
-const movieList: { [key in MovieListType]: string } = {
-	popular: "Popular",
-	now_playing: "Now Playing",
-	upcoming: "Upcoming",
-	top_rated: "Top Rated",
-}
-
-const moviePromises = Object.keys(movieList).map((movieListType) =>
-	getMovieList({
-		movieListType: movieListType as MovieListType,
-	})
-)
-
-const movieListTitles = Object.values(movieList)
+const movieListTitles = [
+	"Popular",
+	"Now Playing",
+	"Upcoming",
+	"Top Rated",
+]
 
 export default async function HomePage() {
-	const moviesResult = await Promise.allSettled(moviePromises)
+	const sessionId = getSessionId()
+
+	const movieListPromises = movieListTitles.map((title) => {
+		const movieListType = title.replace(" ", "_").toLowerCase() as MovieListType
+		return getMovieList({ sessionId, movieListType })
+	})
+
+	const moviesResult = await Promise.allSettled(movieListPromises)
 
 	return (
 		<>
@@ -30,31 +30,36 @@ export default async function HomePage() {
 			<HeroCarousel />
 
 			{moviesResult.map((movies, i) => {
-				if (isFulfilled(movies)) {
-					const { value: { results } } = movies
+				if (!isFulfilled(movies)) return /* Error fetching movies component? */
 
-					return (
-						<CarouselSection key={i} title={movieListTitles[i]}>
-							{results.map((movie, i) => {
-								const { id, title, poster_path, release_date, overview, trailerKey } = movie
+				const { value: { results } } = movies
 
-								return (
-									<MovieCard
-										key={id}
-										id={id}
-										className="carouselMovieCardWidth"
-										posterPath={poster_path}
-										title={title}
-										releaseDate={release_date}
-										overview={overview}
-										trailerKey={trailerKey}
-										posterLoading={i < 6 ? "eager" : "lazy"}
-									/>
-								)
-							})}
-						</CarouselSection>
-					)
-				}
+				return (
+					<CarouselSection key={i} title={movieListTitles[i]}>
+						{results.map(({
+							id,
+							title,
+							poster_path,
+							release_date,
+							overview,
+							trailerKey,
+							isFavorite
+						}, i) => (
+							<MovieCard
+								key={id}
+								id={id}
+								inCarousel
+								posterPath={poster_path}
+								title={title}
+								releaseDate={release_date}
+								overview={overview}
+								trailerKey={trailerKey}
+								posterLoading={i < 6 ? "eager" : "lazy"}
+								isFavorite={isFavorite}
+							/>
+						))}
+					</CarouselSection>
+				)
 			})}
 		</>
 	)

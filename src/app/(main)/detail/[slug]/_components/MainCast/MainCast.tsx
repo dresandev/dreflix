@@ -1,7 +1,7 @@
 import type { Cast } from "~/interfaces/Cast"
 import { CarouselSection } from "~/components/CarouselSection"
-import { ActorCard } from "~/components/ActorCard"
-import { NoItemsFound } from "~/components/NoItemsFound"
+import { ActorCard } from "~/components/Cards/ActorCard"
+import { NoItemsFound } from "~/components/Placeholders/NoItemsFound"
 import styles from "./MainCast.module.css"
 
 interface Props {
