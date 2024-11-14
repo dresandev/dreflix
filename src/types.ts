@@ -1,7 +1,7 @@
 export type Direction = "RIGHT" | "LEFT" | "DOWN"
 export type Loading = "eager" | "lazy"
 export type FetchPriority = "high" | "low" | "auto" | undefined
-export type Size = "small" | "medium"
+export type Size = "small" | "default"
 export type MovieListType = "now_playing" | "popular" | "top_rated" | "upcoming"
 
 export interface ImageSizes {
