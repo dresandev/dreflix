@@ -25,7 +25,7 @@ interface Props {
 	trailerKey?: string
 	posterLoading?: Loading
 	isFavorite: boolean
-	inCarousel: boolean
+	inCarousel?: boolean
 }
 
 export const MovieCard: React.FC<Props> = ({
