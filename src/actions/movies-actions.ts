@@ -1,290 +1,356 @@
 "use server"
 
-import type { MovieListResponse } from "~/interfaces/MovieListResponse"
-import type { MovieVideosResponse } from "~/interfaces/MovieVideosResponse"
-import type { MovieCreditsResponse } from "~/interfaces/MovieCreditsResponse"
-import type { Cast } from "~/interfaces/Cast"
-import type { GenresResponse } from "~/interfaces/GenresResponse"
-import type { Movie, MovieDetails } from "~/interfaces/Movie"
-import type { Genre } from "~/interfaces/Genre"
-import type { MovieTitle } from "~/interfaces/MovieTitle"
+import type {
+	MovieListResponse,
+	MovieVideosResponse,
+	MovieCreditsResponse,
+	Cast,
+	GenresResponse,
+	Movie,
+	MovieDetails,
+	MovieTitle,
+} from "~/interfaces"
 import type { MovieListType } from "~/types"
-import { API_LANGUAGE, API_HEADERS } from "~/constants"
-import { createAPIMethod } from "~/utils/create-api-method"
+import { API_LANGUAGE } from "~/constants"
+import { asyncWrapper } from "~/utils/async-wrapper"
+import { api } from "~/api/api-methods"
 
-interface GetMovieListProps {
+export const getMovieList = async ({
+	sessionId,
+	movieListType,
+	page = "1"
+}: {
+	sessionId?: string,
 	movieListType: MovieListType
 	page?: string
-}
-
-export const getMovieList = async ({ movieListType, page = "1" }: GetMovieListProps) => {
-	const fetchMovieList = createAPIMethod<
-		{
-			page: string
-			language: string
-		},
-		MovieListResponse
-	>({
-		url: `${process.env.API_BASE_URL}/movie/${movieListType}`,
-		init: {
-			...API_HEADERS,
-			next: { revalidate: 60 * 60 * 24 * 7 },
-		},
+}) => {
+	const REVALIDATE_TIME = 60 * 60 * 24 * 7
+	const searchParams = new URLSearchParams({
+		page: page,
+		language: API_LANGUAGE
 	})
 
-	const movieListResponse = await fetchMovieList({
-		page,
-		language: API_LANGUAGE,
-	})
+	const movieListResponse = await api.get<MovieListResponse>(
+		`/movie/${movieListType}?${searchParams.toString()}`,
+		{ next: { revalidate: REVALIDATE_TIME } }
+	)
 
-	const moviesWithTrailerKey = await setTrailerKeyToMovies(movieListResponse.results)
+	const movies = await setExtraDataToMovies({
+		sessionId,
+		movies: movieListResponse.results,
+	})
 
 	return {
 		...movieListResponse,
-		results: moviesWithTrailerKey,
+		results: movies
 	}
 }
 
-export const getMovieDetails = async (movieId: string) => {
-	const fetchMovieDetails = createAPIMethod<
-		{
-			language: string
-		},
-		MovieDetails
-	>({
-		url: `${process.env.API_BASE_URL}/movie/${movieId}`,
-		init: API_HEADERS,
+export const getMovieDetails = async ({
+	sessionId,
+	movieId,
+}: {
+	sessionId?: string,
+	movieId: string,
+}) => {
+	const searchParams = new URLSearchParams({
+		language: API_LANGUAGE
 	})
 
-	return fetchMovieDetails({
-		language: API_LANGUAGE,
+	const details = await api.get<MovieDetails>(
+		`/movie/${movieId}?${searchParams.toString()}`
+	)
+
+	const extraData = await getMovieExtraData({
+		sessionId,
+		movieId: details.id.toString()
 	})
+
+	return {
+		...details,
+		...extraData,
+	}
 }
 
-export const getSimilarMovies = async (movieId: string, page = "1") => {
-	const fetchSimilarMovies = createAPIMethod<
-		{
-			page: string
-			language: string
-		},
-		MovieListResponse
-	>({
-		url: `${process.env.API_BASE_URL}/movie/${movieId}/similar`,
-		init: API_HEADERS,
+export const getSimilarMovies = async ({
+	sessionId,
+	movieId,
+	page = "1",
+}: {
+	sessionId?: string,
+	movieId: string,
+	page?: string
+}) => {
+	const searchParams = new URLSearchParams({
+		page: page,
+		language: API_LANGUAGE
 	})
 
-	const movieListResponse = await fetchSimilarMovies({
-		page,
-		language: API_LANGUAGE,
-	})
+	const movieListResponse = await api.get<MovieListResponse>(
+		`/movie/${movieId}/similar?${searchParams.toString()}`
+	)
 
-	const moviesWithTrailerKey = await setTrailerKeyToMovies(movieListResponse.results)
+	const movies = await setExtraDataToMovies({
+		sessionId,
+		movies: movieListResponse.results,
+	})
 
 	return {
 		...movieListResponse,
-		results: moviesWithTrailerKey,
+		results: movies
 	}
 }
 
 export const getMovieMainCast = async (movieId: string): Promise<Cast[]> => {
-	const fetchMovieCredits = createAPIMethod<
-		{
-			language: string
-		},
-		MovieCreditsResponse
-	>({
-		url: `${process.env.API_BASE_URL}/movie/${movieId}/credits`,
-		init: API_HEADERS,
+	const CAST_DEPARTMENT = "Acting"
+	const searchParams = new URLSearchParams({
+		language: API_LANGUAGE
 	})
 
-	const { cast } = await fetchMovieCredits({
-		language: API_LANGUAGE,
-	})
+	const { cast } = await api.get<MovieCreditsResponse>(
+		`/movie/${movieId}/credits?${searchParams.toString()}`
+	)
 
 	const mainCast = cast
-		.filter((actor) => actor.known_for_department === "Acting")
+		.filter((actor) => actor.known_for_department === CAST_DEPARTMENT)
 		.sort((a, b) => a.order - b.order)
 		.slice(0, 20)
 
 	return mainCast
 }
 
-export const getMovieTrailerKey = async (movieId: string) => {
-	const fetchMovieVideos = createAPIMethod<
-		{
-			language: string
-		},
-		MovieVideosResponse
-	>({
-		url: `${process.env.API_BASE_URL}/movie/${movieId}/videos`,
-		init: API_HEADERS,
+export const getTrailerKey = async (movieId: string) => {
+	const VIDEO_TYPE = "Trailer"
+	const VIDEO_SITE = "YouTube"
+	const searchParams = new URLSearchParams({
+		language: API_LANGUAGE
 	})
 
-	const { results: videos } = await fetchMovieVideos({
-		language: API_LANGUAGE,
-	})
+	const { results: videos } = await api.get<MovieVideosResponse>(
+		`/movie/${movieId}/videos?${searchParams.toString()}`
+	)
 
-	for (const { site, type, key } of videos) {
-		if (type === "Trailer" && site === "YouTube") {
-			return key
-		}
-	}
+	const trailer = videos.find(
+		({ site, type }) => type === VIDEO_TYPE && site === VIDEO_SITE
+	)
+
+	return trailer?.key
 }
 
-export const getMovieListGenres = async (): Promise<Genre[]> => {
-	const fetchMovieListGenres = createAPIMethod<
-		{
-			language: string
-		},
-		GenresResponse
-	>({
-		url: `${process.env.API_BASE_URL}/genre/movie/list`,
-		init: API_HEADERS,
+export const getMovieListGenres = async () => {
+	const searchParams = new URLSearchParams({
+		language: API_LANGUAGE
 	})
 
-	const { genres } = await fetchMovieListGenres({
-		language: API_LANGUAGE,
-	})
+	const { genres } = await api.get<GenresResponse>(
+		`/genre/movie/list?${searchParams.toString()}`
+	)
 
 	return genres
 }
 
-export const getMovieListGenreByName = async (name: string): Promise<Genre | undefined> => {
-	try {
-		const movieListGenres = await getMovieListGenres()
+export const getMovieListGenreByName = async (name: string) => {
+	const genres = await getMovieListGenres()
+	const genre = genres.find((genre) => genre.name.toLowerCase() === name)
 
-		const genre = movieListGenres.find((genre) => genre.name.toLowerCase() === name)
-
-		return genre
-	} catch (error) {
-		throw error
-	}
+	return genre
 }
 
-export const getMoviesByGenre = async (genre: string, page = "1") => {
-	const fetchMovieByGenre = createAPIMethod<
-		{
-			page: string
-			include_adult: string
-			include_video: string
-			sort_by: string
-			with_genres: string
-			language: string
-		},
-		MovieListResponse
-	>({
-		url: `${process.env.API_BASE_URL}/discover/movie`,
-		init: API_HEADERS,
-	})
-
-	const movieListResponse = await fetchMovieByGenre({
-		page,
+export const getMoviesByGenre = async ({
+	sessionId,
+	genreId,
+	page = "1",
+}: {
+	sessionId?: string,
+	genreId: string,
+	page?: string,
+}) => {
+	const searchParams = new URLSearchParams({
+		language: API_LANGUAGE,
+		page: page,
 		include_adult: "false",
 		include_video: "false",
 		sort_by: "popularity.desc",
-		with_genres: genre,
-		language: API_LANGUAGE,
+		with_genres: genreId,
 	})
 
-	const moviesWithTrailerKey = await setTrailerKeyToMovies(movieListResponse.results)
+	const movieListResponse = await api.get<MovieListResponse>(
+		`/discover/movie?${searchParams.toString()}`
+	)
+
+	const movies = await setExtraDataToMovies({
+		sessionId,
+		movies: movieListResponse.results,
+	})
 
 	return {
 		...movieListResponse,
-		results: moviesWithTrailerKey,
+		results: movies
 	}
 }
 
-interface GetMoviesByTitleProps {
-	title: string
-	page?: string
-	fetchOptions?: RequestInit
-	withTrailerKey?: boolean
-}
-
 export const getMoviesByTitle = async ({
+	sessionId,
 	page = "1",
 	title
-}: GetMoviesByTitleProps) => {
-	const fetchMoviesByTitle = createAPIMethod<
-		{
-			page: string
-			query: string
-			include_adult: string
-			language: string
-		},
-		MovieListResponse
-	>({
-		url: `${process.env.API_BASE_URL}/search/movie`,
-		init: API_HEADERS,
-	})
-
-	const movieListResponse = await fetchMoviesByTitle({
-		page,
-		query: title,
-		include_adult: "false",
+}: {
+	sessionId?: string
+	title: string
+	page?: string
+}) => {
+	const searchParams = new URLSearchParams({
 		language: API_LANGUAGE,
+		page: page,
+		include_adult: "false",
+		query: title
 	})
 
-	const moviesWithTrailerKey = await setTrailerKeyToMovies(movieListResponse.results)
+	const movieListResponse = await api.get<MovieListResponse>(
+		`/search/movie?${searchParams.toString()}`
+	)
+	const movies = await setExtraDataToMovies({
+		sessionId,
+		movies: movieListResponse.results,
+	})
 
 	return {
 		...movieListResponse,
-		results: moviesWithTrailerKey,
+		results: movies
 	}
 }
 
 export const getMovieTitles = async (title: string) => {
-	const fetchMoviesByTitleNoCache = createAPIMethod<
-		{
-			page: string
-			query: string
-			include_adult: string
-			language: string
-		},
-		MovieListResponse
-	>({
-		url: `${process.env.API_BASE_URL}/search/movie`,
-		init: {
-			...API_HEADERS,
-			cache: "no-store",
-		},
+	const searchParams = new URLSearchParams({
+		language: API_LANGUAGE,
+		page: "1",
+		include_adult: "false",
+		query: title,
 	})
 
-	const { results: movies } = await fetchMoviesByTitleNoCache({
-		page: "1",
-		query: title,
-		include_adult: "false",
-		language: API_LANGUAGE,
-	})
+	const { results: movies } = await api.get<MovieListResponse>(
+		`/search/movie?${searchParams.toString()}`,
+		{ cache: "no-store" }
+	)
 
 	const uniqueMovieTitles: MovieTitle[] = []
 	const uniqueNames = new Set<string>()
 
 	for (const { id, title } of movies) {
 		const lowerCaseTitle = title.toLowerCase()
-		if (!uniqueNames.has(lowerCaseTitle)) {
-			uniqueNames.add(lowerCaseTitle)
-			uniqueMovieTitles.push({ id, title: lowerCaseTitle })
-		}
+		if (uniqueNames.has(lowerCaseTitle)) continue
+
+		uniqueNames.add(lowerCaseTitle)
+		uniqueMovieTitles.push({ id, title: lowerCaseTitle })
 	}
 
 	return uniqueMovieTitles.slice(0, 10)
 }
 
-export const setTrailerKeyToMovies = async (movies: Movie[]) => {
-	const setTrailerKey = async (movie: Movie) => {
-		try {
-			const trailerKey = await getMovieTrailerKey(movie.id.toString())
-			return {
-				...movie,
-				trailerKey,
-			}
-		} catch (error) {
-			return movie
-		}
+export const getFavoriteMovies = async ({
+	sessionId,
+	page = "1",
+}: {
+	sessionId: string,
+	page?: string,
+}) => {
+	const searchParams = new URLSearchParams({
+		language: API_LANGUAGE,
+		page,
+		session_id: sessionId
+	})
+
+	const movieResults = await api.get<MovieListResponse>(
+		`/account/null/favorite/movies?${searchParams.toString()}`,
+		{ next: { tags: ["favorite-movies"] } }
+	)
+
+	const moviesWithTrailerKey = await setTrailerKeyToMovies(movieResults.results)
+	const movies = moviesWithTrailerKey.map((movie) => ({
+		...movie,
+		isFavorite: true,
+	}))
+
+	return {
+		...movieResults,
+		results: movies
+	}
+}
+// Helpers
+const setExtraDataToMovies = async ({
+	sessionId,
+	movies,
+}: {
+	sessionId?: string,
+	movies: Movie[],
+}) => {
+	const withTrailerKey = await setTrailerKeyToMovies(movies)
+
+	if (!sessionId) {
+		return withTrailerKey
 	}
 
-	const moviesWithTrailerKey = await Promise.all(movies.map(setTrailerKey))
+	const withFavorites = await setIsFavoriteToMovies({
+		sessionId,
+		movies: withTrailerKey
+	})
+
+	return withFavorites
+}
+
+const getMovieExtraData = async ({
+	sessionId,
+	movieId,
+}: {
+	sessionId?: string,
+	movieId: string,
+}) => {
+	const trailerKey = await getTrailerKey(movieId)
+
+	if (!sessionId) return {
+		trailerKey,
+		isFavorite: false,
+	}
+
+	const { results: favoriteMovies } = await getFavoriteMovies({ sessionId })
+	const favoritesIds = favoriteMovies.map((movie) => movie.id)
+
+	return {
+		trailerKey,
+		isFavorite: favoritesIds.includes(Number(movieId)),
+	}
+}
+
+export const setTrailerKeyToMovies = async (movies: Movie[]) => {
+	const setTrailerKeys = movies.map(async (movie) => {
+		const { data: trailerKey, status } = await asyncWrapper(
+			getTrailerKey(movie.id.toString())
+		)
+
+		return (status === "success")
+			? { ...movie, trailerKey }
+			: movie
+	})
+
+	const moviesWithTrailerKey = await Promise.all(setTrailerKeys)
 
 	return moviesWithTrailerKey
+}
+
+export const setIsFavoriteToMovies = async ({
+	sessionId,
+	movies,
+}: {
+	sessionId: string,
+	movies: Movie[],
+}) => {
+	const { results: favoriteMovies } = await getFavoriteMovies({ sessionId })
+
+	const favoritesIds = favoriteMovies.map((movie) => movie.id)
+
+	const moviesWithFavorite = movies.map((movie) => ({
+		...movie,
+		isFavorite: favoritesIds.includes(movie.id)
+	}))
+
+	return moviesWithFavorite
 }
