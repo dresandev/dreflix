@@ -16,11 +16,18 @@ export const useMenu = (toggleBodyOverflow?: boolean) => {
 	useOnClickOutside(menuRef, closeMenu)
 	useOnRouteChange(closeMenu)
 
+	const handleFocusVisibleOut = (e: React.FocusEvent) => {
+		const hasFocusWithin = e.currentTarget.matches(":focus-within")
+
+		if (!hasFocusWithin) closeMenu()
+	}
+
 	return {
 		menuRef,
 		isMenuOpen,
 		openMenu,
 		closeMenu,
 		toggleMenu,
+		handleFocusVisibleOut
 	}
 }

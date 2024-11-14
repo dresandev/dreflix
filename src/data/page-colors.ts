@@ -18,3 +18,6 @@ export const genrePageColors = [
 	"hsl(120 100% 30% / .1)",
 	"hsl(30 60% 60% / .1)",
 ]
+
+export const movieListPageColor = "hsl(47 96% 40% / .1)"
+export const favoritesPageColor = "hsl(210 98% 82% / .1)"

@@ -1,12 +1,30 @@
-import { getMonthName } from "~/utils/get-month-name"
+export const getMonthName = (monthNumber: string) => {
+	const months = [
+		"Jan",
+		"Feb",
+		"Mar",
+		"Apr",
+		"May",
+		"Jun",
+		"Jul",
+		"Aug",
+		"Sep",
+		"Oct",
+		"Nov",
+		"Dec",
+	]
 
-export const formatDate = (originalDate: string) => {
-	if (!originalDate) return ""
+	const monthName = months[parseInt(monthNumber, 10) - 1]
 
-	const splittedDate = originalDate.split("-")
-	var year = splittedDate[0]
-	var month = splittedDate[1]
-	var day = splittedDate[2]
+	return monthName
+}
+
+
+export const formatDate = (date: string) => {
+	if (!date) return ""
+
+	const dateParts = date.split("-")
+	const [year, month, day] = dateParts
 
 	const monthName = getMonthName(month)
 

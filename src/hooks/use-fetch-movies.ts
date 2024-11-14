@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
-import type { MovieListResponse } from "~/interfaces/MovieListResponse"
-import type { Movie } from "~/interfaces/Movie"
+import type { Movie, MovieListResponse } from "~/interfaces"
+import { asyncWrapper } from "~/utils/async-wrapper"
 import { useIsInView } from "./use-is-in-view"
 
 interface Props {
@@ -16,6 +16,7 @@ export const useFetchMovies = ({
 }: Props) => {
 	const [moviesData, setMoviesData] = useState({
 		movies: initMovies,
+		// It starts on page two, since page one is displayed by default and is sent from the server
 		page: 2,
 		isLoading: false,
 		hasError: false,
@@ -36,23 +37,30 @@ export const useFetchMovies = ({
 			moviesData.page > totalPages
 		) return
 
-		setMoviesData((prev) => ({ ...prev, isLoading: true }))
-
 		const loadMovies = async () => {
-			try {
-				const { results: newMovies } = await fetchMovies(moviesData.page.toString())
+			setMoviesData((prev) => ({ ...prev, isLoading: true }))
+
+			const { data, error, status } = await asyncWrapper(
+				fetchMovies(moviesData.page.toString())
+			)
+
+			if (status === "error") {
 				setMoviesData((prev) => ({
 					...prev,
-					movies: [...prev.movies, ...newMovies],
-					page: prev.page + 1,
-					hasError: false,
+					isLoading: false,
+					hasError: true,
 				}))
-			} catch (error) {
 				console.error("Error fetching movies:", error)
-				setMoviesData((prev) => ({ ...prev, hasError: true }))
-			} finally {
-				setMoviesData((prev) => ({ ...prev, isLoading: false }))
+				return
 			}
+
+			setMoviesData((prev) => ({
+				...prev,
+				movies: [...prev.movies, ...data.results],
+				page: prev.page + 1,
+				isLoading: false,
+				hasError: false,
+			}))
 		}
 
 		loadMovies()

@@ -1,8 +1,8 @@
-export const formatDuration = (minutesDuration: number) => {
-	if (!minutesDuration) return 0
+export const formatDuration = (minutes: number) => {
+	if (!minutes) return 0
 
-	const horas = Math.floor(minutesDuration / 60)
-	const minutos = minutesDuration % 60
+	const hours = Math.floor(minutes / 60)
+	const remainingMinutes = minutes % 60
 
-	return `${horas}h ${minutos}min`
+	return `${hours}h ${remainingMinutes}min`
 }
