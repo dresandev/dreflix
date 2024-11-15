@@ -1,7 +1,3 @@
-.title {
-	margin-block: 20px;
-}
-
 .emptySection {
 	padding-block-start: 42px;
 	font-size: clamp(18px, 17.52px + 2.064px, 20px);

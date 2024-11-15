@@ -4,9 +4,9 @@ import { movieListPageColor } from "~/data/page-colors"
 import { getMovieListPageInfo } from "~/helpers/get-movie-list-page-info"
 import { getSessionId } from "~/helpers/server-session-id"
 import { getMovieList } from "~/actions/movies-actions"
+import { Title } from "~/components/Title"
 import { PageGradient } from "~/components/PageGradient"
 import { InfiniteMovieList } from "~/components/InfiniteMovies"
-import styles from "./page.module.css"
 
 interface Props {
 	params: { slug: string }
@@ -35,9 +35,7 @@ export default async function MovieListPage({ params }: Props) {
 	return (
 		<>
 			<PageGradient gradientColor={movieListPageColor} />
-
-			<h1 className={styles.title}>{title}</h1>
-
+			<Title>{title}</Title>
 			<InfiniteMovieList
 				sessionId={sessionId}
 				initMovies={results}

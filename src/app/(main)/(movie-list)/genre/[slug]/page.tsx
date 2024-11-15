@@ -4,9 +4,9 @@ import { getRandomNumber } from "~/utils/get-random-number"
 import { getSessionId } from "~/helpers/server-session-id"
 import { genrePageColors } from "~/data/page-colors"
 import { getMovieListGenreByName, getMoviesByGenre } from "~/actions/movies-actions"
+import { Title } from "~/components/Title"
 import { PageGradient } from "~/components/PageGradient"
 import { InfiniteMoviesByGenre } from "~/components/InfiniteMovies"
-import styles from "./page.module.css"
 
 interface Props {
 	params: { slug: string }
@@ -46,7 +46,7 @@ export default async function MoviesByGenrePage({ params }: Props) {
 	return (
 		<>
 			<PageGradient gradientColor={randomColor} />
-			<h1 className={styles.title}>{name}</h1>
+			<Title>{name}</Title>
 			<InfiniteMoviesByGenre
 				sessionId={sessionId}
 				initMovies={results}

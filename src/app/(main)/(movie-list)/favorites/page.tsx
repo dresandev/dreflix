@@ -2,6 +2,7 @@ import Link from "next/link"
 import { getFavoriteMovies } from "~/actions/movies-actions"
 import { getSessionId } from "~/helpers/server-session-id"
 import { favoritesPageColor } from "~/data/page-colors"
+import { Title } from "~/components/Title"
 import { InfiniteFavoriteMovies } from "~/components/InfiniteMovies"
 import { PageGradient } from "~/components/PageGradient"
 import styles from "./page.module.css"
@@ -15,7 +16,7 @@ export default async function FavoritesPage() {
   return (
     <>
       <PageGradient gradientColor={favoritesPageColor} />
-      <h1 className={styles.title}>Favorite Movies</h1>
+      <Title>Favorite Movies</Title>
       {!hasFavorites ? (
         <section className={styles.emptySection}>
           <p>You {"don't"} have movies in favorites.</p>

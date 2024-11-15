@@ -39,9 +39,7 @@ export default async function SearchPage({ searchParams }: Props) {
 	return (
 		<>
 			<PageGradient gradientColor="hsl(208 96% 52% / .1)" />
-
 			<h2 className={styles.searchQuery}>Results for {`"${phrase}"`}.</h2>
-
 			<InfiniteMovieResults
 				sessionId={sessionId}
 				initMovies={results}
