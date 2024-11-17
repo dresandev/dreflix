@@ -1,15 +1,14 @@
 import { notFound } from "next/navigation"
 import { removeHyphen } from "~/utils/remove-hyphen"
 import { getRandomNumber } from "~/utils/get-random-number"
-import { getSessionId } from "~/helpers/server-session-id"
+import { getSessionId } from "~/helpers/session-id"
 import { genrePageColors } from "~/data/page-colors"
 import { getMovieListGenreByName, getMoviesByGenre } from "~/actions/movies-actions"
-import { Title } from "~/components/Title"
 import { PageGradient } from "~/components/PageGradient"
 import { InfiniteMoviesByGenre } from "~/components/InfiniteMovies"
 
 interface Props {
-	params: { slug: string }
+	params: Promise<{ slug: string }>
 }
 
 const getGenreFromSlug = async (slug: string) => {
@@ -18,7 +17,8 @@ const getGenreFromSlug = async (slug: string) => {
 	return genre
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata(props: Props) {
+	const params = await props.params
 	const genre = await getGenreFromSlug(params.slug)
 
 	return {
@@ -27,14 +27,15 @@ export async function generateMetadata({ params }: Props) {
 	}
 }
 
-export default async function MoviesByGenrePage({ params }: Props) {
+export default async function MoviesByGenrePage(props: Props) {
+	const params = await props.params
 	const genre = await getGenreFromSlug(params.slug)
 
 	if (!genre) notFound()
 
 	const { id, name } = genre
 
-	const sessionId = getSessionId()
+	const sessionId = await getSessionId()
 	const genreId = id.toString()
 
 	const movieListResult = await getMoviesByGenre({ sessionId, genreId })
@@ -46,7 +47,7 @@ export default async function MoviesByGenrePage({ params }: Props) {
 	return (
 		<>
 			<PageGradient gradientColor={randomColor} />
-			<Title>{name}</Title>
+			<h1>{name}</h1>
 			<InfiniteMoviesByGenre
 				sessionId={sessionId}
 				initMovies={results}

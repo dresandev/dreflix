@@ -40,25 +40,6 @@
 	display: none;
 }
 
-.card.inCarousel {
-	--items-amount: 4;
-	--card-width: calc(100vw / var(--items-amount) - var(--carousel-items-gap));
-	min-inline-size: 150px;
-	inline-size: var(--card-width);
-}
-
-@media screen and (min-width: 1500px) {
-	.card.inCarousel {
-		--items-amount: 6.5;
-	}
-}
-
-@media screen and (min-width: 880px) {
-	.card.inCarousel {
-		--items-amount: 5.5;
-	}
-}
-
 @media (hover: hover) {
 	.cardInfo {
 		position: absolute;

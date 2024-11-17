@@ -5,7 +5,7 @@ import { HeroMovieCard } from "~/components/Cards/HeroMovieCard"
 import { isMobile } from "~/utils/is-mobile"
 
 export const HeroCarousel = async () => {
-	const userAgent = headers().get("user-agent") || ""
+	const userAgent = (await headers()).get("user-agent") || ""
 
 	return (
 		<Carousel

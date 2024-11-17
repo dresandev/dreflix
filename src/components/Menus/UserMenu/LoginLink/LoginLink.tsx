@@ -4,13 +4,12 @@ import { usePathname, useSearchParams } from "next/navigation"
 import { getAuthUrl } from "~/helpers/get-redirect-to"
 import { UserIcon } from "~/components/Svg"
 import { Button } from "~/components/Ui/Button"
-import styles from "./AuthLink.module.css"
+import styles from "./LoginLink.module.css"
 
-export const AuthLink = () => {
+export const LoginLink = () => {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
-
-  const authUrl = getAuthUrl({ pathname, searchParams: searchParams.toString() })
+  const searchParams = useSearchParams().toString()
+  const authUrl = getAuthUrl({ pathname, searchParams })
 
   return (
     <Button variant="square" size="header" asChild>

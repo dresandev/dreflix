@@ -1,3 +1,7 @@
 .wrapper {
 	padding-inline: var(--inline-space);
 }
+
+.wrapper h1 {
+	margin-block: 20px;
+}

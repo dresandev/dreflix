@@ -16,14 +16,15 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
 
 	return (
 		<article className={styles.heroCard}>
-			<a
+			<Link
 				className={styles.wrapperLink}
 				href={movieDetailsPath}
 				aria-label={title}
+				prefetch={false}
 				tabIndex={-1}
 			>
 				{title}
-			</a>
+			</Link>
 
 			<img
 				className={styles.heroImage}
@@ -48,11 +49,12 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
 				<ObservedTransition className={styles.fadeTransition} isVisibleClassName={styles.fadeIn}>
 					<div className={styles.infoWrapper}>
 						<h2>
-							<a
+							<Link
 								className={styles.logoLinkWrapper}
 								href={movieDetailsPath}
-								tabIndex={-1}
 								aria-hidden
+								prefetch={false}
+								tabIndex={-1}
 							>
 								<img
 									className={styles.logoImage}
@@ -68,10 +70,14 @@ export const HeroMovieCard: React.FC<HeroMovie> = ({
 									loading={loading}
 									fetchPriority={fetchPriority}
 								/>
-							</a>
+							</Link>
 						</h2>
 
-						<Link className={styles.moreInfoLink} href={movieDetailsPath} prefetch={false}>
+						<Link
+							className={styles.moreInfoLink}
+							href={movieDetailsPath}
+							prefetch={false}
+						>
 							More details
 						</Link>
 					</div>

@@ -29,6 +29,7 @@ export const InfiniteFavoriteMovies: React.FC<Props> = ({
 
   return (
     <InfiniteMovieGrid
+      idAsKey
       observerTargetRef={observerTargetRef}
       movies={movies}
       isLoading={isLoading}

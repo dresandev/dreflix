@@ -1,0 +1,10 @@
+.toast {
+	font-size: 15px;
+}
+
+.icon {
+	justify-content: center;
+	inline-size: 24px;
+	block-size: 24px;
+	margin: 0;
+}

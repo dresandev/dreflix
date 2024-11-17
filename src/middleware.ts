@@ -1,10 +1,10 @@
 import { NextResponse, type NextRequest } from "next/server"
-import { getSessionId } from "./helpers/server-session-id"
+import { getSessionId } from "./helpers/session-id"
 import { privateRoutes } from "~/routes"
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const { nextUrl } = req
-  const sessionId = getSessionId()
+  const sessionId = await getSessionId()
   const isLoggedIn = !!sessionId
   const pathname = nextUrl.pathname
   const isPrivateRoute = privateRoutes.includes(pathname)

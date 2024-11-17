@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { useRouter, usePathname } from "next/navigation"
+import { useRouter } from "next/navigation"
 import clsx from "clsx"
 import type { MovieTitle } from "~/interfaces/MovieTitle"
 import { asyncWrapper } from "~/utils/async-wrapper"
@@ -23,7 +23,6 @@ const DEBOUNCE_DELAY = 280
 
 export const SearchMenu = () => {
 	const router = useRouter()
-	const pathname = usePathname()
 	const { menuRef, isMenuOpen, toggleMenu } = useMenu()
 	const {
 		menuRef: moviesSuggesterRef,
@@ -38,10 +37,6 @@ export const SearchMenu = () => {
 
 	const maxSearchResultsLength = suggestedMovies.length - 1
 	const showMoviesSuggester = !!suggestedMovies.length && isMoviesSuggesterOpen && !!inputValue
-
-	useEffect(() => {
-		if (!pathname.includes("/search")) setInputValue("")
-	}, [pathname])
 
 	useEffect(() => {
 		if (debouncedInputValue.length <= 2) {
@@ -116,7 +111,11 @@ export const SearchMenu = () => {
 
 	return (
 		<div ref={menuRef} className={styles.wrapper}>
-			<button aria-label={`${isMenuOpen ? "Close" : "Open"} search menu`} className={styles.menuBtn} onClick={toggleMenu}>
+			<button
+				aria-label={`${isMenuOpen ? "Close" : "Open"} search menu`}
+				className={styles.menuBtn}
+				onClick={toggleMenu}
+			>
 				{isMenuOpen ? <X /> : <SearchIcon />}
 			</button>
 

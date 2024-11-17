@@ -8,7 +8,7 @@ interface Props {
 	showPrevButton: boolean
 	showNextButton: boolean
 	btnHoverVariant: "shadowHover" | "scaleHover"
-	forwardBtnRef: React.LegacyRef<HTMLButtonElement>
+	forwardBtnRef: React.Ref<HTMLButtonElement>
 }
 
 export const Buttons: React.FC<Props> = ({

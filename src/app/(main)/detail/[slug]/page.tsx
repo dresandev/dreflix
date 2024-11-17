@@ -10,13 +10,14 @@ import { HeroImage } from "./_components/HeroImage"
 import { MovieDetails } from "./_components/MovieDetails"
 import { MainCast } from "./_components/MainCast"
 import { SimilarMovies } from "./_components/SimilarMovies"
-import { getSessionId } from "~/helpers/server-session-id"
+import { getSessionId } from "~/helpers/session-id"
 
 interface Props {
-	params: { slug: string }
+	params: Promise<{ slug: string }>
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata(props: Props) {
+	const params = await props.params
 	const movie = await getMovieDetails({ movieId: params.slug })
 
 	return {
@@ -29,8 +30,9 @@ export async function generateMetadata({ params }: Props) {
 	}
 }
 
-export default async function DetailPage({ params }: Props) {
-	const sessionId = getSessionId()
+export default async function DetailPage(props: Props) {
+	const params = await props.params
+	const sessionId = await getSessionId()
 	const movie = await getMovieDetails({ sessionId, movieId: params.slug })
 
 	if (!movie) notFound()

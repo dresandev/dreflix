@@ -1,21 +1,20 @@
 import Link from "next/link"
-import { getSessionId } from "~/helpers/server-session-id"
+import { getSessionId } from "~/helpers/session-id"
 import { getUserDetails } from "~/actions/user-actions"
 import { Avatar } from "~/components/Ui/Avatar"
 import { Button } from "~/components/Ui/Button"
 import { CaretDown, Heart } from "~/components/Svg"
-import { AuthLink } from "./AuthLink"
+import { LoginLink } from "./LoginLink"
 import { MenuWrapper } from "./MenuWrapper"
 import { LogoutButton } from "./LogoutButton"
 import styles from "./UserMenu.module.css"
 
 export const UserMenu = async () => {
-  const sessionId = getSessionId()
+  const sessionId = await getSessionId()
 
-  if (!sessionId) return <AuthLink />
+  if (!sessionId) return <LoginLink />
 
   const userDetails = await getUserDetails(sessionId)
-
   const { avatar, name } = userDetails
   const avatarUrl = `https://gravatar.com/avatar/${avatar.gravatar.hash}?s=170`
   const avatarAlt = "User Avatar"

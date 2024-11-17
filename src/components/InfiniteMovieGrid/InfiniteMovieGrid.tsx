@@ -1,4 +1,3 @@
-import type { MutableRefObject } from "react"
 import type { Movie } from "~/interfaces/Movie"
 import { MovieCard } from "~/components/Cards/MovieCard"
 import { RingLoader } from "~/components/Loaders/RingLoader"
@@ -6,9 +5,10 @@ import styles from "./InfiniteMovieGrid.module.css"
 
 interface Props {
 	movies: Movie[]
-	observerTargetRef: MutableRefObject<HTMLDivElement | null>
+	observerTargetRef: React.RefObject<HTMLDivElement | null>
 	isLoading: boolean
 	hasError: boolean
+	idAsKey?: boolean
 }
 
 export const InfiniteMovieGrid: React.FC<Props> = ({
@@ -16,6 +16,7 @@ export const InfiniteMovieGrid: React.FC<Props> = ({
 	observerTargetRef,
 	isLoading,
 	hasError,
+	idAsKey = false
 }) => {
 	return (
 		<>
@@ -30,7 +31,7 @@ export const InfiniteMovieGrid: React.FC<Props> = ({
 					isFavorite
 				}, i) => (
 					<MovieCard
-						key={i}
+						key={idAsKey ? id : i}
 						id={id}
 						posterPath={poster_path}
 						title={title}

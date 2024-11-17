@@ -24,6 +24,7 @@ export async function GET(req: NextRequest) {
   )
 
   if (denied) {
+    redirectUri.searchParams.set("denied", "true")
     return NextResponse.redirect(redirectUri)
   }
 
@@ -35,7 +36,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Could not create session" })
   }
 
-  const cookieStore = cookies()
+  const cookieStore = await cookies()
   cookieStore.set(CK_SESSION_ID, data.session_id, { secure: true })
 
   return NextResponse.redirect(redirectUri)

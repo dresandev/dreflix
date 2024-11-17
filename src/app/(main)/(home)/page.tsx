@@ -1,7 +1,7 @@
 import type { MovieListType } from "~/types"
 import { isFulfilled } from "~/utils/is-fulfilled"
 import { getMovieList } from "~/actions/movies-actions"
-import { getSessionId } from "~/helpers/server-session-id"
+import { getSessionId } from "~/helpers/session-id"
 import { HeroCarousel } from "~/components/HeroCarousel"
 import { CarouselSection } from "~/components/CarouselSection"
 import { MovieCard } from "~/components/Cards/MovieCard"
@@ -15,7 +15,7 @@ const movieListTitles = [
 ]
 
 export default async function HomePage() {
-	const sessionId = getSessionId()
+	const sessionId = await getSessionId()
 
 	const movieListPromises = movieListTitles.map((title) => {
 		const movieListType = title.replace(" ", "_").toLowerCase() as MovieListType

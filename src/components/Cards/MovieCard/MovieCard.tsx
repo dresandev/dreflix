@@ -1,3 +1,4 @@
+import Link from "next/link"
 import clsx from "clsx"
 import type { Loading } from "~/types"
 import { IMAGES_BASE_URL } from "~/constants"
@@ -14,6 +15,7 @@ import {
 	TooltipTrigger,
 	TooltipContent
 } from "~/components/Ui/Tooltip"
+import utilStyles from "~/styles/utils.module.css"
 import styles from "./MovieCard.module.css"
 
 interface Props {
@@ -44,14 +46,15 @@ export const MovieCard: React.FC<Props> = ({
 	return (
 		<article className={clsx(
 			styles.card,
-			{ [styles.inCarousel]: inCarousel }
+			{ [utilStyles.carouselMovieCardWidth]: inCarousel }
 		)}>
-			<a
+			<Link
 				className={styles.linkWrapper}
 				href={movieDetailsPath}
+				prefetch={false}
 			>
 				{title}
-			</a>
+			</Link>
 
 			<figure className={styles.cardPresentation}>
 				{posterPath ? (

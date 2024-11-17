@@ -3,6 +3,7 @@ import { Fira_Sans } from "next/font/google"
 import { Header } from "~/components/Header"
 import { ProgressBar } from "~/components/ProgressBar"
 import { Footer } from "~/components/Footer"
+import { Toasts } from "~/components/Toasts"
 import "~/styles/reset.css"
 import "~/styles/globals.css"
 
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: Props) {
 					<main>{children}</main>
 					<Footer />
 				</div>
+				<Toasts />
 			</body>
 		</html>
 	)

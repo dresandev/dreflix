@@ -6,7 +6,7 @@ import styles from "./Pagination.module.css"
 interface Props {
 	pages: number[][]
 	activePageIndex: number
-	firstPageBtnRef: React.RefObject<HTMLButtonElement>
+	firstPageBtnRef: React.RefObject<HTMLButtonElement | null>
 	goTo: (pageIndex: number) => void
 }
 

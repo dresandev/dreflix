@@ -1,26 +1,27 @@
 import { notFound, redirect } from "next/navigation"
 import { getMoviesByTitle } from "~/actions/movies-actions"
-import { getSessionId } from "~/helpers/server-session-id"
+import { getSessionId } from "~/helpers/session-id"
 import { InfiniteMovieResults } from "~/components/InfiniteMovies"
 import { PageGradient } from "~/components/PageGradient"
 import styles from "./page.module.css"
 
 interface Props {
-	searchParams: {
+	searchParams: Promise<{
 		[key: string]: string | undefined
-	}
+	}>
 }
 
 export const metadata = {
 	title: "Dreflix: Search",
 }
 
-export default async function SearchPage({ searchParams }: Props) {
+export default async function SearchPage(props: Props) {
+	const searchParams = await props.searchParams
 	if (!searchParams.phrase) redirect("/")
 
 	const { phrase } = searchParams
 
-	const sessionId = getSessionId()
+	const sessionId = await getSessionId()
 
 	const movieListResult = await getMoviesByTitle({ sessionId, title: phrase })
 

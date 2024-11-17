@@ -1,7 +1,13 @@
 import styles from "./layout.module.css"
 
-export default function MovieListLayout({ children }: { children: React.ReactNode }) {
+interface Props {
+  children: React.ReactNode
+}
+
+export default function MovieListLayout({ children }: Props) {
   return (
-    <div className={styles.wrapper}>{children}</div>
+    <div className={styles.wrapper}>
+      {children}
+    </div>
   )
 }

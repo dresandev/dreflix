@@ -3,7 +3,7 @@
 import { revalidateTag } from "next/cache"
 import type { UserDetailsResponse } from "~/interfaces/UserDetailsResponse"
 import { api } from "~/api/api-methods"
-import { deleteSessionId } from "~/helpers/server-session-id"
+import { deleteSessionId } from "~/helpers/session-id"
 
 export const getUserDetails = async (sessionId: string) => {
   const searchParams = new URLSearchParams({
@@ -13,6 +13,7 @@ export const getUserDetails = async (sessionId: string) => {
   const data = await api.get<UserDetailsResponse>(
     `/account/null?${searchParams.toString()}`
   )
+
   return data
 }
 
@@ -25,7 +26,7 @@ export const deleteUserSession = async (sessionId: string) => {
     return { error: "An error occurred while destroying the session ID" }
   }
 
-  deleteSessionId()
+  await deleteSessionId()
 }
 
 export const setFavoriteMovie = async ({

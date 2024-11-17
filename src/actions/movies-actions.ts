@@ -275,7 +275,7 @@ export const getFavoriteMovies = async ({
 		results: movies
 	}
 }
-// Helpers
+
 const setExtraDataToMovies = async ({
 	sessionId,
 	movies,

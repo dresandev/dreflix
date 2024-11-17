@@ -1,22 +1,20 @@
 import Link from "next/link"
 import { getFavoriteMovies } from "~/actions/movies-actions"
-import { getSessionId } from "~/helpers/server-session-id"
+import { getSessionId } from "~/helpers/session-id"
 import { favoritesPageColor } from "~/data/page-colors"
-import { Title } from "~/components/Title"
 import { InfiniteFavoriteMovies } from "~/components/InfiniteMovies"
 import { PageGradient } from "~/components/PageGradient"
 import styles from "./page.module.css"
 
 export default async function FavoritesPage() {
-  //  In this case, the sessionId is marked as never being undefined by the middleware that validates precisely this case.
-  const sessionId = getSessionId()!
+  const sessionId = (await getSessionId())!
   const { total_pages, results: movies } = await getFavoriteMovies({ sessionId })
   const hasFavorites = movies.length > 0
 
   return (
     <>
       <PageGradient gradientColor={favoritesPageColor} />
-      <Title>Favorite Movies</Title>
+      <h1>Favorite Movies</h1>
       {!hasFavorites ? (
         <section className={styles.emptySection}>
           <p>You {"don't"} have movies in favorites.</p>
