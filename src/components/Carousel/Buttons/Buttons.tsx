@@ -28,7 +28,7 @@ export const Buttons: React.FC<Props> = ({
 				})}
 				onClick={onClickPrev}
 			>
-				<ChevronArrow className={styles.btnArrowIcon} direction="LEFT" />
+				<ChevronArrow className={styles.btnArrowIcon} direction="left" />
 			</button>
 			<button
 				ref={forwardBtnRef}
@@ -38,7 +38,7 @@ export const Buttons: React.FC<Props> = ({
 				})}
 				onClick={onClickNext}
 			>
-				<ChevronArrow className={styles.btnArrowIcon} direction="RIGHT" />
+				<ChevronArrow className={styles.btnArrowIcon} direction="right" />
 			</button>
 		</>
 	)
