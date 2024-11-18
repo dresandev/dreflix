@@ -1,12 +1,19 @@
 import { RefObject, useEffect } from "react"
 
-type Handler = (event: MouseEvent) => void
-
-export const useOnClickOutside = <T extends HTMLElement = HTMLElement>(
+interface Props<T> {
 	ref: RefObject<T | null>,
-	handler: Handler
-): void => {
+	handler: (event: MouseEvent) => void,
+	enabled?: boolean
+}
+
+export const useOnClickOutside = <T extends HTMLElement = HTMLElement>({
+	ref,
+	handler,
+	enabled = true
+}: Props<T>) => {
 	useEffect(() => {
+		if (!enabled) return
+
 		const handleClickOutside = (event: MouseEvent) => {
 			const el = ref?.current
 
@@ -22,5 +29,5 @@ export const useOnClickOutside = <T extends HTMLElement = HTMLElement>(
 		return () => {
 			document.removeEventListener("mousedown", handleClickOutside)
 		}
-	}, [handler, ref])
+	}, [enabled, handler, ref])
 }

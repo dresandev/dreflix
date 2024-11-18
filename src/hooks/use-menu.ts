@@ -13,7 +13,11 @@ export const useMenu = (toggleBodyOverflow?: boolean) => {
 		toggle: toggleMenu,
 	} = useBoolean(false)
 	useToggleBodyOverflow(toggleBodyOverflow ?? isMenuOpen)
-	useOnClickOutside(menuRef, closeMenu)
+	useOnClickOutside({
+		ref: menuRef,
+		handler: closeMenu,
+		enabled: isMenuOpen,
+	})
 	useOnRouteChange(closeMenu)
 
 	const handleFocusVisibleOut = (e: React.FocusEvent) => {
