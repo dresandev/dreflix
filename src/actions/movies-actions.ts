@@ -63,7 +63,7 @@ export const getMovieDetails = async ({
 
 	const extraData = await getMovieExtraData({
 		sessionId,
-		movieId: details.id
+		movieId: details.id.toString()
 	})
 
 	return {
@@ -322,7 +322,7 @@ const getMovieExtraData = async ({
 export const setTrailerKeyToMovies = async (movies: Movie[]) => {
 	const setTrailerKeys = movies.map(async (movie) => {
 		const { data: trailerKey, status } = await asyncWrapper(
-			getTrailerKey(movie.id)
+			getTrailerKey(movie.id.toString())
 		)
 
 		return (status === "success")

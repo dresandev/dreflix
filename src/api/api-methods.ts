@@ -1,6 +1,6 @@
 import { apiRequest } from "./request"
 
-const parseBody = (body: any): BodyInit => {
+const parseBody = (body: BodyInit | object) => {
   return (typeof body === "object" && body !== null)
     ? JSON.stringify(body)
     : body
