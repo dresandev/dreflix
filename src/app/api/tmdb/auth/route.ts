@@ -9,10 +9,7 @@ export async function GET(req: NextRequest) {
   const redirectTo = searchParams.get(SPK_REDIRECT_TO) || "/"
 
   const { data, status } = await asyncWrapper(
-    api.get<TokenResponse>(
-      "/authentication/token/new",
-      { cache: "no-store" }
-    ))
+    api.get<TokenResponse>("/authentication/token/new"))
 
   if (status === "error") {
     return NextResponse.json({ error: "Error getting token" })
