@@ -28,14 +28,15 @@ export const SearchMenu = () => {
 		menuRef: moviesSuggesterRef,
 		isMenuOpen: isMoviesSuggesterOpen,
 		openMenu: openMoviesSuggester,
+		handleFocusVisibleOut,
 	} = useMenu(false)
 	const [inputValue, setInputValue] = useState("")
 	const inputRef = useRef<HTMLInputElement>(null)
+	const debouncedInputValue = useDebounce(inputValue, DEBOUNCE_DELAY)
 	const [suggestedMovies, setSuggestedMovies] = useState<MovieTitle[]>([])
 	const [suggestedMovieIdx, setSuggestedMovieIdx] = useState<number | null>(null)
-	const debouncedInputValue = useDebounce(inputValue, DEBOUNCE_DELAY)
 
-	const maxSearchResultsLength = suggestedMovies.length - 1
+	const suggestedMoviesLength = suggestedMovies.length - 1
 	const showMoviesSuggester = !!suggestedMovies.length && isMoviesSuggesterOpen && !!inputValue
 
 	useEffect(() => {
@@ -65,7 +66,7 @@ export const SearchMenu = () => {
 			if (suggestedMovies.length) e.preventDefault()
 
 			if (suggestedMovieIdx === null) {
-				return setSuggestedMovieIdx(maxSearchResultsLength)
+				return setSuggestedMovieIdx(suggestedMoviesLength)
 			}
 
 			if (suggestedMovieIdx > 0) {
@@ -81,7 +82,7 @@ export const SearchMenu = () => {
 				return setSuggestedMovieIdx(0)
 			}
 
-			if (suggestedMovieIdx < maxSearchResultsLength) {
+			if (suggestedMovieIdx < suggestedMoviesLength) {
 				return setSuggestedMovieIdx(suggestedMovieIdx + 1)
 			}
 
@@ -104,16 +105,20 @@ export const SearchMenu = () => {
 	}
 
 	const handleSubmit = () => {
-		const searchParams = new URLSearchParams({ phrase: inputValue }).toString()
+		const searchParams = new URLSearchParams({ phrase: inputValue })
 		router.push(`/search?${searchParams}`)
 		inputRef.current?.blur()
 	}
 
 	return (
-		<div ref={menuRef} className={styles.wrapper}>
+		<div
+			ref={menuRef}
+			className={styles.wrapper}
+			onBlur={handleFocusVisibleOut}
+		>
 			<button
 				aria-label={`${isMenuOpen ? "Close" : "Open"} search menu`}
-				className={styles.menuBtn}
+				className={styles.menuTrigger}
 				onClick={toggleMenu}
 			>
 				{isMenuOpen ? <X /> : <SearchIcon />}

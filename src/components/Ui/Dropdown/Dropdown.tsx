@@ -53,12 +53,9 @@ export const Dropdown: React.FC<Props> = ({
 					{ [styles.open]: dropdownIsOpen, [styles.grid]: enableGrid, }
 				)}
 			>
-				{childrenArray.map((option, i) => {
-
-					return (
-						<li key={i}>{option}</li>
-					)
-				})}
+				{childrenArray.map((option, i) => (
+					<li key={i}>{option}</li>
+				))}
 			</ul>
 		</div>
 	)

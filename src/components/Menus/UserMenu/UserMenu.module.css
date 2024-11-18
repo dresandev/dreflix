@@ -1,7 +1,26 @@
-.triggerBtn {
+.menuTrigger {
 	display: flex;
 	align-items: center;
 	gap: 0 8px;
+}
+
+.content {
+	position: fixed;
+	inset: var(--header-block-size) 0 0;
+	padding-block: 12px;
+	background-color: var(--secondary-bg-color);
+	overflow-y: auto;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-10px);
+	transition: var(--menu-transition);
+}
+
+.content[data-state="open"] {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+	transition: var(--menu-open-transition);
 }
 
 .header {
@@ -30,7 +49,21 @@
 }
 
 @media screen and (max-width: 880px) {
-	.triggerBtn {
+	.menuTrigger {
 		padding-inline: 8px;
+	}
+}
+
+@media screen and (min-width: 880px) {
+	.wrapper {
+		position: relative;
+	}
+
+	.content {
+		position: absolute;
+		inset: unset;
+		inset-inline-end: 0;
+		min-inline-size: 380px;
+		max-inline-size: max-content;
 	}
 }

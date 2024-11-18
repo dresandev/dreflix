@@ -21,9 +21,14 @@ export const useMenu = (toggleBodyOverflow?: boolean) => {
 	useOnRouteChange(closeMenu)
 
 	const handleFocusVisibleOut = (e: React.FocusEvent) => {
-		const hasFocusWithin = e.currentTarget.matches(":focus-within")
+		const relatedTarget = e.relatedTarget as HTMLElement
 
-		if (!hasFocusWithin) closeMenu()
+		const isInteractive = relatedTarget?.tabIndex >= 0
+		const hasFocusWithin = e.currentTarget.contains(relatedTarget)
+
+		if (!isInteractive || hasFocusWithin) return
+
+		closeMenu()
 	}
 
 	return {

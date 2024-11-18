@@ -12,7 +12,7 @@ export const MoviesSuggester: React.FC<Props> = ({ movies, selectedMovieIdx }) =
 	return (
 		<ul role="listbox" className={styles.movieList}>
 			{movies.map(({ id, title }, i) => {
-				const searchParams = new URLSearchParams({ phrase: title }).toString()
+				const searchParams = new URLSearchParams({ phrase: title })
 				return (
 					<li
 						key={id}

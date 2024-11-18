@@ -1,4 +1,4 @@
-.menuBtn {
+.menuTrigger {
 	vertical-align: middle;
 }
 
@@ -26,18 +26,12 @@
 		max-inline-size: 450px;
 	}
 
-	.menuBtn {
+	.menuTrigger {
 		display: none;
 	}
 
 	.searchMenu {
+		all: revert;
 		position: relative;
-		inset: unset;
-		background-color: unset;
-		overflow-y: unset;
-		opacity: unset;
-		visibility: unset;
-		transform: unset;
-		transition: unset;
 	}
 }
