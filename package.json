@@ -1,38 +1,39 @@
 {
-  "name": "dreflix",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@radix-ui/react-slot": "^1.1.0",
-    "@radix-ui/react-tooltip": "^1.1.4",
-    "clsx": "^2.1.1",
-    "next": "15.0.3",
-    "next-nprogress-bar": "^2.3.15",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
-    "react-snap-carousel": "^0.5.0",
-    "sonner": "^1.7.0"
-  },
-  "devDependencies": {
-    "@radix-ui/react-dialog": "^1.1.2",
-    "@types/node": "^22.9.0",
-    "@types/react": "npm:types-react@19.0.0-rc.1",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
-    "eslint": "^9.15.0",
-    "eslint-config-next": "15.0.3",
-    "eslint-config-prettier": "^9.1.0",
-    "typescript": "^5.6.3"
-  },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "npm:types-react@19.0.0-rc.1",
-      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
-    }
-  }
+	"name": "dreflix",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev --turbopack",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@radix-ui/react-slot": "^1.1.0",
+		"@radix-ui/react-tooltip": "^1.1.4",
+		"clsx": "^2.1.1",
+		"next": "15.0.3",
+		"next-nprogress-bar": "^2.3.15",
+		"react": "19.0.0-rc-66855b96-20241106",
+		"react-dom": "19.0.0-rc-66855b96-20241106",
+		"react-snap-carousel": "^0.5.0",
+		"sonner": "^1.7.0"
+	},
+	"devDependencies": {
+		"@radix-ui/react-dialog": "^1.1.2",
+		"@types/node": "^22.9.0",
+		"@types/react": "npm:types-react@19.0.0-rc.1",
+		"@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+		"eslint": "^8.57.0",
+		"eslint-config-next": "15.0.3",
+		"eslint-config-prettier": "^9.1.0",
+		"prettier": "^3.3.3",
+		"typescript": "^5.6.3"
+	},
+	"pnpm": {
+		"overrides": {
+			"@types/react": "npm:types-react@19.0.0-rc.1",
+			"@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+		}
+	}
 }
