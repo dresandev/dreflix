@@ -11,7 +11,7 @@ export const getUserDetails = async (sessionId: string) => {
   })
 
   const data = await api.get<UserDetailsResponse>(
-    `/account/null?${searchParams.toString()}`
+    `/account/null?${searchParams}`
   )
 
   return data

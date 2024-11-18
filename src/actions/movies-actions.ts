@@ -31,7 +31,7 @@ export const getMovieList = async ({
 	})
 
 	const movieListResponse = await api.get<MovieListResponse>(
-		`/movie/${movieListType}?${searchParams.toString()}`,
+		`/movie/${movieListType}?${searchParams}`,
 		{ next: { revalidate: REVALIDATE_TIME } }
 	)
 
@@ -58,12 +58,12 @@ export const getMovieDetails = async ({
 	})
 
 	const details = await api.get<MovieDetails>(
-		`/movie/${movieId}?${searchParams.toString()}`
+		`/movie/${movieId}?${searchParams}`
 	)
 
 	const extraData = await getMovieExtraData({
 		sessionId,
-		movieId: details.id.toString()
+		movieId: details.id
 	})
 
 	return {
@@ -87,7 +87,7 @@ export const getSimilarMovies = async ({
 	})
 
 	const movieListResponse = await api.get<MovieListResponse>(
-		`/movie/${movieId}/similar?${searchParams.toString()}`
+		`/movie/${movieId}/similar?${searchParams}`
 	)
 
 	const movies = await setExtraDataToMovies({
@@ -108,7 +108,7 @@ export const getMovieMainCast = async (movieId: string): Promise<Cast[]> => {
 	})
 
 	const { cast } = await api.get<MovieCreditsResponse>(
-		`/movie/${movieId}/credits?${searchParams.toString()}`
+		`/movie/${movieId}/credits?${searchParams}`
 	)
 
 	const mainCast = cast
@@ -127,7 +127,7 @@ export const getTrailerKey = async (movieId: string) => {
 	})
 
 	const { results: videos } = await api.get<MovieVideosResponse>(
-		`/movie/${movieId}/videos?${searchParams.toString()}`
+		`/movie/${movieId}/videos?${searchParams}`
 	)
 
 	const trailer = videos.find(
@@ -143,7 +143,7 @@ export const getMovieListGenres = async () => {
 	})
 
 	const { genres } = await api.get<GenresResponse>(
-		`/genre/movie/list?${searchParams.toString()}`
+		`/genre/movie/list?${searchParams}`
 	)
 
 	return genres
@@ -175,7 +175,7 @@ export const getMoviesByGenre = async ({
 	})
 
 	const movieListResponse = await api.get<MovieListResponse>(
-		`/discover/movie?${searchParams.toString()}`
+		`/discover/movie?${searchParams}`
 	)
 
 	const movies = await setExtraDataToMovies({
@@ -206,7 +206,7 @@ export const getMoviesByTitle = async ({
 	})
 
 	const movieListResponse = await api.get<MovieListResponse>(
-		`/search/movie?${searchParams.toString()}`
+		`/search/movie?${searchParams}`
 	)
 	const movies = await setExtraDataToMovies({
 		sessionId,
@@ -228,7 +228,7 @@ export const getMovieTitles = async (title: string) => {
 	})
 
 	const { results: movies } = await api.get<MovieListResponse>(
-		`/search/movie?${searchParams.toString()}`
+		`/search/movie?${searchParams}`
 	)
 
 	const uniqueMovieTitles: MovieTitle[] = []
@@ -259,7 +259,7 @@ export const getFavoriteMovies = async ({
 	})
 
 	const movieResults = await api.get<MovieListResponse>(
-		`/account/null/favorite/movies?${searchParams.toString()}`,
+		`/account/null/favorite/movies?${searchParams}`,
 		{ next: { tags: ["favorite-movies"] } }
 	)
 
@@ -322,7 +322,7 @@ const getMovieExtraData = async ({
 export const setTrailerKeyToMovies = async (movies: Movie[]) => {
 	const setTrailerKeys = movies.map(async (movie) => {
 		const { data: trailerKey, status } = await asyncWrapper(
-			getTrailerKey(movie.id.toString())
+			getTrailerKey(movie.id)
 		)
 
 		return (status === "success")
