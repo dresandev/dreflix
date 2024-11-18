@@ -228,8 +228,7 @@ export const getMovieTitles = async (title: string) => {
 	})
 
 	const { results: movies } = await api.get<MovieListResponse>(
-		`/search/movie?${searchParams.toString()}`,
-		{ cache: "no-store" }
+		`/search/movie?${searchParams.toString()}`
 	)
 
 	const uniqueMovieTitles: MovieTitle[] = []
