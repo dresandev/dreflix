@@ -18,14 +18,16 @@ interface Props {
 
 export async function generateMetadata(props: Props) {
 	const params = await props.params
-	const movie = await getMovieDetails({ movieId: params.slug })
+	const movie = await getMovieDetails({
+		movieId: params.slug
+	})
 
 	return {
 		metadataBase: new URL(`${IMAGES_BASE_URL}/w780`),
-		title: `Dreflix: ${movie.title}`,
-		description: movie.overview,
+		title: `Dreflix: ${movie?.title}`,
+		description: movie?.overview,
 		openGraph: {
-			images: `${movie.backdrop_path}`,
+			images: `${movie?.backdrop_path}`,
 		},
 	}
 }

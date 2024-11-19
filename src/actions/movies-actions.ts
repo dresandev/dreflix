@@ -57,9 +57,13 @@ export const getMovieDetails = async ({
 		language: API_LANGUAGE
 	})
 
-	const details = await api.get<MovieDetails>(
-		`/movie/${movieId}?${searchParams}`
+	const { data: details, status } = await asyncWrapper<MovieDetails>(
+		api.get(`/movie/${movieId}?${searchParams}`)
 	)
+
+	if (status === "error") {
+		return null
+	}
 
 	const extraData = await getMovieExtraData({
 		sessionId,
