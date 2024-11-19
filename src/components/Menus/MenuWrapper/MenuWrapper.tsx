@@ -10,7 +10,7 @@ interface Props {
     content?: string
   }
   trigger: React.ReactNode
-  toggleBodyOverflow?: boolean
+  disableToggleBodyOverflow?: boolean
   label: string
 }
 
@@ -18,7 +18,7 @@ export const MenuWrapper: React.FC<Props> = ({
   children,
   classNames,
   trigger,
-  toggleBodyOverflow,
+  disableToggleBodyOverflow,
   label,
 }) => {
   const {
@@ -26,14 +26,14 @@ export const MenuWrapper: React.FC<Props> = ({
     isMenuOpen,
     toggleMenu,
     handleFocusVisibleOut
-  } = useMenu(!toggleBodyOverflow ? false : undefined)
+  } = useMenu(disableToggleBodyOverflow)
 
   const dataState = isMenuOpen ? "open" : "closed"
 
   return (
     <div
       ref={menuRef}
-      aria-label={`${isMenuOpen ? "Open" : "Close"} ${label} menu`}
+      aria-label={`${isMenuOpen ? "Close" : "Open"} ${label} menu`}
       className={classNames?.wrapper}
       onBlur={handleFocusVisibleOut}
     >

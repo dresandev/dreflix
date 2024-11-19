@@ -4,7 +4,7 @@ import { useBoolean } from "~/hooks/use-boolean"
 import { useOnClickOutside } from "~/hooks/use-on-click-outside"
 import { useOnRouteChange } from "~/hooks/use-on-route-change"
 
-export const useMenu = (toggleBodyOverflow?: boolean) => {
+export const useMenu = (disableToggleBodyOverflow?: boolean) => {
 	const menuRef = useRef<HTMLDivElement>(null)
 	const {
 		value: isMenuOpen,
@@ -12,7 +12,7 @@ export const useMenu = (toggleBodyOverflow?: boolean) => {
 		setFalse: closeMenu,
 		toggle: toggleMenu,
 	} = useBoolean(false)
-	useToggleBodyOverflow(toggleBodyOverflow ?? isMenuOpen)
+	useToggleBodyOverflow(disableToggleBodyOverflow ? false : isMenuOpen)
 	useOnClickOutside({
 		ref: menuRef,
 		handler: closeMenu,

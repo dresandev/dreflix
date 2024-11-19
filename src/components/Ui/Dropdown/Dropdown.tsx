@@ -23,7 +23,7 @@ export const Dropdown: React.FC<Props> = ({
 		isMenuOpen: dropdownIsOpen,
 		toggleMenu: toggleDropdown,
 		handleFocusVisibleOut
-	} = useMenu(false)
+	} = useMenu(true)
 
 	const childrenArray = ensureArray(children)
 

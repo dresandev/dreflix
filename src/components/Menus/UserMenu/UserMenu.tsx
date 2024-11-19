@@ -13,6 +13,7 @@ import styles from "./UserMenu.module.css"
 
 export const UserMenu = async () => {
   const userAgent = (await headers()).get("user-agent") || ""
+  console.log(isMobile(userAgent))
   const sessionId = await getSessionId()
 
   if (!sessionId) return <LoginLink />
@@ -34,7 +35,7 @@ export const UserMenu = async () => {
           <CaretDown />
         </Button>
       )}
-      toggleBodyOverflow={isMobile(userAgent)}
+      disableToggleBodyOverflow={!isMobile(userAgent)}
       label="User"
       classNames={{
         wrapper: styles.wrapper,
