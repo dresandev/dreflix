@@ -13,7 +13,6 @@ import styles from "./UserMenu.module.css"
 
 export const UserMenu = async () => {
   const userAgent = (await headers()).get("user-agent") || ""
-  console.log(isMobile(userAgent))
   const sessionId = await getSessionId()
 
   if (!sessionId) return <LoginLink />

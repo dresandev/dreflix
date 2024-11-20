@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import { IMAGES_BASE_URL } from "~/constants"
 import { isFulfilled } from "~/utils/is-fulfilled"
+import { getSessionId } from "~/helpers/session-id"
 import {
 	getMovieMainCast,
 	getMovieDetails,
@@ -10,7 +11,6 @@ import { HeroImage } from "./_components/HeroImage"
 import { MovieDetails } from "./_components/MovieDetails"
 import { MainCast } from "./_components/MainCast"
 import { SimilarMovies } from "./_components/SimilarMovies"
-import { getSessionId } from "~/helpers/session-id"
 
 interface Props {
 	params: Promise<{ slug: string }>
@@ -18,9 +18,9 @@ interface Props {
 
 export async function generateMetadata(props: Props) {
 	const params = await props.params
-	const movie = await getMovieDetails({
-		movieId: params.slug
-	})
+	const movie = await getMovieDetails({ movieId: params.slug })
+
+	if (!movie) notFound()
 
 	return {
 		metadataBase: new URL(`${IMAGES_BASE_URL}/w780`),

@@ -6,6 +6,10 @@ import { InfiniteFavoriteMovies } from "~/components/InfiniteMovies"
 import { PageGradient } from "~/components/PageGradient"
 import styles from "./page.module.css"
 
+export const metadata = {
+  title: "Dreflix: My favorites",
+}
+
 export default async function FavoritesPage() {
   const sessionId = (await getSessionId())!
   const { total_pages, results: movies } = await getFavoriteMovies({ sessionId })
