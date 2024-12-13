@@ -29,7 +29,7 @@ export const SearchMenu = () => {
 		isMenuOpen: isMoviesSuggesterOpen,
 		openMenu: openMoviesSuggester,
 		handleFocusVisibleOut,
-	} = useMenu(false)
+	} = useMenu(true)
 	const [inputValue, setInputValue] = useState("")
 	const inputRef = useRef<HTMLInputElement>(null)
 	const debouncedInputValue = useDebounce(inputValue, DEBOUNCE_DELAY)
