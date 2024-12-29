@@ -4,11 +4,11 @@ Web application to explore movies, with features such as infinite scroll, a movi
 
 ## Screenshots
 
-![dreflix](https://github.com/dresandev/dreflix/assets/79766563/10f218a8-f856-461f-975a-3e65093456bf)
+![image](https://github.com/user-attachments/assets/9d256d12-ce3f-4530-ac8e-8cd6dbe38328)
 
-## Preview
+![image](https://github.com/user-attachments/assets/2015cbce-0072-4034-9bef-436e2a5ee506)
 
-![dreflix preview](https://github.com/dresandev/dreflix/assets/79766563/06c74f3b-8034-4699-859c-83cd8deaa463)
+![image](https://github.com/user-attachments/assets/15ff2333-3c6d-4a7f-bf1a-519667eedb01)
 
 ## Environment Variables
 
