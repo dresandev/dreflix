@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server"
 import { getSessionId } from "./helpers/session-id"
 import { privateRoutes } from "~/routes"
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { nextUrl } = req
   const sessionId = await getSessionId()
   const isLoggedIn = !!sessionId

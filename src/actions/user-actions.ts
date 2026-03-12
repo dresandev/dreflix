@@ -70,7 +70,7 @@ export const setFavoriteMovie = async ({
     }
   }
 
-  revalidateTag("favorite-movies")
+  revalidateTag("favorite-movies", "max")
 
   return {
     error: undefined,

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Fira_Sans } from "next/font/google"
+import { Providers } from "~/components/Providers/Providers"
 import { Header } from "~/components/Header"
-import { ProgressBar } from "~/components/ProgressBar"
 import { Footer } from "~/components/Footer"
 import { Toasts } from "~/components/Toasts"
 import "~/styles/reset.css"
@@ -30,12 +30,13 @@ export default function RootLayout({ children }: Props) {
 	return (
 		<html lang="en">
 			<body className={firaSans.className}>
-				<ProgressBar />
-				<div className="__next">
-					<Header />
-					<main>{children}</main>
-					<Footer />
-				</div>
+				<Providers>
+					<div className="__next">
+						<Header />
+						<main>{children}</main>
+						<Footer />
+					</div>
+				</Providers>
 				<Toasts />
 			</body>
 		</html>
