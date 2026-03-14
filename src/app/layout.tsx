@@ -14,6 +14,10 @@ export const metadata: Metadata = {
 		"Explore through a large catalog of movies and find the movie you want to find so badly.",
 	authors: [{ name: "Dresan - Javier Andres" }],
 	creator: "Dresan - Javier Andres",
+	robots: {
+		index: false,
+		follow: false
+	}
 }
 
 const firaSans = Fira_Sans({
